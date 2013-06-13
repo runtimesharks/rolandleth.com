@@ -3,12 +3,6 @@
 @import "components/reset";
 @import url(http://fonts.googleapis.com/css?family=Arvo);
 
-*  {
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
-}
-
 a {
 	text-decoration: none;
 	color: $link-color;

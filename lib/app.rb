@@ -55,7 +55,7 @@ class Application < Sinatra::Application
 	end
 
 	get '/files/:filename' do |filename|
-		puts 'filename'
+		#puts 'filename'
 		#return send_file "./assets/files/#{filename}", filename:  filename
 		if filename == 'Roland Leth.pdf'
 			return send_file File.open("./assets/files/#{filename}")
@@ -66,7 +66,7 @@ class Application < Sinatra::Application
 	# Individual posts and pages
 	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)$} do |key|
 		#puts 'posts'
-		puts key
+		#puts key
 		if key == '[World-hello]'
 			key = key + ';'
 		end
