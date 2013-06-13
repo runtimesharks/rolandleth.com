@@ -7,6 +7,7 @@ The site was created with [Sinatra](http://www.sinatrarb.com), and it's hosted o
 I also created a simple Alfred Workflow to commit and push after I'm done creating a new post:
 <pre>
 cd /path/to/my/git
+git add .
 git commit -am "New post"
 git push heroku master
 </pre>
