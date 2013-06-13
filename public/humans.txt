@@ -1,0 +1,11 @@
+/* TEAM */
+Designer:     Roland Leth
+Developer:    Roland Leth
+Contact:      rolandleth@me.com
+Twitter:      @rolandleth
+
+/* SITE */
+Last update:  06/20/13
+Language:     English
+Doctype:      HTML5
+Tools:        Ruby, HTML, SCSS on Heroku; RubyMine, Coda 2

@@ -1,0 +1,136 @@
+@import "bourbon";
+@import "globals/*";
+@import "components/reset";
+@import url(http://fonts.googleapis.com/css?family=Arvo);
+
+*  {
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	text-decoration: none;
+	color: $link-color;
+	border-bottom: 1px solid transparent;
+
+	&:hover {
+		border-bottom: 1px solid;
+	}
+}
+
+p {
+	margin: 0 0 1em;
+}
+
+em {
+	padding: 1px 4px;
+	border-radius: 2px;
+	background-color: #fffdcc;
+	font-style: normal;
+}
+
+strong {
+	font-weight: 600;
+}
+
+body {
+	padding: 0 15px;
+	color: $text-color;
+	background: #fff;
+	font-family: 'Avenir Next', 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 17px;
+}
+
+nav.header {
+	max-width: $max-width;
+	margin: 1em auto 1.2em;
+	text-align: center;
+	font-family: 'Arvo';
+	font-size: 2em;
+
+	& h1 {
+		border-bottom: 2px solid $title-color;
+		font-size: 2em;
+		padding: 0;
+		& a {
+			line-height: 0.75em;
+		}
+	}
+
+	& a {
+		@include transition-property(color);
+		@include transition-duration(0.3s);
+		padding: 0 40px;
+		color: $title-color;
+		line-height: 1.75em;
+
+		&:hover {
+			color: $link-color;
+			border-bottom: 0px;
+		}
+	}
+}
+
+header a {
+	@include transition-property(color);
+	@include transition-duration(0.3s);
+}
+
+a {
+	@include transition-property(all);
+	@include transition-duration(0.3s);
+}
+
+
+section {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+footer {
+	max-width: $max-width;
+	margin: 2.5em auto;
+	text-align: center;
+	color: $gray-color;
+
+	& a {
+		color: $gray-color;
+
+		&.rss {
+			color: $text-color;
+		}
+
+		&:hover {
+			color: $link-color;
+		}
+
+
+	}
+}
+
+@media screen and (max-width: 647px) {
+	nav.header {
+		font-size: 1.4em;
+
+		& a {
+			line-height: 1.25em;
+		}
+	}
+}
+
+@media screen and (max-width: 535px) {
+	nav.header a {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+}
+
+@media screen and (max-width: 475px) {
+	nav.header a {
+		padding-left: 17px;
+		padding-right: 17px;
+	}
+}
+
+@import "components/syntax";

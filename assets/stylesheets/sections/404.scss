@@ -1,0 +1,50 @@
+@import "../globals/variables";
+@import "../globals/mixins";
+
+
+span {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+span:before {
+	position: absolute;
+	top: 80%;
+	right: 0px;
+	left: 0px;
+	max-width: 450px;
+	height: 40px;
+	content: "";
+	background-image: url(/assets/misc/404_shadow.png);
+	background-size: 100%;
+}
+
+h1.the-404 {
+	margin: 20% 0 0;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.9);
+	font-size: 13em;
+	font-weight: bold;
+	line-height: 1em;
+	text-align: center;
+	color: $text-color;
+}
+
+p.error-message {
+	max-width: 450px;
+	margin: 20px auto 0;
+	font-size: 1.3em;
+	line-height: 1.3em;
+	margin-bottom: 20%;
+	text-align: center;
+}
+
+@media screen and (max-width: 647px) {
+	h1.the-404 {
+		font-size: 11em;
+	}
+
+	p.error-message {
+		font-size: 1.2em;
+	}
+}

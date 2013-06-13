@@ -1,0 +1,39 @@
+@import "../globals/variables";
+@import "bourbon";
+
+nav.pagination {
+  text-align: center;
+  margin: 2em 0;
+  font-size: 1.1em;
+
+  a {
+    padding: 2px 6px;
+    margin-right: 0.2em;
+    text-decoration: none;
+  }
+  
+  span {
+    padding: 2px 6px;
+    margin-right: 0.2em;
+  }
+  
+  span.gap {
+    padding: 2px;
+    color: $gray-color;
+  }
+  
+  span.disabled {
+    color: $gray-color;
+  }
+
+  @media #{$small-query} {
+    a, span.gap {
+      margin: 0;
+		  display: none;
+    }
+
+    a.previous, a.next {
+      display: inline;
+    }
+  }
+}

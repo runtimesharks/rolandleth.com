@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roland Leth</title>
+  <link rel="stylesheet" href="/assets/application.css">
+  <link rel="stylesheet" href="/assets/sections/posts.css">
+  <link rel="stylesheet" href="/assets/components/pagination.css">
+  <link rel="author" type="text/plain" href="../public/humans.txt">
+  <link href="/feed" rel="alternate" type="application/rss+xml">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/misc/apple-touch-icon-144x144.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+  <nav role="navigation" class="header">
+    <h1 role="banner"><a href="/">Roland Leth</a></h1>
+    <a href="/projects">Projects</a>
+    <a href="/about">About</a>
+    <a href="http://github.com/rolandleth">GitHub</a>
+  </nav>
+  <section>
+    <%= yield %>
+  </section>
+  <footer role="contentinfo">
+    <p>Copyright © <%= Time.now.year %> <a href="/" rel="home">Roland Leth</a> - <a class="rss" href="/feed">RSS</a></p>
+  </footer>
+</body>
+</html>

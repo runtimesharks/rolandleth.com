@@ -1,0 +1,105 @@
+@import url(http://fonts.googleapis.com/css?family=Arvo);
+@import "../globals/variables";
+@import "../globals/syntax.css";
+@import "bourbon";
+
+article {
+	padding: 3em 0 1.5em;
+	border-bottom: 2px solid #ddd;
+	line-height: 1.3em;
+	-webkit-font-smoothing: antialiased;
+
+	& h4 {
+		padding-left: 2px;
+		color: $meta-color;
+		font-size: 0.37em;
+		font-weight: lighter;
+		line-height: 2em;
+	}
+
+	&.about {
+		line-height: 1.5em;
+		border-bottom: 1px solid #eee;
+	}
+
+	&.projects {
+		border-bottom: 1px solid #ddd;
+
+		&>.content {
+			line-height: 0.8em;
+		}
+	}
+}
+
+a.img:hover {
+	border-bottom: 2px solid transparent;
+	opacity: 0.7;
+}
+
+p {
+	&.centeredImage {
+		text-align: center;
+	}
+
+	&.noMargin {
+		margin: 0;
+	}
+}
+
+img {
+	border-radius: 2px;
+	margin-right: 1em;
+	-webkit-box-shadow: #777 0px 0px 3px 1px ;
+	-moz-box-shadow: #444 0px 0px 3px 1px ; /* color, h-offset, v-offset, blur, spread */
+	box-shadow: #777 0px 0px 7px 0px ; /* inset is optional */
+
+	&.about {
+		float: left;
+	}
+}
+
+.projects img {
+	border-radius: 40px;
+}
+
+header {
+	color: $title-color;
+	font-family: 'Arvo';
+	font-size: 2.5em;
+	line-height: 1.2em;
+	font-weight: normal;
+
+	& h1 a {
+		color: $title-color;
+
+		&:hover {
+			color: $link-color;
+			border-bottom: 1px solid transparent;
+		}
+	}
+}
+
+.content {
+	padding-top: 1.5em;
+	padding-left: 2px;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+@media screen and (max-width: 647px) {
+	header {
+		font-size: 2.4em;
+	}
+}
+
+@media screen and (max-width: 535px) {
+	header {
+		font-size: 2.3em;
+	}
+}
+
+@media screen and (max-width: 475px) {
+	header {
+		font-size: 2.2em;
+	}
+}

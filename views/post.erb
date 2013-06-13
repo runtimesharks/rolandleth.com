@@ -1,0 +1,16 @@
+<article>
+  <header>
+	  <%- # Explained this move in app.rb -%>
+    <h1><a href="/<%= title.gsub("\s", "-") %>"><%= title -%></a></h1>
+    <%- if (published_at = Time.at(time.to_i)) -%>
+      <h4>
+        <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
+          <%= published_at.strftime('%B %e, %Y') -%>
+        </time>
+      </h4>
+    <%- end -%>
+  </header>
+  <div class="content">
+    <%= content -%>
+  </div>
+</article>
