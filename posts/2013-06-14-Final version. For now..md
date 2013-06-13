@@ -8,7 +8,7 @@ I also created a simple Alfred Workflow to commit and push after I'm done creati
 <pre>
 cd /path/to/my/git
 git add .
-git commit -am "New post"
+git commit -am "{query}"
 git push heroku master
 </pre>
 
