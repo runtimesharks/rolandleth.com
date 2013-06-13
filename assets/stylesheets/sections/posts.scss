@@ -14,6 +14,9 @@ article {
 		font-size: 0.37em;
 		font-weight: lighter;
 		line-height: 2em;
+		font-style: italic;
+		margin-left: -150px;
+		margin-top: -41px
 	}
 
 	&.about {
@@ -54,6 +57,7 @@ img {
 
 	&.about {
 		float: left;
+		margin-top: 18px;
 	}
 }
 
@@ -88,6 +92,13 @@ header {
 @media screen and (max-width: 647px) {
 	header {
 		font-size: 2.4em;
+	}
+}
+
+@media screen and (max-width: 1020px) {
+	article h4 {
+		margin-left: 0;
+		margin-top: 0
 	}
 }
 

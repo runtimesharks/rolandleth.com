@@ -35,6 +35,10 @@ class Application < Sinatra::Application
 	#	rss.to_s
 	#end
 
+	get '/1' do
+		erb :index
+	end
+
 	# Main pages
 	get %r{/$|/(\d+)$} do |page|
 		#puts 'page'
