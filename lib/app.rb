@@ -1,6 +1,5 @@
-require 'sinatra/base'
+require 'sinatra'
 #require 'rss'
-#require 'sass'
 
 class Application < Sinatra::Application
 	PAGE_SIZE = 5
@@ -40,9 +39,8 @@ class Application < Sinatra::Application
 	get %r{/$|/(\d+)$} do |page|
 		#puts 'page'
 		## Pagination
-		# Retrieve all posts in dir and store them in an array. Reverse so they can be displayed newest->oldest,
-		# since on the filesystem they are stored oldest->newest
-		all_posts = Dir['posts/*.md'].reverse
+		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
+		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		page = (page || 1).to_i
 		# Start index is the first index for each page. if page = 2, start_index is 5
 		start_index = (page - 1) * PAGE_SIZE
@@ -90,7 +88,7 @@ class Application < Sinatra::Application
 				return erb :about
 			end
 		end
-		all_posts = Dir['posts/*.md'].reverse
+		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		i = 0
 		all_posts.each do |post|
 			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)

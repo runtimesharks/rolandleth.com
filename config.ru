@@ -1,12 +1,17 @@
 require 'rubygems'
 require 'bundler'
+require 'redcarpet'
+require 'sprockets'
+require 'sprockets-sass'
+require 'sass'
+
 Bundler.require
 
 $LOAD_PATH.unshift 'lib'
 require 'app'
 
 
-require 'sprockets'
+
 map '/assets' do
   sprockets = Sprockets::Environment.new
   sprockets.append_path 'assets/javascripts'
