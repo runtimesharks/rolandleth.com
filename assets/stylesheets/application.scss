@@ -127,4 +127,14 @@ footer {
 	}
 }
 
+@media screen and (max-width: 350px) {
+	nav.header {
+		font-size: 1.2em;
+
+		& a {
+			line-height: 1.25em;
+		}
+	}
+}
+
 @import "components/syntax";
