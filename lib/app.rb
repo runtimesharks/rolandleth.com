@@ -1,5 +1,7 @@
 require 'sinatra'
 #require 'rss'
+require 'redcarpet'
+require 'markdown_renderer'
 
 class Application < Sinatra::Application
 	PAGE_SIZE = 5

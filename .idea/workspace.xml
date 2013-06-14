@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/application.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/markdown_renderer.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheets/globals/mixins.scss" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/93d8db6ad040de4c9790b45ad4993a613400decb/404.scssc" afterPath="$PROJECT_DIR$/.sass-cache/93d8db6ad040de4c9790b45ad4993a613400decb/404.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/93d8db6ad040de4c9790b45ad4993a613400decb/posts.scssc" afterPath="$PROJECT_DIR$/.sass-cache/93d8db6ad040de4c9790b45ad4993a613400decb/posts.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/cec071cb659f907e4b8558ba65f71f7623e238fe/syntax.scssc" afterPath="$PROJECT_DIR$/.sass-cache/cec071cb659f907e4b8558ba65f71f7623e238fe/syntax.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-03-01-Drop the Layout Magic.md" afterPath="$PROJECT_DIR$/posts/2013-03-01-Drop the Layout Magic.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-03-15-UIEffectDesignerView.md" afterPath="$PROJECT_DIR$/posts/2013-03-15-UIEffectDesignerView.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-06-14-Final version. For now..md" afterPath="$PROJECT_DIR$/posts/2013-06-14-Final version. For now..md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/404.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/404.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/e96d2727e6dbfd3c5998754a2589b9c9ad70256e/application.scssc" afterPath="$PROJECT_DIR$/.sass-cache/e96d2727e6dbfd3c5998754a2589b9c9ad70256e/application.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.erb" afterPath="$PROJECT_DIR$/views/index.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.erb" afterPath="$PROJECT_DIR$/views/layout.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rolandleth.iml" afterPath="$PROJECT_DIR$/.idea/rolandleth.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/components/syntax.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/components/syntax.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
@@ -11,12 +29,12 @@
     <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371140132159" ignored="false" />
     <file path="/Work.html" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370821553429" ignored="false" />
     <file path="/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370822461702" ignored="false" />
-    <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371172860552" ignored="false" />
+    <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371231998432" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371223336529" ignored="false" />
-    <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371223304479" ignored="false" />
-    <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371168074238" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371238726557" ignored="false" />
+    <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371241152140" ignored="false" />
+    <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371239156403" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
     <file path="/application.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965459093" ignored="false" />
     <file path="$USER_HOME$/RubyScripts/quesadilla-master/lib/quesadilla/extractor/autolinks.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370867195647" ignored="false" />
@@ -28,7 +46,7 @@
     <file path="$USER_HOME$/Ruby The Hard Way/ex6.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370875152753" ignored="false" />
     <file path="/ex6.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370874918695" ignored="false" />
     <file path="$USER_HOME$/Ruby The Hard Way/ex7.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370875333988" ignored="false" />
-    <file path="/a.dummy" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371086631444" ignored="false" />
+    <file path="/a.dummy" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371231526646" ignored="false" />
     <file path="/ex7.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370875333988" ignored="false" />
     <file path="$USER_HOME$/Ruby The Hard Way/ex8.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370875607102" ignored="false" />
     <file path="/ex8.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370875573336" ignored="false" />
@@ -47,22 +65,22 @@
     <file path="$USER_HOME$/Sites/soff.es/views/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370896685185" ignored="false" />
     <file path="/article.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370963198236" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/tasks/import.rake" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370898017721" ignored="false" />
-    <file path="/import.rake" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370960946882" ignored="false" />
-    <file path="/markdown_renderer.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371083627589" ignored="false" />
-    <file path="/Rakefile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899062941" ignored="false" />
+    <file path="/import.rake" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371238990672" ignored="false" />
+    <file path="/markdown_renderer.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371240576237" ignored="false" />
+    <file path="/Rakefile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371238863886" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899145540" ignored="false" />
     <file path="$USER_HOME$/Ruby The Hard Way/date.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370960808821" ignored="false" />
     <file path="/date.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370960799501" ignored="false" />
     <file path="/temp.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371087529291" ignored="false" />
     <file path="/post.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371170136563" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/views/slug.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370961362736" ignored="false" />
-    <file path="/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371139756221" ignored="false" />
+    <file path="/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371235277655" ignored="false" />
     <file path="/layout.slim.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370975021142" ignored="false" />
     <file path="/layout.slim" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370976425488" ignored="false" />
     <file path="/application.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371228836643" ignored="false" />
     <file path="$PROJECT_DIR$/../../../r/views/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370977359713" ignored="false" />
     <file path="$PROJECT_DIR$/../../../r/lib/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370977373741" ignored="false" />
-    <file path="/posts.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371222525130" ignored="false" />
+    <file path="/posts.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371246409788" ignored="false" />
     <file path="/not_found.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370993000628" ignored="false" />
     <file path="/404.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371070292907" ignored="false" />
     <file path="/pagination.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370995617133" ignored="false" />
@@ -85,6 +103,14 @@
     <file path="/scheduler.rake" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371172906833" ignored="false" />
     <file path="/newrelic.yml" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371201693895" ignored="false" />
     <file path="/privacy-policy.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371222823166" ignored="false" />
+    <file path="/screen.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371231154447" ignored="false" />
+    <file path="$USER_HOME$/Downloads/nshipster.com-master/css/screen.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371231166358" ignored="false" />
+    <file path="/syntax.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371236350411" ignored="false" />
+    <file path="/application_helper.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371237357342" ignored="false" />
+    <file path="/pygments.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371241873524" ignored="false" />
+    <file path="/pygments.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371240339038" ignored="false" />
+    <file path="/pygments1.sass" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371242598034" ignored="false" />
+    <file path="/pygments.sass" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371242759921" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,10 +130,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.scss" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/stylesheets/application.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="1" selection-start="174" selection-end="174" vertical-scroll-proportion="0.14049587">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="markdown_renderer.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="53" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,79 +151,25 @@
       <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="9" selection-start="2957" selection-end="2957" vertical-scroll-proportion="0.0">
+            <state line="68" column="2" selection-start="2173" selection-end="2531" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="privacy-policy.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
+      <file leaf-file-name="pygments.sass" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/pygments.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="146" selection-start="3092" selection-end="3092" vertical-scroll-proportion="-13.269231">
+            <state line="9" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="-6.12">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="6" selection-start="29" selection-end="29" vertical-scroll-proportion="-1.3076923">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="65" selection-start="3006" selection-end="3006" vertical-scroll-proportion="-43.807693">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/about.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="8" selection-start="772" selection-end="772" vertical-scroll-proportion="-6.5384617">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="posts.scss" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="posts.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/posts.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="18" selection-start="1609" selection-end="1609" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Privacy Policy.md" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="projects.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/projects.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="648" selection-end="648" vertical-scroll-proportion="-9.807693">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/post.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="39" selection-start="305" selection-end="305" vertical-scroll-proportion="-4.576923">
+            <state line="99" column="11" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.8429752">
               <folding />
             </state>
           </provider>
@@ -212,27 +193,27 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/assets/stylesheets/components/reset.scss" />
-        <option value="$PROJECT_DIR$/assets/stylesheets/components/syntax.scss" />
-        <option value="$PROJECT_DIR$/views/index.erb" />
-        <option value="$PROJECT_DIR$/views/post.erb" />
-        <option value="$PROJECT_DIR$/config.ru" />
-        <option value="$PROJECT_DIR$/Readme.md" />
-        <option value="$PROJECT_DIR$/views/projects.erb" />
-        <option value="$PROJECT_DIR$/lib/tasks/scheduler.rake" />
-        <option value="$PROJECT_DIR$/config/newrelic.yml" />
+        <option value="$PROJECT_DIR$/lib/markdown.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
-        <option value="$PROJECT_DIR$/views/privacy-policy.erb" />
+        <option value="$PROJECT_DIR$/lib/markdowner.rb" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
-        <option value="$PROJECT_DIR$/views/about.erb" />
+        <option value="$PROJECT_DIR$/lib/tasks/import.rake" />
+        <option value="$PROJECT_DIR$/views/index.erb" />
+        <option value="$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/pygments.rb-0.5.0/lib/pygments.rb" />
+        <option value="$PROJECT_DIR$/Rakefile" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/components/monkai.css" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/components/syntax.scss" />
         <option value="$PROJECT_DIR$/views/layout.erb" />
-        <option value="$PROJECT_DIR$/assets/stylesheets/application.scss" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments1.sass" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments.scss" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
+        <option value="$PROJECT_DIR$/lib/markdown_renderer.rb" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="8" />
+    <option name="x" value="45" />
     <option name="y" value="22" />
     <option name="width" value="1692" />
     <option name="height" value="1400" />
@@ -263,6 +244,7 @@
       <sortByType ProjectPane="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -326,34 +308,57 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sections" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.ERB" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
     <property name="last.edited.regexp" value="/2013-04-44-[Hello World];.md" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/tasks" />
+      <recent name="$PROJECT_DIR$/assets/stylesheets/components" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/stylesheets/components" />
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/lib/tasks" />
       <recent name="$PROJECT_DIR$/assets/files" />
       <recent name="$PROJECT_DIR$/config" />
-      <recent name="$PROJECT_DIR$/assets/images" />
-      <recent name="$PROJECT_DIR$/lib" />
-      <recent name="$PROJECT_DIR$/assets/stylesheets/sections" />
     </key>
   </component>
   <component name="RunManager" selected="Rack.config.ru">
@@ -585,24 +590,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="8" y="22" width="1692" height="1400" extended-state="0" />
+    <frame x="45" y="22" width="1692" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28432563" sideWeight="0.67152727" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28797084" sideWeight="0.67152727" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -670,114 +675,117 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/tasks/scheduler.rake">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/pygments.rb-0.5.0/vendor/pygments-main/pygments/formatter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="41" selection-start="128" selection-end="128" vertical-scroll-proportion="0.026624901">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/pygments.rb-0.5.0/vendor/pygments-main/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="30.925926">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/pygments.rb-0.5.0/lib/pygments.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="3" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.ru">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.23962411">
+        <state line="21" column="3" selection-start="447" selection-end="447" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/rss.builder">
+    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs20/object.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="107" selection-start="723" selection-end="723" vertical-scroll-proportion="0.22631167">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/newrelic.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="23" selection-start="1740" selection-end="1740" vertical-scroll-proportion="-2.7933884">
+        <state line="728" column="8" selection-start="25962" selection-end="25962" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/projects.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="648" selection-end="648" vertical-scroll-proportion="-9.807693">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="146" selection-start="3092" selection-end="3092" vertical-scroll-proportion="-13.269231">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/post.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="39" selection-start="305" selection-end="305" vertical-scroll-proportion="-4.576923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/posts.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="18" selection-start="1609" selection-end="1609" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="8" selection-start="772" selection-end="772" vertical-scroll-proportion="-6.5384617">
+        <state line="16" column="10" selection-start="180" selection-end="180" vertical-scroll-proportion="0.3211334">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="65" selection-start="3006" selection-end="3006" vertical-scroll-proportion="-43.807693">
+        <state line="0" column="4" selection-start="4" selection-end="4" vertical-scroll-proportion="-0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/app.rb">
+    <entry file="file://$PROJECT_DIR$/Rakefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="9" selection-start="2957" selection-end="2957" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="6" selection-start="29" selection-end="29" vertical-scroll-proportion="-1.3076923">
+        <state line="16" column="0" selection-start="761" selection-end="761" vertical-scroll-proportion="0.3313033">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/pygments.rb-0.5.0/lib/pygments/popen.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="0" selection-start="5159" selection-end="5159" vertical-scroll-proportion="0.8748524">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/syntax.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="2" selection-start="2173" selection-end="2531" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/pygments.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="-6.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="53" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="1" selection-start="174" selection-end="174" vertical-scroll-proportion="0.14049587">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/posts.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="11" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.8429752">
           <folding />
         </state>
       </provider>
