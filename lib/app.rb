@@ -5,6 +5,10 @@ class Application < Sinatra::Application
 	PAGE_SIZE = 5
 	PAGES = %w{about apps projects bouncyb sosmorse iwordjuggle}
 
+	configure :production do
+		require 'newrelic_rpm'
+	end
+	
 	#get('/assets/*.scss') do
 	#	scss :styles
 	#end
