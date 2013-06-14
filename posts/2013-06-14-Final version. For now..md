@@ -1,6 +1,6 @@
 blog
 
-Finally took the time to recreate the blog, the WordPress theme i was using was highly customized, but wasn't really fitting my needs anymore. And, again, since I'm learning web development, why not redesign it completely? The layout is basically the same, but I stole [Sam's](http://soff.es) pagination and [Matt's](http://mattgemmel.com) header and tweaked them to fit my preference.
+Finally took the time to recreate the blog, the WordPress theme i was using was highly customized, but wasn't really fitting my needs anymore. And, again, since I'm learning web development, why not redesign it completely? The layout is basically the same, but I stole [Sam's](http://soff.es) pagination and [Matt's](http://mattgemmell.com) header and tweaked them to fit my preference.
   
 The site was created with [Sinatra](http://www.sinatrarb.com), and it's hosted on [Heroku](https://www.heroku.com). I'm still using [Markdown](http://daringfireball.net/projects/markdown/) and [Mou](http://mouapp.com) to write, but instead of using a database for the posts, I'm using `.md` files. This way I have them on the server git, on my Mac (and on Time Machine, implicitly) **and** synced with Dropbox, since I will be using [Byword](http://bywordapp.com/) for mobile editing.  
 
