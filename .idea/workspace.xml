@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/scheduler.rake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,7 +60,7 @@
     <file path="/application.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371154769999" ignored="false" />
     <file path="$PROJECT_DIR$/../../../r/views/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370977359713" ignored="false" />
     <file path="$PROJECT_DIR$/../../../r/lib/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370977373741" ignored="false" />
-    <file path="/posts.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371172109915" ignored="false" />
+    <file path="/posts.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371174325078" ignored="false" />
     <file path="/not_found.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370993000628" ignored="false" />
     <file path="/404.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371070292907" ignored="false" />
     <file path="/pagination.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370995617133" ignored="false" />
@@ -110,10 +109,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="15" selection-start="177" selection-end="177" vertical-scroll-proportion="0.21299921">
+            <state line="16" column="15" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="posts.scss" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/posts.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="21" selection-start="979" selection-end="979" vertical-scroll-proportion="0.38606107">
               <folding />
             </state>
           </provider>
@@ -150,14 +158,14 @@
         <option value="$PROJECT_DIR$/views/layout.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/Readme.md" />
-        <option value="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
         <option value="$PROJECT_DIR$/views/projects.erb" />
         <option value="$PROJECT_DIR$/lib/tasks/scheduler.rake" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
+    <option name="x" value="185" />
     <option name="y" value="22" />
     <option name="width" value="1692" />
     <option name="height" value="1400" />
@@ -564,14 +572,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1692" height="1400" extended-state="0" />
-    <editor active="false" />
+    <frame x="185" y="22" width="1692" height="1400" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28432563" sideWeight="0.6720306" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28432563" sideWeight="0.6720306" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -733,13 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/posts.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="34" selection-start="535" selection-end="535" vertical-scroll-proportion="0.013312451">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Readme.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="107" selection-start="723" selection-end="723" vertical-scroll-proportion="0.22631167">
@@ -756,7 +757,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="15" selection-start="177" selection-end="177" vertical-scroll-proportion="0.21299921">
+        <state line="16" column="15" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/posts.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="21" selection-start="979" selection-end="979" vertical-scroll-proportion="0.38606107">
           <folding />
         </state>
       </provider>
