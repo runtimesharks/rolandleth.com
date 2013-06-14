@@ -3,12 +3,12 @@ require 'sinatra'
 
 class Application < Sinatra::Application
 	PAGE_SIZE = 5
-	PAGES = %w{about apps projects bouncyb sosmorse iwordjuggle}
+	PAGES = %w{about apps projects bouncyb sosmorse iwordjuggle privacy-policy}
 
 	configure :production do
 		require 'newrelic_rpm'
 	end
-	
+
 	#get('/assets/*.scss') do
 	#	scss :styles
 	#end
@@ -70,6 +70,9 @@ class Application < Sinatra::Application
 		if filename == 'Roland Leth.pdf'
 			return send_file File.open("./assets/files/#{filename}")
 		end
+		if filename == 'Privacy Policy.md'
+			return send_file File.open("./assets/files/#{filename}")
+		end
 		return erb :not_found
 	end
 
@@ -94,6 +97,9 @@ class Application < Sinatra::Application
 			end
 			if key == 'about'
 				return erb :about
+			end
+			if key == 'privacy-policy'
+				return erb :'privacy-policy'
 			end
 		end
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse

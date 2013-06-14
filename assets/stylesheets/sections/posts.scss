@@ -84,11 +84,24 @@ header {
 	padding-left: 2px;
 	font-size: 1.2em;
 	line-height: 1.5em;
+
+	& h2 {
+		color: $title-color;
+		font-family: 'Arvo';
+		font-size: 1.7em;
+		line-height: 1.2em;
+		font-weight: normal;
+	}
 }
 
 @media screen and (max-width: 647px) {
 	header {
 		font-size: 2.4em;
+	}
+
+	.content h2 {
+		font-size: 1.5em;
+		line-height: 1.1em;
 	}
 }
 
@@ -107,6 +120,15 @@ header {
 
 @media screen and (max-width: 475px) {
 	header {
-		font-size: 2.2em;
+		font-size: 2.0em;
+	}
+
+	.content {
+		padding-top: 1em;
+
+		& h2 {
+			font-size: 1.3em;
+			line-height: 1.1em;
+		}
 	}
 }
