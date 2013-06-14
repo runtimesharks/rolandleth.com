@@ -5,7 +5,7 @@
     <%- if (published_at = Time.at(time.to_i)) -%>
       <h4>
         <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
-          <%= published_at.strftime('%B %e, %Y') -%>
+          <%= published_at.strftime('%b %e, %Y') -%>
         </time>
       </h4>
     <%- end -%>

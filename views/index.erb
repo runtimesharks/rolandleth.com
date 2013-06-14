@@ -1,74 +1,88 @@
 <%- if total_pages == -1
-			# Explained the total_pages == -1 check in app.rb
-			post = posts[page]
-		  category = File.open(post).readlines[0]
-			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
-		  time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
-		  title = matches[4]
-		  content = markdown(File.readlines(post)[2..-1].join())
-		-%>
+      # Explained the total_pages == -1 check in app.rb
+      post = posts[page]
+      category = File.open(post).readlines[0]
+      matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
+      time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
+      title = matches[4]
+      content = markdown(File.readlines(post)[2..-1].join())
+-%>
   <%= erb :post, locals: { post: post, time: time, category: category, title: title, content: content } -%>
 <%- else -%>
-	<%- posts.each do |post|
-	      category = File.open(post).readlines[0]
-	      matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
-			  time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
-	      title = matches[4]
-	      content = markdown(File.readlines(post)[2..-1].join())
-	  -%>
-	  <%= erb :post, locals: { post: post, time: time, category: category, title: title, content: content} -%>
-	<%- end -%>
+  <%- posts.each do |post|
+    category = File.open(post).readlines[0]
+    matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
+    time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
+    title = matches[4]
+    content = markdown(File.readlines(post)[2..-1].join())
+  -%>
+    <%= erb :post, locals: { post: post, time: time, category: category, title: title, content: content} -%>
+  <%- end -%>
   <%- if total_pages > 1 -%>
-		<nav class="pagination">
-	  <%- if page > 1 -%>
-	    <%- if page == 2 -%>
-	      <a class="previous" href="/" rel="previous">&larr; Previous</a>
-	    <%- else -%>
-		    <a class="previous" href="/<%= page - 1 -%>" rel="previous">&larr; Previous</a>
-	    <%- end -%>
-	  <%- else -%>
-	    <span class="disabled">&larr; Previous</span>
-	  <%- end -%>
+    <nav class="pagination">
+      <%- if page > 1 -%>
+        <%- if page == 2 -%>
+          <a class="previous" href="/" rel="previous">&larr; Previous</a>
+        <%- else -%>
+          <a class="previous" href="/<%= page - 1 -%>" rel="previous">&larr; Previous</a>
+        <%- end -%>
+      <%- else -%>
+        <span class="disabled">&larr; Previous</span>
+      <%- end -%>
 
-	  <%- if page > window -%>
-	    <%- if page == window + 1 -%>
-	      <a href="/">1</a>
-	    <%- else -%>
-	      <%- (1..window).each do |i| -%>
-	        <a href="/<%= i -%>"><%= i -%></a>
-	      <%- end -%>
-	      <span class="gap">&hellip;</span>
-	    <%- end -%>
-	  <%- end -%>
+      <%- if page > gap -%>
+        <a href="/">1</a>
+		    <%- # If page == gap * 2, the gap is redundant; it would display, for example, 1 2 ... 3 4 -%>
+        <%- if page == gap * 2 -%>
+          <a href="/2">2</a>
+        <%- else %>
+          <%- # Since we always display first page and prev page + current page, the gap is redundant if page <= gap * 2
+              # it would display, for example, 1 2 ... 3 4. Also, showing 1 2 ... 4 5 takes same space as 1 2 3 4 5.-%>
+          <%- if page > gap * 2 -%>
+            <span class="gap">&hellip;</span>
+          <%- end -%>
+        <%- end -%>
+      <%- end -%>
 
-	  <%- if page > 1 -%>
-	    <%- if page == 2 -%>
-	      <a href="/" rel="prev"><%= page - 1 -%></a>
-	    <%- else -%>
-	      <a href="/<%= page - 1 -%>" rel="prev"><%= page - 1 -%></a>
-	    <%- end -%>
-	  <%- end -%>
-	  <span class="current"><%= page -%></span>
-	  <%- if page < total_pages -%>
-	    <a href="/<%= page + 1 -%>" rel="next"><%= page + 1 -%></a>
-	  <%- end -%>
+      <%- # If current page is 2, prev button links to / instead of /1 -%>
+	    <%- # Also prev pagination-number links to / instead of current page - 1 -%>
+      <%- if page > 1 -%>
+        <%- if page == 2 -%>
+          <a href="/" rel="previous"><%= page - 1 -%></a>
+        <%- else -%>
+          <a href="/<%= page - 1 -%>" rel="previous"><%= page - 1 -%></a>
+        <%- end -%>
+      <%- end -%>
 
-	  <%- if page <= total_pages - window -%>
-	    <%- if page == total_pages - window -%>
-	      <a href="/<%= total_pages -%>"><%= total_pages -%></a>
-	    <%- else -%>
-	      <span class="gap">&hellip;</span>
-	      <%- ((total_pages - window + 1)..total_pages).each do |i| -%>
-	        <a href="/<%= i -%>"><%= i -%></a>
-	      <%- end -%>
-	    <%- end -%>
-	  <%- end -%>
+	    <%- # Next pagination-number links to current page + 1 -%>
+      <span class="current"><%= page -%></span>
+      <%- if page < total_pages - 1 -%>
+        <a href="/<%= page + 1 -%>" rel="next"><%= page + 1 -%></a>
+      <%- end -%>
 
-	  <%- if page < total_pages -%>
-	    <a class="next" href="/<%= page + 1 -%>" rel="next">Next &rarr;</a>
-	  <%- else -%>
-	    <span class="disabled">Next &rarr;</span>
-	  <%- end -%>
-	</nav>
-	<%- end -%>
+      <%- if page < total_pages - gap -%>
+        <%- if page == total_pages - gap -%>
+          <a href="/<%= total_pages -%>"><%= total_pages -%></a>
+        <%- else -%>
+			    <%- # Since we always display current page + next one and last page,
+			        # if the gap between current page and last page + 1 < gap * 2, the gap is redundant; it would display,
+			        # for example 5 6 ... 7 8. Also, showing 4 5 .. 7 8 takes same space as 4 5 6 7 8. -%>
+			    <%- if (total_pages - page + 1) > gap * 2 -%>
+            <span class="gap">&hellip;</span>
+			    <%- else -%>
+            <a href="/<%= total_pages - 1 -%>"><%= total_pages - 1 -%></a>
+			    <%- end -%>
+        <%- end -%>
+      <%- end -%>
+
+      <%- # next button disabled/enabled logic -%>
+      <%- if page < total_pages -%>
+        <a href="/<%= total_pages -%>"><%= total_pages -%></a>
+        <a class="next" href="/<%= page + 1 -%>" rel="next">Next &rarr;</a>
+      <%- else -%>
+        <span class="disabled">Next &rarr;</span>
+      <%- end -%>
+
+    </nav>
+  <%- end -%>
 <%- end -%>

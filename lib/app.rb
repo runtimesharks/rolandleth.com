@@ -35,14 +35,13 @@ class Application < Sinatra::Application
 	#	rss.to_s
 	#end
 
+	# Links to /1 are redirected to root. No reason to display http://root/1
 	get '/1' do
-		erb :index
+		redirect '/'
 	end
 
 	# Main pages
 	get %r{/$|/(\d+)$} do |page|
-		#puts 'page'
-		## Pagination
 		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		page = (page || 1).to_i
@@ -53,9 +52,12 @@ class Application < Sinatra::Application
 		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		# Posts to be displayed on current page
 		posts = all_posts[start_index..end_index]
-		# window is used for gaps in navigation. How many pages between first and current before '..' is shown
-		# Example: current page 5, pagination will look like 1 .. 5
-		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, window: 2 }
+		# gap: How many pages between first/last and current before '..' is shown
+		# Example: gap of 2, current page 5, pagination will be 1 .. 4 5 6 .. 9. Tweaked for use with a gap of 2.
+		if page > total_pages
+			return erb :not_found
+		end
+		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 	end
 
 	get '/files/:filename' do |filename|
@@ -69,8 +71,6 @@ class Application < Sinatra::Application
 
 	# Individual posts and pages
 	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)$} do |key|
-		#puts 'posts'
-		#puts key
 		if key == '[World-hello]'
 			key = key + ';'
 		end
@@ -105,19 +105,17 @@ class Application < Sinatra::Application
 			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[4] == key.gsub("-", "\s")
 			# Total pages is set to -1 so I don't create another variable just for when a post is clicked to be viewed
 			# individually. If total_pages == -1, hide the pagination and display only the clicked post
-			# I'm also using page variable as 'current array index' to retrieve the current post, instead of a new variable
+			# I'm also using the page variable as 'current array index' to retrieve the clicked post, instead of a new variable.
 			i += 1
 		end
 		return erb :not_found
 	end
 
 	not_found do
-		#puts 'not_found'
 		return erb :not_found
 	end
 
 	error do
-		#puts 'error'
 		return erb :not_found
 	end
 end

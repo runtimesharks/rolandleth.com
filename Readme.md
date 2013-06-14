@@ -1,26 +1,17 @@
-# soff.es
+# rolandleth.com
 
-This is my blog. It's pretty simple. It stores all of the posts in Redis. They are updated via GitHub post-commit hook. My posts are stored [here](https://github.com/soffes/blog).
+Really simple [Sinatra](http://www.sinatrarb.com/) app for my [site](http://rolandleth.com). I write my posts with [Markdown](http://daringfireball.net/projects/markdown/), push them to Heroku, then parse them. That's kinda it.  
+I plan to add Dropbox link functionality in the near future, so I can publish when mobile.
+
+Also included: the landing pages from [RLLandingPage](http://github.com/rolandleth/RLLandingPage).
 
 ## Running Locally
 
-**Note:** I am using Ruby 2.0.0 both on Heroku and locally.
+    $ git clone https://github.com/rolandleth/rolandleth.com.git
+    $ cd rolandleth
+    $ rackup
 
-Get the source (obviously)
+Open [http://localhost:9292](http://localhost:9292)
 
-    $ git clone https://github.com/soffes/soff.es.git
-    $ cd soff.es
-
-Import my posts:
-
-    $ rake import
-
-Now you can start the server with [Shotgun](https://github.com/rtomayko/shotgun):
-
-    $ bundle exec shotgun
-
-Then open <http://localhost:9292> in your browser to see it running. If you have issues getting it up and running, [send me an email](mailto:sam@soff.es).
-
-## Further
-
-At some point, I plan on moving a lot of this into a gem.
+---
+*Yet again I find myself learning from [Sam's](http://github.com/soffes/soff.es) open source work. Cheers!*

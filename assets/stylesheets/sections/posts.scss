@@ -5,7 +5,7 @@
 
 article {
 	padding: 3em 0 1.5em;
-	border-bottom: 2px solid #ddd;
+	border-bottom: 1px solid #e2e2e2;
 	line-height: 1.3em;
 
 	& h4 {
@@ -15,8 +15,8 @@ article {
 		font-weight: lighter;
 		line-height: 2em;
 		font-style: italic;
-		margin-left: -150px;
-		margin-top: -41px
+		margin-left: -130px;
+		margin-top: -41px;
 	}
 
 	&.about {
@@ -26,15 +26,11 @@ article {
 
 	&.projects {
 		border-bottom: 1px solid #ddd;
-
-		&>.content {
-			line-height: 0.8em;
-		}
 	}
 }
 
 a.img:hover {
-	border-bottom: 2px solid transparent;
+	border-bottom: 1px solid transparent;
 	opacity: 0.7;
 }
 
@@ -50,7 +46,6 @@ p {
 
 img {
 	border-radius: 2px;
-	margin-right: 1em;
 	-webkit-box-shadow: #777 0px 0px 3px 1px ;
 	-moz-box-shadow: #444 0px 0px 3px 1px ; /* color, h-offset, v-offset, blur, spread */
 	box-shadow: #777 0px 0px 7px 0px ; /* inset is optional */
@@ -63,6 +58,7 @@ img {
 
 .projects img {
 	border-radius: 40px;
+	margin: 0.15em 0.5em;
 }
 
 header {
@@ -95,7 +91,7 @@ header {
 	}
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 980px) {
 	article h4 {
 		margin-left: 0;
 		margin-top: 0
