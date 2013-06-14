@@ -23,6 +23,6 @@ def _markdown(text)
 			space_after_headers: true,
 			superscript: true
 	}
-	markdown = Redcarpet::Markdown.new(MarkdownRenderer)
+	markdown = Redcarpet::Markdown.new(MarkdownRenderer, options)
 	markdown.render(text)
 end
