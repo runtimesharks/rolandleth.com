@@ -8,6 +8,7 @@ GEM
     erubis (2.7.0)
     hike (1.2.3)
     multi_json (1.7.6)
+    newrelic_rpm (3.6.3.111)
     puma (2.0.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -39,6 +40,7 @@ DEPENDENCIES
   bourbon
   builder
   erubis
+  newrelic_rpm
   puma
   rake
   redcarpet
