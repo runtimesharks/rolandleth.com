@@ -3,6 +3,10 @@
 @import "components/reset";
 @import url(http://fonts.googleapis.com/css?family=Arvo);
 
+html {
+	//border-left: 6px solid $link-color;
+}
+
 a {
 	text-decoration: none;
 	color: $link-color;
