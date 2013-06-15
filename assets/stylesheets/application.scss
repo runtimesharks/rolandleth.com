@@ -21,6 +21,11 @@ p {
 	margin: 0.5em 0;
 }
 
+u {
+	font-style: italic;
+	text-decoration: none;
+}
+
 em {
 	padding: 1px 4px;
 	border-radius: 2px;
@@ -78,10 +83,6 @@ header a {
 a {
 	@include transition-property(border);
 	@include transition-duration(0.3s);
-}
-
-i {
-	font-style: italic;
 }
 
 section {

@@ -21,7 +21,8 @@ def _markdown(text)
 			autolink: true,
 			strikethrough: true,
 			space_after_headers: true,
-			superscript: true
+			superscript: true,
+	    underline: true,
 	}
 	markdown = Redcarpet::Markdown.new(MarkdownRenderer, options)
 	markdown.render(text)
