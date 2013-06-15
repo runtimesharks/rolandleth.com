@@ -51,9 +51,9 @@ class Application < Sinatra::Application
 		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		page = (page || 1).to_i
-		# Start index is the first index for each page. if page = 2, start_index is 5
+		# Start index is the first index on each page. if page == 2 and PAGE_SIZE == 5, start_index is 5
 		start_index = (page - 1) * PAGE_SIZE
-		# End index is last index for each page
+		# End index is last index on each page
 		end_index = [start_index + PAGE_SIZE - 1, all_posts.count - 1].min
 		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		# Posts to be displayed on current page
@@ -67,8 +67,6 @@ class Application < Sinatra::Application
 	end
 
 	get '/files/:filename' do |filename|
-		#puts 'filename'
-		#return send_file "./assets/files/#{filename}", filename:  filename
 		if filename == 'Roland Leth.pdf'
 			return send_file File.open("./assets/files/#{filename}")
 		end
