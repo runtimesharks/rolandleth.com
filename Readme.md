@@ -17,6 +17,6 @@ Open [http://localhost:9292](http://localhost:9292)
 There is none. Use it as you wish.
 
 ## Mentions
-*Yet again I find myself learning from [Sam's](http://github.com/soffes/soff.es) open source work. Cheers!*  
-*The pygment coloring was stolen and adapted from Matt's [NSHipster](https://github.com/NSHipster/nshipster.com).*  
+*Yet again I find myself learning from [Sam](http://soff.es)'s open source [work](http://github.com/soffes/soff.es). Cheers!*  
+*The pygment coloring was stolen and adapted from [Matt Thompson](http://mattt.me)'s [NSHipster](https://github.com/NSHipster/nshipster.com).*  
 *The header was stolen and adapted from [Matt Gemmell](http://mattgemmell.com).*
