@@ -4,6 +4,7 @@ ruby '2.0.0'
 gem 'rake'
 gem 'sinatra'
 gem 'newrelic_rpm'
+gem 'dropbox-sdk'
 
 # RSS Builder
 gem 'builder'

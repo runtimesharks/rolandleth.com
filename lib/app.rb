@@ -2,6 +2,7 @@ require 'sinatra'
 #require 'rss'
 require 'redcarpet'
 require 'markdown_renderer'
+require 'dropbox_sdk'
 
 class Application < Sinatra::Application
 	PAGE_SIZE = 5
