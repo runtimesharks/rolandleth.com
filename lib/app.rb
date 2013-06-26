@@ -16,6 +16,8 @@ class Application < Sinatra::Application
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		rss = RSS::Maker.make('2.0') do |rss|
+			rss.channel.icon = "/public/favicon.ico"
+			rss.channel.logo = "/public/favicon.ico"
 			rss.channel.title = 'Roland Leth'
 			rss.channel.description = 'Roland Leth'
 			rss.channel.link = "/"
@@ -27,6 +29,7 @@ class Application < Sinatra::Application
 				i = rss.items.new_item
 				i.title = matches[4]
 				time_string = File.readlines(post)[1]
+				# in case I forget to fill the time, just create a random hour between 8 PM and 3 AM, that's when I work most of the time
 				if time_string.length == 8 or time_string.length == 9
 					time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
 					time[:leftover] = nil
