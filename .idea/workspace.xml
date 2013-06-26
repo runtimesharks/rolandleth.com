@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/files/Roland Leth.pages" afterPath="$PROJECT_DIR$/assets/files/Roland Leth.pages" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/files/Roland Leth.pdf" afterPath="$PROJECT_DIR$/assets/files/Roland Leth.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-06-26-Stop thinking it's too hard.md" afterPath="$PROJECT_DIR$/posts/2013-06-26-Stop thinking it's too hard.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -13,7 +16,7 @@
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372028201902" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372272336434" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372273891311" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372264524176" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371239156403" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
@@ -118,7 +121,7 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="22" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.23730814">
+            <state line="13" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.056670602">
               <folding />
             </state>
           </provider>
@@ -277,6 +280,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -749,7 +770,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="22" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.23730814">
+        <state line="13" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.056670602">
           <folding />
         </state>
       </provider>
