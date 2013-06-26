@@ -16,7 +16,6 @@ class Application < Sinatra::Application
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		rss = RSS::Maker.make('2.0') do |rss|
-			rss.channel.about = 'Roland Leth'
 			rss.channel.title = 'Roland Leth'
 			rss.channel.description = 'Roland Leth'
 			rss.channel.link = "/"
@@ -29,6 +28,7 @@ class Application < Sinatra::Application
 				time = File.mtime(post).gmtime
 				i = rss.items.new_item
 				i.title = matches[4]
+				# titles are written 'Like this', links need to be 'Like-this'
 				i.link = "/#{matches[4].gsub("\s", "-")}"
 				content = _markdown(File.readlines(post)[2..-1].join())
 				i.description = content

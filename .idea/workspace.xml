@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-02-24-[World hello];.md" afterPath="$PROJECT_DIR$/posts/2013-02-24-[World hello];.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-02-25-Restructuring the site.md" afterPath="$PROJECT_DIR$/posts/2013-02-25-Restructuring the site.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-03-01-Drop the Layout Magic.md" afterPath="$PROJECT_DIR$/posts/2013-03-01-Drop the Layout Magic.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-03-01-UIAlertView customization.md" afterPath="$PROJECT_DIR$/posts/2013-03-01-UIAlertView customization.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-03-09-Markdown to RTF in Mail.app.md" afterPath="$PROJECT_DIR$/posts/2013-03-09-Markdown to RTF in Mail.app.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-04-01-iPhone App showcase.md" afterPath="$PROJECT_DIR$/posts/2013-04-01-iPhone App showcase.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-05-19-Ikonica.md" afterPath="$PROJECT_DIR$/posts/2013-05-19-Ikonica.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-06-11-New iOS HIG.md" afterPath="$PROJECT_DIR$/posts/2013-06-11-New iOS HIG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-06-14-Final version. For now..md" afterPath="$PROJECT_DIR$/posts/2013-06-14-Final version. For now..md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-06-15-New Relic.md" afterPath="$PROJECT_DIR$/posts/2013-06-15-New Relic.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-06-15-No Room For Errors.md" afterPath="$PROJECT_DIR$/posts/2013-06-15-No Room For Errors.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/about.erb" afterPath="$PROJECT_DIR$/views/about.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/application.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.erb" afterPath="$PROJECT_DIR$/views/layout.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/markdown_renderer.rb" afterPath="$PROJECT_DIR$/lib/markdown_renderer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/post.erb" afterPath="$PROJECT_DIR$/views/post.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -132,15 +113,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/stylesheets/application.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="1" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="layout.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -150,19 +122,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0">
+            <state line="21" column="33" selection-start="550" selection-end="550" vertical-scroll-proportion="0.4214876">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="about.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="markdown_renderer.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="21" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/about.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="8" selection-start="776" selection-end="776" vertical-scroll-proportion="0.24847747">
+            <state line="21" column="9" selection-start="1560" selection-end="1560" vertical-scroll-proportion="-13.730769">
               <folding />
             </state>
           </provider>
@@ -256,8 +237,8 @@
         <option value="$PROJECT_DIR$/assets/stylesheets/globals/variables.scss" />
         <option value="$PROJECT_DIR$/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/views/post.erb" />
-        <option value="$PROJECT_DIR$/lib/app.rb" />
         <option value="$PROJECT_DIR$/views/about.erb" />
+        <option value="$PROJECT_DIR$/lib/app.rb" />
       </list>
     </option>
   </component>
@@ -309,20 +290,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rolandleth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rolandleth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rolandleth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -640,7 +607,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -737,13 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="21" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="0" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
@@ -816,16 +776,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/app.rb">
+    <entry file="file://$PROJECT_DIR$/views/about.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0">
+        <state line="21" column="9" selection-start="1560" selection-end="1560" vertical-scroll-proportion="-13.730769">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.erb">
+    <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="8" selection-start="776" selection-end="776" vertical-scroll-proportion="0.24847747">
+        <state line="25" column="21" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="33" selection-start="550" selection-end="550" vertical-scroll-proportion="0.4214876">
           <folding />
         </state>
       </provider>
