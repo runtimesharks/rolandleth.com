@@ -23,6 +23,7 @@ def _markdown(text)
 			space_after_headers: true,
 			superscript: true,
 	    underline: true,
+	    highlight: true
 	}
 	markdown = Redcarpet::Markdown.new(MarkdownRenderer, options)
 	markdown.render(text)

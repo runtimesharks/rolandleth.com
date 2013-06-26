@@ -19,4 +19,4 @@ I'll post the source code on [GitHub](http://github.com/rolandleth) tomorrow, I 
 properly comment it.
   
 <br />
-I'm *really* happy with the result!
+I'm ==really== happy with the result!

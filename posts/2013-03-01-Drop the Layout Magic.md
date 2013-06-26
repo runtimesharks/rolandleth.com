@@ -8,4 +8,4 @@ Really nice utility class to modify the frame of an UIView. Semantically and wit
 
 You can find the class on his [GitHub](https://github.com/podio/ios-view-frame-builder) and read about it [on his blog](http://sebreh.tumblr.com/post/36673388038/drop-the-layout-magic).
 
-*Thanks, Sebastian!*
+==Thanks, Sebastian!==

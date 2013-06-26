@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'rss'
+require 'rss'
 require 'redcarpet'
 require 'markdown_renderer'
 require 'dropbox_sdk'
@@ -12,35 +12,31 @@ class Application < Sinatra::Application
 		require 'newrelic_rpm'
 	end
 
-	#get('/assets/*.scss') do
-	#	scss :styles
-	#end
 
-	#get '/feed' do
-	#	posts = Dir['posts/*.md']
-	#	rss = RSS::Maker.make('2.0') do |rss|
-	#		rss.channel.about = 'Roland Leth'
-	#		rss.channel.title = 'Roland Leth'
-	#		rss.channel.description = 'Roland Leth'
-	#		rss.channel.link = "http://rolandleth.com"
-	#		rss.channel.language = 'en'
-	#
-	#		rss.items.do_sort = true
-	#		rss.items.max_size = 100
-	#
-	#		#posts.each do |post|
-	#		#	matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s]+)\.markdown$/)
-	#		#	content = markdown(File.readlines(post)[2..-1].join())
-	#		#	i = rss.items.new_item
-	#		#	i.title = matches[4]
-	#		#	i.link = post
-	#		#	i.description = content
-	#		#	i.date = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc
-	#		#end
-	#	end
-	#	content_type = 'text/xml; charset=utf-8'
-	#	rss.to_s
-	#end
+	get '/feed' do
+		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
+		rss = RSS::Maker.make('2.0') do |rss|
+			rss.channel.about = 'Roland Leth'
+			rss.channel.title = 'Roland Leth'
+			rss.channel.description = 'Roland Leth'
+			rss.channel.link = "/"
+			rss.channel.language = 'en'
+
+			rss.items.do_sort = false
+
+			posts.each do |post|
+				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
+				time = File.mtime(post).gmtime
+				i = rss.items.new_item
+				i.title = matches[4]
+				i.link = "/#{matches[4].gsub("\s", "-")}"
+				content = _markdown(File.readlines(post)[2..-1].join())
+				i.description = content
+				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time.hour, time.min, 0).to_time.gmtime
+			end
+		end
+		rss.to_s
+	end
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
 	get '/1' do

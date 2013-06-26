@@ -16,7 +16,7 @@ gem 'puma'
 gem 'erubis'
 
 # Markdown
-gem 'redcarpet'
+gem 'redcarpet', github: 'vmg/redcarpet'
 
 # Safety
 gem 'safe_yaml'

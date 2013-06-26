@@ -21,12 +21,11 @@ p {
 	margin: 0.5em 0;
 }
 
-u {
+em {
 	font-style: italic;
-	text-decoration: none;
 }
 
-em {
+mark {
 	padding: 1px 4px;
 	border-radius: 2px;
 	background-color: #fffdcc;
@@ -97,7 +96,7 @@ footer {
 	color: $gray-color;
 
 	& a {
-		color: $gray-color;
+		color: #999;
 
 		&.rss {
 			color: $text-color;
