@@ -28,20 +28,20 @@ class Application < Sinatra::Application
 				i.title = matches[4]
 				time_string = File.readlines(post)[1]
 				if time_string.length == 8 or time_string.length == 9
-					time = Date._strptime("#{time_string}","%H:%M %p")
+					time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
 					time[:leftover] = nil
 				else
 					hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
 					puts hour
 					min = rand(0..59)
-					time = Date._strptime("#{hour}:#{min}","%H:%M")
+					time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
 				end
 
 				# titles are written 'Like this', links need to be 'Like-this'
 				i.link = "/#{matches[4].gsub("\s", "-")}"
 				content = _markdown(File.readlines(post)[3..-1].join())
 				i.description = content
-				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour] - (Time.now.gmt_offset / 3600), time[:min], 0).to_time.gmtime
+				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time.utc
 			end
 		end
 		rss.to_s
