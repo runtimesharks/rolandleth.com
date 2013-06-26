@@ -12,16 +12,19 @@ class Application < Sinatra::Application
 		require 'newrelic_rpm'
 	end
 
-
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		rss = RSS::Maker.make('2.0') do |rss|
-			rss.channel.icon = "/public/favicon.ico"
-			rss.channel.logo = "/public/favicon.ico"
+		rss = RSS::Maker.make('atom') do |rss|
+			rss.channel.icon = '/public/favicon.ico'
+			rss.channel.id = 'http://rolandleth.com'
+			rss.channel.link = 'http://rolandleth.com'
 			rss.channel.title = 'Roland Leth'
 			rss.channel.description = 'Roland Leth'
-			rss.channel.link = "/"
+			rss.channel.author = 'Roland Leth'
+			rss.channel.updated = Time.now
 			rss.channel.language = 'en'
+			rss.channel.rights = "© #{Time.now.year} Roland Leth"
+			rss.channel.subtitle = 'Development thoughts by Roland Leth'
 
 			rss.items.do_sort = false
 			posts.each do |post|
@@ -50,7 +53,7 @@ class Application < Sinatra::Application
 				i.published = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 			end
 		end
-		rss.to_s
+		return rss.to_s
 	end
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
