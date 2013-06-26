@@ -22,17 +22,26 @@ class Application < Sinatra::Application
 			rss.channel.language = 'en'
 
 			rss.items.do_sort = false
-
 			posts.each do |post|
 				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
-				time = File.mtime(post).gmtime
 				i = rss.items.new_item
 				i.title = matches[4]
+				time_string = File.readlines(post)[1]
+				if time_string.length == 8 or time_string.length == 9
+					time = Date._strptime("#{time_string}","%H:%M %p")
+					time[:leftover] = nil
+				else
+					hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
+					puts hour
+					min = rand(0..59)
+					time = Date._strptime("#{hour}:#{min}","%H:%M")
+				end
+
 				# titles are written 'Like this', links need to be 'Like-this'
 				i.link = "/#{matches[4].gsub("\s", "-")}"
-				content = _markdown(File.readlines(post)[2..-1].join())
+				content = _markdown(File.readlines(post)[3..-1].join())
 				i.description = content
-				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time.hour, time.min, 0).to_time.gmtime
+				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour] - (Time.now.utc_offset / 3600), time[:min], 0).to_time.utc
 			end
 		end
 		rss.to_s

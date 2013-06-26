@@ -5,7 +5,7 @@
       matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
       time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
       title = matches[4]
-      content = _markdown(File.readlines(post)[2..-1].join())
+      content = _markdown(File.readlines(post)[3..-1].join())
 -%>
   <%= erb :post, locals: { post: post, time: time, category: category, title: title, content: content } -%>
 <%- else -%>
@@ -14,7 +14,7 @@
     matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
     time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
     title = matches[4]
-    content = _markdown(File.readlines(post)[2..-1].join())
+    content = _markdown(File.readlines(post)[3..-1].join())
   -%>
     <%= erb :post, locals: { post: post, time: time, category: category, title: title, content: content} -%>
   <%- end -%>

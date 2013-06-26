@@ -1,4 +1,5 @@
-blog
+blog  
+6:01 PM
 
 I finally got around and implemented the RSS feed. Wasn't as hard as I expected; piss easy, actually:
 
