@@ -23,7 +23,7 @@ class Application < Sinatra::Application
 			rss.channel.author = 'Roland Leth'
 			rss.channel.language = 'en'
 			rss.channel.rights = "© #{Time.now.year} Roland Leth"
-			rss.channel.subtitle = 'Development thoughts by Roland Leth'
+			rss.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth'
 			rss.items.do_sort = false
 			posts.each do |post|
 				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
