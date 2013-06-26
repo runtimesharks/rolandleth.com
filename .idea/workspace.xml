@@ -12,7 +12,7 @@
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372028201902" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372262580406" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372263211201" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372203137182" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371239156403" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
@@ -134,7 +134,7 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="116" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.6824085">
+            <state line="43" column="115" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.6824085">
               <folding />
             </state>
           </provider>
@@ -970,7 +970,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="116" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.6824085">
+        <state line="43" column="115" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.6824085">
           <folding />
         </state>
       </provider>

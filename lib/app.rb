@@ -41,7 +41,7 @@ class Application < Sinatra::Application
 				i.link = "/#{matches[4].gsub("\s", "-")}"
 				content = _markdown(File.readlines(post)[3..-1].join())
 				i.description = content
-				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0).to_time
+				i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0).to_time.gmtime
 			end
 		end
 		rss.to_s
