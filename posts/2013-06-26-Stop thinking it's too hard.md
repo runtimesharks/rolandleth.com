@@ -7,25 +7,36 @@ I finally got around and implemented the RSS feed. Wasn't as hard as I expected;
 get '/feed' do
   posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
   rss = RSS::Maker.make('2.0') do |rss|
+    rss.channel.icon = "/public/favicon.ico"
+    rss.channel.logo = "/public/favicon.ico"
     rss.channel.title = 'Roland Leth'
     rss.channel.description = 'Roland Leth'
     rss.channel.link = "/"
     rss.channel.language = 'en'
-    
-    rss.items.do_sort = false
-    rss.items.max_size = 100
-    
-    posts.each do |post|
-      matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
-      time = File.mtime(post).gmtime
-      i = rss.items.new_item
-      i.title = matches[4]
-      # titles are written 'Like this', links need to be 'Like-this'
-      i.link = "/#{matches[4].gsub("\s", "-")}"
-      content = _markdown(File.readlines(post)[2..-1].join())
-      i.description = content
-      i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time.hour, time.min, 0).to_time.gmtime
-    end
+
+	rss.items.do_sort = false
+	posts.each do |post|
+	  matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
+	  i = rss.items.new_item
+	  i.title = matches[4]
+	  time_string = File.readlines(post)[1]
+	  # in case I forget to fill the time, just create a random hour between 8 PM and 3 AM, that's when I work most of the time
+	  if time_string.length == 8 or time_string.length == 9
+	    time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
+		time[:leftover] = nil
+	  else
+	    hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
+		puts hour
+		min = rand(0..59)
+		time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
+	  end
+
+	  # titles are written 'Like this', links need to be 'Like-this'
+	  i.link = "/#{matches[4].gsub("\s", "-")}"
+	  content = _markdown(File.readlines(post)[3..-1].join())
+	  i.description = content
+	  i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	end
   end
   rss.to_s
 end

@@ -16,8 +16,7 @@ git push heroku master
 
 The only thing that I'll be missing is publishing from mobile, since I don't have a way to git push when I'm not at my Mac, nor do I know how to read straight from Dropbox; but I'll get to that too, eventually.
   
-I'll post the source code on [GitHub](http://github.com/rolandleth) tomorrow, I just need to  
-properly comment it.
+I'll post the source on [GitHub](http://github.com/rolandleth) tomorrow, I just need to properly comment it.
   
 <br />
 I'm ==really== happy with the result!
