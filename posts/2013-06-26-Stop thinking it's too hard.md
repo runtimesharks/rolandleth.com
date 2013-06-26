@@ -31,7 +31,7 @@ end
 ```
 
 But now I had another problem to fix: RSS Readers do not interpret my custom CSS, meaning the hack I did with the underline to show up as italic doesn't work with RSS.  
-Well, I reached GitHub while searching for a solution and it turned out that [Sam](http://soff.es) posted [this](http://sam.roon.io/tearing-up-the-carpet) 4 days ago. TL;DR: He hacked Redcarpet to parse `==text==` as `<mark>text<mark>` and the guys merged his changes. How fortunate :)
+Well, I reached GitHub while searching for a solution and it turned out that [Sam](http://soff.es) posted [this](http://sam.roon.io/tearing-up-the-carpet) 4 days ago. TL;DR: He hacked Redcarpet to parse `==text==` as `<mark>text</mark>` and the guys merged his changes. How fortunate :)
 
 <br />
 Conclusion? I wish I would stop this *This looks hard, I'll try later* nonsense once and for all. Most of the time I work on something until it's perfect, but sometimes I find myself trying a few times and if it doesn't work, I'll just leave it for later; then it turns out I was actually ==this [ ] close== of finishing.
