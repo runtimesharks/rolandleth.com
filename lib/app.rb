@@ -14,20 +14,21 @@ class Application < Sinatra::Application
 
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		rss = RSS::Maker.make('atom') do |rss|
-			rss.channel.icon = '/public/favicon.ico'
-			rss.channel.id = 'http://rolandleth.com'
-			rss.channel.link = 'http://rolandleth.com'
-			rss.channel.title = 'Roland Leth'
-			rss.channel.description = 'Roland Leth'
-			rss.channel.author = 'Roland Leth'
-			rss.channel.language = 'en'
-			rss.channel.rights = "© #{Time.now.year} Roland Leth"
-			rss.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth'
-			rss.items.do_sort = false
+		rss = RSS::Maker.make('atom') do |maker|
+			maker.channel.icon = '/public/favicon.ico'
+			maker.channel.id = 'http://rolandleth.com/'
+			maker.channel.link = 'http://rolandleth.com/'
+			maker.channel.title = 'Roland Leth'
+			maker.channel.description = 'Roland Leth'
+			maker.channel.author = 'Roland Leth'
+			maker.channel.language = 'en'
+			maker.channel.rights = "© #{Time.now.year} Roland Leth"
+			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth'
+			maker.items.do_sort = false
+
 			posts.each do |post|
 				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
-				i = rss.items.new_item
+				i = maker.items.new_item
 				i.title = matches[4]
 				time_string = File.readlines(post)[1]
 				# in case I forget to fill the time, just create a random hour between 8 PM and 3 AM, that's when I work most of the time
@@ -42,14 +43,20 @@ class Application < Sinatra::Application
 				end
 
 				# titles are written 'Like this', links need to be 'Like-this'
-				i.link = "/#{matches[4].gsub("\s", "-")}"
-				content = _markdown(File.readlines(post)[3..-1].join())
-				i.description = content
+				i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}"
+				i.link = i.link.gsub(";", "")
+				i.content.content = _markdown(File.readlines(post)[3..-1].join())
+				i.content.type = 'html'
 				i.updated = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 				i.published = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 				# The RSS was last updated when the last post was posted (which is first in the array)
-				rss.channel.updated ||= DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+				maker.channel.updated ||= DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 			end
+		end
+		rss.link.rel = 'self'
+		rss.link.type = 'application/atom+xml'
+		rss.entries.each do |entry|
+			entry.title.type = 'html'
 		end
 		rss.to_s
 	end
@@ -87,6 +94,12 @@ class Application < Sinatra::Application
 			return send_file File.open("./assets/files/#{filename}")
 		end
 		return erb :not_found
+	end
+
+	# Small hack to display this page name full of escapes I didn't take care of
+	get "/%5BWorld-hello%5D" do
+		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
+		return erb :index, locals: {posts: all_posts, page: all_posts.count - 1, total_pages: -1, window: 2}
 	end
 
 	# Individual posts and pages
