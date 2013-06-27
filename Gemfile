@@ -6,9 +6,6 @@ gem 'sinatra'
 gem 'newrelic_rpm'
 gem 'dropbox-sdk'
 
-# RSS Builder
-gem 'builder'
-
 # Web server
 gem 'puma'
 

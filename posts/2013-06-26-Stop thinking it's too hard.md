@@ -3,7 +3,7 @@ blog
 
 I finally got around and implemented the RSS feed. Wasn't as hard as I expected; piss easy, actually:
 
-```
+```ruby
 get '/feed' do
   posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
   rss = RSS::Maker.make('2.0') do |maker|
@@ -26,7 +26,6 @@ get '/feed' do
 		time[:leftover] = nil
 	  else
 	    hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
-		puts hour
 		min = rand(0..59)
 		time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
 	  end
@@ -51,7 +50,7 @@ Conclusion? I wish I would stop this *This looks hard, I'll try later* nonsense 
 <br />
 2013-06-27 4:42 AM Update: I replaced the RSS 2.0 feed with Atom:
 
-```
+```ruby
 get '/feed' do
   posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
   	rss = RSS::Maker.make('atom') do |maker|
@@ -78,7 +77,6 @@ get '/feed' do
    	  	time[:leftover] = nil
 	  else
 	    hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
-	    puts hour
 	    min = rand(0..59)
 	    time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
 	  end

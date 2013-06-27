@@ -17,7 +17,7 @@ class Application < Sinatra::Application
 		rss = RSS::Maker.make('atom') do |maker|
 			maker.channel.icon = '/public/favicon.ico'
 			maker.channel.id = 'http://rolandleth.com/'
-			maker.channel.link = 'http://rolandleth.com/'
+			maker.channel.link = 'http://rolandleth.com/feed'
 			maker.channel.title = 'Roland Leth'
 			maker.channel.description = 'Roland Leth'
 			maker.channel.author = 'Roland Leth'
@@ -29,6 +29,7 @@ class Application < Sinatra::Application
 			posts.each do |post|
 				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
 				i = maker.items.new_item
+
 				i.title = matches[4]
 				time_string = File.readlines(post)[1]
 				# in case I forget to fill the time, just create a random hour between 8 PM and 3 AM, that's when I work most of the time
@@ -37,7 +38,6 @@ class Application < Sinatra::Application
 					time[:leftover] = nil
 				else
 					hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
-					puts hour
 					min = rand(0..59)
 					time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
 				end
@@ -56,6 +56,7 @@ class Application < Sinatra::Application
 		rss.link.rel = 'self'
 		rss.link.type = 'application/atom+xml'
 		rss.entries.each do |entry|
+			entry.content.lang = 'en'
 			entry.title.type = 'html'
 		end
 		rss.to_s
