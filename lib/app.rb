@@ -1,8 +1,6 @@
-require 'sinatra'
 require 'rss'
-require 'redcarpet'
 require 'markdown_renderer'
-require 'dropbox_sdk'
+
 
 class Application < Sinatra::Application
 	PAGE_SIZE = 5
@@ -14,8 +12,9 @@ class Application < Sinatra::Application
 
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		rss = RSS::Maker.make('atom') do |maker|
+		rss ||= RSS::Maker.make('atom') do |maker|
 			maker.channel.icon = '/public/favicon.ico'
+			maker.channel.logo = '/public/favicon.ico'
 			maker.channel.id = 'http://rolandleth.com/'
 			maker.channel.link = 'http://rolandleth.com/feed'
 			maker.channel.title = 'Roland Leth'
@@ -25,11 +24,11 @@ class Application < Sinatra::Application
 			maker.channel.rights = "© #{Time.now.year} Roland Leth"
 			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth'
 			maker.items.do_sort = false
+			hours = [0, 1, 2, 3, 20, 21, 22, 23]
 
 			posts.each do |post|
 				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
 				i = maker.items.new_item
-
 				i.title = matches[4]
 				time_string = File.readlines(post)[1]
 				# in case I forget to fill the time, just create a random hour between 8 PM and 3 AM, that's when I work most of the time
@@ -37,14 +36,11 @@ class Application < Sinatra::Application
 					time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
 					time[:leftover] = nil
 				else
-					hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
 					min = rand(0..59)
-					time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
+					time = Date._strptime("#{hours.sample}:#{min} EEST","%H:%M %Z")
 				end
-
 				# titles are written 'Like this', links need to be 'Like-this'
-				i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}"
-				i.link = i.link.gsub(";", "")
+				i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}".gsub(";", "")
 				i.content.content = _markdown(File.readlines(post)[3..-1].join())
 				i.content.type = 'html'
 				i.updated = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time

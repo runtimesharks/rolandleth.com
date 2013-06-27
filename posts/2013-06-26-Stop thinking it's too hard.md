@@ -13,7 +13,8 @@ get '/feed' do
     maker.channel.description = 'Roland Leth'
     maker.channel.link = "/"
     maker.channel.language = 'en'
-
+    hours = [0, 1, 2, 3, 20, 21, 22, 23]
+	
 	maker.items.do_sort = false
 	posts.each do |post|
 	  matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
@@ -25,13 +26,12 @@ get '/feed' do
 	    time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
 		time[:leftover] = nil
 	  else
-	    hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
 		min = rand(0..59)
-		time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
+		time = Date._strptime("#{hours.sample}:#{min} EEST","%H:%M %Z")
 	  end
 
 	  # titles are written 'Like this', links need to be 'Like-this'
-	  i.link = "/#{matches[4].gsub("\s", "-")}"
+	  i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}".gsub(";", "")
 	  content = _markdown(File.readlines(post)[3..-1].join())
 	  i.description = content
 	  i.date = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
@@ -64,7 +64,8 @@ get '/feed' do
   	maker.channel.language = 'en'
   	maker.channel.rights = "© #{Time.now.year} Roland Leth"
   	maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth'
-
+	hours = [0, 1, 2, 3, 20, 21, 22, 23]
+	
   	maker.items.do_sort = false
   	posts.each do |post|
    	  matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
@@ -76,13 +77,12 @@ get '/feed' do
    	  	time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
    	  	time[:leftover] = nil
 	  else
-	    hour = [0, 1, 2, 3, 20, 21, 22, 23].sample
 	    min = rand(0..59)
-	    time = Date._strptime("#{hour}:#{min} EEST","%H:%M %Z")
+	    time = Date._strptime("#{hours.sample}:#{min} EEST","%H:%M %Z")
 	  end
 
 	  # titles are written 'Like this', links need to be 'Like-this'
-	  i.link = "/#{matches[4].gsub("\s", "-")}"
+	  i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}".gsub(";", "")
 	  i.content.content = _markdown(File.readlines(post)[3..-1].join())
 	  i.content.type = 'html'
 	  i.updated = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
