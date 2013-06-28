@@ -10,6 +10,7 @@ class Application < Sinatra::Application
 		require 'newrelic_rpm'
 	end
 
+	# RSS
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		rss ||= RSS::Maker.make('atom') do |maker|
@@ -41,7 +42,7 @@ class Application < Sinatra::Application
 				end
 				# titles are written 'Like this', links need to be 'Like-this'
 				i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}".gsub(";", "")
-				i.content.content = _markdown(File.readlines(post)[3..-1].join())
+				i.content.content = _markdown_for_feed(File.readlines(post)[3..-1].join())
 				i.content.type = 'html'
 				i.updated = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 				i.published = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
@@ -83,6 +84,7 @@ class Application < Sinatra::Application
 		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 	end
 
+	# Files
 	get '/files/:filename' do |filename|
 		if filename == 'Roland Leth.pdf'
 			return send_file File.open("./assets/files/#{filename}")
