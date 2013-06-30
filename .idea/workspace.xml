@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/about.erb" afterPath="$PROJECT_DIR$/views/about.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/privacy-policy.erb" afterPath="$PROJECT_DIR$/views/privacy-policy.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -15,7 +15,7 @@
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372632078254" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372631424033" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372632354923" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372327271084" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372628542130" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
@@ -128,18 +128,18 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="74" selection-start="2631" selection-end="2631" vertical-scroll-proportion="0.12513144">
+            <state line="177" column="12" selection-start="7510" selection-end="7510" vertical-scroll-proportion="0.7865405">
               <folding>
-                <element signature="e#291#323#0" expanded="false" />
-                <element signature="e#345#2556#0" expanded="false" />
-                <element signature="e#2642#2669#0" expanded="false" />
-                <element signature="e#3020#3059#0" expanded="false" />
-                <element signature="e#3312#3351#0" expanded="false" />
-                <element signature="e#3515#3572#0" expanded="false" />
-                <element signature="e#3596#3844#0" expanded="false" />
-                <element signature="e#3873#5054#0" expanded="false" />
-                <element signature="e#5160#5337#0" expanded="false" />
-                <element signature="e#7529#7560#0" expanded="false" />
+                <element signature="e#268#300#0" expanded="false" />
+                <element signature="e#322#2533#0" expanded="false" />
+                <element signature="e#2619#2646#0" expanded="false" />
+                <element signature="e#2997#3036#0" expanded="false" />
+                <element signature="e#3289#3328#0" expanded="false" />
+                <element signature="e#3492#3549#0" expanded="false" />
+                <element signature="e#3573#3821#0" expanded="false" />
+                <element signature="e#3850#5031#0" expanded="false" />
+                <element signature="e#5137#5314#0" expanded="false" />
+                <element signature="e#7510#7541#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -148,7 +148,7 @@
       <file leaf-file-name="privacy-policy.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="222" selection-start="3168" selection-end="3168" vertical-scroll-proportion="0.0">
+            <state line="17" column="0" selection-start="1389" selection-end="1389" vertical-scroll-proportion="-10.961538">
               <folding />
             </state>
           </provider>
@@ -221,9 +221,9 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/views/post.erb" />
         <option value="$PROJECT_DIR$/views/index.erb" />
-        <option value="$PROJECT_DIR$/views/privacy-policy.erb" />
-        <option value="$PROJECT_DIR$/lib/app.rb" />
         <option value="$PROJECT_DIR$/views/about.erb" />
+        <option value="$PROJECT_DIR$/lib/app.rb" />
+        <option value="$PROJECT_DIR$/views/privacy-policy.erb" />
       </list>
     </option>
   </component>
@@ -717,13 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="222" selection-start="3168" selection-end="3168" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/sinatra-1.4.3/lib/sinatra/base.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="343" column="0" selection-start="9783" selection-end="9783" vertical-scroll-proportion="0.0" />
@@ -741,20 +734,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="1389" selection-end="1389" vertical-scroll-proportion="-10.961538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="74" selection-start="2631" selection-end="2631" vertical-scroll-proportion="0.12513144">
+        <state line="177" column="12" selection-start="7510" selection-end="7510" vertical-scroll-proportion="0.7865405">
           <folding>
-            <element signature="e#291#323#0" expanded="false" />
-            <element signature="e#345#2556#0" expanded="false" />
-            <element signature="e#2642#2669#0" expanded="false" />
-            <element signature="e#3020#3059#0" expanded="false" />
-            <element signature="e#3312#3351#0" expanded="false" />
-            <element signature="e#3515#3572#0" expanded="false" />
-            <element signature="e#3596#3844#0" expanded="false" />
-            <element signature="e#3873#5054#0" expanded="false" />
-            <element signature="e#5160#5337#0" expanded="false" />
-            <element signature="e#7529#7560#0" expanded="false" />
+            <element signature="e#268#300#0" expanded="false" />
+            <element signature="e#322#2533#0" expanded="false" />
+            <element signature="e#2619#2646#0" expanded="false" />
+            <element signature="e#2997#3036#0" expanded="false" />
+            <element signature="e#3289#3328#0" expanded="false" />
+            <element signature="e#3492#3549#0" expanded="false" />
+            <element signature="e#3573#3821#0" expanded="false" />
+            <element signature="e#3850#5031#0" expanded="false" />
+            <element signature="e#5137#5314#0" expanded="false" />
+            <element signature="e#7510#7541#0" expanded="false" />
           </folding>
         </state>
       </provider>
