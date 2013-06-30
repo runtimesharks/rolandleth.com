@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -125,7 +124,7 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="48" selection-start="2830" selection-end="2830" vertical-scroll-proportion="0.060212515">
+            <state line="70" column="27" selection-start="2779" selection-end="2779" vertical-scroll-proportion="0.060212515">
               <folding>
                 <element signature="e#266#298#0" expanded="false" />
                 <element signature="e#320#2527#0" expanded="false" />
@@ -731,7 +730,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="48" selection-start="2830" selection-end="2830" vertical-scroll-proportion="0.060212515">
+        <state line="70" column="27" selection-start="2779" selection-end="2779" vertical-scroll-proportion="0.060212515">
           <folding>
             <element signature="e#266#298#0" expanded="false" />
             <element signature="e#320#2527#0" expanded="false" />
