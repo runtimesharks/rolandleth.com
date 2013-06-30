@@ -63,11 +63,24 @@ class Application < Sinatra::Application
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
 	get '/1' do
-		redirect '/'
+		redirect '/', 301
 	end
 
-	# Main pages
-	get %r{/$|/(\d+)$} do |page|
+	# Apply a permanently redirected to http://root/name/ pointing at http://root/name
+	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)/} do |key|
+		redirect "/#{key}", 301
+	end
+
+	# Main page
+	get '/' do
+		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
+		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
+		posts = all_posts[0..4]
+		erb :index, locals: { posts: posts, page: 1, total_pages: total_pages, gap: 2 }
+	end
+
+	# Pages
+	get %r{^/(\d+)$} do |current_page|
 		#session = DropboxSession.new(APP_KEY, APP_SECRET)
 		#session.set_access_token(AUTH_KEY, AUTH_SECRET)
 		#client = DropboxClient.new(session, ACCESS_TYPE)
@@ -75,7 +88,7 @@ class Application < Sinatra::Application
 
 		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		page = (page || 1).to_i
+		page = (current_page || 1).to_i
 		# Start index is the first index on each page. if page == 2 and PAGE_SIZE == 5, start_index is 5
 		start_index = (page - 1) * PAGE_SIZE
 		# End index is last index on each page
@@ -109,7 +122,7 @@ class Application < Sinatra::Application
 	end
 
 	# Individual posts and pages
-	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)$} do |key|
+	get %r{^/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(\/]+)$} do |key|
 		if key == '[World-hello]'
 			key = key + ';'
 		end
