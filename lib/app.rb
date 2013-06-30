@@ -6,8 +6,7 @@ require 'dropbox_keys'
 class Application < Sinatra::Application
 	include DropboxKeys
 	PAGE_SIZE = 5
-	PAGES = %W{ about apps projects bouncyb sosmorse iwordjuggle privacy-policy
-						  file:Roland\sLeth.pdf file:Privacy\sPolicy.md }
+	PAGES = %W{ about apps projects bouncyb sosmorse iwordjuggle privacy-policy file:Privacy-Policy.md }
 
 	configure :production do
 		require 'newrelic_rpm'
@@ -124,14 +123,15 @@ class Application < Sinatra::Application
 		return erb :index, locals: {posts: all_posts, page: all_posts.count - 1, total_pages: -1, window: 2}
 	end
 
+	get "/Roland Leth - Résumé.pdf" do
+		return send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
+	end
+
 	# Individual posts and pages
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
 		if PAGES.include? key
-			if key == 'file:Roland Leth.pdf'
-				return send_file File.open('./assets/files/Roland Leth.pdf')
-			end
-			if key == 'file:Privacy Policy.md'
-				return send_file File.open('./assets/files/Privacy Policy.md')
+			if key == 'file:Privacy-Policy.md'
+				return send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy'
 			end
 			if key == 'projects'
 				return erb :projects
