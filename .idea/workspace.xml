@@ -13,7 +13,7 @@
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372609195953" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372618261240" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372618626459" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372327271084" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372409058697" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
@@ -125,7 +125,7 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="5" selection-start="3097" selection-end="3097" vertical-scroll-proportion="0.2609209">
+            <state line="70" column="48" selection-start="2830" selection-end="2830" vertical-scroll-proportion="0.060212515">
               <folding>
                 <element signature="e#266#298#0" expanded="false" />
                 <element signature="e#320#2527#0" expanded="false" />
@@ -731,7 +731,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="5" selection-start="3097" selection-end="3097" vertical-scroll-proportion="0.2609209">
+        <state line="70" column="48" selection-start="2830" selection-end="2830" vertical-scroll-proportion="0.060212515">
           <folding>
             <element signature="e#266#298#0" expanded="false" />
             <element signature="e#320#2527#0" expanded="false" />
