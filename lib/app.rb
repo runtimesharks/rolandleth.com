@@ -6,7 +6,8 @@ require 'dropbox_keys'
 class Application < Sinatra::Application
 	include DropboxKeys
 	PAGE_SIZE = 5
-	PAGES = %w{about apps projects bouncyb sosmorse iwordjuggle privacy-policy}
+	PAGES = %W{ about apps projects bouncyb sosmorse iwordjuggle privacy-policy
+						  file:Roland\sLeth.pdf file:Privacy\sPolicy.md }
 
 	configure :production do
 		require 'newrelic_rpm'
@@ -30,7 +31,7 @@ class Application < Sinatra::Application
 			hours = [0, 1, 2, 3, 20, 21, 22, 23]
 
 			posts.each do |post|
-				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
+				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 				i = maker.items.new_item
 				i.title = matches[4]
 				time_string = File.readlines(post)[1]
@@ -69,13 +70,13 @@ class Application < Sinatra::Application
 	# Apply a permanent redirect from http://root/name/ to http://root/name (I always want links to show without '/' at end)
 	# If the $ condition is removed, it will try to redirect anything like http://root/name/anything/can/be/here to http://root/name
 	# And it would screw file downloading
-	get %r{^/([\w\s\.\}\{\]\[%:"';!=\?\+\*\-\)\(\/]+)/$} do |key|
+	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)/$} do |key|
 		redirect "/#{key}", 301
 	end
 
 	# Apply a non-permanent redirect from http://root/name/anything/can/be/here to http://root/name
 	# Might change my mind about this, since it's a bit more drastic, thus not a permanent redirect
-	get %r{^/([\w\s\.\}\{\]\[%:"';!=\?\+\*\-\)\(\/]+)/} do |key|
+	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)/} do |key|
 		redirect "/#{key}", 302
 	end
 
@@ -124,31 +125,33 @@ class Application < Sinatra::Application
 	end
 
 	# Individual posts and pages
-	get %r{^/([\w\s\.\}\{\]\[%:"';!=\?\+\*\-\)\(\/]+)$} do |key|
-		if key == 'file:Roland Leth.pdf'
-			return send_file File.open('./assets/files/Roland Leth.pdf')
-		end
-		if key == 'file:Privacy Policy.md'
-			return send_file File.open('./assets/files/Privacy Policy.md')
-		end
-		if key == 'projects'
-			return erb :projects
-		end
-		if key == 'bouncyb'
-			# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
-			return erb :bouncyb, layout: false
-		end
-		if key == 'iwordjuggle'
-			return erb :iwordjuggle, layout: false
-		end
-		if key == 'sosmorse'
-			return erb :sosmorse, layout: false
-		end
-		if key == 'about'
-			return erb :about
-		end
-		if key == 'privacy-policy'
-			return erb :'privacy-policy'
+	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
+		if PAGES.include? key
+			if key == 'file:Roland Leth.pdf'
+				return send_file File.open('./assets/files/Roland Leth.pdf')
+			end
+			if key == 'file:Privacy Policy.md'
+				return send_file File.open('./assets/files/Privacy Policy.md')
+			end
+			if key == 'projects'
+				return erb :projects
+			end
+			if key == 'bouncyb'
+				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
+				return erb :bouncyb, layout: false
+			end
+			if key == 'iwordjuggle'
+				return erb :iwordjuggle, layout: false
+			end
+			if key == 'sosmorse'
+				return erb :sosmorse, layout: false
+			end
+			if key == 'about'
+				return erb :about
+			end
+			if key == 'privacy-policy'
+				return erb :'privacy-policy'
+			end
 		end
 		if key == '[World-hello]'
 			key = key + ';'
@@ -156,7 +159,7 @@ class Application < Sinatra::Application
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		i = 0
 		all_posts.each do |post|
-			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]:"';!=\?\+\*\-\)\(]+)\.md$/)
+			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 			# I write post-filenames as 'YYYY-MM-DD-Name without dashes.md'. If you write them as 'YYYY-MM-DD-Name-with-dashes.md',
 			# all this swapping isn't necessary anymore, of course.
 

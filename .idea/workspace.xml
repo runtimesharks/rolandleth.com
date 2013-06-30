@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/files/Privacy Policy.md" afterPath="$PROJECT_DIR$/assets/files/Privacy Policy.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/about.erb" afterPath="$PROJECT_DIR$/views/about.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/home.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/privacy-policy.erb" afterPath="$PROJECT_DIR$/views/privacy-policy.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.erb" afterPath="$PROJECT_DIR$/views/index.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
@@ -17,9 +15,9 @@
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372609195953" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372624090471" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372627465032" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372327271084" ignored="false" />
-    <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372409058697" ignored="false" />
+    <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372628542130" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
     <file path="/application.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965459093" ignored="false" />
     <file path="$USER_HOME$/RubyScripts/quesadilla-master/lib/quesadilla/extractor/autolinks.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370867195647" ignored="false" />
@@ -57,9 +55,9 @@
     <file path="$USER_HOME$/Ruby The Hard Way/date.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370960808821" ignored="false" />
     <file path="/date.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370960799501" ignored="false" />
     <file path="/temp.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371087529291" ignored="false" />
-    <file path="/post.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371170136563" ignored="false" />
+    <file path="/post.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372628042125" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/views/slug.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370961362736" ignored="false" />
-    <file path="/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371815238352" ignored="false" />
+    <file path="/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372627413187" ignored="false" />
     <file path="/layout.slim.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370975021142" ignored="false" />
     <file path="/layout.slim" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370976425488" ignored="false" />
     <file path="/application.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372203260480" ignored="false" />
@@ -130,55 +128,45 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="27" selection-start="3021" selection-end="3021" vertical-scroll-proportion="0.46477392">
+            <state line="16" column="14" selection-start="376" selection-end="376" vertical-scroll-proportion="0.2502629">
               <folding>
-                <element signature="e#320#2527#0" expanded="false" />
-                <element signature="e#3836#5017#0" expanded="false" />
+                <element signature="e#322#354#0" expanded="false" />
+                <element signature="e#376#2587#0" expanded="false" />
+                <element signature="e#2673#2700#0" expanded="false" />
+                <element signature="e#3051#3090#0" expanded="false" />
+                <element signature="e#3343#3382#0" expanded="false" />
+                <element signature="e#3546#3603#0" expanded="false" />
+                <element signature="e#3627#3875#0" expanded="false" />
+                <element signature="e#3904#5085#0" expanded="false" />
+                <element signature="e#5191#5368#0" expanded="false" />
+                <element signature="e#7481#7512#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="about.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/about.erb">
+      <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="63" selection-start="400" selection-end="400" vertical-scroll-proportion="-3.9230769">
+            <state line="13" column="72" selection-start="700" selection-end="700" vertical-scroll-proportion="-8.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="not_found.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/not_found.erb">
+      <file leaf-file-name="post.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/post.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="22" selection-start="86" selection-end="86" vertical-scroll-proportion="-1.9615384">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iwordjuggle.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/iwordjuggle.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Privacy Policy.md" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="privacy-policy.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="2945" selection-end="2945" vertical-scroll-proportion="-20.26923">
               <folding />
             </state>
           </provider>
@@ -202,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/views/layout.erb" />
         <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
         <option value="$PROJECT_DIR$/config/newrelic.yml" />
         <option value="$PROJECT_DIR$/config.ru" />
@@ -212,11 +199,12 @@
         <option value="$PROJECT_DIR$/lib/dropbox_keys.rb" />
         <option value="$PROJECT_DIR$/lib/All_Posts.txt" />
         <option value="$PROJECT_DIR$/All_Posts.txt" />
-        <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/views/index.erb" />
-        <option value="$PROJECT_DIR$/assets/files/Privacy Policy.md" />
         <option value="$PROJECT_DIR$/views/privacy-policy.erb" />
         <option value="$PROJECT_DIR$/views/about.erb" />
+        <option value="$PROJECT_DIR$/assets/files/Privacy Policy.md" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/views/post.erb" />
+        <option value="$PROJECT_DIR$/views/index.erb" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
       </list>
     </option>
@@ -282,20 +270,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rolandleth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rolandleth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -325,6 +299,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bouncyb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -621,7 +635,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1806" height="1400" extended-state="1" />
+    <frame x="4" y="22" width="1806" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -708,65 +722,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Rakefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/dropbox-sdk-1.5.1/lib/dropbox_sdk.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="8" selection-start="6764" selection-end="6764" vertical-scroll-proportion="0.1322314">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs20/io.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="339" column="13" selection-start="13139" selection-end="13139" vertical-scroll-proportion="0.33293977">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="24" selection-start="105" selection-end="105" vertical-scroll-proportion="0.041412912">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="3" selection-start="320" selection-end="320" vertical-scroll-proportion="0.28099173">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/post.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.ru">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="3" selection-start="427" selection-end="427" vertical-scroll-proportion="0.40141678">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/dropbox_keys.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="10" selection-start="146" selection-end="146" vertical-scroll-proportion="0.100354195">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="23" selection-start="354" selection-end="354" vertical-scroll-proportion="0.5419126">
           <folding />
         </state>
       </provider>
@@ -778,16 +736,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
+    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/not_found.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="31" column="0" selection-start="2945" selection-end="2945" vertical-scroll-proportion="0.85745615">
           <folding />
         </state>
       </provider>
@@ -799,26 +750,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
+    <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="2945" selection-end="2945" vertical-scroll-proportion="-20.26923">
+        <state line="22" column="92" selection-start="2808" selection-end="2808" vertical-scroll-proportion="0.6256572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/not_found.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/about.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="63" selection-start="400" selection-end="400" vertical-scroll-proportion="-3.9230769">
+        <state line="6" column="63" selection-start="400" selection-end="400" vertical-scroll-proportion="0.11027027">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/bouncyb/bbBoth.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/rack-1.5.2/lib/rack/utils.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="587" column="21" selection-start="17614" selection-end="17614" vertical-scroll-proportion="0.15983176">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/erb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="631" column="19" selection-start="16462" selection-end="16462" vertical-scroll-proportion="0.07045215">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="10" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/cgi/util.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="11" selection-start="1233" selection-end="1233" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/post.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="22" selection-start="86" selection-end="86" vertical-scroll-proportion="-1.9615384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/iwordjuggle.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="72" selection-start="700" selection-end="700" vertical-scroll-proportion="-8.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="27" selection-start="3021" selection-end="3021" vertical-scroll-proportion="0.46477392">
+        <state line="16" column="14" selection-start="376" selection-end="376" vertical-scroll-proportion="0.2502629">
           <folding>
-            <element signature="e#320#2527#0" expanded="false" />
-            <element signature="e#3836#5017#0" expanded="false" />
+            <element signature="e#322#354#0" expanded="false" />
+            <element signature="e#376#2587#0" expanded="false" />
+            <element signature="e#2673#2700#0" expanded="false" />
+            <element signature="e#3051#3090#0" expanded="false" />
+            <element signature="e#3343#3382#0" expanded="false" />
+            <element signature="e#3546#3603#0" expanded="false" />
+            <element signature="e#3627#3875#0" expanded="false" />
+            <element signature="e#3904#5085#0" expanded="false" />
+            <element signature="e#5191#5368#0" expanded="false" />
+            <element signature="e#7481#7512#0" expanded="false" />
           </folding>
         </state>
       </provider>
