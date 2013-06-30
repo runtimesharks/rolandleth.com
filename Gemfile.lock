@@ -20,7 +20,7 @@ GEM
     posix-spawn (0.3.6)
     puma (2.0.1)
       rack (>= 1.1, < 2.0)
-    pygments.rb (0.5.0)
+    pygments.rb (0.5.1)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rack (1.5.2)
@@ -54,7 +54,7 @@ DEPENDENCIES
   erubis
   newrelic_rpm
   puma
-  pygments.rb
+  pygments.rb (>= 0.5.1)
   rake
   redcarpet!
   safe_yaml

@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/dropbox_keys.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/markdown_renderer.rb" afterPath="$PROJECT_DIR$/lib/markdown_renderer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/home.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rolandleth.iml" afterPath="$PROJECT_DIR$/.idea/rolandleth.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
@@ -11,10 +15,10 @@
     <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371814994324" ignored="false" />
     <file path="/Work.html" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370821553429" ignored="false" />
     <file path="/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370822461702" ignored="false" />
-    <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372373878990" ignored="false" />
+    <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608598043" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372410198732" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372596382450" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372327271084" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372409058697" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
@@ -97,6 +101,13 @@
     <file path="$PROJECT_DIR$/../../../MarkdownJournal-master/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371815077934" ignored="false" />
     <file path="$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/redcarpet-2.3.0/lib/redcarpet.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371950213630" ignored="false" />
     <file path="/image.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372271084577" ignored="false" />
+    <file path="/dropbox_keys.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372591139728" ignored="false" />
+    <file path="$USER_HOME$/untitled/my_script.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372591008964" ignored="false" />
+    <file path="/my_script.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372591008103" ignored="false" />
+    <file path="/All_Posts.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372594306979" ignored="false" />
+    <file path="$USER_HOME$/Documents/GitHub/rolandleth.com/.gitignore" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608621191" ignored="false" />
+    <file path="/.gitignore" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608621191" ignored="false" />
+    <file path="$USER_HOME$/Documents/GitHub/rolandleth.com/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608944039" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,26 +127,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="4" selection-start="2449" selection-end="2449" vertical-scroll-proportion="0.0">
+            <state line="69" column="30" selection-start="2680" selection-end="2680" vertical-scroll-proportion="0.5419126">
               <folding>
-                <element signature="e#201#233#0" expanded="false" />
-                <element signature="e#2548#2570#0" expanded="false" />
-                <element signature="e#2606#3543#0" expanded="false" />
-                <element signature="e#3578#3824#0" expanded="false" />
-                <element signature="e#3930#4107#0" expanded="false" />
-                <element signature="e#5988#6019#0" expanded="false" />
+                <element signature="e#266#298#0" expanded="false" />
+                <element signature="e#4223#4400#0" expanded="false" />
+                <element signature="e#6281#6312#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.ru" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="7" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="23" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dropbox_keys.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/dropbox_keys.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="10" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.ru" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ru">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="3" selection-start="427" selection-end="427" vertical-scroll-proportion="0.40141678">
+            <state line="20" column="3" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -153,7 +188,7 @@
       <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="28" selection-start="1078" selection-end="1078" vertical-scroll-proportion="-13.730769">
+            <state line="8" column="3" selection-start="431" selection-end="431" vertical-scroll-proportion="-5.230769">
               <folding />
             </state>
           </provider>
@@ -186,22 +221,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/maker/trackback.rb" />
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/maker.rb" />
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/content.rb" />
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/trackback.rb" />
         <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/itunes.rb" />
         <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/dublincore.rb" />
         <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/image.rb" />
         <option value="$PROJECT_DIR$/views/layout.erb" />
         <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/newrelic.yml" />
         <option value="$PROJECT_DIR$/config.ru" />
         <option value="$PROJECT_DIR$/lib/markdown_renderer.rb" />
-        <option value="$PROJECT_DIR$/views/index.erb" />
-        <option value="$PROJECT_DIR$/lib/app.rb" />
         <option value="$PROJECT_DIR$/Rakefile" />
+        <option value="$PROJECT_DIR$/config/dropbox_keys.rb" />
+        <option value="$PROJECT_DIR$/lib/dropbox_keys.rb" />
+        <option value="$PROJECT_DIR$/views/index.erb" />
+        <option value="$PROJECT_DIR$/lib/All_Posts.txt" />
+        <option value="$PROJECT_DIR$/All_Posts.txt" />
+        <option value="$PROJECT_DIR$/lib/app.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -323,8 +358,8 @@
       <recent name="$PROJECT_DIR$/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/stylesheets/components" />
       <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/assets/stylesheets/components" />
       <recent name="$PROJECT_DIR$/lib/tasks" />
       <recent name="$PROJECT_DIR$/assets/files" />
       <recent name="$PROJECT_DIR$/config" />
@@ -646,31 +681,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/maker/atom.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="14" selection-start="71" selection-end="71" vertical-scroll-proportion="0.100354195" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/maker/2.0.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/maker/1.0.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="12" selection-start="518" selection-end="518" vertical-scroll-proportion="0.33293977" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/builder-3.2.2/lib/builder.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/newrelic.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="60" selection-start="2995" selection-end="3001" vertical-scroll-proportion="0.33333334" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/scheduler.rake">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -679,13 +689,6 @@
     <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/pygments.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state line="159" column="16" selection-start="1822" selection-end="1822" vertical-scroll-proportion="0.3540146" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="105" selection-end="105" vertical-scroll-proportion="0.12042503">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/rubystubs20/kernel.rb">
@@ -707,9 +710,44 @@
         <state line="562" column="10" selection-start="15342" selection-end="15342" vertical-scroll-proportion="0.33293977" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Rakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ru">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="3" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/dropbox-sdk-1.5.1/lib/dropbox_sdk.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="8" selection-start="6764" selection-end="6764" vertical-scroll-proportion="0.1322314">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dropbox_keys.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="10" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="28" selection-start="1078" selection-end="1078" vertical-scroll-proportion="-13.730769">
+        <state line="8" column="3" selection-start="431" selection-end="431" vertical-scroll-proportion="-5.230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs20/io.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="339" column="13" selection-start="13139" selection-end="13139" vertical-scroll-proportion="0.33293977">
           <folding />
         </state>
       </provider>
@@ -721,31 +759,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="10" column="7" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="23" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="4" selection-start="2449" selection-end="2449" vertical-scroll-proportion="0.0">
+        <state line="69" column="30" selection-start="2680" selection-end="2680" vertical-scroll-proportion="0.5419126">
           <folding>
-            <element signature="e#201#233#0" expanded="false" />
-            <element signature="e#2548#2570#0" expanded="false" />
-            <element signature="e#2606#3543#0" expanded="false" />
-            <element signature="e#3578#3824#0" expanded="false" />
-            <element signature="e#3930#4107#0" expanded="false" />
-            <element signature="e#5988#6019#0" expanded="false" />
+            <element signature="e#266#298#0" expanded="false" />
+            <element signature="e#4223#4400#0" expanded="false" />
+            <element signature="e#6281#6312#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.ru">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="3" selection-start="427" selection-end="427" vertical-scroll-proportion="0.40141678">
-          <folding />
         </state>
       </provider>
     </entry>

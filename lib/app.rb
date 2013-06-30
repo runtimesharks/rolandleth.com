@@ -1,8 +1,10 @@
 require 'rss'
 require 'markdown_renderer'
-
+require 'dropbox_sdk'
+require 'dropbox_keys'
 
 class Application < Sinatra::Application
+	include DropboxKeys
 	PAGE_SIZE = 5
 	PAGES = %w{about apps projects bouncyb sosmorse iwordjuggle privacy-policy}
 
@@ -66,6 +68,11 @@ class Application < Sinatra::Application
 
 	# Main pages
 	get %r{/$|/(\d+)$} do |page|
+		#session = DropboxSession.new(APP_KEY, APP_SECRET)
+		#session.set_access_token(AUTH_KEY, AUTH_SECRET)
+		#client = DropboxClient.new(session, ACCESS_TYPE)
+		#puts client.metadata('/Work/Sites/rolandleth/posts')['contents'][0]
+
 		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		page = (page || 1).to_i
