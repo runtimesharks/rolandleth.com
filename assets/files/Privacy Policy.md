@@ -20,4 +20,4 @@ To operate the service, I also may make identifiable and anonymous information a
 #Last update
 This privacy policy was last updated on Jun 14, 2013. My privacy policy may change from time to time. If I make any material changes to my policies, I will place a prominent notice on my website or application. If the change materially affects registered users, I will send a notice to you by email, push notification or text.
 #Contact
-If you have any questions or concerns about my privacy policy, please <a href="mailto:rolandleth@me.com">contact me</a>.
+If you have any questions or concerns about my privacy policy, please <a href="mailto:rolandleth@rolandleth.com">contact me</a>.

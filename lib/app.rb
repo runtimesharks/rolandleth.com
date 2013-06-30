@@ -66,9 +66,22 @@ class Application < Sinatra::Application
 		redirect '/', 301
 	end
 
-	# Apply a permanently redirected to http://root/name/ pointing at http://root/name
-	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)/} do |key|
+	# Apply a permanent redirect from http://root/name/ to http://root/name (I always want links to show without '/' at end)
+	# If the $ condition is removed, it will try to redirect anything like http://root/name/anything/can/be/here to http://root/name
+	# And it would screw file downloading
+	get %r{^/([\w\s\.\}\{\]\[%:"';!=\?\+\*\-\)\(\/]+)/$} do |key|
 		redirect "/#{key}", 301
+	end
+
+	# Apply a non-permanent redirect from http://root/name/anything/can/be/here to http://root/name
+	# Might change my mind about this, since it's a bit more drastic, thus not a permanent redirect
+	get %r{^/([\w\s\.\}\{\]\[%:"';!=\?\+\*\-\)\(\/]+)/} do |key|
+		redirect "/#{key}", 302
+	end
+
+	# Apply a permanent redirect from http://root/page#/anything/can/be/here to http://root/page# (I always want links to show without '/' at end)
+	get %r{^/(\d+)/} do |current_page|
+		redirect "/#{current_page}", 301
 	end
 
 	# Main page
@@ -104,17 +117,6 @@ class Application < Sinatra::Application
 		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 	end
 
-	# Files
-	get '/files/:filename' do |filename|
-		if filename == 'Roland Leth.pdf'
-			return send_file File.open("./assets/files/#{filename}")
-		end
-		if filename == 'Privacy Policy.md'
-			return send_file File.open("./assets/files/#{filename}")
-		end
-		return erb :not_found
-	end
-
 	# Small hack to display this page name full of escapes I didn't take care of
 	get "/%5BWorld-hello%5D" do
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
@@ -122,30 +124,34 @@ class Application < Sinatra::Application
 	end
 
 	# Individual posts and pages
-	get %r{^/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(\/]+)$} do |key|
+	get %r{^/([\w\s\.\}\{\]\[%:"';!=\?\+\*\-\)\(\/]+)$} do |key|
+		if key == 'file:Roland Leth.pdf'
+			return send_file File.open('./assets/files/Roland Leth.pdf')
+		end
+		if key == 'file:Privacy Policy.md'
+			return send_file File.open('./assets/files/Privacy Policy.md')
+		end
+		if key == 'projects'
+			return erb :projects
+		end
+		if key == 'bouncyb'
+			# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
+			return erb :bouncyb, layout: false
+		end
+		if key == 'iwordjuggle'
+			return erb :iwordjuggle, layout: false
+		end
+		if key == 'sosmorse'
+			return erb :sosmorse, layout: false
+		end
+		if key == 'about'
+			return erb :about
+		end
+		if key == 'privacy-policy'
+			return erb :'privacy-policy'
+		end
 		if key == '[World-hello]'
 			key = key + ';'
-		end
-		if PAGES.include? key
-			if key == 'projects'
-				return erb :projects
-			end
-			if key == 'bouncyb'
-				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
-				return erb :bouncyb, layout: false
-			end
-			if key == 'iwordjuggle'
-				return erb :iwordjuggle, layout: false
-			end
-			if key == 'sosmorse'
-				return erb :sosmorse, layout: false
-			end
-			if key == 'about'
-				return erb :about
-			end
-			if key == 'privacy-policy'
-				return erb :'privacy-policy'
-			end
 		end
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		i = 0

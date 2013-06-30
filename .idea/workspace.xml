@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/files/Privacy Policy.md" afterPath="$PROJECT_DIR$/assets/files/Privacy Policy.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/about.erb" afterPath="$PROJECT_DIR$/views/about.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/home.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/privacy-policy.erb" afterPath="$PROJECT_DIR$/views/privacy-policy.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -12,7 +17,7 @@
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372609195953" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
-    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372618626459" ignored="false" />
+    <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372624090471" ignored="false" />
     <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372327271084" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372409058697" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
@@ -66,7 +71,7 @@
     <file path="/pagination.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370995617133" ignored="false" />
     <file path="/variables.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371155390496" ignored="false" />
     <file path="/rss.builder" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371046483889" ignored="false" />
-    <file path="/about.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372257785545" ignored="false" />
+    <file path="/about.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372623738171" ignored="false" />
     <file path="/projects.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371172138991" ignored="false" />
     <file path="/bouncyb.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371070621129" ignored="false" />
     <file path="/iwordjuggle.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371055990434" ignored="false" />
@@ -82,7 +87,7 @@
     <file path="/Readme.md" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371171793532" ignored="false" />
     <file path="/scheduler.rake" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371172906833" ignored="false" />
     <file path="/newrelic.yml" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371201693895" ignored="false" />
-    <file path="/privacy-policy.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371222823166" ignored="false" />
+    <file path="/privacy-policy.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372623730362" ignored="false" />
     <file path="/screen.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371231154447" ignored="false" />
     <file path="$USER_HOME$/Downloads/nshipster.com-master/css/screen.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371231166358" ignored="false" />
     <file path="/syntax.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371307830489" ignored="false" />
@@ -102,6 +107,7 @@
     <file path="$USER_HOME$/Documents/GitHub/rolandleth.com/.gitignore" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608621191" ignored="false" />
     <file path="/.gitignore" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608621191" ignored="false" />
     <file path="$USER_HOME$/Documents/GitHub/rolandleth.com/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372608944039" ignored="false" />
+    <file path="/Privacy Policy.md" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372620710283" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,11 +130,56 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="4" selection-start="2786" selection-end="2786" vertical-scroll-proportion="0.040141676">
+            <state line="72" column="27" selection-start="3021" selection-end="3021" vertical-scroll-proportion="0.46477392">
               <folding>
-                <element signature="e#266#298#0" expanded="false" />
                 <element signature="e#320#2527#0" expanded="false" />
+                <element signature="e#3836#5017#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/about.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="63" selection-start="400" selection-end="400" vertical-scroll-proportion="-3.9230769">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="not_found.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/not_found.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Privacy Policy.md" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="0" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layout.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="privacy-policy.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="0" selection-start="2945" selection-end="2945" vertical-scroll-proportion="-20.26923">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,9 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/itunes.rb" />
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/dublincore.rb" />
-        <option value="$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/image.rb" />
         <option value="$PROJECT_DIR$/views/layout.erb" />
         <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
         <option value="$PROJECT_DIR$/config/newrelic.yml" />
@@ -166,6 +214,9 @@
         <option value="$PROJECT_DIR$/All_Posts.txt" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/views/index.erb" />
+        <option value="$PROJECT_DIR$/assets/files/Privacy Policy.md" />
+        <option value="$PROJECT_DIR$/views/privacy-policy.erb" />
+        <option value="$PROJECT_DIR$/views/about.erb" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
       </list>
     </option>
@@ -263,6 +314,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -292,7 +375,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last.edited.regexp" value="/2/sdgsd/" />
+    <property name="last.edited.regexp" value="/file:Privacy Policy.md/shgsf" />
     <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
@@ -538,18 +621,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1806" height="1400" extended-state="0" />
+    <frame x="4" y="22" width="1806" height="1400" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28295454" sideWeight="0.67152727" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28295454" sideWeight="0.7513431" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24865694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -625,25 +708,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs20/kernel.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="587" column="8" selection-start="22315" selection-end="22315" vertical-scroll-proportion="0.7945691">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/sinatra-1.4.3/lib/sinatra/base.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="239" selection-end="239" vertical-scroll-proportion="0.28099173">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.0.0-p195/lib/ruby/2.0.0/rss/maker/base.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="562" column="10" selection-start="15342" selection-end="15342" vertical-scroll-proportion="0.33293977" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Rakefile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -665,13 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="24" selection-start="105" selection-end="105" vertical-scroll-proportion="0.041412912">
@@ -682,13 +739,6 @@
     <entry file="file://$PROJECT_DIR$/lib/markdown_renderer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="3" selection-start="320" selection-end="320" vertical-scroll-proportion="0.28099173">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -728,12 +778,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/Privacy Policy.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/not_found.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="2945" selection-end="2945" vertical-scroll-proportion="-20.26923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/about.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="63" selection-start="400" selection-end="400" vertical-scroll-proportion="-3.9230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="4" selection-start="2786" selection-end="2786" vertical-scroll-proportion="0.040141676">
+        <state line="72" column="27" selection-start="3021" selection-end="3021" vertical-scroll-proportion="0.46477392">
           <folding>
-            <element signature="e#266#298#0" expanded="false" />
             <element signature="e#320#2527#0" expanded="false" />
+            <element signature="e#3836#5017#0" expanded="false" />
           </folding>
         </state>
       </provider>
