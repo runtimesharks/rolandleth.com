@@ -68,6 +68,7 @@ class Application < Sinatra::Application
 
 	# Apply a permanently redirected to http://root/name/ pointing at http://root/name
 	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)/} do |key|
+		puts key
 		redirect "/#{key}", 301
 	end
 
