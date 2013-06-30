@@ -67,7 +67,7 @@ class Application < Sinatra::Application
 	end
 
 	# Apply a permanently redirected to http://root/name/ pointing at http://root/name
-	get %r{/([\w\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)/} do |key|
+	get %r{/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(]+)/} do |key|
 		redirect "/#{key}", 301
 	end
 
@@ -122,7 +122,7 @@ class Application < Sinatra::Application
 	end
 
 	# Individual posts and pages
-	get %r{^/([\w\.\}\{\]\[:"';!=\?\+\*\-\)\(\/]+)$} do |key|
+	get %r{^/([\w\s\.\}\{\]\[:"';!=\?\+\*\-\)\(\/]+)$} do |key|
 		if key == '[World-hello]'
 			key = key + ';'
 		end
