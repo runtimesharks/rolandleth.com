@@ -6,7 +6,7 @@ require 'dropbox_keys'
 class Application < Sinatra::Application
 	include DropboxKeys
 	PAGE_SIZE = 5
-	PAGES = %W{ about apps projects bouncyb sosmorse iwordjuggle privacy-policy }
+	PAGES = %W{ about apps projects bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
 	configure :production do
 		require 'newrelic_rpm'
@@ -89,6 +89,7 @@ class Application < Sinatra::Application
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		posts = all_posts[0..4]
+		@meta_description = 'iOS and Ruby development thoughts by Roland Leth'
 		erb :index, locals: { posts: posts, page: 1, total_pages: total_pages, gap: 2 }
 	end
 
@@ -123,6 +124,12 @@ class Application < Sinatra::Application
 		return erb :index, locals: {posts: all_posts, page: all_posts.count - 1, total_pages: -1, window: 2}
 	end
 
+	get "/Expenses Planner - Press Kit.zip" do
+		return send_file File.open('./assets/files/Expenses Planner Press Kit.zip'), filename: 'Expenses Planner Press Kit.zip'
+	end
+	get "/Carminder - Press Kit.zip" do
+		return send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
+	end
 	get "/Roland Leth - Résumé.pdf" do
 		return send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
 	end
@@ -130,10 +137,12 @@ class Application < Sinatra::Application
 		return send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
 	end
 
-	# Individual posts and pages
+	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
 		if PAGES.include? key
 			if key == 'projects'
+				@title = 'iPhone, iPad, Ruby and Web Apps | '
+				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth'
 				return erb :projects
 			end
 			if key == 'bouncyb'
@@ -146,10 +155,19 @@ class Application < Sinatra::Application
 			if key == 'sosmorse'
 				return erb :sosmorse, layout: false
 			end
+			if key == 'expenses-planner'
+				return erb :'expenses-planner', layout: false
+			end
+			if key == 'carminder'
+				return erb :carminder, layout: false
+			end
 			if key == 'about'
+				@title = 'About | '
+				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
 				return erb :about
 			end
 			if key == 'privacy-policy'
+				@title = 'Privacy Policy | '
 				return erb :'privacy-policy'
 			end
 		end
@@ -166,16 +184,21 @@ class Application < Sinatra::Application
 			# The Dir creates an array with all file names, but because the posts' Titles are set from the file names,
 			# I convert spaces to '-' inside post.erb for the href link, to avoid the ugly HTML's %20s.
 			# Meaning I have to swap '-' to spaces back when the user actually clicks the link, so the files are properly read
-			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[4] == key.gsub("-", "\s")
+			@title = matches[4] + ' | '
+			@meta_description = matches[4] + ' | '
+			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[4].downcase == key.gsub("-", "\s")
+			redirect "#{key.downcase}", 301 if matches[4].downcase == key.gsub("-", "\s").downcase
 			# Total pages is set to -1 so I don't create another variable just for when a post is clicked to be viewed
 			# individually. If total_pages == -1, hide the pagination and display only the clicked post
 			# I'm also using the page variable as 'current array index' to retrieve the clicked post, instead of a new variable.
 			i += 1
 		end
+		@title = '404 | '
 		return erb :not_found
 	end
 
 	not_found do
+		@title = '404 | '
 		return erb :not_found
 	end
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Roland Leth</title>
+  <title><%= @title -%>Roland Leth</title>
   <link rel="stylesheet" href="/assets/application.css">
   <link rel="stylesheet" href="/assets/sections/posts.css">
   <link rel="stylesheet" href="/assets/components/pagination.css">
@@ -10,6 +10,10 @@
   <link href="/feed" rel="alternate" type="application/atom+xml">
   <link rel="apple-touch-icon" sizes="144x144" href="/assets/misc/apple-touch-icon-144x144.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="MobileOptimized" content="320">
+	<meta name="description" content="<%= @meta_description -%>">
+	<meta name="author" content="Roland Leth">
   <script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-40255117-4']);
