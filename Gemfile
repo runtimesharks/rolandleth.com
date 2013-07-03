@@ -23,7 +23,6 @@ gem 'sprockets'
 
 # Stylesheet
 gem 'sass'
-gem 'sprockets-sass'
+gem 'sprockets-sass', require: 'sass'
 gem 'bourbon'
-gem 'yui-compressor'
 gem 'pygments.rb', '>= 0.5.1'
