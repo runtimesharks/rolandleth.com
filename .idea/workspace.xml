@@ -2,52 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/120pxHigh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/40pxHigh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/80pxHigh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/files/Carminder Press Kit.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/files/Expenses Planner Press Kit.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/favicons/carminder.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/devices.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/favicons/expenses-planner.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/iPhone.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/iPhoneBlack.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/misc/iPhoneBlack_old.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/expenses-planner/screen1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/expenses-planner/screen2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/expenses-planner/screen3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/expenses-planner/screen4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/javascripts/expenses-planner/appshowcase.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/javascripts/expenses-planner/appshowcase_3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/carminder.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/expenses-planner.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/javascripts/expenses-planner/modernizr.custom.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/favicons/bbFavicon.ico" afterPath="$PROJECT_DIR$/assets/images/favicons/bouncyb.ico" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/favicons/iwjFavicon.ico" afterPath="$PROJECT_DIR$/assets/images/favicons/iwordjuggle.ico" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/favicons/sosFavicon.ico" afterPath="$PROJECT_DIR$/assets/images/favicons/sos-morse.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/bouncyb.erb" afterPath="$PROJECT_DIR$/views/bouncyb.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/iwordjuggle.erb" afterPath="$PROJECT_DIR$/views/iwordjuggle.erb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/posts/2013-06-15-No Room For Errors.md" afterPath="$PROJECT_DIR$/posts/2013-06-15-No room for errors.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/application.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/e96d2727e6dbfd3c5998754a2589b9c9ad70256e/application.scssc" afterPath="$PROJECT_DIR$/.sass-cache/e96d2727e6dbfd3c5998754a2589b9c9ad70256e/application.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.ru" afterPath="$PROJECT_DIR$/config.ru" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.erb" afterPath="$PROJECT_DIR$/views/layout.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/post.erb" afterPath="$PROJECT_DIR$/views/post.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/projects.erb" afterPath="$PROJECT_DIR$/views/projects.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sosmorse.erb" afterPath="$PROJECT_DIR$/views/sosmorse.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rolandleth.iml" afterPath="$PROJECT_DIR$/.idea/rolandleth.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371814994324" ignored="false" />
+    <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372846600780" ignored="false" />
     <file path="/Work.html" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370821553429" ignored="false" />
     <file path="/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370822461702" ignored="false" />
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372791138786" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
     <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372813199511" ignored="false" />
-    <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372812665519" ignored="false" />
+    <file path="/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372814152187" ignored="false" />
     <file path="/index.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372807988334" ignored="false" />
     <file path="/application.css.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965789602" ignored="false" />
     <file path="/application.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370965459093" ignored="false" />
@@ -88,10 +62,10 @@
     <file path="/temp.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371087529291" ignored="false" />
     <file path="/post.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372809879516" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/views/slug.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370961362736" ignored="false" />
-    <file path="/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372627413187" ignored="false" />
+    <file path="/Gemfile" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372846358009" ignored="false" />
     <file path="/layout.slim.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370975021142" ignored="false" />
     <file path="/layout.slim" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370976425488" ignored="false" />
-    <file path="/application.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372203260480" ignored="false" />
+    <file path="/application.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372847152711" ignored="false" />
     <file path="$PROJECT_DIR$/../../../r/views/layout.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370977359713" ignored="false" />
     <file path="$PROJECT_DIR$/../../../r/lib/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370977373741" ignored="false" />
     <file path="/posts.scss" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1371246409788" ignored="false" />
@@ -145,6 +119,7 @@
     <file path="/component3.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372804993800" ignored="false" />
     <file path="/a.rxml" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372810199911" ignored="false" />
     <file path="/a.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372810202915" ignored="false" />
+    <file path="/assets.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372846774644" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,28 +139,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="5" selection-start="6038" selection-end="6038" vertical-scroll-proportion="0.30283913">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="privacy-policy.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="12" selection-start="556" selection-end="556" vertical-scroll-proportion="-6.5384617">
+            <state line="137" column="5" selection-start="6038" selection-end="6038" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -200,15 +157,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expenses-planner.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/expenses-planner.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="66" selection-start="769" selection-end="778" vertical-scroll-proportion="-8.5">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="carminder.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/carminder.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -218,37 +166,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projects.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/projects.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="10" selection-start="584" selection-end="584" vertical-scroll-proportion="-7.1923075">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="layout.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="20" selection-start="1427" selection-end="1427" vertical-scroll-proportion="-19.615385">
+            <state line="39" column="7" selection-start="1657" selection-end="1657" vertical-scroll-proportion="-25.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sosmorse.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/sosmorse.erb">
+      <file leaf-file-name="application.scss" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/stylesheets/application.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="20" selection-start="125" selection-end="125" vertical-scroll-proportion="-0.65384614">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/post.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="7" selection-start="439" selection-end="439" vertical-scroll-proportion="-9.807693">
+            <state line="7" column="1" selection-start="182" selection-end="182" vertical-scroll-proportion="-0.32176656">
               <folding />
             </state>
           </provider>
@@ -272,10 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/assets/stylesheets/sections/carminder/component.css" />
-        <option value="$PROJECT_DIR$/assets/stylesheets/sections/carminder/component2.css" />
-        <option value="$PROJECT_DIR$/assets/stylesheets/sections/carminder/component3.css" />
-        <option value="$PROJECT_DIR$/views/iwordjuggle.erb" />
         <option value="$PROJECT_DIR$/views/sosmorse.erb" />
         <option value="$PROJECT_DIR$/views/bouncyb.erb" />
         <option value="$PROJECT_DIR$/views/privacy-policy.erb" />
@@ -286,8 +212,12 @@
         <option value="$PROJECT_DIR$/views/projects.erb" />
         <option value="$PROJECT_DIR$/views/carminder.erb" />
         <option value="$PROJECT_DIR$/views/post.erb" />
-        <option value="$PROJECT_DIR$/views/layout.erb" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/lib/assets.rb" />
+        <option value="$PROJECT_DIR$/config.ru" />
+        <option value="$PROJECT_DIR$/views/layout.erb" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/application.scss" />
       </list>
     </option>
   </component>
@@ -385,6 +315,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -806,7 +758,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="2003" height="1400" extended-state="1" />
+    <frame x="4" y="22" width="2003" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -893,48 +845,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/carminder/component3.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="60" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/carminder/default.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/bouncyb.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="33" selection-start="127" selection-end="127" vertical-scroll-proportion="-0.65384614">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/sinatra-1.4.3/lib/sinatra/base.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="795" column="15" selection-start="25213" selection-end="25213" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/not_found.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/iwordjuggle.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="127" selection-end="127" vertical-scroll-proportion="-0.65384614">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="12" selection-start="556" selection-end="556" vertical-scroll-proportion="-6.5384617">
@@ -977,20 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/post.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="439" selection-end="439" vertical-scroll-proportion="-9.807693">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="20" selection-start="1427" selection-end="1427" vertical-scroll-proportion="-19.615385">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/about.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="93" selection-start="424" selection-end="430" vertical-scroll-proportion="-3.9230769">
@@ -1000,7 +896,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="5" selection-start="6038" selection-end="6038" vertical-scroll-proportion="0.30283913">
+        <state line="137" column="5" selection-start="6038" selection-end="6038" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/sprockets-2.10.0/lib/sprockets/environment.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="452" selection-end="452" vertical-scroll-proportion="0.32176656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="7" selection-start="1657" selection-end="1657" vertical-scroll-proportion="-25.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/post.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="7" selection-start="439" selection-end="439" vertical-scroll-proportion="0.27567568">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dropbox_keys.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="3" selection-start="171" selection-end="171" vertical-scroll-proportion="0.10725552">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ru">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="120" selection-end="529" vertical-scroll-proportion="0.16088328">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="10" selection-start="130" selection-end="130" vertical-scroll-proportion="0.16088328">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/reset.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/application.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="1" selection-start="182" selection-end="182" vertical-scroll-proportion="-0.32176656">
           <folding />
         </state>
       </provider>

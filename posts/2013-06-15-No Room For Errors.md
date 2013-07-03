@@ -16,4 +16,6 @@ u {
   text-decoration: none;
 }
 ```
-and now `_text_` is displayed as *italic*. Why? Well, because sometimes I'd like to emphasis *something*, but not ==this bad==: a quote, without using a quote block, for example.
+and now `_text_` is displayed as *italic*. Why? Well, because sometimes I'd like to emphasis *something*, but not ==this bad==: a quote, without using a quote block, for example.  
+
+*Update Jun 26, 2013: The above hack was replaced by using a newer version of Redcarpet that can parse `==text==` as `<mark>text</mark>`. Nonetheless, it's still a decent hack when needed.*

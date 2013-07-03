@@ -1,10 +1,10 @@
 @import "bourbon";
-@import "globals/*";
+@import "globals/variables";
 @import "components/reset";
 @import url(http://fonts.googleapis.com/css?family=Arvo);
 
 html {
-	//border-left: 6px solid $link-color;
+	//border-left: 4px solid $link-color;
 }
 
 a {
@@ -153,3 +153,6 @@ footer {
 }
 
 @import "components/syntax";
+@import "components/pygments";
+@import "components/pagination";
+@import "sections/posts";
