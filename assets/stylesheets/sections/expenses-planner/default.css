@@ -45,12 +45,11 @@ body {
 }
 
 a {
-	color: #00A29B; 
 	text-decoration: none;
 }
 
 a:hover {
-	color: #00A29B; 
+	color: #39A6FE;
 	/*text-decoration: none; */
 	/*border-bottom: 1px solid;*/
 }
@@ -87,7 +86,7 @@ a:hover {
 
 .main > p {
 	font-weight: 300;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	color: #999;
 	text-align: center;
 	padding: 2em;
@@ -141,12 +140,18 @@ a:hover {
 }
 
 .codrops-demos a:hover {
-	color: #00A29B;
-	border-color: #00A29B;
+	color: #39A6FE;
+	border-color: #39A6FE;
 }
 
 .codrops-demos a.current-demo,
 .codrops-demos a.current-demo:hover {
 	color: #aaa;
 	border-color: #aaa;
+}
+
+footer p {
+	font-size: 1.2em;
+	text-align: center;
+	color: #ddd;
 }

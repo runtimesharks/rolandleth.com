@@ -12,11 +12,11 @@
 .ac-wrapper h2 {
 	position: absolute;
 	top: 20%;
-	padding: 0 180px 0 50px;
 	width: 50%;
+	padding: 0 180px 0 50px;
 	text-align: right;
-	font-weight: 300;
 	font-size: 4em;
+	font-weight: 300;
 }
 
 .ac-wrapper h2 span {
@@ -28,13 +28,13 @@
 .ac-device {
 	position: relative;
 	top: 5px;
-	margin: 0 auto;
 	width: 288px;
 	height: 611px;
-	background: url('/assets/misc/iPhoneBlack.png') no-repeat;
+	margin: 0 auto;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	transition: all 0.3s ease;
+	background: url('/assets/misc/iPhone.png') no-repeat;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -44,9 +44,9 @@
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
-	margin: 85px 0 0 20px;
 	width: 249px;
 	height: 440px;
+	margin: 85px 0 0 20px;
 }
 
 .ac-device a img {
@@ -59,46 +59,45 @@
 	top: 50%;
 	/* bottom: -7.1%; */
 	left: 100%;
-/*	display: block;*/
-	margin-left: 30px;
+/* display: block; */
 	width: 100%;
+	margin-left: 30px;
 	color: #888;
-	font-weight: 300;
 	font-size: 2.5em;
+	font-weight: 300;
 }
 
 .ac-device nav {
 	position: absolute;
 	bottom: 0.5em;
 	left: 100%;
-	margin-left: 2em;
 	width: 100%;
+	margin-left: 2em;
 }
 
 .ac-device nav span {
 	display: block;
 	float: left;
+	width: 36px;
 	margin: 2px;
 	padding: 0 0.08em;
-	width: 36px;
-	background: #ddd;
-	color: #fff;
-	text-align: center;
-	font-weight: 300;
-	font-size: 2.8em;
-	line-height: 0.9;
 	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	background: #ddd;
+	font-size: 2.8em;
+	font-weight: 300;
+	line-height: 0.9;
 }
 
 .ac-grid {
 	position: absolute;
+	z-index: 1000;
 	top: 0;
 	left: 50%;
-	z-index: 1000;
-	margin-left: -232.5px;
 	width: 520px;
 	height: 100%;
-	opacity: 0;
+	margin-left: -232.5px;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	transition: all 0.3s ease;
@@ -106,6 +105,7 @@
 	-moz-transform: translateZ(-350px);
 	transform: translateZ(-350px);
 	pointer-events: none;
+	opacity: 0;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -115,8 +115,8 @@
 	position: relative;
 	display: block;
 	float: left;
-	margin: 10px 5px;
 	width: 145px;
+	margin: 10px 5px;
 	cursor: pointer;
 }
 
@@ -127,57 +127,57 @@
 
 .ac-grid a span {
 	position: absolute;
+	z-index: 100;
 	top: 0;
 	left: 0;
-	z-index: 100;
-	padding: 3em 1em 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.4);
-	color: #ddd;
-	text-transform: uppercase;
-	font-weight: 700;
-	opacity: 0;
+	padding: 3em 1em 0;
 	-webkit-transition: all 0.2s ease;
 	-moz-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	-webkit-transform: translateY(-5px);
 	-moz-transform: translateY(-5px);
 	transform: translateY(-5px);
+	text-transform: uppercase;
+	opacity: 0;
+	color: #ddd;
+	background: rgba(0,0,0,0.4);
+	font-weight: 700;
 }
 
 .ac-grid a:hover span {
-	opacity: 1;
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	transform: translateY(0);
+	opacity: 1;
 }
 
 .ac-wrapper.ac-gridview .ac-device {
-	opacity: .6;
 	-webkit-transform: translateZ(-350px);
 	-moz-transform: translateZ(-350px);
 	transform: translateZ(-350px);
+	opacity: .6;
 }
 
 .ac-wrapper.ac-gridview .ac-grid {
-	opacity: 1;
 	-webkit-transform: translateZ(0px);
 	-moz-transform: translateZ(0px);
 	transform: translateZ(0px);
 	pointer-events: auto;
+	opacity: 1;
 }
 
 @media screen and (max-width: 63.875em) {
 	.ac-wrapper { 
-		padding: 0 20px; 
 		width: 100%; 
+		padding: 0 20px; 
 		font-size: 60%;
 	}
 
 	.ac-device {
-		margin: 0;
 		width: 100%;
+		margin: 0;
 	}
 
 	.ac-device h3 {
@@ -201,9 +201,9 @@
 @media screen and (max-width: 39.8125em) {
 	.ac-grid {
 		left: 5%;
+		width: 90%;
 		margin-left: 0;
 		padding-top: 150px;
-		width: 90%;
 	}
 
 	.ac-grid a {
@@ -220,15 +220,15 @@
 	.ac-wrapper h2 {
 		position: relative;
 		top: 0;
-		left: auto;
-		margin: 0 0 1em; 
+		left: auto; 
 		width: 100%;
+		margin: 0 0 1em;
 		text-align: center;
 	}
 
 	.ac-device {
-		margin: 0 auto;
 		width: 288px;
+		margin: 0 auto;
 	}
 
 	.ac-device h3 {
@@ -236,9 +236,9 @@
 		top: auto;
 		left: auto;
 		display: block;
+		width: 100%;
 		margin: 0;
 		padding-top: 100px;
-		width: 100%;
 		text-align: center;
 	}
 	
