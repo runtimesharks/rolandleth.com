@@ -18,7 +18,7 @@ class Application < Sinatra::Application
 		rss ||= RSS::Maker.make('atom') do |maker|
 			maker.channel.icon = '/public/favicon.ico'
 			maker.channel.logo = '/public/favicon.ico'
-			maker.channel.id = 'http://rolandleth.com/'
+			maker.channel.id = 'http://rolandleth.com'
 			maker.channel.link = 'http://rolandleth.com/feed'
 			maker.channel.title = 'Roland Leth'
 			maker.channel.description = 'Roland Leth'
@@ -66,14 +66,14 @@ class Application < Sinatra::Application
 		redirect '/', 301
 	end
 
-	# Apply a permanent redirect from http://root/name/ to http://root/name (I always want links to show without '/' at end)
-	# If the $ condition is removed, it will try to redirect anything like http://root/name/anything/can/be/here to http://root/name
+	# Apply a permanent redirect from http://root/key/ to http://root/key (I always want links to show without '/' at end)
+	# If the $ condition is removed, it will try to redirect anything like http://root/key/anything/can/be/here to http://root/key
 	# And it would screw file downloading
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)/$} do |key|
 		redirect "/#{key}", 301
 	end
 
-	# Apply a non-permanent redirect from http://root/name/anything/can/be/here to http://root/name
+	# Apply a non-permanent redirect from http://root/key/anything/can/be/here to http://root/key
 	# Might change my mind about this, since it's a bit more drastic, thus not a permanent redirect
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)/} do |key|
 		redirect "/#{key}", 302
@@ -141,7 +141,7 @@ class Application < Sinatra::Application
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
 		if PAGES.include? key
 			if key == 'projects'
-				@title = 'iPhone, iPad, Ruby and Web Apps | '
+				@title = 'iPhone, iPad, Ruby and Web Apps'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth'
 				return erb :projects
 			end
@@ -162,12 +162,13 @@ class Application < Sinatra::Application
 				return erb :carminder, layout: false
 			end
 			if key == 'about'
-				@title = 'About | '
+				@title = 'About'
 				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
 				return erb :about
 			end
 			if key == 'privacy-policy'
-				@title = 'Privacy Policy | '
+				@title = 'Privacy Policy'
+				@meta_description = "Roland Leth's Privacy Policy"
 				return erb :'privacy-policy'
 			end
 		end
@@ -184,8 +185,8 @@ class Application < Sinatra::Application
 			# The Dir creates an array with all file names, but because the posts' Titles are set from the file names,
 			# I convert spaces to '-' inside post.erb for the href link, to avoid the ugly HTML's %20s.
 			# Meaning I have to swap '-' to spaces back when the user actually clicks the link, so the files are properly read
-			@title = matches[4] + ' | '
-			@meta_description = matches[4] + ' | '
+			@title = matches[4]
+			@meta_description = matches[4]
 			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[4].downcase == key.gsub("-", "\s")
 			redirect "#{key.downcase}", 301 if matches[4].downcase == key.gsub("-", "\s").downcase
 			# Total pages is set to -1 so I don't create another variable just for when a post is clicked to be viewed
@@ -193,16 +194,17 @@ class Application < Sinatra::Application
 			# I'm also using the page variable as 'current array index' to retrieve the clicked post, instead of a new variable.
 			i += 1
 		end
-		@title = '404 | '
+		@title = '404'
 		return erb :not_found
 	end
 
 	not_found do
-		@title = '404 | '
+		@title = '404'
 		return erb :not_found
 	end
 
 	error do
+		@title = 'Error'
 		return erb :not_found
 	end
 end

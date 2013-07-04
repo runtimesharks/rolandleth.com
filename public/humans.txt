@@ -1,7 +1,7 @@
 /* TEAM */
 Designer:     Roland Leth
 Developer:    Roland Leth
-Contact:      rolandleth@me.com
+Contact:      roland@rolandleth.com
 Twitter:      @rolandleth
 App.net:      @rolandleth
 
