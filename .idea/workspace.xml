@@ -2,57 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Both.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/iwj/Both.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Controls.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/sosmorse/Custom.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/sosmorse/Emails.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Fly.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/iwj/Gameplay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Green.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/expenses-planner/Icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/iwj/Icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/sosmorse/Icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/iwj/Landscape.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/iwj/Menu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/iwj/Pick.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/sosmorse/Screenshot.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Smash.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/sosmorse/Sos.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bouncyb/Star.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbBoth.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbControls.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbFly.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbGreen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbSmash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/bouncyb/bbStar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/iwj/iwjBoth.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/iwj/iwjGameplay.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/iwj/iwjIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/iwj/iwjLandscape.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/iwj/iwjMenu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/iwj/iwjPick.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/sosmorse/sosCustom.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/sosmorse/sosEmails.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/sosmorse/sosIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/sosmorse/sosScreenshot.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/sosmorse/sosSos.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/misc/CarminderIcon.png" afterPath="$PROJECT_DIR$/assets/images/carminder/Icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/files/Expenses Planner Press Kit.zip" afterPath="$PROJECT_DIR$/assets/files/Expenses Planner Press Kit.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/favicons/expenses-planner.ico" afterPath="$PROJECT_DIR$/assets/images/favicons/expenses-planner.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/bouncyb.erb" afterPath="$PROJECT_DIR$/views/bouncyb.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/carminder.erb" afterPath="$PROJECT_DIR$/views/carminder.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/carminder/default.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/carminder/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/expenses-planner.erb" afterPath="$PROJECT_DIR$/views/expenses-planner.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/iwordjuggle.erb" afterPath="$PROJECT_DIR$/views/iwordjuggle.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/projects.erb" afterPath="$PROJECT_DIR$/views/projects.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sosmorse.erb" afterPath="$PROJECT_DIR$/views/sosmorse.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -231,7 +181,7 @@
       <file leaf-file-name="appshowcase.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/javascripts/expenses-planner/appshowcase.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="44" selection-start="575" selection-end="575" vertical-scroll-proportion="0.26785713">
+            <state line="32" column="6" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.5535714">
               <folding>
                 <element signature="e#2166#3638#0" expanded="false" />
               </folding>
@@ -713,7 +663,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="2003" height="1400" extended-state="1" />
+    <frame x="4" y="22" width="2003" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -724,7 +674,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24788949" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24788949" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -907,7 +857,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/javascripts/expenses-planner/appshowcase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="44" selection-start="575" selection-end="575" vertical-scroll-proportion="0.26785713">
+        <state line="32" column="6" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.5535714">
           <folding>
             <element signature="e#2166#3638#0" expanded="false" />
           </folding>
