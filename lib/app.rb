@@ -114,7 +114,7 @@ class Application < Sinatra::Application
 		# gap: How many pages between first/last and current before '..' is shown
 		# Example: gap of 2, current page 5, pagination will be 1 .. 4 5 6 .. 9. Tweaked for use with a gap of 2.
 		if page > total_pages
-			return erb :not_found
+			return not_found
 		end
 		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 	end
@@ -199,17 +199,18 @@ class Application < Sinatra::Application
 			# I'm also using the page variable as 'current array index' to retrieve the clicked post, instead of a new variable.
 			i += 1
 		end
-		@title = '404'
-		return erb :not_found
+		return not_found
 	end
 
 	not_found do
 		@title = '404'
+		status 404
 		return erb :not_found
 	end
 
 	error do
 		@title = 'Error'
+		status 500
 		return erb :not_found
 	end
 end
