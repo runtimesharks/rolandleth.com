@@ -95,6 +95,7 @@ class Application < Sinatra::Application
 
 	# Pages
 	get %r{^/(\d+)$} do |current_page|
+		@meta_canonical = current_page
 		#session = DropboxSession.new(APP_KEY, APP_SECRET)
 		#session.set_access_token(AUTH_KEY, AUTH_SECRET)
 		#client = DropboxClient.new(session, ACCESS_TYPE)
@@ -139,6 +140,7 @@ class Application < Sinatra::Application
 
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
+		@meta_canonical = key
 		if PAGES.include? key
 			if key == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
