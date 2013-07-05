@@ -6,7 +6,7 @@ require 'dropbox_keys'
 class Application < Sinatra::Application
 	include DropboxKeys
 	PAGE_SIZE = 5
-	PAGES = %W{ about apps projects bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
+	PAGES = %W{ about apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
 	configure :production do
 		require 'newrelic_rpm'
@@ -140,7 +140,7 @@ class Application < Sinatra::Application
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
 		if PAGES.include? key
-			if key == 'projects'
+			if key == 'projects' or key == 'work'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth'
 				return erb :projects
