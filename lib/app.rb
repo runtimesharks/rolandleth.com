@@ -140,10 +140,13 @@ class Application < Sinatra::Application
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
 		if PAGES.include? key
-			if key == 'projects' or key == 'work'
+			if key == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth'
 				return erb :projects
+			end
+			if key == 'work'
+				return redirect '/projects', 302
 			end
 			if key == 'bouncyb'
 				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
