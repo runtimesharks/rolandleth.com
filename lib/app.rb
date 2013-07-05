@@ -25,7 +25,7 @@ class Application < Sinatra::Application
 			maker.channel.author = 'Roland Leth'
 			maker.channel.language = 'en'
 			maker.channel.rights = "© #{Time.now.year} Roland Leth"
-			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth'
+			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
 			maker.items.do_sort = false
 			hours = [0, 1, 2, 3, 20, 21, 22, 23]
 
@@ -89,7 +89,7 @@ class Application < Sinatra::Application
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		posts = all_posts[0..4]
-		@meta_description = 'iOS and Ruby development thoughts by Roland Leth'
+		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
 		erb :index, locals: { posts: posts, page: 1, total_pages: total_pages, gap: 2 }
 	end
 
@@ -144,7 +144,7 @@ class Application < Sinatra::Application
 		if PAGES.include? key
 			if key == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
-				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth'
+				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
 				return erb :projects
 			end
 			if key == 'work'
@@ -204,7 +204,7 @@ class Application < Sinatra::Application
 
 	not_found do
 		@title = '404'
-		@meta_description = "This isn't the page your are looking for"
+		@meta_description = "This isn't the page your are looking for."
 		@meta_canonical = '404 error raised'
 		status 404
 		return erb :not_found
