@@ -204,6 +204,8 @@ class Application < Sinatra::Application
 
 	not_found do
 		@title = '404'
+		@meta_description = "This isn't the page your are looking for"
+		@meta_canonical = '404 error raised'
 		status 404
 		return erb :not_found
 	end

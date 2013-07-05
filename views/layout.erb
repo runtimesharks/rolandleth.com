@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="/assets/application.css">
   <link rel="author" type="text/plain" href="/humans.txt">
 	<%- if @meta_canonical %>
-	  <link rel="canonical" href="<%= 'http://rolandleth.com/' + @meta_canonical -%>">
+		<%- unless @meta_canonical == '404 error raised' -%>
+	    <link rel="canonical" href="<%= 'http://rolandleth.com/' + @meta_canonical -%>">
+		<%- end -%>
 	<%- else -%>
     <link rel="canonical" href="http://rolandleth.com">
 	<%- end -%>
