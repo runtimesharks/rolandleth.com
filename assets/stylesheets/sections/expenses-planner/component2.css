@@ -300,6 +300,7 @@
 
 	.container > header h1 {
 		margin-bottom: 0;
+		margin-right: 0.9em;
 	}
 }
 
@@ -310,6 +311,7 @@
 
 	.container > header {
 		margin-bottom: 2em;
+		padding: 0;
 	}
 
 	.container > header span {
