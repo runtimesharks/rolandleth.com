@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/2013-07-06-Expenses Planner for iOS.md" afterPath="$PROJECT_DIR$/posts/2013-07-06-Expenses Planner for iOS.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,7 +108,7 @@
     <file path="/expenses-planner.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373072661897" ignored="false" />
     <file path="/component.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372848338217" ignored="false" />
     <file path="/carminder.erb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373126489917" ignored="false" />
-    <file path="/component2.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373142334748" ignored="false" />
+    <file path="/component2.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373143302216" ignored="false" />
     <file path="/component3.css" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372804993800" ignored="false" />
     <file path="/a.rxml" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372810199911" ignored="false" />
     <file path="/a.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1372810202915" ignored="false" />
@@ -221,7 +220,7 @@
       <file leaf-file-name="component2.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="16" selection-start="3066" selection-end="3066" vertical-scroll-proportion="0.68176913">
+            <state line="364" column="4" selection-start="6514" selection-end="6531" vertical-scroll-proportion="0.4498382">
               <folding />
             </state>
           </provider>
@@ -642,8 +641,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="2003" height="1400" extended-state="0" />
-    <editor active="false" />
+    <frame x="4" y="22" width="2003" height="1400" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -651,7 +650,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847276" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26980072" sideWeight="0.75211054" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26980072" sideWeight="0.75211054" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -837,7 +836,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="16" selection-start="3066" selection-end="3066" vertical-scroll-proportion="0.68176913">
+        <state line="364" column="4" selection-start="6514" selection-end="6531" vertical-scroll-proportion="0.4498382">
           <folding />
         </state>
       </provider>

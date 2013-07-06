@@ -337,7 +337,7 @@
 	}
 
 	.codrops-demos a {
-			margin: 0.1em 0.8em;
+			margin: 0.1em 0.7em;
 	}
 
 	.ac-wrapper h2 {
@@ -354,8 +354,15 @@
 		margin: 0 auto;
 	}
 
+	.ac-device nav span {
+		width: 0;
+	}
+
 	.ac-device nav {
 		visibility: hidden;
+		min-width: 0;
+		width: 0;
+		overflow: hidden;
 	}
 
 	.ac-device h3 {
