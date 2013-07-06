@@ -74,7 +74,6 @@ a:hover {
 	font-weight: 400;
 	float: left;
 	width: auto;
-	min-width: 319px;
 	color: #f3f3f3;
 }
 
@@ -84,7 +83,6 @@ a:hover {
 	font-size: 75%;
 	color: #c0c0c0;
 	padding: 0 0 0.6em 0.1em;
-	min-width: 319px;
 }
 
 .main > p {

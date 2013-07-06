@@ -149,6 +149,7 @@
 	color: #ddd;
 	background: rgba(0,0,0,0.4);
 	font-weight: 700;
+	font-size: 2em;
 }
 
 .ac-grid a:hover span {
@@ -211,9 +212,9 @@
 	position: absolute;
 	padding-top: 3.15em;
 	left: 100%;
-	width: 100%;
 	margin-left: 2em;
 	pointer-events: auto;
+	min-width: 100px;
 }
 
 .ac-wrapper.ac-gridview .ac-device nav {
@@ -244,7 +245,7 @@
 
 	.ac-device nav {
 		margin: 0;
-		padding: 0;
+		padding-top: 5.8em;
 		left: 35.5em;
 	}
 
@@ -254,13 +255,13 @@
 	}
 
 	.ac-device {
-		width: 100%;
+		/*width: 100%;*/
 		margin: 0;
 	}
 
 	.ac-device h3 {
 		left: 290px;
-		width: 50%;
+		/*width: 50%;*/
 	}
 
 	.ac-wrapper h2 {
@@ -291,7 +292,7 @@
 	}
 
 	.codrops-demos {
-		margin-left: -0.9em;
+		margin-left: -0.8em;
 	}
 
 	.codrops-demos a {
@@ -300,11 +301,11 @@
 
 	.container > header h1 {
 		margin-bottom: 0;
-		margin-right: 0.9em;
+		margin-right: 0.8em;
 	}
 }
 
-@media screen and (max-width: 35.6875em) {
+@media screen and (max-width: 38em) {
 	.ac-wrapper {
 		padding: 0 20px 100px;
 	}
@@ -316,6 +317,7 @@
 
 	.container > header span {
 		margin: auto;
+		font-size: 0.7em;
 	}
 
 	.container > header h1 {
@@ -335,7 +337,7 @@
 	}
 
 	.codrops-demos a {
-			margin: 0.1em 0.9em;
+			margin: 0.1em 0.8em;
 	}
 
 	.ac-wrapper h2 {
