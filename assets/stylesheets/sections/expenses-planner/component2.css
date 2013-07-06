@@ -17,10 +17,22 @@
 	text-align: right;
 	font-size: 4em;
 	font-weight: 300;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	-webkit-transform: translateZ(0px);
+	-moz-transform: translateZ(0px);
+	transform: translateZ(0px);
 }
 
 .ac-wrapper.ac-gridview h2 {
 	pointer-events: none;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	-webkit-transform: translateZ(-350px);
+	-moz-transform: translateZ(-350px);
+	transform: translateZ(-350px);
 }
 
 .ac-wrapper h2 span {
@@ -59,11 +71,11 @@
 
 .ac-device h3 {
 	position: absolute;
-	top: 55%;
+	top: 57%;
 	left: 100%;
 	width: 100%;
 	margin-left: 30px;
-	color: #888;
+	color: #fff;
 	font-size: 2.5em;
 	font-weight: 300;
 }
@@ -197,7 +209,7 @@
 
 .ac-device nav {
 	position: absolute;
-	bottom: 0.5em;
+	padding-top: 3.15em;
 	left: 100%;
 	width: 100%;
 	margin-left: 2em;
@@ -217,7 +229,7 @@
 	cursor: pointer;
 	text-align: center;
 	color: #fff;
-	background: #ddd;
+	background: #7653CC;
 	font-size: 2.8em;
 	font-weight: 300;
 	line-height: 0.9;
@@ -228,6 +240,17 @@
 		width: 100%;
 		padding: 0 20px;
 		font-size: 60%;
+	}
+
+	.ac-device nav {
+		margin: 0;
+		padding: 0;
+		left: 35.5em;
+	}
+
+	.ac-device nav span {
+		font-size: 3.5em;
+		line-height: 1em;
 	}
 
 	.ac-device {
@@ -261,10 +284,56 @@
 	}
 }
 
+@media screen and (max-width: 46.6em) {
+	.codrops-demos {
+		float: left;
+		padding: 0;
+	}
+
+	.codrops-demos {
+		margin-left: -0.9em;
+	}
+
+	.codrops-demos a {
+		margin: 0.1em 1em;
+	}
+
+	.container > header h1 {
+		margin-bottom: 0;
+	}
+}
 
 @media screen and (max-width: 35.6875em) {
 	.ac-wrapper {
 		padding: 0 20px 100px;
+	}
+
+	.container > header {
+		margin-bottom: 2em;
+	}
+
+	.container > header span {
+		margin: auto;
+	}
+
+	.container > header h1 {
+		text-align: center;
+		float: none;
+		margin: auto;
+	}
+
+	.inner {
+		text-align: center;
+	}
+
+	.codrops-demos {
+		padding-top: 0em;
+		float: none;
+		margin: auto;
+	}
+
+	.codrops-demos a {
+			margin: 0.1em 0.9em;
 	}
 
 	.ac-wrapper h2 {
@@ -279,6 +348,10 @@
 	.ac-device {
 		width: 288px;
 		margin: 0 auto;
+	}
+
+	.ac-device nav {
+		visibility: hidden;
 	}
 
 	.ac-device h3 {

@@ -33,9 +33,18 @@ a.img:hover {
 	opacity: 0.7;
 }
 
-p {
-	&.centeredImage {
+div {
+	&.centered {
 		text-align: center;
+		margin: 0.5em 0;
+
+		& a:first-child img {
+			margin-left: 0;
+		}
+
+		& a:last-child img {
+			margin-right: 0;
+		}
 	}
 
 	&.noMargin {
@@ -54,11 +63,16 @@ img {
 		margin-top: 18px;
 		margin-right: 1em;
 	}
-}
 
-.projects img {
-	border-radius: 40px;
-	margin: 0.15em 0.5em;
+	&.icon {
+		border-radius: 40px;
+		margin: 0.15em 0.5em;
+	}
+
+	&.projectScreenshot {
+		border-radius: 8px;
+		margin: 0.15em 0;
+	}
 }
 
 header {

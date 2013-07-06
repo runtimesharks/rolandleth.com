@@ -6,7 +6,7 @@ require 'dropbox_keys'
 class Application < Sinatra::Application
 	include DropboxKeys
 	PAGE_SIZE = 5
-	PAGES = %W{ about apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
+	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
 	configure :production do
 		require 'newrelic_rpm'
@@ -170,6 +170,9 @@ class Application < Sinatra::Application
 				@title = 'About'
 				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
 				return erb :about
+			end
+			if key == 'contact'
+				return redirect '/about', 302
 			end
 			if key == 'privacy-policy'
 				@title = 'Privacy Policy'
