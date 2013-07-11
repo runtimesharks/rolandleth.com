@@ -146,6 +146,12 @@ footer {
 	}
 }
 
+@media screen and (max-width: 430px) {
+	img.projectScreenshot {
+		display: none;
+	}
+}
+
 @media screen and (max-width: 350px) {
 	nav.header {
 		font-size: 1.2em;
@@ -155,6 +161,7 @@ footer {
 		}
 	}
 }
+
 
 @import "components/syntax";
 @import "components/pygments";

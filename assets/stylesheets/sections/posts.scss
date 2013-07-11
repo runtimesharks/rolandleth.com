@@ -33,6 +33,18 @@ a.img:hover {
 	opacity: 0.7;
 }
 
+
+#gallery {
+	text-align: center;
+	& span {
+		display:inline-block;
+		&>a>img {
+			margin: 0.15em 0.3em;
+		}
+	}
+}
+
+
 div {
 	&.centered {
 		text-align: center;
@@ -45,7 +57,12 @@ div {
 		& a:last-child img {
 			margin-right: 0;
 		}
+
 	}
+		& .oneThird {
+			display: inline;
+			width: 200px;
+		}
 
 	&.noMargin {
 		margin: 0;
