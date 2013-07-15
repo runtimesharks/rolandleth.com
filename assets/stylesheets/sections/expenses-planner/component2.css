@@ -243,6 +243,12 @@
 		font-size: 60%;
 	}
 
+	.voice-over {
+		margin: 0;
+		padding-left: 20px;
+		width: 288px;
+	}
+
 	.ac-device nav {
 		margin: 0;
 		padding-top: 5.8em;
@@ -313,6 +319,11 @@
 	.container > header {
 		margin-bottom: 2em;
 		padding: 0;
+	}
+
+	.voice-over {
+		padding-left: 0;
+		margin: 0 auto;
 	}
 
 	.container > header span {

@@ -12,6 +12,17 @@ class Application < Sinatra::Application
 		require 'newrelic_rpm'
 	end
 
+	# Custom wp-admin and wp-login handling, since I keep getting dictionary attacked
+	get '/wp-login.php' do
+		puts 'aa'
+		return not_found
+	end
+
+	get '/wp-admin' do
+		puts 'ss'
+		return not_found
+	end
+
 	# RSS
 	get '/feed' do
 		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
