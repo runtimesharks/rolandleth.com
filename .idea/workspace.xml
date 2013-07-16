@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/about.erb" afterPath="$PROJECT_DIR$/views/about.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/assets/stylesheets/application.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" afterPath="$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/expenses-planner.erb" afterPath="$PROJECT_DIR$/views/expenses-planner.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rolandleth.iml" afterPath="$PROJECT_DIR$/.idea/rolandleth.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sosmorse.erb" afterPath="$PROJECT_DIR$/views/sosmorse.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373123949299" ignored="false" />
+    <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373921185988" ignored="false" />
     <file path="/Work.html" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370821553429" ignored="false" />
     <file path="/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370822461702" ignored="false" />
     <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373881185704" ignored="false" />
@@ -143,24 +133,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="layout.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="17" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="not_found.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/not_found.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="post.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/post.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -209,16 +181,34 @@
       <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="5" selection-start="541" selection-end="541" vertical-scroll-proportion="0.0">
+            <state line="128" column="7" selection-start="5278" selection-end="5278" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="16" selection-start="229" selection-end="229" vertical-scroll-proportion="0.35714287">
+            <state line="20" column="16" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.ru" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config.ru">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="24" selection-start="79" selection-end="79" vertical-scroll-proportion="0.08928572">
               <folding />
             </state>
           </provider>
@@ -256,7 +246,6 @@
         <option value="$PROJECT_DIR$/views/iwordjuggle.erb" />
         <option value="$PROJECT_DIR$/views/carminder.erb" />
         <option value="$PROJECT_DIR$/views/bouncyb.erb" />
-        <option value="$PROJECT_DIR$/config.ru" />
         <option value="$PROJECT_DIR$/assets/stylesheets/sections/posts.scss" />
         <option value="$PROJECT_DIR$/views/projects.erb" />
         <option value="$PROJECT_DIR$/views/expenses-planner.erb" />
@@ -267,6 +256,7 @@
         <option value="$PROJECT_DIR$/views/sosmorse.erb" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/config.ru" />
       </list>
     </option>
   </component>
@@ -684,7 +674,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="22" width="2003" height="1400" extended-state="0" />
+    <frame x="18" y="22" width="2003" height="1400" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -772,11 +762,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/stylesheets/sections/expenses-planner/component2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="245" column="3" selection-start="5032" selection-end="5032" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/carminder.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="13" selection-start="1888" selection-end="1888" vertical-scroll-proportion="16.615385" />
@@ -795,13 +780,6 @@
     <entry file="file://$PROJECT_DIR$/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="130" column="5" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -862,16 +840,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/app.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="5" selection-start="541" selection-end="541" vertical-scroll-proportion="0.0">
+        <state line="20" column="16" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="16" selection-start="229" selection-end="229" vertical-scroll-proportion="0.35714287">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="7" selection-start="5278" selection-end="5278" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ru">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="24" selection-start="79" selection-end="79" vertical-scroll-proportion="0.08928572">
           <folding />
         </state>
       </provider>
