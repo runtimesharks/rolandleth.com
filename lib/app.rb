@@ -38,24 +38,15 @@ class Application < Sinatra::Application
 			maker.channel.rights = "© #{Time.now.year} Roland Leth"
 			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
 			maker.items.do_sort = false
-			hours = [0, 1, 2, 3, 20, 21, 22, 23]
 
 			posts.each do |post|
-				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 				i = maker.items.new_item
-				i.title = matches[4]
-				time_string = File.readlines(post)[1]
-				# in case I forget to fill the time, just create a random hour between 8 PM and 3 AM, that's when I work most of the time
-				if time_string.length == 8 or time_string.length == 9
-					time = Date._strptime("#{time_string} EEST","%H:%M %p %Z")
-					time[:leftover] = nil
-				else
-					min = rand(0..59)
-					time = Date._strptime("#{hours.sample}:#{min} EEST","%H:%M %Z")
-				end
+				i.title = matches[5]
+				time = Date._strptime("#{matches[4]} EEST","%H%M %Z")
 				# titles are written 'Like this', links need to be 'Like-this'
-				i.link = "http://rolandleth.com/#{matches[4].gsub("\s", "-")}".gsub(";", "")
-				i.content.content = _markdown_for_feed(File.readlines(post)[3..-1].join())
+				i.link = "http://rolandleth.com/#{matches[5].gsub("\s", "-")}".gsub(";", "")
+				i.content.content = _markdown_for_feed(File.readlines(post)[2..-1].join())
 				i.content.type = 'html'
 				i.updated = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 				i.published = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
@@ -115,7 +106,7 @@ class Application < Sinatra::Application
 		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		all_posts.each do |post|
-			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 		end
 		page = (current_page || 1).to_i
 		# Start index is the first index on each page. if page == 2 and PAGE_SIZE == 5, start_index is 5
@@ -200,17 +191,17 @@ class Application < Sinatra::Application
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
 		i = 0
 		all_posts.each do |post|
-			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 			# I write post-filenames as 'YYYY-MM-DD-Name without dashes.md'. If you write them as 'YYYY-MM-DD-Name-with-dashes.md',
 			# all this swapping isn't necessary anymore, of course.
 
 			# The Dir creates an array with all file names, but because the posts' Titles are set from the file names,
 			# I convert spaces to '-' inside post.erb for the href link, to avoid the ugly HTML's %20s.
 			# Meaning I have to swap '-' to spaces back when the user actually clicks the link, so the files are properly read
-			@title = matches[4]
-			@meta_description = matches[4]
-			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[4].downcase == key.gsub("-", "\s")
-			redirect "#{key.downcase}", 301 if matches[4].downcase == key.gsub("-", "\s").downcase
+			@title = matches[5]
+			@meta_description = matches[5]
+			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[5].downcase == key.gsub("-", "\s")
+			redirect "#{key.downcase}", 301 if matches[5].downcase == key.gsub("-", "\s").downcase
 			# Total pages is set to -1 so I don't create another variable just for when a post is clicked to be viewed
 			# individually. If total_pages == -1, hide the pagination and display only the clicked post
 			# I'm also using the page variable as 'current array index' to retrieve the clicked post, instead of a new variable.

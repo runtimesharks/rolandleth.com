@@ -1,5 +1,4 @@
 development
-0:51 AM
 
 > So what if you didn't pay attention in Geometry class--this is the real world, and in the real world, you have `CGGeometry.h`
   

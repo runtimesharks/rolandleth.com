@@ -1,5 +1,4 @@
 development
-8:51 PM
 
 Today I found [this](https://github.com/warrenm/AHAlertView) great block-based UIAlertView, by [Warren Moore](https://github.com/warrenm). You can customize pretty much everything, except textAttributes for each button type separately. I forked it, modified it and also added a customizable, random angle for the (included) fall animation when dismissed.  
   

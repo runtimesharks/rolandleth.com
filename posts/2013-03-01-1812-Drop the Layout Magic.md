@@ -1,5 +1,4 @@
 development
-6:12 PM
 
 Really nice utility class to modify the frame of an UIView. Semantically and without the multitude of CGRectMakes, using more readable stuff like:  
 

@@ -1,5 +1,4 @@
 blog
-8:37 PM
 
 Since I started learning web development/design, what better place to start than to replicate my apps' landing pages so I can bring them all back under `rolandleth.com`?  
 They were moved under `appname.rolandleth.com` so I could use a full blown wordpress theme, but no need any longer.  

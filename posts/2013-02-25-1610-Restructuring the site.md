@@ -1,5 +1,4 @@
 blog
-4:10 PM
 
 The most obvious thing is that I started writing this blog; that's an addition to what I had so far. What did change are my app pages: instead of having them under <code>rolandleth.com/appname</code>, I moved them to <code>appname.rolandleth.com</code>, so I can tweak them separately and build landing pages for them.
 

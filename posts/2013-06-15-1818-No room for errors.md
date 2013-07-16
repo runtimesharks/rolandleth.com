@@ -1,5 +1,4 @@
 blog
-6:18 PM
 
 When I moved to a git-based blog, I knew I had no way to edit published posts that easily, like I had in WordPress. And, boy, did I use to edit and re-edit a post after I published it. Sure, I can commit over and over to edit stuff, but that's not great practice at all. 
 

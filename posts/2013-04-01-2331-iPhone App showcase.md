@@ -1,5 +1,4 @@
 development
-11:31 PM
 
 Wow. [This](http://tympanus.net/Tutorials/AppShowcase/) has to be one of the prettiest free templates to showcase  
 your iPhone app.
