@@ -14,7 +14,7 @@ Also included: the landing pages from [RLLandingPage](http://github.com/rolandle
 Open [http://localhost:9292](http://localhost:9292)
 
 ## License
-There is none. Use it as you wish.
+Licensed under MIT.
 
 ## Mentions
 *Yet again I find myself learning from [Sam](http://soff.es)'s open source [work](http://github.com/soffes/soff.es). Cheers!*  

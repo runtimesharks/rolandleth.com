@@ -50,26 +50,35 @@ body {
 
 nav.header {
 	max-width: $max-width;
-	margin: 1em auto 1.2em;
-	text-align: center;
+	margin: 1em auto 3em;
+	text-align: left;
 	font-family: 'Arvo';
 	font-size: 2em;
-
+	border-bottom: 2px solid $title-color;
+	
 	& h1 {
-		border-bottom: 2px solid $title-color;
-		font-size: 2em;
+		font-size: 1.2em;
 		padding: 0;
-		& a {
-			line-height: 0.75em;
+		
+		&.navigation {
+			border-bottom: none;
+			font-size: 0.7em;
+			text-align: right;
+			display: inline;
+			float: right;
+			line-height: 1.75em;
+			
+			& a {
+				padding-left: 20px;
+			}
 		}
 	}
 
 	& a {
 		@include transition-property(color);
 		@include transition-duration(0.3s);
-		padding: 0 40px;
 		color: $title-color;
-		line-height: 1.75em;
+		line-height: 1.25em;
 
 		&:hover {
 			color: $link-color;
@@ -122,29 +131,40 @@ footer {
 	}
 }
 
-@media screen and (max-width: 647px) {
-	nav.header {
-		font-size: 1.4em;
-
-		& a {
-			line-height: 1.25em;
-		}
-	}
-}
-
-@media screen and (max-width: 535px) {
-	nav.header a {
-		padding-left: 25px;
-		padding-right: 25px;
-	}
-}
-
 @media screen and (max-width: 475px) {
-	nav.header a {
-		padding-left: 17px;
-		padding-right: 17px;
+	nav.header {
+//		font-size: 1.4em;
+		text-align: center;
+		border-bottom: none;
+		margin-bottom: 1.2em;
+		
+		& h1 {
+			border-bottom: 2px solid $title-color;
+		}
+		
+		& h1.navigation {
+			float: none;
+		}
+		
+//		& a {
+//			line-height: 1.25em;
+//		}
 	}
 }
+
+//@media screen and (max-width: 535px) {
+//	nav.header a {
+//		padding-left: 25px;
+//		padding-right: 25px;
+//	}
+//}
+//
+//@media screen and (max-width: 475px) {
+//	nav.header a {
+//		padding-left: 17px;
+//		padding-right: 17px;
+//	}
+//}
 
 @media screen and (max-width: 430px) {
 	img.projectScreenshot {
