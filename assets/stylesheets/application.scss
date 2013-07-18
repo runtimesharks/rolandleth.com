@@ -23,6 +23,11 @@ p {
 	&.noMargin {
 		margin: 0;
 	}
+	
+	&.centeredImage {
+		text-align: center;
+		overflow-x: scroll;
+	}
 }
 
 em {
@@ -133,7 +138,6 @@ footer {
 
 @media screen and (max-width: 475px) {
 	nav.header {
-//		font-size: 1.4em;
 		text-align: center;
 		border-bottom: none;
 		margin-bottom: 1.2em;
@@ -146,25 +150,9 @@ footer {
 			float: none;
 		}
 		
-//		& a {
-//			line-height: 1.25em;
-//		}
 	}
 }
 
-//@media screen and (max-width: 535px) {
-//	nav.header a {
-//		padding-left: 25px;
-//		padding-right: 25px;
-//	}
-//}
-//
-//@media screen and (max-width: 475px) {
-//	nav.header a {
-//		padding-left: 17px;
-//		padding-right: 17px;
-//	}
-//}
 
 @media screen and (max-width: 430px) {
 	img.projectScreenshot {
