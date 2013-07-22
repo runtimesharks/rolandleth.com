@@ -128,10 +128,10 @@ class Application < Sinatra::Application
 		return erb :index, locals: {posts: all_posts, page: all_posts.count - 1, total_pages: -1, window: 2}
 	end
 
-	get "/Expenses Planner - Press Kit.zip" do
+	get "/ExpensesPlannerPressKit.zip" do
 		return send_file File.open('./assets/files/Expenses Planner Press Kit.zip'), filename: 'Expenses Planner Press Kit.zip'
 	end
-	get "/Carminder - Press Kit.zip" do
+	get "/CarminderPressKit.zip" do
 		return send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
 	end
 	get "/Roland Leth - Résumé.pdf" do
