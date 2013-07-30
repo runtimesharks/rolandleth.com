@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/expenses-planner.erb" afterPath="$PROJECT_DIR$/views/expenses-planner.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" afterPath="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/files/Expenses Planner Press Kit.zip" afterPath="$PROJECT_DIR$/assets/files/Expenses Planner Press Kit.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/expenses-planner/Icon.png" afterPath="$PROJECT_DIR$/assets/images/expenses-planner/Icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/favicons/expenses-planner.ico" afterPath="$PROJECT_DIR$/assets/images/favicons/expenses-planner.ico" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/config.ru" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373921185988" ignored="false" />
     <file path="/Work.html" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370821553429" ignored="false" />
     <file path="/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370822461702" ignored="false" />
-    <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1375185501734" ignored="false" />
+    <file path="/Dummy.txt" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1375193800507" ignored="false" />
     <file path="/roland.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370899883000" ignored="false" />
     <file path="$USER_HOME$/Sites/soff.es/lib/soffes/application.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1370823432939" ignored="false" />
     <file path="/app.rb" changelist="c93c732f-8381-4280-823b-9160eb693845" time="1373936747107" ignored="false" />
@@ -175,10 +175,8 @@
       <file leaf-file-name="expenses-planner.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/expenses-planner.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="28" selection-start="2012" selection-end="2012" vertical-scroll-proportion="0.17025863">
-              <folding>
-                <element signature="n#style#0;n#img#0;n#a#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="41" column="9" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.15517241">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -361,14 +359,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="202" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="204" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="202" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="202" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="208" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1002" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1002" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1002" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="208" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="204" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -641,7 +639,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30267063" sideWeight="0.7524904" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.305638" sideWeight="0.7524904" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -807,10 +805,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/expenses-planner.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="28" selection-start="2012" selection-end="2012" vertical-scroll-proportion="0.17025863">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="41" column="9" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.15517241">
+          <folding />
         </state>
       </provider>
     </entry>
