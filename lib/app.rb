@@ -99,13 +99,10 @@ class Application < Sinatra::Application
 		#session = DropboxSession.new(APP_KEY, APP_SECRET)
 		#session.set_access_token(AUTH_KEY, AUTH_SECRET)
 		#client = DropboxClient.new(session, ACCESS_TYPE)
-		#puts client.metadata('/Work/Sites/rolandleth/posts')['contents'][0]
+		#puts client.metadata('/Work/Sites/rolandleth/posts')['contents'][0].methods
 
 		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
 		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		all_posts.each do |post|
-			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
-		end
 		page = (current_page || 1).to_i
 		# Start index is the first index on each page. if page == 2 and PAGE_SIZE == 5, start_index is 5
 		start_index = (page - 1) * PAGE_SIZE

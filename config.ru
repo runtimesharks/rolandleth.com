@@ -16,5 +16,12 @@ map '/assets' do
   run sprockets
 end
 
+array = [1, 2]
+sum = 0
+while array.last <= 4_000_000
+	array << array[-1] + array[-2]
+	sum = sum + array.last if array.last.even?
+end
+puts sum
 
 run Application
