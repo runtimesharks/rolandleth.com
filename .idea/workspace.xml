@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.ru" afterPath="$PROJECT_DIR$/config.ru" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rolandleth.iml" afterPath="$PROJECT_DIR$/.idea/rolandleth.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,46 +28,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="9" selection-start="3716" selection-end="3716" vertical-scroll-proportion="0.6757322" vertical-offset="1020" max-vertical-offset="3927">
+            <state line="82" column="36" selection-start="3320" selection-end="3320" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="3927">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.ru" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="carminder.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/carminder.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="15" selection-start="2406" selection-end="2406" vertical-scroll-proportion="-11.615385" vertical-offset="582" max-vertical-offset="2125">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.ru" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.ru">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="8" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="privacy-policy.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="1429" selection-end="1429" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="697">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pygments.sass" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/pygments.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="16" selection-start="184" selection-end="184" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3774">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="expenses-planner.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/expenses-planner.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="9" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1853">
+            <state line="16" column="3" selection-start="393" selection-end="393" vertical-scroll-proportion="0.28451884" vertical-offset="0" max-vertical-offset="956">
               <folding />
             </state>
           </provider>
@@ -109,8 +87,8 @@
         <option value="$PROJECT_DIR$/posts/2013-07-19-0036-Ruby script to search your Xcode project for unused assets.md" />
         <option value="$PROJECT_DIR$/assets/stylesheets/components/pygments.sass" />
         <option value="$PROJECT_DIR$/views/expenses-planner.erb" />
-        <option value="$PROJECT_DIR$/config.ru" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
+        <option value="$PROJECT_DIR$/config.ru" />
       </list>
     </option>
   </component>
@@ -247,6 +225,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rolandleth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -667,26 +685,9 @@
         <state line="21" column="18" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.2853717" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="151" selection-start="445" selection-end="512" vertical-scroll-proportion="0.08153477" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/carminder.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="114" selection-start="2293" selection-end="2293" vertical-scroll-proportion="0.04876099" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/bouncyb.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="17" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.013589129" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="1429" selection-end="1429" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/posts/2013-07-19-0036-Ruby script to search your Xcode project for unused assets.md">
@@ -694,30 +695,51 @@
         <state line="3" column="0" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/pygments.sass">
+    <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="184" selection-end="184" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+        <state line="82" column="36" selection-start="3320" selection-end="3320" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="3927">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/carminder.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="15" selection-start="2406" selection-end="2406" vertical-scroll-proportion="-11.615385" vertical-offset="582" max-vertical-offset="2125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/about.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="151" selection-start="445" selection-end="512" vertical-scroll-proportion="0.12795699" vertical-offset="0" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/expenses-planner.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="9" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+        <state line="41" column="9" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.03655914" vertical-offset="680" max-vertical-offset="1938">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/components/pygments.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="16" selection-start="184" selection-end="184" vertical-scroll-proportion="0.01827957" vertical-offset="255" max-vertical-offset="3774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/privacy-policy.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="1429" selection-end="1429" vertical-scroll-proportion="0.37849462" vertical-offset="107" max-vertical-offset="1037">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.ru">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="8" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/app.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="9" selection-start="3716" selection-end="3716" vertical-scroll-proportion="0.6757322" vertical-offset="1020" max-vertical-offset="3927">
+        <state line="16" column="3" selection-start="393" selection-end="393" vertical-scroll-proportion="0.28451884" vertical-offset="0" max-vertical-offset="956">
           <folding />
         </state>
       </provider>
