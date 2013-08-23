@@ -1,6 +1,6 @@
 development
 
-Implementing this, per se, is no problem. But, kind of the same as [recurring events](rolandleth.com/recurring-events-for-expenses-planner), there's no proper way of handling this feature and I'll give a small example below.
+Implementing this, per se, is no problem. But, kind of the same as [recurring events](/recurring-events-for-expenses-planner), there's no proper way of handling this feature and I'll give a small example below.
 
 Say you have expenses laid out for the next 6 months: how should you enter the income? Manually calculating 6*monthly income? Or just for the next month? If the latter, subtracting all expenses from that doesn't make much sense, and the former isn't too reliable, since your income might vary from month to month. What about adding a new expense that's due in 8 months, but you entered the income for 6? Go and manually update the total? What if you forget? Etc...
 
