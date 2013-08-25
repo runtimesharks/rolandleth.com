@@ -2,7 +2,7 @@
   <header>
 	  <%- # Explained this move in app.rb -%>
     <h1><a href="/<%= title.gsub("\s", "-").downcase %>"><%= title -%></a></h1>
-    <%- if (published_at = Time.at(time)) -%>
+    <%- if (published_at = Time.at(date)) -%>
       <h4>
         <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
           <%= published_at.strftime('%b %e, %Y') -%>

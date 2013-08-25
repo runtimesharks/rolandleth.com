@@ -1,9 +1,26 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.5)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
+    data_objects (0.10.13)
+      addressable (~> 2.1)
+    dm-core (1.2.1)
+      addressable (~> 2.3)
+    dm-do-adapter (1.2.0)
+      data_objects (~> 0.10.6)
+      dm-core (~> 1.2.0)
+    dm-migrations (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-postgres-adapter (1.2.0)
+      dm-do-adapter (~> 1.2.0)
+      do_postgres (~> 0.10.6)
+    dm-timestamps (1.2.0)
+      dm-core (~> 1.2.0)
+    do_postgres (0.10.13)
+      data_objects (= 0.10.13)
     dropbox-sdk (1.6.1)
       json
     erubis (2.7.0)
@@ -11,6 +28,7 @@ GEM
     json (1.8.0)
     multi_json (1.7.9)
     newrelic_rpm (3.6.6.147)
+    pg (0.16.0)
     posix-spawn (0.3.6)
     puma (2.5.1)
       rack (>= 1.1, < 2.0)
@@ -45,9 +63,14 @@ PLATFORMS
 
 DEPENDENCIES
   bourbon
+  dm-core
+  dm-migrations
+  dm-postgres-adapter
+  dm-timestamps
   dropbox-sdk
   erubis
   newrelic_rpm
+  pg
   puma
   pygments.rb (>= 0.5.1)
   rake

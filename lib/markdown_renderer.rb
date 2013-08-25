@@ -31,7 +31,7 @@ def _markdown(text)
 	markdown = Redcarpet::Markdown.new(MarkdownRenderer, options)
 	markdown.render(text)
 end
-
+# Use the default markdown for the feed; we don't need pygmentation there and it bugs sometimes
 def _markdown_for_feed(text)
 	return '' unless text and text.length > 0
 

@@ -5,6 +5,12 @@ gem 'rake'
 gem 'sinatra'
 gem 'newrelic_rpm'
 gem 'dropbox-sdk'
+gem 'pg'
+
+gem 'dm-core'
+gem 'dm-timestamps'
+gem 'dm-postgres-adapter'
+gem 'dm-migrations'
 
 # Web server
 gem 'puma'

@@ -2,28 +2,53 @@ require 'rss'
 require 'markdown_renderer'
 require 'dropbox_sdk'
 require 'dropbox_keys'
+require 'dm-core'
+require 'dm-timestamps'
+require 'dm-postgres-adapter'
+require 'dm-migrations'
 
 class Application < Sinatra::Application
 	include DropboxKeys
 	PAGE_SIZE = 5
 	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
+	class Posts
+		include DataMapper::Resource
+		property :id, Serial
+		DataMapper::Property::String.length(255)
+		DataMapper::Property::Text.length(999999)
+		property :title, Text
+		property :body, Text
+		property :datetime, String
+		#property :time, String
+		property :modified, String
+	end
+
 	configure :production do
 		require 'newrelic_rpm'
+		DataMapper::setup(:default, ENV['DATABASE_URL'])
+		DataMapper.auto_upgrade!
+	end
+
+	configure :development do
+		DataMapper::setup(:default, "postgres://roland@localhost/roland")
+		DataMapper.auto_upgrade!
 	end
 
 	# Custom wp-admin and wp-login handling, since I keep getting dictionary attacked
 	get '/wp-login.php' do
-		return not_found
+		not_found
 	end
 
 	get '/wp-admin' do
-		return not_found
+		not_found
 	end
 
 	# RSS
 	get '/feed' do
-		posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
+		posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+		posts.map! { |struc| struc.to_h }
+		posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
 		rss ||= RSS::Maker.make('atom') do |maker|
 			maker.channel.icon = '/public/favicon.ico'
 			maker.channel.logo = '/public/favicon.ico'
@@ -38,18 +63,18 @@ class Application < Sinatra::Application
 			maker.items.do_sort = false
 
 			posts.each do |post|
-				matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 				i = maker.items.new_item
-				i.title = matches[5]
-				time = Date._strptime("#{matches[4]} EEST","%H%M %Z")
+				i.title = post[:title]
+				date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+				time = Date._strptime("#{date_matches[4]} EEST","%H%M %Z")
 				# titles are written 'Like this', links need to be 'Like-this'
-				i.link = "http://rolandleth.com/#{matches[5].gsub("\s", "-")}".gsub(";", "")
-				i.content.content = _markdown_for_feed(File.readlines(post)[2..-1].join())
+				i.link = "http://rolandleth.com/#{post[:title].gsub("\s", "-")}".gsub(";", "")
+				i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
 				i.content.type = 'html'
-				i.updated = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-				i.published = DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+				i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+				i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 				# The RSS was last updated when the last post was posted (which is first in the array)
-				maker.channel.updated ||= DateTime.new(matches[1].to_i, matches[2].to_i, matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+				maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 			end
 		end
 		rss.link.rel = 'self'
@@ -59,6 +84,45 @@ class Application < Sinatra::Application
 			entry.title.type = 'html'
 		end
 		rss.to_s
+	end
+
+	# Custom sync with Dropbox URL
+	get '/cmd.Dropbox.Sync' do
+		session = DropboxSession.new(APP_KEY, APP_SECRET)
+		session.set_access_token(AUTH_KEY, AUTH_SECRET)
+		client = DropboxClient.new(session, ACCESS_TYPE)
+		client_metadata = client.metadata('/Apps/Editorial/posts')['contents']
+		client_metadata.each do |file|
+			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
+			title = matches[8].to_s
+			file_mtime = file['client_mtime'].to_s
+
+			post = Posts.first(:title => title)
+			# If the posts exists
+			if post
+				# check to see if it was modified
+				if post.modified != file_mtime
+					body = client.get_file(file['path'])
+					post.update(title: title, body: body, datetime: datetime, modified: file_mtime)
+				end
+			# Otherwise, create a new record
+			else
+				body = client.get_file(file['path'])
+				Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime)
+			end
+		end
+		all_posts = Posts.all
+		# Check if any post was deleted (highly unlikely)
+		all_posts.each do |post|
+			delete = true
+			client_metadata.each do |file|
+				title = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)[8].to_s
+				delete = false if title == post.title
+			end
+			post.destroy if delete
+		end
+		redirect '/', 301
 	end
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
@@ -86,7 +150,10 @@ class Application < Sinatra::Application
 
 	# Main page
 	get '/' do
-		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
+		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+		all_posts.map! { |struc| struc.to_h}
+		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
+
 		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		posts = all_posts[0..4]
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
@@ -96,13 +163,11 @@ class Application < Sinatra::Application
 	# Pages
 	get %r{^/(\d+)$} do |current_page|
 		@meta_canonical = current_page
-		#session = DropboxSession.new(APP_KEY, APP_SECRET)
-		#session.set_access_token(AUTH_KEY, AUTH_SECRET)
-		#client = DropboxClient.new(session, ACCESS_TYPE)
-		#puts client.metadata('/Work/Sites/rolandleth/posts')['contents'][0].methods
 
-		# Retrieve all posts in dir and store them in an array. sort the array, reverse it to be newest->oldest
-		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
+		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+		all_posts.map! { |struc| struc.to_h}
+		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
+
 		page = (current_page || 1).to_i
 		# Start index is the first index on each page. if page == 2 and PAGE_SIZE == 5, start_index is 5
 		start_index = (page - 1) * PAGE_SIZE
@@ -119,23 +184,17 @@ class Application < Sinatra::Application
 		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 	end
 
-	# Small hack to display this page name full of escapes I didn't take care of
-	get "/%5BWorld-hello%5D" do
-		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		return erb :index, locals: {posts: all_posts, page: all_posts.count - 1, total_pages: -1, window: 2}
-	end
-
 	get "/ExpensesPlannerPressKit.zip" do
-		return send_file File.open('./assets/files/Expenses Planner Press Kit.zip'), filename: 'Expenses Planner Press Kit.zip'
+		send_file File.open('./assets/files/Expenses Planner Press Kit.zip'), filename: 'Expenses Planner Press Kit.zip'
 	end
 	get "/CarminderPressKit.zip" do
-		return send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
+		send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
 	end
 	get "/Roland Leth - Résumé.pdf" do
-		return send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
+		send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
 	end
 	get "/Roland Leth - Privacy Policy.md" do
-		return send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
+		send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
 	end
 
 	# Individual posts and views
@@ -180,29 +239,19 @@ class Application < Sinatra::Application
 				return erb :'privacy-policy'
 			end
 		end
-		if key == '[World-hello]'
+		if key == '[world-hello]'
 			key = key + ';'
 		end
-		all_posts = Dir['posts/*.md'].sort_by!{ |m| m.downcase }.reverse
-		i = 0
-		all_posts.each do |post|
-			matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
-			# I write post-filenames as 'YYYY-MM-DD-Name without dashes.md'. If you write them as 'YYYY-MM-DD-Name-with-dashes.md',
-			# all this swapping isn't necessary anymore, of course.
 
-			# The Dir creates an array with all file names, but because the posts' Titles are set from the file names,
-			# I convert spaces to '-' inside post.erb for the href link, to avoid the ugly HTML's %20s.
-			# Meaning I have to swap '-' to spaces back when the user actually clicks the link, so the files are properly read
-			@title = matches[5]
-			@meta_description = matches[5]
-			return erb :index, locals: {posts: all_posts, page: i, total_pages: -1, window: 2} if matches[5].downcase == key.gsub("-", "\s")
-			redirect "#{key.downcase}", 301 if matches[5].downcase == key.gsub("-", "\s").downcase
-			# Total pages is set to -1 so I don't create another variable just for when a post is clicked to be viewed
-			# individually. If total_pages == -1, hide the pagination and display only the clicked post
-			# I'm also using the page variable as 'current array index' to retrieve the clicked post, instead of a new variable.
-			i += 1
+		# The select returns an array that has a structure as its only object
+		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.gsub('-', "\s"))[0].to_h
+		@title = post[:title]
+		@meta_description = post[:title]
+		unless post.count == 0
+			erb :index, locals: { post: post, total_pages: -1 }
+		else
+			not_found
 		end
-		return not_found
 	end
 
 	not_found do
@@ -210,12 +259,12 @@ class Application < Sinatra::Application
 		@meta_description = "This isn't the page your are looking for."
 		@meta_canonical = '404 error raised'
 		status 404
-		return erb :not_found
+		erb :not_found
 	end
 
 	error do
 		@title = 'Error'
 		status 500
-		return erb :not_found
+		erb :not_found
 	end
 end
