@@ -190,6 +190,9 @@ class Application < Sinatra::Application
 
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
+		key = key + ';' if key.downcase == '[world-hello]'
+		@meta_canonical = key
+		
 		if PAGES.include? key.downcase
 			if key.downcase == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
@@ -237,13 +240,12 @@ class Application < Sinatra::Application
 				return erb :'privacy-policy'
 			end
 		end
-		key = key + ';' if key.downcase == '[world-hello]'
-		
+
 		# The select returns an array that has a structure as its only object
 		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.downcase.gsub('-', "\s"))[0].to_h
 		@title = post[:title]
 		@meta_description = post[:title]
-		@meta_canonical = key
+
 		if post.count > 0
 			# This means the URL was not written with lowercase letters only
 			if post[:title].downcase != key.gsub("-", "\s")
