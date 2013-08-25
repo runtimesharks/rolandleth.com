@@ -190,9 +190,6 @@ class Application < Sinatra::Application
 
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
-		if key.downcase == '[world-hello]'
-			key = key + ';'
-		end
 		@meta_canonical = key
 		if PAGES.include? key.downcase
 			if key.downcase == 'projects'
@@ -241,7 +238,8 @@ class Application < Sinatra::Application
 				return erb :'privacy-policy'
 			end
 		end
-		puts key
+		key = key + ';' if key.downcase == '[world-hello]'
+
 		# The select returns an array that has a structure as its only object
 		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.downcase.gsub('-', "\s"))[0].to_h
 		@title = post[:title]
