@@ -35,15 +35,6 @@ class Application < Sinatra::Application
 		DataMapper.auto_upgrade!
 	end
 
-	# Custom wp-admin and wp-login handling, since I keep getting dictionary attacked
-	get '/wp-login.php' do
-		not_found
-	end
-
-	get '/wp-admin' do
-		not_found
-	end
-
 	# RSS
 	get '/feed' do
 		posts = repository(:default).adapter.select('SELECT * FROM application_posts')
@@ -122,7 +113,7 @@ class Application < Sinatra::Application
 			end
 			post.destroy if delete
 		end
-		redirect '/', 301
+		redirect '/', 302
 	end
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
@@ -199,56 +190,69 @@ class Application < Sinatra::Application
 
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
+		if key.downcase == '[world-hello]'
+			key = key + ';'
+		end
 		@meta_canonical = key
-		if PAGES.include? key
-			if key == 'projects'
+		if PAGES.include? key.downcase
+			if key.downcase == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
+				redirect "#{key.downcase}", 301 if key != 'projects'
 				return erb :projects
 			end
-			if key == 'work'
-				return redirect '/projects', 302
+			if key.downcase == 'work'
+				redirect '/projects', 302
 			end
-			if key == 'bouncyb'
+			if key.downcase == 'bouncyb'
 				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
+				redirect "#{key.downcase}", 301 if key != 'bouncyb'
 				return erb :bouncyb, layout: false
 			end
-			if key == 'iwordjuggle'
+			if key.downcase == 'iwordjuggle'
+				redirect "#{key.downcase}", 301 if key != 'iwordjuggle'
 				return erb :iwordjuggle, layout: false
 			end
-			if key == 'sosmorse'
+			if key.downcase == 'sosmorse'
+				redirect "#{key.downcase}", 301 if key != 'sosmorse'
 				return erb :sosmorse, layout: false
 			end
-			if key == 'expenses-planner'
+			if key.downcase == 'expenses-planner'
+				redirect "#{key.downcase}", 301 if key != 'expenses-planner'
 				return erb :'expenses-planner', layout: false
 			end
-			if key == 'carminder'
+			if key.downcase == 'carminder'
+				redirect "#{key.downcase}", 301 if key != 'carminder'
 				return erb :carminder, layout: false
 			end
-			if key == 'about'
+			if key.downcase == 'about'
 				@title = 'About'
 				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
+				redirect "#{key.downcase}", 301 if key != 'about'
 				return erb :about
 			end
 			if key == 'contact'
 				return redirect '/about', 302
 			end
-			if key == 'privacy-policy'
+			if key.downcase == 'privacy-policy'
 				@title = 'Privacy Policy'
 				@meta_description = "Roland Leth's Privacy Policy"
+				redirect "#{key.downcase}", 301 if key != 'privacy-policy'
 				return erb :'privacy-policy'
 			end
 		end
-		if key == '[world-hello]'
-			key = key + ';'
-		end
-
+		puts key
 		# The select returns an array that has a structure as its only object
-		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.gsub('-', "\s"))[0].to_h
+		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.downcase.gsub('-', "\s"))[0].to_h
 		@title = post[:title]
 		@meta_description = post[:title]
-		unless post.count == 0
-			erb :index, locals: { post: post, total_pages: -1 }
+		if post.count > 0
+			# This means the URL was not written with lowercase letters only
+			if post[:title].downcase != key.gsub("-", "\s")
+				redirect "#{key.downcase}", 301
+			else
+				erb :index, locals: { post: post, total_pages: -1 }
+			end
 		else
 			not_found
 		end
