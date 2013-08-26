@@ -18,14 +18,26 @@ span:before {
 	background-size: 100%;
 }
 
-h1.the-404 {
-	margin: 20% 0 0;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.9);
-	font-size: 13em;
-	font-weight: bold;
-	line-height: 1em;
-	text-align: center;
-	color: $text-color;
+h1 {
+	&.the-404 {
+		margin: 20% 0 0;
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.9);
+		font-size: 13em;
+		font-weight: bold;
+		line-height: 1em;
+		text-align: center;
+		color: $text-color;
+	}
+
+	&.the-404-search {
+		margin: 20% 0 0;
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.9);
+		font-size: 10em;
+		font-weight: bold;
+		line-height: 1em;
+		text-align: center;
+		color: $text-color;
+	}
 }
 
 p.error-message {
@@ -38,11 +50,36 @@ p.error-message {
 }
 
 @media screen and (max-width: 647px) {
-	h1.the-404 {
-		font-size: 11em;
+	h1 {
+		&.the-404 {
+			font-size: 11em;
+		}
+		&.the-404-search {
+			font-size: 8em;
+		}
 	}
+
 
 	p.error-message {
 		font-size: 1.2em;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	h1 {
+		&.the-404 {
+			font-size: 9em;
+		}
+		&.the-404-search {
+			font-size: 6em;
+		}
+	}
+}
+
+@media screen and (max-width: 350px) {
+	h1 {
+		&.the-404 {
+			font-size: 6em;
+		}
 	}
 }

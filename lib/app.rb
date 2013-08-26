@@ -170,7 +170,11 @@ class Application < Sinatra::Application
 		end
 
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
-		erb :index, locals: { posts: all_posts, page: 1, total_pages: 1, gap: 2 }
+		if all_posts.count > 0
+			erb :index, locals: { posts: all_posts, page: 1, total_pages: 1, gap: 2 }
+		else
+			search_not_found
+		end
 	end
 
 	# Pages
@@ -192,9 +196,10 @@ class Application < Sinatra::Application
 		# gap: How many pages between first/last and current before '..' is shown
 		# Example: gap of 2, current page 5, pagination will be 1 .. 4 5 6 .. 9. Tweaked for use with a gap of 2.
 		if page > total_pages
-			return not_found
+			not_found
+		else
+			erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 		end
-		erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
 	end
 
 	get "/ExpensesPlannerPressKit.zip" do
@@ -278,6 +283,15 @@ class Application < Sinatra::Application
 		else
 			not_found
 		end
+	end
+
+	def search_not_found
+		@title = 'No results found.'
+		@meta_description = "No results found."
+		# There's a check in layout.erb for the meta canonical link to not be displayed if the value is '404 error raised'.
+		@meta_canonical = '404 error raised'
+		status 200
+		erb :search_not_found
 	end
 
 	not_found do

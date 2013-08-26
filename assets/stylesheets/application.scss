@@ -74,7 +74,9 @@ nav.header {
 			line-height: 1.75em;
 
 			& a {
-				padding-left: 20px;
+				&:nth-child(2) {
+					padding: 0 20px;
+				}
 			}
 		}
 	}
@@ -127,6 +129,7 @@ footer {
 	margin: 2.5em auto;
 	text-align: center;
 	color: $gray-color;
+	line-height: 2em;
 
 	& div {
 			margin: 1em 0;
@@ -168,8 +171,9 @@ footer {
 		& h1.navigation {
 			float: none;
 		}
-
 	}
+
+
 }
 
 
@@ -179,12 +183,26 @@ footer {
 	}
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 356px) {
 	nav.header {
-		font-size: 1.2em;
+		font-size: 1.8em;
+
+		& a {
+			line-height: 1.5em;
+		}
+	}
+}
+
+@media screen and (max-width: 325px) {
+	nav.header {
+		font-size: 1.55em;
 
 		& a {
 			line-height: 1.25em;
+
+			&:nth-child(2) {
+				padding: 5px;
+			}
 		}
 	}
 }
