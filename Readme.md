@@ -1,7 +1,6 @@
 # rolandleth.com
 
-Really simple [Sinatra](http://www.sinatrarb.com/) app for my [site](http://rolandleth.com). I write my posts with [Markdown](http://daringfireball.net/projects/markdown/), push them to Heroku, then parse them. That's kinda it.  
-I plan to add Dropbox link functionality in the near future, so I can publish when mobile.
+Really simple [Sinatra](http://www.sinatrarb.com/) app for my [site](http://rolandleth.com). I write my posts with [Markdown](http://daringfireball.net/projects/markdown/), save them to a Dropbox folder and access a custom URL which fetches new/modified posts and saves them in a Postgres database. Not anything fancy.
 
 Also included: the landing pages from [RLLandingPage](http://github.com/rolandleth/RLLandingPage).
 

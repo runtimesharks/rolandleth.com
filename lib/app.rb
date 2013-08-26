@@ -20,8 +20,8 @@ class Application < Sinatra::Application
 		property :title, Text
 		property :body, Text
 		property :datetime, String
-		#property :time, String
 		property :modified, String
+		#property :link, String
 	end
 
 	configure :production do
@@ -88,6 +88,8 @@ class Application < Sinatra::Application
 			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
 			title = matches[8].to_s
 			file_mtime = file['client_mtime'].to_s
+			link = title.gsub(/(\;\,)+/, '')
+			puts link
 
 			post = Posts.first(:title => title)
 			# If the posts exists
