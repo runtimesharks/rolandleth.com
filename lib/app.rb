@@ -267,10 +267,7 @@ class Application < Sinatra::Application
 				return erb :'privacy-policy'
 			end
 		end
-		if key.downcase == "implementing-the-search-field"
-				# Changed the post's name, and I don't want to lose the former link
-				redirect "implementing-a-search-field-with-sinatra,-datamapper,-and-postgres", 302
-		end
+
 		# The select returns an array that has a structure as its only object
 		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.downcase.gsub('-', "\s"))[0].to_h
 		@title = post[:title]
