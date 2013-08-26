@@ -50,17 +50,22 @@
 <body>
   <nav role="navigation" class="header">
     <h1 role="banner"><a href="/">Roland Leth</a></h1>
-	<h1 role="navigation" class="navigation">
-	    <a href="/projects">Projects</a>
-	    <a href="/about">About</a>
-	    <a href="http://github.com/rolandleth">GitHub</a>
-	</h1>
+		<h1 role="navigation" class="navigation">
+		    <a href="/projects">Projects</a>
+		    <a href="/about">About</a>
+		    <a href="http://github.com/rolandleth">GitHub</a>
+		</h1>
   </nav>
   <section>
     <%= yield %>
   </section>
   <footer role="contentinfo">
-    <p>© <%= Time.now.year %> Roland Leth - <a href="/feed">RSS</a></p>
+
+    <div>© <%= Time.now.year %> Roland Leth - <a href="/feed">RSS</a> -
+      <form class="search" action="/search" method="get">
+          <input type="text" class="search" name="query" size="15" maxlength="20" placeholder="Search..."/>
+      </form>
+    </div>
 	  <a href="https://plus.google.com/116830737199229269159?rel=author"></a>
   </footer>
 </body>

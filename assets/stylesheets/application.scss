@@ -23,10 +23,10 @@ p {
 	&.noMargin {
 		margin: 0;
 	}
-	
+
 	&.centeredImage {
-		text-align: center;
 		overflow-x: scroll;
+		text-align: center;
 	}
 }
 
@@ -57,22 +57,22 @@ nav.header {
 	max-width: $max-width;
 	margin: 1em auto 3em;
 	text-align: left;
+	border-bottom: 2px solid $title-color;
 	font-family: 'Arvo';
 	font-size: 2em;
-	border-bottom: 2px solid $title-color;
-	
+
 	& h1 {
-		font-size: 1.2em;
 		padding: 0;
-		
+		font-size: 1.2em;
+
 		&.navigation {
-			border-bottom: none;
-			font-size: 0.7em;
-			text-align: right;
 			display: inline;
 			float: right;
+			text-align: right;
+			border-bottom: none;
+			font-size: 0.7em;
 			line-height: 1.75em;
-			
+
 			& a {
 				padding-left: 20px;
 			}
@@ -107,14 +107,33 @@ section {
 	margin: 0 auto;
 }
 
+form.search {
+	display: inline;
+
+	& input.search {
+		padding: 5px;
+		color: $gray-color;
+		border: 1px solid $gray-color;
+		border-radius: 2px;
+		outline-width: 5px;
+		outline-color: rgba(18.00, 168.00, 218.00, 0.4);
+		font-family: inherit;
+		font-size: inherit;
+	}
+}
+
 footer {
 	max-width: $max-width;
 	margin: 2.5em auto;
 	text-align: center;
 	color: $gray-color;
 
+	& div {
+			margin: 1em 0;
+	}
+
 	& a {
-		color: #999;
+		color: $link-color;
 
 		&.rss {
 			color: $text-color;
@@ -126,10 +145,10 @@ footer {
 	}
 
 	&.privacy-policy {
-		margin: 0 auto;
 		height: 0;
+		margin: 0 auto;
 
-		& p {
+		& div {
 			margin-top: 1em;
 			margin-bottom: 0;
 		}
@@ -138,18 +157,18 @@ footer {
 
 @media screen and (max-width: 475px) {
 	nav.header {
+		margin-bottom: 1.2em;
 		text-align: center;
 		border-bottom: none;
-		margin-bottom: 1.2em;
-		
+
 		& h1 {
 			border-bottom: 2px solid $title-color;
 		}
-		
+
 		& h1.navigation {
 			float: none;
 		}
-		
+
 	}
 }
 

@@ -151,6 +151,23 @@ class Application < Sinatra::Application
 		erb :index, locals: { posts: posts, page: 1, total_pages: total_pages, gap: 2 }
 	end
 
+	# Search
+	get %r{^/search$} do
+		query = request.env['rack.request.query_hash']['query']
+		query_array = query.split(' ')
+
+		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+		all_posts.map! { |struc| struc.to_h}
+		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
+
+		all_posts.select!	do |p|
+			query_array.any? { |w| p[:body].include?(w) or p[:title].include?(w) }
+		end
+
+		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
+		erb :index, locals: { posts: all_posts, page: 1, total_pages: 1, gap: 2 }
+	end
+
 	# Pages
 	get %r{^/(\d+)$} do |current_page|
 		@meta_canonical = current_page
@@ -192,7 +209,7 @@ class Application < Sinatra::Application
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
 		key = key + ';' if key.downcase == '[world-hello]'
 		@meta_canonical = key
-		
+
 		if PAGES.include? key.downcase
 			if key.downcase == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
