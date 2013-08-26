@@ -177,6 +177,11 @@ class Application < Sinatra::Application
 		end
 	end
 
+	# Changed the post's name, and I don't want to lose the former link
+	get "/implementing-the-search-field" do
+		redirect "/implementing-a-search-field-with-sinatra-datamapper-and-postgres", 302
+	end
+
 	# Pages
 	get %r{^/(\d+)$} do |current_page|
 		@meta_canonical = current_page
