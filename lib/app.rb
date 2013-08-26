@@ -154,14 +154,19 @@ class Application < Sinatra::Application
 	# Search
 	get %r{^/search$} do
 		query = request.env['rack.request.query_hash']['query']
-		query_array = query.split(' ')
+		query_array = []
+		if query[0,1] == '"' and query[-1,1] == '"'
+			query_array << query.gsub('"', '').downcase
+		else
+			query_array = query.downcase.split(' ')
+		end
 
 		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
 		all_posts.map! { |struc| struc.to_h}
 		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
 
 		all_posts.select!	do |p|
-			query_array.any? { |w| p[:body].include?(w) or p[:title].include?(w) }
+			query_array.any? { |w| p[:body].downcase.include?(w) or p[:title].downcase.include?(w) }
 		end
 
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
