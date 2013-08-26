@@ -14,14 +14,20 @@ class Application < Sinatra::Application
 
 	class Posts
 		include DataMapper::Resource
-		property :id, Serial
 		DataMapper::Property::String.length(255)
 		DataMapper::Property::Text.length(999999)
+		property :id, Serial
 		property :title, Text
 		property :body, Text
 		property :datetime, String
 		property :modified, String
 		#property :link, String
+	end
+
+	class DropboxSyncs
+		include DataMapper::Resource
+		property :id, Serial
+		property :count, Integer
 	end
 
 	configure :production do
@@ -88,13 +94,11 @@ class Application < Sinatra::Application
 			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
 			title = matches[8].to_s
 			file_mtime = file['client_mtime'].to_s
-			link = title.gsub(/(\;\,)+/, '')
-			puts link
 
 			post = Posts.first(:title => title)
 			# If the posts exists
 			if post
-				# check to see if it was modified
+				# Check to see if it was modified
 				if post.modified != file_mtime
 					body = client.get_file(file['path'])
 					post.update(title: title, body: body, datetime: datetime, modified: file_mtime)
@@ -115,6 +119,9 @@ class Application < Sinatra::Application
 			end
 			post.destroy if delete
 		end
+		# Keep a count of all my syncs. Just because.
+		syncs = DropboxSyncs.first(:id => 1)
+		syncs.update(:count => (syncs[:count] + 1))
 		redirect '/', 302
 	end
 
