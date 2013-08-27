@@ -21,7 +21,7 @@ class Application < Sinatra::Application
 		property :body, Text
 		property :datetime, String
 		property :modified, String
-		#property :link, String
+		property :link, String
 	end
 
 	class DropboxSyncs
@@ -65,7 +65,7 @@ class Application < Sinatra::Application
 				date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 				time = Date._strptime("#{date_matches[4]} EEST","%H%M %Z")
 				# titles are written 'Like this', links need to be 'Like-this'
-				i.link = "http://rolandleth.com/#{post[:title].gsub("\s", "-")}".gsub(";", "")
+				i.link = "http://rolandleth.com/#{post[:link]}"
 				i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
 				i.content.type = 'html'
 				i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
@@ -90,23 +90,29 @@ class Application < Sinatra::Application
 		client = DropboxClient.new(session, ACCESS_TYPE)
 		client_metadata = client.metadata('/Apps/Editorial/posts')['contents']
 		client_metadata.each do |file|
-			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
-			title = matches[8].to_s
+			link = matches[8].to_s
+			link.gsub!(/([\,\;\!\.\:\?\"\'\[\]\{\}\(\#\$\/)]+)/, '')
+			link.gsub!('&', 'and')
+			link.gsub!("\s", "-")
+			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
-			post = Posts.first(:title => title)
+			post = Posts.first(:link => link)
 			# If the posts exists
 			if post
 				# Check to see if it was modified
 				if post.modified != file_mtime
 					body = client.get_file(file['path'])
-					post.update(title: title, body: body, datetime: datetime, modified: file_mtime)
+					title = body.lines.first
+					post.update(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
 				end
 			# Otherwise, create a new record
 			else
 				body = client.get_file(file['path'])
-				Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime)
+				title = body.lines.first
+				Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
 			end
 		end
 		all_posts = Posts.all
@@ -114,8 +120,12 @@ class Application < Sinatra::Application
 		all_posts.each do |post|
 			delete = true
 			client_metadata.each do |file|
-				title = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_&@$:"';!=\?\+\*\-\)\(]+)\.md$/)[8].to_s
-				delete = false if title == post.title
+				link = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_#\$&@$:"';!=\?\+\*\-\)\(]+)\.md$/)[8].to_s
+				link.gsub!(/([\,\;\!\.\:\?\"\'\[\]\{\}\(\#\$)]+)/, '')
+				link.gsub!('&', 'and')
+				link.gsub!("\s", "-")
+				link.downcase!
+				delete = false if link == post.link
 			end
 			post.destroy if delete
 		end
@@ -226,7 +236,6 @@ class Application < Sinatra::Application
 
 	# Individual posts and views
 	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
-		key = key + ';' if key.downcase == '[world-hello]'
 		@meta_canonical = key
 
 		if PAGES.include? key.downcase
@@ -278,13 +287,13 @@ class Application < Sinatra::Application
 		end
 
 		# The select returns an array that has a structure as its only object
-		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE lower(title)= ?', key.downcase.gsub('-', "\s"))[0].to_h
+		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE link= ?', key.downcase)[0].to_h
 		@title = post[:title]
 		@meta_description = post[:title]
 
 		if post.count > 0
 			# This means the URL was not written with lowercase letters only
-			if post[:title].downcase != key.gsub("-", "\s")
+			if post[:link] != key
 				redirect "#{key.downcase}", 301
 			else
 				erb :index, locals: { post: post, total_pages: -1 }

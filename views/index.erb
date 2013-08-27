@@ -1,18 +1,14 @@
 <%- if total_pages == -1
       # Explained the total_pages == -1 check in app.rb
-      category = post[:body].lines.first
       date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
       date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-      title = post[:title]
       content = _markdown(post[:body].lines[2..-1].join)
 -%>
-  <%= erb :post, locals: { date: date, category: category, title: title, content: content } -%>
+  <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link] } -%>
 <%- else -%>
   <%- posts.each do |post|
-	  category = post[:body].lines.first
 	  date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 	  date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-	  title = post[:title]
 	  content = _markdown(post[:body].lines[2..-1].join)
     #category = File.open(post).readlines[0]
     #matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]$_&@:"';!=\?\+\*\-\)\(]+)\.md$/)
@@ -20,7 +16,7 @@
     #title = matches[5]
     #content = _markdown(File.readlines(post)[2..-1].join())
   -%>
-    <%= erb :post, locals: { date: date, category: category, title: title, content: content} -%>
+    <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link]} -%>
   <%- end -%>
   <%- if total_pages > 1 -%>
     <nav class="pagination">
