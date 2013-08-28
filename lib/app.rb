@@ -12,6 +12,7 @@ class Application < Sinatra::Application
 	PAGE_SIZE = 5
 	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
+	# Posts
 	class Posts
 		include DataMapper::Resource
 		DataMapper::Property::String.length(255)
@@ -24,6 +25,7 @@ class Application < Sinatra::Application
 		property :link, String
 	end
 
+	# Just to keep an on-server count of the syncs performed
 	class DropboxSyncs
 		include DataMapper::Resource
 		property :id, Serial
