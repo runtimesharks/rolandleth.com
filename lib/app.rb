@@ -41,6 +41,28 @@ class Application < Sinatra::Application
 		DataMapper.auto_upgrade!
 	end
 
+	# Sitemap
+	get '/sitemap.xml' do
+		map = XmlSitemap::Map.new('rolandleth.com') do |m|
+			# Adds a simple page
+			m.add 'projects', priority: 1.0
+			m.add 'about', priority: 1.0
+			m.add 'bouncyb'
+			m.add 'sosmorse'
+			m.add 'iwordjuggle'
+			m.add 'carminder'
+			m.add 'expenses-planner', priority: 0.99
+			m.add 'privacy-policy'
+			m.add 'feed'
+			posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+			posts.map! { |struc| struc.to_h }
+			posts.each do |post|
+				m.add post[:link]
+			end
+		end
+		map.render
+	end
+
 	# RSS
 	get '/feed' do
 		posts = repository(:default).adapter.select('SELECT * FROM application_posts')
