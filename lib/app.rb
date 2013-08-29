@@ -3,7 +3,6 @@ require 'markdown_renderer'
 require 'dropbox_sdk'
 require 'dropbox_keys'
 require 'dm-core'
-require 'dm-timestamps'
 require 'dm-postgres-adapter'
 require 'dm-migrations'
 

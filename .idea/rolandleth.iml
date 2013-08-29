@@ -64,7 +64,6 @@
     <orderEntry type="library" scope="PROVIDED" name="dm-do-adapter (v1.2.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dm-migrations (v1.2.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dm-postgres-adapter (v1.2.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="dm-timestamps (v1.2.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="do_postgres (v0.10.13, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dropbox-sdk (v1.6.1, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />

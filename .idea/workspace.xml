@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rolandleth.iml" afterPath="$PROJECT_DIR$/.idea/rolandleth.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
@@ -16,7 +19,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/rolandleth@app.coverage" NAME="app Coverage Results" MODIFIED="1377704401770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib" />
-    <SUITE FILE_PATH="coverage/rolandleth@config_ru.coverage" NAME="config.ru Coverage Results" MODIFIED="1377708497929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rolandleth@config_ru.coverage" NAME="config.ru Coverage Results" MODIFIED="1377735014703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -30,10 +33,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="58" selection-start="737" selection-end="737" vertical-scroll-proportion="0.36" vertical-offset="0" max-vertical-offset="6086">
+            <state line="4" column="17" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6069">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="29" selection-start="440" selection-end="440" vertical-scroll-proportion="0.58682007" vertical-offset="0" max-vertical-offset="956">
               <folding />
             </state>
           </provider>
@@ -60,7 +72,7 @@
       <file leaf-file-name="projects.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/projects.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="9" selection-start="1469" selection-end="1469" vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="1071">
+            <state line="37" column="9" selection-start="1469" selection-end="1469" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1071">
               <folding />
             </state>
           </provider>
@@ -93,13 +105,13 @@
         <option value="$PROJECT_DIR$/views/post.erb" />
         <option value="$PROJECT_DIR$/views/index.erb" />
         <option value="$PROJECT_DIR$/views/exclude-me.erb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/assets/sitemap.xml" />
         <option value="$USER_HOME$/.rvm/gems/ruby-2.0.0-p247@global/gems/xml-sitemap-1.3.2/lib/xml-sitemap/options.rb" />
         <option value="$PROJECT_DIR$/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/views/about.erb" />
         <option value="$PROJECT_DIR$/views/projects.erb" />
         <option value="$PROJECT_DIR$/lib/app.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -319,14 +331,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="202" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="204" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="202" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="202" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$USER_HOME$/RubyScripts" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="208" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1002" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1002" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1002" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="208" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="204" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -552,8 +564,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Rack.config.ru" />
-        <item index="1" class="java.lang.String" itemvalue="Ruby.app" />
-        <item index="2" class="java.lang.String" itemvalue="Rack.config.ru" />
+        <item index="1" class="java.lang.String" itemvalue="Rack.config.ru" />
+        <item index="2" class="java.lang.String" itemvalue="Ruby.app" />
         <item index="3" class="java.lang.String" itemvalue="Rack.config.ru" />
         <item index="4" class="java.lang.String" itemvalue="Rack.config.ru" />
       </list>
@@ -600,11 +612,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22648261" sideWeight="0.6704981" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22903885" sideWeight="0.6704981" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24558711" sideWeight="0.21676892" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24481964" sideWeight="0.7811861" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24481964" sideWeight="0.77096117" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -686,13 +698,6 @@
         <state line="9" column="11" selection-start="324" selection-end="324" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="357" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="17" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/dropbox_keys.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="956" />
@@ -759,14 +764,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/projects.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="9" selection-start="1469" selection-end="1469" vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="1071">
+        <state line="37" column="9" selection-start="1469" selection-end="1469" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1071">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="58" selection-start="737" selection-end="737" vertical-scroll-proportion="0.36" vertical-offset="0" max-vertical-offset="6086">
+        <state line="4" column="17" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6069">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="29" selection-start="440" selection-end="440" vertical-scroll-proportion="0.58682007" vertical-offset="0" max-vertical-offset="956">
           <folding />
         </state>
       </provider>

@@ -9,7 +9,6 @@ gem 'dropbox-sdk'
 
 gem 'pg'
 gem 'dm-core'
-gem 'dm-timestamps'
 gem 'dm-postgres-adapter'
 gem 'dm-migrations'
 
