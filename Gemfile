@@ -21,9 +21,6 @@ gem 'erubis'
 # Markdown
 gem 'redcarpet'
 
-# Safety
-gem 'safe_yaml'
-
 # Asset pipeline
 gem 'sprockets'
 
