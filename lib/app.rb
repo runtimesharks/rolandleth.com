@@ -87,7 +87,6 @@ class Application < Sinatra::Application
 				i.title = post[:title]
 				date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 				time = Date._strptime("#{date_matches[4]} EEST","%H%M %Z")
-				# titles are written 'Like this', links need to be 'Like-this'
 				i.link = "http://rolandleth.com/#{post[:link]}"
 				i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
 				i.content.type = 'html'
