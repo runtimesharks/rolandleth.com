@@ -170,7 +170,7 @@ class Application < Sinatra::Application
 	end
 
 	# Apply a non-permanent redirect from http://root/key/anything/can/be/here to http://root/key
-	# Might change my mind about this, since it's a bit more drastic, thus not a permanent redirect
+	# Might change my mind about this, thus not a permanent redirect
 	get %r{^/(.+)/} do |key|
 		redirect "/#{key}", 302
 	end
@@ -258,7 +258,6 @@ class Application < Sinatra::Application
 
 	# Individual posts and views
 	get %r{^/(.+)$} do |key|
-    puts key
 		@meta_canonical = key
 
 		if PAGES.include? key.downcase

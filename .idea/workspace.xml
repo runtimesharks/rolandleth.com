@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93c732f-8381-4280-823b-9160eb693845" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/javascripts/application.js.coffee" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/app.rb" afterPath="$PROJECT_DIR$/lib/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.ru" afterPath="$PROJECT_DIR$/config.ru" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rolandleth.iws" />
@@ -35,7 +33,7 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="251" column="36" selection-start="9049" selection-end="9049" vertical-scroll-proportion="0.6621339" vertical-offset="3634" max-vertical-offset="6069">
+            <state line="259" column="26" selection-start="9327" selection-end="9327" vertical-scroll-proportion="0.35041842" vertical-offset="4068" max-vertical-offset="6052">
               <folding />
             </state>
           </provider>
@@ -73,8 +71,8 @@
         <option value="$PROJECT_DIR$/views/about.erb" />
         <option value="$PROJECT_DIR$/views/projects.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/lib/app.rb" />
         <option value="$PROJECT_DIR$/config.ru" />
+        <option value="$PROJECT_DIR$/lib/app.rb" />
       </list>
     </option>
   </component>
@@ -494,7 +492,11 @@
       <created>1377891504059</created>
       <updated>1377891504059</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Tweaked get calls in app.rb&#10;Removed application.js&#10;Tweaked config.ru">
+      <created>1377964446412</created>
+      <updated>1377964446412</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -534,7 +536,8 @@
     <option name="LIMIT_HISTORY" value="false" />
     <MESSAGE value="Tweaked the &quot;Coming soon&quot; paragraph position." />
     <MESSAGE value="Trying out the commit + push to Heroku." />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying out the commit + push to Heroku." />
+    <MESSAGE value="Tweaked get calls in app.rb&#10;Removed application.js&#10;Tweaked config.ru" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tweaked get calls in app.rb&#10;Removed application.js&#10;Tweaked config.ru" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -651,7 +654,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="36" selection-start="9049" selection-end="9049" vertical-scroll-proportion="0.6621339" vertical-offset="3634" max-vertical-offset="6069">
+        <state line="259" column="26" selection-start="9327" selection-end="9327" vertical-scroll-proportion="0.35041842" vertical-offset="4068" max-vertical-offset="6052">
           <folding />
         </state>
       </provider>
