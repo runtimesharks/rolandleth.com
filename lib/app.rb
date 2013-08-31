@@ -165,13 +165,13 @@ class Application < Sinatra::Application
 	# Apply a permanent redirect from http://root/key/ to http://root/key (I always want links to show without '/' at end)
 	# If the $ condition is removed, it will try to redirect anything like http://root/key/anything/can/be/here to http://root/key
 	# And it would screw file downloading
-	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)/$} do |key|
+	get %r{^/(.+)/$} do |key|
 		redirect "/#{key}", 301
 	end
 
 	# Apply a non-permanent redirect from http://root/key/anything/can/be/here to http://root/key
 	# Might change my mind about this, since it's a bit more drastic, thus not a permanent redirect
-	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)/} do |key|
+	get %r{^/(.+)/} do |key|
 		redirect "/#{key}", 302
 	end
 
@@ -257,7 +257,8 @@ class Application < Sinatra::Application
 	end
 
 	# Individual posts and views
-	get %r{^/([\w\s\.\}\{\]\[_&@$:"';!@=\?\+\*\-\)\(\/]+)$} do |key|
+	get %r{^/(.+)$} do |key|
+    puts key
 		@meta_canonical = key
 
 		if PAGES.include? key.downcase
