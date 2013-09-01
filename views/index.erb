@@ -35,9 +35,9 @@
         date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
         date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
         content = _markdown(post[:body].lines[2..-1].join)
-        title = post[:title]
-      end -%>
-    <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
+        title = post[:title] -%>
+        <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
+      <%- end -%>
   <%- if total_pages > 1 -%>
     <nav class="pagination">
       <%- if page > 1 -%>
