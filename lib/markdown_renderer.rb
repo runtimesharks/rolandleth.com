@@ -1,5 +1,5 @@
 require 'redcarpet'
-require 'pygments.rb'
+require 'pygments'
 
 class MarkdownRenderer < Redcarpet::Render::HTML
   def block_code(code, language)

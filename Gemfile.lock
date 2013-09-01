@@ -63,6 +63,7 @@ PLATFORMS
 
 DEPENDENCIES
   bourbon
+  bundler
   dm-core
   dm-migrations
   dm-postgres-adapter

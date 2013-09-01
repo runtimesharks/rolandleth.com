@@ -1,23 +1,43 @@
-<%- if total_pages == -1
+<%- # Just a hack to skip having to create another variable. If total_pages == 'search', we are searching
+    # If total_pages == -1, we are displaying a post -%>
+<%- if total_pages == 'search'
+      posts.each do |post|
+        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+        date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
+        content = _markdown(post[:body].lines[2..-1].join)
+        title = post[:title]
+        search_terms.each do |w|
+          if content.downcase.index(w)
+            start_index = content.downcase.index(w)
+            end_index = start_index + w.length
+            # This is how the search term is written inside the post's text. We search by downcasing it.
+            original_occurrence = content[start_index..end_index - 1]
+            content.gsub!(original_occurrence, "<search-mark>#{original_occurrence}</search-mark>")
+          end
+          if title.downcase.index(w)
+            start_index = title.downcase.index(w)
+            end_index = start_index + w.length
+            # This is how the search term is written inside the post's text. We search by downcasing it.
+            original_occurrence = title[start_index..end_index - 1]
+            title.gsub!(original_occurrence, "<search-mark>#{original_occurrence}</search-mark>")
+          end
+        end -%>
+      <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
+      <%- end -%>
+<%- elsif total_pages == -1
       # Explained the total_pages == -1 check in app.rb
       date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
       date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-      content = _markdown(post[:body].lines[2..-1].join)
--%>
-  <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link] } -%>
-<%- else -%>
-  <%- posts.each do |post|
-	  date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-	  date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-	  content = _markdown(post[:body].lines[2..-1].join)
-    #category = File.open(post).readlines[0]
-    #matches = post.match(/\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]$_&@:"';!=\?\+\*\-\)\(]+)\.md$/)
-    #time = Date.new(matches[1].to_i, matches[2].to_i, matches[3].to_i).to_time.utc.to_i
-    #title = matches[5]
-    #content = _markdown(File.readlines(post)[2..-1].join())
-  -%>
-    <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link]} -%>
-  <%- end -%>
+      content = _markdown(post[:body].lines[2..-1].join) -%>
+      <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link] } -%>
+<%- else
+      posts.each do |post|
+        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+        date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
+        content = _markdown(post[:body].lines[2..-1].join)
+        title = post[:title]
+      end -%>
+    <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
   <%- if total_pages > 1 -%>
     <nav class="pagination">
       <%- if page > 1 -%>

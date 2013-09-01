@@ -36,7 +36,7 @@ hr {
 	margin: auto;
 	padding: 25px 0 0 0;
 	background-color: #2E3133;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15) inset;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) inset;
 	text-align: right;
 }
 
@@ -46,9 +46,8 @@ hr {
 }
 
 #menuBar hr {
-	margin: 0;
-	margin-top: -1px;
-	padding: 0;
+  margin: -1px 0 0;
+  padding: 0;
 	border: none;
 	border-top: 2px solid #000;
 	border-bottom: 1px solid #cdcdcd;
@@ -74,7 +73,7 @@ hr {
 #showcase {
 	background-color: #FFDFDE;
 /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15) inset; */
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15) inset;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) inset;
 }
 
 #showcase h1 {
@@ -149,9 +148,8 @@ hr {
 }
 
 .rightBlock hr {
-	margin: 0;
-	margin-top: -1px;
-	padding: 0;
+  margin: -1px 0 0;
+  padding: 0;
 	border: none;
 	border-top: 1px solid #ededed;
 	border-bottom: 1px solid #f4f4ff;
@@ -162,7 +160,7 @@ hr {
 	overflow: hidden;
 	height: auto;
 	background-color: #FFDFDE;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15) inset;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) inset;
 }
 
 .leftBlock img {
@@ -180,9 +178,8 @@ hr {
 }
 
 .leftBlock hr {
-	margin: 0;
-	margin-top: -1px;
-	padding: 0;
+  margin: -1px 0 0;
+  padding: 0;
 	border: none;
 	border-top: 1px solid #f4f4ff;
 	border-bottom: 1px solid #ededed;
@@ -195,9 +192,8 @@ footer {
 }
 
 footer hr {
-	margin: 0;
-	margin-top: -1px;
-	padding: 0;
+  margin: -1px 0 0;
+  padding: 0;
 	border: none;
 	border-top: 1px solid #cdcdcd;
 	border-bottom: 2px solid #000;

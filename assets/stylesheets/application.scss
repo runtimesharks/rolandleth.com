@@ -1,4 +1,4 @@
-@import "bourbon";
+@import 'bourbon';
 @import "globals/variables";
 @import "components/reset";
 @import url(http://fonts.googleapis.com/css?family=Arvo);
@@ -35,10 +35,15 @@ em {
 }
 
 mark {
-	padding: 1px 4px;
 	border-radius: 2px;
 	background-color: #fffdcc;
 	font-style: normal;
+}
+
+search-mark {
+  border-radius: 2px;
+  background-color: #fff0f4;
+  font-style: normal;
 }
 
 strong {
@@ -82,8 +87,7 @@ nav.header {
 	}
 
 	& a {
-		@include transition-property(color);
-		@include transition-duration(0.3s);
+		@include transition(color, 0.3s);
 		color: $title-color;
 		line-height: 1.25em;
 
@@ -95,13 +99,11 @@ nav.header {
 }
 
 header a {
-	@include transition-property(color);
-	@include transition-duration(0.3s);
+	@include transition(color, 0.3s);
 }
 
 a {
-	@include transition-property(border);
-	@include transition-duration(0.3s);
+	@include transition(border, 0.3s);
 }
 
 section {

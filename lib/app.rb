@@ -1,10 +1,10 @@
 require 'rss'
-require 'markdown_renderer'
 require 'dropbox_sdk'
-require 'dropbox_keys'
 require 'dm-core'
 require 'dm-postgres-adapter'
 require 'dm-migrations'
+require 'markdown_renderer'
+require 'dropbox_keys'
 
 class Application < Sinatra::Application
 	include DropboxKeys
@@ -38,7 +38,7 @@ class Application < Sinatra::Application
 	end
 
 	configure :development do
-		DataMapper::setup(:default, "postgres://roland@localhost/roland")
+		DataMapper::setup(:default, 'postgres://roland@localhost/roland')
 		DataMapper.auto_upgrade!
 	end
 
@@ -65,45 +65,45 @@ class Application < Sinatra::Application
 	end
 
 	# RSS
-	get '/feed' do
-		posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-		posts.map! { |struc| struc.to_h }
-		posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
-		rss ||= RSS::Maker.make('atom') do |maker|
-			maker.channel.icon = '/public/favicon.ico'
-			maker.channel.logo = '/public/favicon.ico'
-			maker.channel.id = 'http://rolandleth.com'
-			maker.channel.link = 'http://rolandleth.com/feed'
-			maker.channel.title = 'Roland Leth'
-			maker.channel.description = 'Roland Leth'
-			maker.channel.author = 'Roland Leth'
-			maker.channel.language = 'en'
-			maker.channel.rights = "© #{Time.now.year} Roland Leth"
-			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
-			maker.items.do_sort = false
+get '/feed' do
+  posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+  posts.map! { |struc| struc.to_h }
+  posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
+  rss ||= RSS::Maker.make('atom') do |maker|
+    maker.channel.icon = '/public/favicon.ico'
+    maker.channel.logo = '/public/favicon.ico'
+    maker.channel.id = 'http://rolandleth.com'
+    maker.channel.link = 'http://rolandleth.com/feed'
+    maker.channel.title = 'Roland Leth'
+    maker.channel.description = 'Roland Leth'
+    maker.channel.author = 'Roland Leth'
+    maker.channel.language = 'en'
+    maker.channel.rights = "© #{Time.now.year} Roland Leth"
+    maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
+    maker.items.do_sort = false
 
-			posts.each do |post|
-				i = maker.items.new_item
-				i.title = post[:title]
-				date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-				time = Date._strptime("#{date_matches[4]} EEST","%H%M %Z")
-				i.link = "http://rolandleth.com/#{post[:link]}"
-				i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
-				i.content.type = 'html'
-				i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-				i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-				# The RSS was last updated when the last post was posted (which is first in the array)
-				maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-			end
-		end
-		rss.link.rel = 'self'
-		rss.link.type = 'application/atom+xml'
-		rss.entries.each do |entry|
-			entry.content.lang = 'en'
-			entry.title.type = 'html'
-		end
-		rss.to_s
-	end
+    posts.each do |post|
+      i = maker.items.new_item
+      i.title = post[:title]
+      date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+      time = Date._strptime("#{date_matches[4]} EEST", '%H%M %Z')
+      i.link = "http://rolandleth.com/#{post[:link]}"
+      i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
+      i.content.type = 'html'
+      i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+      i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+      # The RSS was last updated when the last post was posted (which is first in the array)
+      maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+    end
+  end
+  rss.link.rel = 'self'
+  rss.link.type = 'application/atom+xml'
+  rss.entries.each do |entry|
+    entry.content.lang = 'en'
+    entry.title.type = 'html'
+  end
+  rss.to_s
+end
 
 	# Custom sync with Dropbox URL
 	get '/cmd.Dropbox.Sync' do
@@ -115,9 +115,9 @@ class Application < Sinatra::Application
 			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
 			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
 			link = matches[8].to_s
-			link.gsub!(/([\,\;\!\.\:\?\"\'\[\]\{\}\(\#\$\/)]+)/, '')
+      link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
 			link.gsub!('&', 'and')
-			link.gsub!("\s", "-")
+			link.gsub!("\s", '-')
 			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
@@ -143,9 +143,9 @@ class Application < Sinatra::Application
 			delete = true
 			client_metadata.each do |file|
 				link = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_#\$&@$:"';!=\?\+\*\-\)\(]+)\.md$/)[8].to_s
-				link.gsub!(/([\,\;\!\.\:\?\"\'\[\]\{\}\(\#\$)]+)/, '')
+        link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
 				link.gsub!('&', 'and')
-				link.gsub!("\s", "-")
+				link.gsub!("\s", '-')
 				link.downcase!
 				delete = false if link == post.link
 			end
@@ -165,13 +165,13 @@ class Application < Sinatra::Application
 	# Apply a permanent redirect from http://root/key/ to http://root/key (I always want links to show without '/' at end)
 	# If the $ condition is removed, it will try to redirect anything like http://root/key/anything/can/be/here to http://root/key
 	# And it would screw file downloading
-	get %r{^/(.+)/$} do |key|
+	get %r{^/([\w\d\-]+)/$} do |key|
 		redirect "/#{key}", 301
 	end
 
 	# Apply a non-permanent redirect from http://root/key/anything/can/be/here to http://root/key
 	# Might change my mind about this, thus not a permanent redirect
-	get %r{^/(.+)/} do |key|
+	get %r{^/([\w\d\-]+)/} do |key|
 		redirect "/#{key}", 302
 	end
 
@@ -212,7 +212,7 @@ class Application < Sinatra::Application
 
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
 		if all_posts.count > 0
-			erb :index, locals: { posts: all_posts, page: 1, total_pages: 1, gap: 2 }
+			erb :index, locals: { posts: all_posts, page: 1, total_pages: 'search', gap: 2, search_terms: query_array }
 		else
 			search_not_found
 		end
@@ -243,32 +243,31 @@ class Application < Sinatra::Application
 		end
 	end
 
-	get "/ExpensesPlannerPressKit.zip" do
+	get '/ExpensesPlannerPressKit.zip' do
 		send_file File.open('./assets/files/Expenses Planner Press Kit.zip'), filename: 'Expenses Planner Press Kit.zip'
 	end
-	get "/CarminderPressKit.zip" do
+	get '/CarminderPressKit.zip' do
 		send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
 	end
-	get "/Roland Leth - Résumé.pdf" do
+	get '/Roland Leth - Résumé.pdf' do
 		send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
 	end
-	get "/Roland Leth - Privacy Policy.md" do
+	get '/Roland Leth - Privacy Policy.md' do
 		send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
 	end
 
-	# Individual posts and views
-	get %r{^/(.+)$} do |key|
+	# Individual posts and static pages
+	get %r{^/([\w\d\-]+)$} do |key|
 		@meta_canonical = key
 
 		if PAGES.include? key.downcase
-			if key.downcase == 'projects'
+      redirect '/projects', 302 if key.downcase == 'work'
+      redirect '/about', 302 if key.downcase == 'contact'
+      if key.downcase == 'projects'
 				@title = 'iPhone, iPad, Ruby and Web Apps'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
 				redirect "#{key.downcase}", 301 if key != 'projects'
 				return erb :projects
-			end
-			if key.downcase == 'work'
-				redirect '/projects', 302
 			end
 			if key.downcase == 'bouncyb'
 				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
@@ -297,9 +296,6 @@ class Application < Sinatra::Application
 				redirect "#{key.downcase}", 301 if key != 'about'
 				return erb :about
 			end
-			if key == 'contact'
-				return redirect '/about', 302
-			end
 			if key.downcase == 'privacy-policy'
 				@title = 'Privacy Policy'
 				@meta_description = "Roland Leth's Privacy Policy"
@@ -327,7 +323,7 @@ class Application < Sinatra::Application
 
 	def search_not_found
 		@title = 'No results found.'
-		@meta_description = "No results found."
+		@meta_description = 'No results found.'
 		# There's a check in layout.erb for the meta canonical link to not be displayed if the value is '404 error raised'.
 		@meta_canonical = '404 error raised'
 		status 200

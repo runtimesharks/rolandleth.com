@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'bundler'
-
-Bundler.require
+Bundler.require(:default)
 
 $LOAD_PATH.unshift 'lib'
 require 'app'

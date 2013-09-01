@@ -72,7 +72,8 @@ var AppShowcase = (function() {
 		}
 	}
 
-	function navigate( direction ) {
+	//noinspection FunctionWithInconsistentReturnsJS
+  function navigate( direction ) {
 
 		if( animating ) {
 			return false;
