@@ -6,16 +6,28 @@ span {
 	overflow: hidden;
 }
 
-span:before {
+span.the-404:before {
 	position: absolute;
 	top: 80%;
 	right: 0px;
 	left: 0px;
-	max-width: 450px;
+	max-width: 425px;
 	height: 40px;
 	content: "";
 	background-image: url(/assets/misc/404_shadow.png);
 	background-size: 100%;
+}
+
+span.the-404-search:before {
+  position: absolute;
+  top: 80%;
+  right: 0px;
+  left: 11%;
+  max-width: 380px;
+  height: 40px;
+  content: "";
+  background-image: url(/assets/misc/404_shadow.png);
+  background-size: 100%;
 }
 
 h1 {
@@ -50,6 +62,11 @@ p.error-message {
 }
 
 @media screen and (max-width: 647px) {
+  span.the-404-search:before {
+    left: 8%;
+    max-width: 320px;
+  }
+
 	h1 {
 		&.the-404 {
 			font-size: 11em;
@@ -66,6 +83,11 @@ p.error-message {
 }
 
 @media screen and (max-width: 450px) {
+  span.the-404-search:before {
+    left: 6.5%;
+    max-width: 250px;
+  }
+
 	h1 {
 		&.the-404 {
 			font-size: 9em;
@@ -77,6 +99,10 @@ p.error-message {
 }
 
 @media screen and (max-width: 350px) {
+  span.the-404-search:before {
+    left: 3%;
+  }
+
 	h1 {
 		&.the-404 {
 			font-size: 6em;
