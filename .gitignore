@@ -9,3 +9,5 @@
 /tmp
 .sass-cache/*
 .idea/*
+.idea/codeStyleSettings.xml
+.idea/workspace.xml
