@@ -44,6 +44,22 @@ a.img:hover {
 	}
 }
 
+
+.centered-image-wrapper {
+  text-align: center;
+  margin-left: -9px;
+  overflow: scroll;
+
+  & img {
+    margin: 9px 0 0 9px;
+    border-radius: 2px;
+    -webkit-box-shadow: #777 0px 0px 3px 0px ;
+    -moz-box-shadow: #444 0px 0px 3px 0px ; /* color, h-offset, v-offset, blur, spread */
+    box-shadow: #777 0px 0px 7px 0px ; /* inset is optional */
+  }
+}
+
+
 .centered {
 	text-align: center;
 	margin: 0.5em 0;
@@ -58,15 +74,17 @@ a.img:hover {
 
 }
 
-.noMargin {
+.no-margin {
 	margin: 0;
 }
 
 img {
-	border-radius: 2px;
-	-webkit-box-shadow: #777 0px 0px 3px 1px ;
-	-moz-box-shadow: #444 0px 0px 3px 1px ; /* color, h-offset, v-offset, blur, spread */
-	box-shadow: #777 0px 0px 7px 0px ; /* inset is optional */
+  &.about, &.icon, &.project-screenshot {
+    border-radius: 2px;
+    -webkit-box-shadow: #777 0px 0px 3px 1px ;
+    -moz-box-shadow: #444 0px 0px 3px 1px ; /* color, h-offset, v-offset, blur, spread */
+    box-shadow: #777 0px 0px 7px 0px ; /* inset is optional */
+  }
 
 	&.about {
 		float: left;
@@ -79,7 +97,7 @@ img {
 		margin: 0.15em 0.5em;
 	}
 
-	&.projectScreenshot {
+	&.project-screenshot {
 		border-radius: 8px;
 		margin: 0.15em 0;
 	}
@@ -112,8 +130,8 @@ header {
 		color: $title-color;
 		font-family: 'Arvo';
 		font-size: 1.3em;
-		line-height: 1em;
-		padding-top: 0.2em;
+		margin-bottom: 0.5em;
+		padding-top: 0.25em;
 		font-weight: normal;
 	}
 	
