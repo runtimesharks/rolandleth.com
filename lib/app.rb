@@ -287,7 +287,7 @@ end
 				return erb :'expenses-planner', layout: false
 			end
 			if key.downcase == 'carminder'
-				redirect "#{key.downcase}", 301 if key != 'carminder'
+			  redirect "#{key.downcase}", 301 if key != 'carminder'
 				return erb :carminder, layout: false
 			end
 			if key.downcase == 'about'
