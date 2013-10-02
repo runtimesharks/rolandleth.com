@@ -65,45 +65,45 @@ class Application < Sinatra::Application
 	end
 
 	# RSS
-get '/feed' do
-  posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-  posts.map! { |struc| struc.to_h }
-  posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
-  rss ||= RSS::Maker.make('atom') do |maker|
-    maker.channel.icon = '/public/favicon.ico'
-    maker.channel.logo = '/public/favicon.ico'
-    maker.channel.id = 'http://rolandleth.com'
-    maker.channel.link = 'http://rolandleth.com/feed'
-    maker.channel.title = 'Roland Leth'
-    maker.channel.description = 'Roland Leth'
-    maker.channel.author = 'Roland Leth'
-    maker.channel.language = 'en'
-    maker.channel.rights = "© #{Time.now.year} Roland Leth"
-    maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
-    maker.items.do_sort = false
+  get '/feed' do
+    posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+    posts.map! { |struc| struc.to_h }
+    posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
+    rss ||= RSS::Maker.make('atom') do |maker|
+      maker.channel.icon = '/public/favicon.ico'
+      maker.channel.logo = '/public/favicon.ico'
+      maker.channel.id = 'http://rolandleth.com'
+      maker.channel.link = 'http://rolandleth.com/feed'
+      maker.channel.title = 'Roland Leth'
+      maker.channel.description = 'Roland Leth'
+      maker.channel.author = 'Roland Leth'
+      maker.channel.language = 'en'
+      maker.channel.rights = "© #{Time.now.year} Roland Leth"
+      maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
+      maker.items.do_sort = false
 
-    posts.each do |post|
-      i = maker.items.new_item
-      i.title = post[:title]
-      date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-      time = Date._strptime("#{date_matches[4]} EEST", '%H%M %Z')
-      i.link = "http://rolandleth.com/#{post[:link]}"
-      i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
-      i.content.type = 'html'
-      i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-      i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-      # The RSS was last updated when the last post was posted (which is first in the array)
-      maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+      posts.each do |post|
+        i = maker.items.new_item
+        i.title = post[:title]
+        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+        time = Date._strptime("#{date_matches[4]} EEST", '%H%M %Z')
+        i.link = "http://rolandleth.com/#{post[:link]}"
+        i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
+        i.content.type = 'html'
+        i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+        i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+        # The RSS was last updated when the last post was posted (which is first in the array)
+        maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+      end
     end
+    rss.link.rel = 'self'
+    rss.link.type = 'application/atom+xml'
+    rss.entries.each do |entry|
+      entry.content.lang = 'en'
+      entry.title.type = 'html'
+    end
+    rss.to_s
   end
-  rss.link.rel = 'self'
-  rss.link.type = 'application/atom+xml'
-  rss.entries.each do |entry|
-    entry.content.lang = 'en'
-    entry.title.type = 'html'
-  end
-  rss.to_s
-end
 
 	# Custom sync with Dropbox URL
 	get '/cmd.Dropbox.Sync' do
