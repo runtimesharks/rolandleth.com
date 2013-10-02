@@ -43,7 +43,7 @@ class Application < Sinatra::Application
 	end
 
 	# RSS
-  get '/rss-feed' do
+  get '/feed' do
     posts = repository(:default).adapter.select('SELECT * FROM application_posts')
     posts.map! { |struc| struc.to_h }
     posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
