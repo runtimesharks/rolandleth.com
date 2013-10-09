@@ -29,7 +29,7 @@
 	position: relative;
 	top: 5px;
 	margin: 0 auto;
-	width: 288px;
+	width: 290px;
 	height: 611px;
 	background: url('/assets/misc/iPhoneBlack.png') no-repeat;
 	-webkit-transition: all 0.3s ease;
@@ -44,9 +44,9 @@
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
-	margin: 85px 0 0 20px;
-	width: 249px;
-	height: 440px;
+	margin: 88px 0 0 24px;
+	width: 246px;
+	height: 434px;
 }
 
 .ac-device a img {
