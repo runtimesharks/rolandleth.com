@@ -42,6 +42,14 @@ class Application < Sinatra::Application
 		DataMapper.auto_upgrade!
 	end
 
+  # before '/example' do
+  #   # Run code before running the example route
+  # end
+  #
+  # after '/example' do
+  #   # Run code after running the example route
+  # end
+
 	# RSS
   get '/feed' do
     posts = repository(:default).adapter.select('SELECT * FROM application_posts')

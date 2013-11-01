@@ -1,3 +1,4 @@
+require 'bundler'
 Bundler.require(:default)
 
 $LOAD_PATH.unshift 'lib'
