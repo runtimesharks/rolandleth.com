@@ -257,10 +257,10 @@ class Application < Sinatra::Application
 	get '/CarminderPressKit.zip' do
 		send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
 	end
-	get '/Roland Leth - Résumé.pdf' do
+	get '/Roland-Leth-Résumé.pdf' do
 		send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
 	end
-	get '/Roland Leth - Privacy Policy.md' do
+	get '/Roland-Leth-Privacy Policy.md' do
 		send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
 	end
 
