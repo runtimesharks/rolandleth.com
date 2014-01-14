@@ -10,5 +10,5 @@ Last update:  2013-06-14
 Language:     English
 Doctype:      HTML5
 Tools:        Ruby, HTML, SCSS, Sinatra, Markdown
-Editors:      RubyMine, Coda 2, Espresso, TextMate 2, Mou
+Editors:      RubyMine, Coda 2, Espresso, Mou
 Hosted on:    Heroku

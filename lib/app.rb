@@ -72,9 +72,12 @@ class Application < Sinatra::Application
         i = maker.items.new_item
         i.title = post[:title]
         date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-        time = Date._strptime("#{date_matches[4]} EEST", '%H%M %Z')
+        # A little hack to account for daylight savings
+        time_zone = 'EET'
+        time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
+        time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
         i.link = "http://rolandleth.com/#{post[:link]}"
-        i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join())
+        i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
         i.content.type = 'html'
         i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
         i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
