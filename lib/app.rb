@@ -38,7 +38,10 @@ class Application < Sinatra::Application
 	end
 
 	configure :development do
-		DataMapper::setup(:default, 'postgres://roland@localhost/roland')
+    # Small hack to dynamically create the postgres URL based on the currently logged in user
+    current_user = ENV['USER']
+    postgres = "postgres://#{current_user}@localhost/roland"
+		DataMapper::setup(:default, postgres)
 		DataMapper.auto_upgrade!
 	end
 
@@ -260,7 +263,7 @@ class Application < Sinatra::Application
 	get '/CarminderPressKit.zip' do
 		send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
 	end
-	get '/Roland-Leth-Résumé.pdf' do
+	get '/Roland-Leth-Resume.pdf' do
 		send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
 	end
 	get '/Roland-Leth-Privacy Policy.md' do
