@@ -40,7 +40,7 @@ class Application < Sinatra::Application
 	configure :development do
     # Small hack to dynamically create the postgres URL based on the currently logged in user
     current_user = ENV['USER']
-    postgres = "postgres://#{current_user}@localhost/roland"
+    postgres = ENV['DATABASE_URL'] || "postgres://localhost/#{current_user}"
 		DataMapper::setup(:default, postgres)
 		DataMapper.auto_upgrade!
 	end
