@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <% QUOTES = [
+    'Tables turn, bridges burn, you live and learn.'
+  ]
+   %>
 	<meta charset="UTF-8">
 	<%- @title = @title + ' | ' if @title -%>
   <title><%= @title -%>Roland Leth</title>
@@ -49,7 +53,12 @@
 
 <body>
   <nav role="navigation" class="header">
-    <h1 role="banner"><a href="/">Roland Leth</a></h1>
+    <h1 role="banner">
+      <a href="/">Roland Leth</a>
+      <!--<div class="quote">-->
+        <!--<div class="inner-quote">" # QUOTES.sample"</div>-->
+      <!--</div>-->
+    </h1>
 		<h1 role="navigation" class="navigation">
 		    <a href="/projects">Projects</a>
 		    <a href="/about">About</a>

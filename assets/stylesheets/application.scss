@@ -28,6 +28,22 @@ em {
 	font-style: italic;
 }
 
+.quote {
+	float: right;
+}
+
+.inner-quote {
+	display: inline-block;
+	margin-bottom: -2px;
+	font-size: 0.4em;
+	font-weight: 300;
+	font-style: italic;
+//	-webkit-font-smoothing: subpixel-antialiased;
+	font-family: 'Avenir Next';
+	margin-top: 3px;
+	vertical-align: bottom;
+}
+
 mark {
 	border-radius: 2px;
 	background-color: #fffdcc;
@@ -169,6 +185,9 @@ footer {
 		}
 	}
 
+	.quote {
+		display: none;
+	}
 
 }
 
