@@ -196,6 +196,8 @@ class Application < Sinatra::Application
 
 	# Main page
 	get '/' do
+    # Posts.all.destroy!
+    # return
 		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
 		all_posts.map! { |struc| struc.to_h}
 		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
@@ -210,7 +212,7 @@ class Application < Sinatra::Application
 	get %r{^/search$} do
 		query = request.env['rack.request.query_hash']['query']
 		query_array = []
-		if query[0,1] == '"' and query[-1,1] == '"'
+		if query[0,1] == '"' && query[-1,1] == '"'
 			query_array << query.gsub('"', '').downcase
 		else
 			query_array = query.downcase.split(' ')
