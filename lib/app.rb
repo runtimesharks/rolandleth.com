@@ -280,7 +280,7 @@ class Application < Sinatra::Application
       redirect '/projects', 302 if key.downcase == 'work'
       redirect '/about', 302 if key.downcase == 'contact'
       if key.downcase == 'projects'
-				@title = 'iPhone, iPad, Ruby and Web Apps'
+				@title = 'Projects'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
 				redirect "#{key.downcase}", 301 if key != 'projects'
 				return erb :projects
