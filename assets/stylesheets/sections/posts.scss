@@ -10,12 +10,12 @@ article {
   & h4 {
     padding-left: 2px;
     color: $meta-color;
-    font-size: 0.37em;
+    font-size: 0.4em;
     font-weight: lighter;
     line-height: 2em;
     font-style: italic;
-    margin-left: -130px;
-    margin-top: -32px;
+    margin-left: -100px;
+    margin-top: -27px;
   }
 
   &.about {
@@ -124,7 +124,7 @@ img {
 header {
   color: $title-color;
   font-family: 'Arvo';
-  font-size: 2.5em;
+  font-size: 2em;
   line-height: 1.2em;
   font-weight: normal;
 
@@ -140,10 +140,10 @@ header {
 }
 
 .content {
-  padding-top: 1.5em;
+  padding-top: 1em;
   padding-left: 2px;
-  font-size: 1.2em;
-  line-height: 1.5em;
+  font-size: 1.1em;
+  line-height: 1.4em;
 
   & h2 {
     color: $title-color;
