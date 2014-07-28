@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% QUOTES = [
-
-  ]
-   %>
+  <%- QUOTES = [
+      'Tables turn, bridges burn, you live and learn.',
+      'Live truly and love divine.',
+      'Dream big, if you dare to dream.',
+      "Your time is limited, so don't waste it living someone else's life.",
+      'Be yourself, everyone else is taken.',
+      '[...] avoid the trap of thinking you have something to lose.',
+      'Be a giant, let the world be small.'
+    ]
+    EMOJI = %w( 💤 🌟 💭 🗿 👣 🐶 )
+   -%>
 	<meta charset="UTF-8">
 	<%- @title = @title + ' | ' if @title -%>
   <title><%= @title -%>Roland Leth</title>
@@ -54,7 +61,7 @@
 <body>
   <nav role="navigation" class="header">
     <h1 role="banner">
-      <a href="/">Roland Leth</a>
+      <a href="/"><%= EMOJI.sample %></a>
       <div class="quote">
         <div class="inner-quote"> <%= QUOTES.sample %> </div>
       </div>
