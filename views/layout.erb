@@ -3,12 +3,11 @@
 <head>
   <%- QUOTES = [
       'Tables turn, bridges burn, you live and learn.',
-      'Live truly and love divine.',
       'Dream big, if you dare to dream.',
       "Your time is limited, so don't waste it living someone else's life.",
       'Be yourself, everyone else is taken.',
       '[...] avoid the trap of thinking you have something to lose.',
-      'Be a giant, let the world be small.'
+      "A lot can happen between now and 'never'."
     ]
     EMOJI = %w( 💤 🌟 💭 🗿 👣 🐶 )
    -%>
@@ -61,15 +60,16 @@
 <body>
   <nav role="navigation" class="header">
     <h1 role="banner">
-      <a href="/"><%= EMOJI.sample %></a>
+      <a href="/"><%= 'Roland' %></a>
       <div class="quote">
-        <div class="inner-quote"> <%= QUOTES.sample %> </div>
+        <div class="inner-quote"><%= EMOJI.sample %>&nbsp&nbsp&nbsp<%= QUOTES.sample %></div>
       </div>
     </h1>
 		<h1 role="navigation" class="navigation">
-		    <a href="/projects">Projects</a>
-		    <a href="/about">About</a>
-		    <a href="http://github.com/rolandleth">GitHub</a>
+      <!--<a href="/">Home</a>-->
+      <a href="/projects">Projects</a>
+      <a href="http://github.com/rolandleth">GitHub</a>
+      <a href="/about">About</a>
 		</h1>
   </nav>
   <section>
