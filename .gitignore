@@ -12,3 +12,8 @@
 *.pages
 .bundle
 .DS_STORE
+
+.idea/rolandleth.iml
+.idea/workspace.xml
+.idea/
+.idea/*.*
