@@ -120,9 +120,11 @@ class Application < Sinatra::Application
   end
 
 	# Custom sync with Dropbox URL
-	get '/cmd.Dropbox.Sync' do
+	get '/cmd.Dropbox.Sync/?:with_delete?' do
+    with_delete = params[:with_delete]
 		session = DropboxSession.new(APP_KEY, APP_SECRET)
 		session.set_access_token(AUTH_KEY, AUTH_SECRET)
+
 		client = DropboxClient.new(session, ACCESS_TYPE)
 		client_metadata = client.metadata('/Apps/Editorial/posts')['contents']
 		client_metadata.each do |file|
@@ -135,40 +137,89 @@ class Application < Sinatra::Application
 			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
-			post = Posts.first(:link => link)
-			# If the posts exists
+      post = Posts.first(:link => link)
+      # pp = Posts.first(datetime: '2015-04-30-1513')
+      # pp.destroy
+      # pp.destroy
+
+      # If the datetime isn't the same, it's just another post with the same name
+      while post && post[:link] == link && post[:datetime] != datetime
+        if post.link[-3, 2] == '--'
+          i = post.link[-1, 1].to_i
+          link.sub!("--#{i}", "--#{i + 1}")
+        elsif post.link[-4, 2] == '--'
+          i = post.link[-2, 2].to_i
+          link.sub!("--#{i}", "--#{i + 1}")
+        else
+          link = "#{link}--#{1}"
+        end
+
+        post = Posts.first(:link => link) # If it's nil, we will create a new one, with --i+1
+      end
+
+			# If the post exists.
 			if post
 				# Check to see if it was modified
 				if post.modified != file_mtime
-					body = client.get_file(file['path'])
-					title = body.lines.first
+          body = client.get_file(file['path']) # Memory and time consuming
+          title = body.lines.first.gsub("\n", '')
 					post.update(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
 				end
 			# Otherwise, create a new record
-			else
-				body = client.get_file(file['path'])
-				title = body.lines.first
+      else
+        body = client.get_file(file['path']) # Memory and time consuming
+        title = body.lines.first.gsub("\n", '')
 				Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
 			end
-		end
-		all_posts = Posts.all
+    end
+
+    # Instead of putting the delete code inside a big if block
+    # just leave the array empty if the command was done without a parameter
+    all_posts = []
+    all_posts = Posts.all if with_delete
 		# Check if any post was deleted (highly unlikely)
 		all_posts.each do |post|
+      puts 'a'
 			delete = true
+
 			client_metadata.each do |file|
-				link = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\}\{\[\]_#\$&@$:"';!=\?\+\*\-\)\(]+)\.md$/)[8].to_s
+        matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+        datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
+        link = matches[8].to_s
         link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
-				link.gsub!('&', 'and')
-				link.gsub!("\s", '-')
-				link.downcase!
+        link.gsub!('&', 'and')
+        link.gsub!("\s", '-')
+        link.downcase!
+
+        _post = Posts.first(:link => link)
+        # If the datetime isn't the same, it's just another post with the same name
+        while _post && _post[:link] == link && _post[:datetime] != datetime
+          if _post.link[-3, 2] == '--'
+            i = _post.link[-1, 1].to_i
+            link.sub!("--#{i}", "--#{i + 1}")
+          elsif _post.link[-4, 2] == '--'
+            i = _post.link[-2, 2].to_i
+            link.sub!("--#{i}", "--#{i + 1}")
+          else
+            link = "#{link}--#{1}"
+          end
+
+          _post = Posts.first(:link => link) # If it's nil, we will create a new one, with --i+1
+        end
+
 				delete = false if link == post.link
-			end
+      end
+
 			post.destroy if delete
-		end
+    end
+
 		# Keep a count of all my syncs. Just because.
 		syncs = DropboxSyncs.first(:id => 1)
-		syncs.update(:count => (syncs[:count] + 1))
-		redirect '/', 302
+    if syncs
+		  syncs.update(:count => (syncs[:count] + 1))
+    end
+
+    redirect '/', 302
 	end
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
@@ -201,6 +252,12 @@ class Application < Sinatra::Application
 		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
 		all_posts.map! { |struc| struc.to_h}
 		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
+
+    # all_posts.each do |pp|
+    #   puts pp[:title]
+    #   p ' -- '
+    #   p pp[:datetime]
+    # end
 
 		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		posts = all_posts[0..4]
