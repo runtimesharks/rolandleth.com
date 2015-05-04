@@ -120,8 +120,10 @@ class Application < Sinatra::Application
   end
 
 	# Custom sync with Dropbox URL
-	get '/cmd.Dropbox.Sync/?:with_delete?' do
+	get '/cmd.Dropbox.Sync/:key/?:with_delete?' do
+    not_found unless params[:key] == MY_SYNC_KEY
     with_delete = params[:with_delete]
+
 		session = DropboxSession.new(APP_KEY, APP_SECRET)
 		session.set_access_token(AUTH_KEY, AUTH_SECRET)
 
@@ -137,16 +139,17 @@ class Application < Sinatra::Application
 			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
-      post = Posts.first(:link => link)
+      post = Posts.first(link: link)
       # pp = Posts.first(datetime: '2015-04-30-1513')
       # pp.destroy
       # pp.destroy
 
       # If the datetime isn't the same, it's just another post with the same name
-      while post && post[:link] == link && post[:datetime] != datetime
+      while post && post.link == link && post.datetime != datetime
         if post.link[-3, 2] == '--'
           i = post.link[-1, 1].to_i
           link.sub!("--#{i}", "--#{i + 1}")
+        # I know, I know, but I will never have so many duplicates
         elsif post.link[-4, 2] == '--'
           i = post.link[-2, 2].to_i
           link.sub!("--#{i}", "--#{i + 1}")
@@ -154,7 +157,8 @@ class Application < Sinatra::Application
           link = "#{link}--#{1}"
         end
 
-        post = Posts.first(:link => link) # If it's nil, we will create a new one, with --i+1
+        # If it's nil, we will create a new one, which will have a --i suffix in the link
+        post = Posts.first(:link => link)
       end
 
 			# If the post exists.
@@ -179,7 +183,6 @@ class Application < Sinatra::Application
     all_posts = Posts.all if with_delete
 		# Check if any post was deleted (highly unlikely)
 		all_posts.each do |post|
-      puts 'a'
 			delete = true
 
 			client_metadata.each do |file|
@@ -191,9 +194,9 @@ class Application < Sinatra::Application
         link.gsub!("\s", '-')
         link.downcase!
 
-        _post = Posts.first(:link => link)
+        _post = Posts.first(link: link)
         # If the datetime isn't the same, it's just another post with the same name
-        while _post && _post[:link] == link && _post[:datetime] != datetime
+        while _post && _post.link == link && _post.datetime != datetime
           if _post.link[-3, 2] == '--'
             i = _post.link[-1, 1].to_i
             link.sub!("--#{i}", "--#{i + 1}")
@@ -204,7 +207,7 @@ class Application < Sinatra::Application
             link = "#{link}--#{1}"
           end
 
-          _post = Posts.first(:link => link) # If it's nil, we will create a new one, with --i+1
+          _post = Posts.first(link: link)
         end
 
 				delete = false if link == post.link
