@@ -35,7 +35,7 @@ em {
 .inner-quote {
 	display: inline-block;
 	margin-bottom: -2px;
-	font-size: 0.4em;
+	font-size: 0.35em;
 	font-weight: 300;
 	font-style: italic;
 //	-webkit-font-smoothing: subpixel-antialiased;
@@ -191,6 +191,12 @@ footer {
 
 }
 
+
+@media all and (max-width: 700px) {
+	.inner-quote {
+		display: none;
+	}
+}
 
 @media screen and (max-width: 430px) {
 	img.project-screenshot {
