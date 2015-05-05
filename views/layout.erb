@@ -12,8 +12,8 @@
     EMOJI = %w( 💤 🌟 💭 🗿 👣 🐶 )
    -%>
 	<meta charset="UTF-8">
-	<%- @title = @title + ' | ' if @title -%>
-  <title><%= @title -%>Roland Leth</title>
+	<%- @title = 'Roland Leth' unless @title %>
+  <title><%= @title -%></title>
   <link rel="stylesheet" href="/assets/application.css">
   <link rel="author" type="text/plain" href="/humans.txt">
 	<%- if @meta_canonical %>
@@ -60,7 +60,7 @@
 <body>
   <nav role="navigation" class="header">
     <h1 role="banner">
-      <a href="/"><%= 'Roland' %></a>
+      <a href="/"><%= 'Roland Leth' %></a>
       <div class="quote">
         <div class="inner-quote"><%= EMOJI.sample %>&nbsp&nbsp&nbsp<%= QUOTES.sample %></div>
       </div>
