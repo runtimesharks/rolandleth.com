@@ -61,8 +61,8 @@ class Application < Sinatra::Application
     rss ||= RSS::Maker.make('atom') do |maker|
       maker.channel.icon = '/public/favicon.ico'
       maker.channel.logo = '/public/favicon.ico'
-      maker.channel.id = '/'
-      maker.channel.link = '/'
+      maker.channel.link = 'http://rolandleth.com'
+      maker.channel.about = 'http://rolandleth.com'
       maker.channel.title = 'Roland Leth'
       maker.channel.description = 'Roland Leth'
       maker.channel.author = 'Roland Leth'
@@ -72,22 +72,23 @@ class Application < Sinatra::Application
       maker.items.do_sort = false
 
       posts.each do |post|
-        i = maker.items.new_item
-        i.title = post[:title]
-        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-        # A little hack to account for daylight savings
-        time_zone = 'EET'
-        time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
-        time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
-        i.link = "/#{post[:link]}"
-        i.source.link = '/'
-        i.content.src = '/'
-        i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
-        i.content.type = 'html'
-        i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-        i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-        # The RSS was last updated when the last post was posted (which is first in the array)
-        maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+        maker.items.new_item do |item|
+	        item.title = post[:title]
+	        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+	        # A little hack to account for daylight savings
+	        time_zone = 'EET'
+	        time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
+	        time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
+	        item.link = "http://rolandleth.com/#{post[:link]}"
+	        item.source.link = 'http://rolandleth.com'
+	        item.content.src = 'http://rolandleth.com'
+	        item.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
+	        item.content.type = 'html'
+	        item.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	        item.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	        # The RSS was last updated when the last post was posted (which is first in the array)
+	        maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+        end
       end
     end
     rss.link.rel = 'self'
