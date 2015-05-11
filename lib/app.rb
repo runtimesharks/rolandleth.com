@@ -81,6 +81,7 @@ class Application < Sinatra::Application
         time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
         i.link = "/#{post[:link]}"
         i.source.link = '/'
+        i.content.src = '/'
         i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
         i.content.type = 'html'
         i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
