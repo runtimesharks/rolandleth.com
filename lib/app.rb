@@ -62,7 +62,7 @@ class Application < Sinatra::Application
       maker.channel.icon = '/public/favicon.ico'
       maker.channel.logo = '/public/favicon.ico'
       maker.channel.id = 'http://rolandleth.com'
-      maker.channel.link = 'http://rolandleth.com/feed'
+      maker.channel.link = '/'
       maker.channel.title = 'Roland Leth'
       maker.channel.description = 'Roland Leth'
       maker.channel.author = 'Roland Leth'
