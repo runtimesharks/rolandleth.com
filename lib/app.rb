@@ -61,7 +61,7 @@ class Application < Sinatra::Application
     rss ||= RSS::Maker.make('atom') do |maker|
       maker.channel.icon = '/public/favicon.ico'
       maker.channel.logo = '/public/favicon.ico'
-      maker.channel.id = 'http://rolandleth.com'
+      maker.channel.id = '/'
       maker.channel.link = '/'
       maker.channel.title = 'Roland Leth'
       maker.channel.description = 'Roland Leth'
