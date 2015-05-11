@@ -59,8 +59,8 @@ class Application < Sinatra::Application
     posts.map! { |struc| struc.to_h }
     posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
     rss ||= RSS::Maker.make('atom') do |maker|
-      maker.channel.icon = '/public/favicon.ico'
-      maker.channel.logo = '/public/favicon.ico'
+      maker.channel.icon = 'http://rolandleth.com/public/favicon.ico'
+      maker.channel.logo = 'http://rolandleth.com/public/favicon.ico'
       maker.channel.link = 'http://rolandleth.com'
       maker.channel.about = 'http://rolandleth.com'
       maker.channel.title = 'Roland Leth'
