@@ -76,19 +76,15 @@ class Application < Sinatra::Application
 
       posts.each do |post|
         maker.items.new_item do |item|
+	        last_updated = time_from_string(post[:datetime])
 	        item.title = post[:title]
-	        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-	        # A little hack to account for daylight savings
-	        time_zone = 'EET'
-	        time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
-	        time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
 	        item.link = "http://rolandleth.com/#{post[:link]}"
 	        item.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
 	        item.content.type = 'html'
-	        item.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-	        item.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	        item.updated = last_updated
+	        item.published = last_updated
 	        # The RSS was last updated when the last post was posted (which is first in the array)
-	        maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	        maker.channel.updated ||= last_updated
         end
       end
     end
@@ -100,6 +96,16 @@ class Application < Sinatra::Application
 
     rss.to_s
   end
+
+	def time_from_string(string)
+		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+		# A little hack to account for daylight savings
+		time_zone = 'EET'
+		time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
+		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
+
+		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	end
 
   # Sitemap
   get '/sitemap.xml' do
@@ -143,8 +149,10 @@ class Application < Sinatra::Application
 			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
+			next if DateTime.now.to_time < time_from_string(datetime)
+
       post = Posts.first(link: link)
-      # pp = Posts.first(datetime: '2015-04-30-1513')
+      # pp = Posts.first(title: 'Fastlane')
       # pp.destroy
       # pp.destroy
 
