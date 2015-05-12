@@ -55,6 +55,8 @@ class Application < Sinatra::Application
 
 	# RSS
   get '/feed' do
+	  content_type 'application/atom+xml'
+
     posts = repository(:default).adapter.select('SELECT * FROM application_posts')
     posts.map! { |struc| struc.to_h }
     posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
@@ -66,6 +68,7 @@ class Application < Sinatra::Application
       maker.channel.title = 'Roland Leth'
       maker.channel.description = 'Roland Leth'
       maker.channel.author = 'Roland Leth'
+      maker.channel.contributor = 'Roland Leth'
       maker.channel.language = 'en'
       maker.channel.rights = "© #{Time.now.year} Roland Leth"
       maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
@@ -80,8 +83,6 @@ class Application < Sinatra::Application
 	        time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
 	        time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
 	        item.link = "http://rolandleth.com/#{post[:link]}"
-	        item.source.link = 'http://rolandleth.com'
-	        item.content.src = 'http://rolandleth.com'
 	        item.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
 	        item.content.type = 'html'
 	        item.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
@@ -91,12 +92,12 @@ class Application < Sinatra::Application
         end
       end
     end
-    rss.link.rel = 'self'
-    rss.link.type = 'application/atom+xml'
+
+    rss.link.rel = 'http://rolandleth.com'
     rss.entries.each do |entry|
       entry.content.lang = 'en'
-      entry.title.type = 'html'
     end
+
     rss.to_s
   end
 
