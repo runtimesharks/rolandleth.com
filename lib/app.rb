@@ -99,9 +99,7 @@ class Application < Sinatra::Application
 
 	def time_from_string(string)
 		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-		# A little hack to account for daylight savings
-		time_zone = 'EET'
-		time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
+		time_zone = Time.now.getlocal.zone
 		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
 
 		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
@@ -150,7 +148,6 @@ class Application < Sinatra::Application
 			file_mtime = file['client_mtime'].to_s
 
 			next if DateTime.now.to_time < time_from_string(datetime)
-
       post = Posts.first(link: link)
       # pp = Posts.first(title: 'Fastlane')
       # pp.destroy
