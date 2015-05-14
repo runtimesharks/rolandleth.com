@@ -101,12 +101,13 @@ class Application < Sinatra::Application
 
 	def time_from_string(string)
 		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-		# Time zone support sucks. Leave it like this.
-		time_zone = 'EET'
-		# A little hack to account for daylight savings
-		time_zone = 'EEST' if date_matches[2].to_i >= 4 && date_matches[2].to_i <= 9
+    # Time zone support sucks. Leave it like this.
+    time_zone = 'EET'
+    # A little hack to account for daylight savings of when the post was created
+    time_zone = 'EEST' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
 		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
 
+    puts Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
 		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
 	end
 
