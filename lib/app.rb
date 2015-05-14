@@ -75,6 +75,8 @@ class Application < Sinatra::Application
       maker.items.do_sort = false
 
       posts.each do |post|
+	      next if time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
+
         maker.items.new_item do |item|
 	        last_updated = time_from_string(post[:datetime])
 	        item.title = post[:title]
@@ -128,7 +130,7 @@ class Application < Sinatra::Application
   end
 
 	# Custom sync with Dropbox URL
-	get '/cmd.Dropbox.Sync/:key/?:with_delete?' do
+	get '/cmd.sync/:key/?:with_delete?' do
     not_found unless params[:key] == MY_SYNC_KEY
     with_delete = params[:with_delete]
 
@@ -147,7 +149,6 @@ class Application < Sinatra::Application
 			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
-			next if DateTime.now.to_time < time_from_string(datetime)
       post = Posts.first(link: link)
       # pp = Posts.first(title: 'Fastlane')
       # pp.destroy
@@ -262,8 +263,11 @@ class Application < Sinatra::Application
     # Posts.all.destroy!
     # return
 		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-		all_posts.map! { |struc| struc.to_h}
-		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
+		all_posts.map! { |struc| struc.to_h }
+		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
+    all_posts.reject! do |post|
+      time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
+    end
 
     # all_posts.each do |pp|
     #   puts pp[:title]
