@@ -5,6 +5,7 @@ require 'dm-postgres-adapter'
 require 'dm-migrations'
 require 'markdown_renderer'
 require 'dropbox_keys'
+require 'active_support/all'
 
 class Application < Sinatra::Application
 	include DropboxKeys
@@ -102,6 +103,7 @@ class Application < Sinatra::Application
 	def time_from_string(string)
 		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
     # Time zone support sucks. Leave it like this.
+		Time.zone = 'Bucharest'
     time_zone = 'EET'
     # A little hack to account for daylight savings of when the post was created
     time_zone = 'EEST' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
