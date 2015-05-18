@@ -12,14 +12,19 @@
             end_index = start_index + w.length
             # This is how the search term is written inside the post's text. We search by downcasing it.
             original_occurrence = content[start_index..end_index - 1]
-            content.gsub!(original_occurrence, "<search-mark>#{original_occurrence}</search-mark>")
+            content.gsub!(/#{original_occurrence}/i, '<span class=\'search-mark\'>\0</span>')
+            content.scan(/href=".*?"/).each do |s|
+              edited_link = s.gsub('<span class=\'search-mark\'>', '')
+              edited_link.gsub!('</span>', '')
+              content.gsub!(s, edited_link)
+            end
           end
           if title.downcase.index(w)
             start_index = title.downcase.index(w)
             end_index = start_index + w.length
             # This is how the search term is written inside the post's text. We search by downcasing it.
             original_occurrence = title[start_index..end_index - 1]
-            title.gsub!(original_occurrence, "<search-mark>#{original_occurrence}</search-mark>")
+            title.gsub!(/#{original_occurrence}/i, '<span class=\'search-mark\'>\0</span>')
           end
         end -%>
       <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
