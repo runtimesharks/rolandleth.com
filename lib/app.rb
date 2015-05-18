@@ -5,7 +5,6 @@ require 'dm-postgres-adapter'
 require 'dm-migrations'
 require 'markdown_renderer'
 require 'dropbox_keys'
-require 'active_support/all'
 
 class Application < Sinatra::Application
 	include DropboxKeys
@@ -104,12 +103,12 @@ class Application < Sinatra::Application
 		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
     # Time zone support sucks. Leave it like this.
 		Time.zone = 'Bucharest'
-    time_zone = 'EET'
+		time_zone = Time.zone.formatted_offset
     # A little hack to account for daylight savings of when the post was created
-    time_zone = 'EEST' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
-		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
+		time_zone = '+03:00' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
+		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %:z')
 
-		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).in_time_zone
 	end
 
   # Sitemap
