@@ -231,10 +231,8 @@ class Application < Sinatra::Application
     end
 
 		# Keep a count of all my syncs. Just because.
-		syncs = DropboxSyncs.first(:id => 1)
-    if syncs
-		  syncs.update(:count => (syncs[:count] + 1))
-    end
+		syncs = DropboxSyncs.first || DropboxSyncs.create(count: 0)
+    syncs.update(count: (syncs[:count] + 1))
 
     redirect '/', 302
 	end
