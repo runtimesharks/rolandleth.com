@@ -12,10 +12,10 @@
             end_index = start_index + w.length
             # This is how the search term is written inside the post's text. We search by downcasing it.
             original_occurrence = content[start_index..end_index - 1]
-            content.gsub!(/#{original_occurrence}/i, '<span class=\'search-mark\'>\0</span>')
+            content.gsub!(/#{original_occurrence}/i, '<mark class=\'search\'>\0</mark>')
             content.scan(/href=".*?"/).each do |s|
-              edited_link = s.gsub('<span class=\'search-mark\'>', '')
-              edited_link.gsub!('</span>', '')
+              edited_link = s.gsub('<mark class=\'search\'>', '')
+              edited_link.gsub!('</mark>', '')
               content.gsub!(s, edited_link)
             end
           end
