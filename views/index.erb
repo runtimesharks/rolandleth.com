@@ -18,6 +18,11 @@
               edited_link.gsub!('</mark>', '')
               content.gsub!(s, edited_link)
             end
+            content.scan(/\/assets\/.*?\\/).each do |s|
+              edited_link = s.gsub('<mark class=\'search\'>', '')
+              edited_link.gsub!('</mark>', '')
+              content.gsub!(s, edited_link)
+            end
           end
           if title.downcase.index(w)
             start_index = title.downcase.index(w)
