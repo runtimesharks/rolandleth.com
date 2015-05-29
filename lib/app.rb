@@ -175,19 +175,20 @@ class Application < Sinatra::Application
         post = Posts.first(:link => link)
       end
 
-			# If the post exists.
-			if post
-				# Check to see if it was modified
-				if post.modified != file_mtime
-          body = client.get_file(file['path']) # Memory and time consuming
-          title = body.lines.first.gsub("\n", '')
-					post.update(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
-				end
-			# Otherwise, create a new record
-      else
+			# If the post exists and was modified, or the post doesn't exist
+			# we need to create the required strings
+			if !post || (post && post.modified != file_mtime)
         body = client.get_file(file['path']) # Memory and time consuming
-        title = body.lines.first.gsub("\n", '')
-				Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
+        title = body.lines.first.gsub("\n", '') # Remove the new line character from the title line
+        body = body.lines[2..-1].join # Remove the title and the empty line after it from the body
+
+        # If the post exists, it means it was modified, update it
+        if post
+					post.update(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
+        # Create a new record
+        else
+	        Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
+        end
 			end
     end
 
