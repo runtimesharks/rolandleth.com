@@ -4,7 +4,7 @@
       posts.each do |post|
         date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
         date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-        content = _markdown(post[:body].lines[2..-1].join)
+        content = _markdown(post[:body].lines.join)
         title = post[:title]
         search_terms.each do |w|
           if content.downcase.index(w)
@@ -38,13 +38,13 @@
       # Explained the total_pages == -1 check in app.rb
       date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
       date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-      content = _markdown(post[:body].lines[2..-1].join) -%>
+      content = _markdown(post[:body].lines.join) -%>
       <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link] } -%>
 <%- else
       posts.each do |post|
         date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
         date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-        content = _markdown(post[:body].lines[2..-1].join)
+        content = _markdown(post[:body].lines.join)
         title = post[:title] -%>
         <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
       <%- end -%>
