@@ -79,15 +79,31 @@ figure.with-header {
   margin: 0 0.5em 1em 0;
 }
 
+.centered-image-wrapper {
+  text-align: center;
+  overflow: auto;
+
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+
+  -webkit-box-shadow: #777 0 0 3px 1px;
+  -moz-box-shadow: #444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
+  box-shadow: #777 0 0 7px 0; /* inset is optional */
+}
+
 img {
   border-radius: 2px;
   -webkit-box-shadow: #777 0 0 3px 1px;
   -moz-box-shadow: #444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
   box-shadow: #777 0 0 7px 0; /* inset is optional */
 
+  //&[class] {
+  //}
   &:not([class]) {
     margin: 0 auto;
     display: table;
+    //visibility: hidden;
   }
 
   &.about {
