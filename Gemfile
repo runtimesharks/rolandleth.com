@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
+ruby '2.1.6'
 
-ruby '2.1.0'
 gem 'rake'
 gem 'bundler'
 gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'xml-sitemap'
 gem 'newrelic_rpm'
 gem 'dropbox-sdk'

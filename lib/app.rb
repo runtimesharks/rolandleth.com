@@ -55,47 +55,61 @@ class Application < Sinatra::Application
 
 	# RSS
   get '/feed' do
+	  content_type 'application/atom+xml'
+
     posts = repository(:default).adapter.select('SELECT * FROM application_posts')
     posts.map! { |struc| struc.to_h }
     posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
     rss ||= RSS::Maker.make('atom') do |maker|
-      maker.channel.icon = '/public/favicon.ico'
-      maker.channel.logo = '/public/favicon.ico'
-      maker.channel.id = 'http://rolandleth.com'
-      maker.channel.link = 'http://rolandleth.com/feed'
+      maker.channel.icon = 'http://rolandleth.com/public/favicon.ico'
+      maker.channel.logo = 'http://rolandleth.com/public/favicon.ico'
+      maker.channel.link = 'http://rolandleth.com'
+      maker.channel.about = 'http://rolandleth.com'
       maker.channel.title = 'Roland Leth'
       maker.channel.description = 'Roland Leth'
       maker.channel.author = 'Roland Leth'
+      maker.channel.contributor = 'Roland Leth'
       maker.channel.language = 'en'
       maker.channel.rights = "© #{Time.now.year} Roland Leth"
       maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
       maker.items.do_sort = false
 
       posts.each do |post|
-        i = maker.items.new_item
-        i.title = post[:title]
-        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-        # A little hack to account for daylight savings
-        time_zone = 'EET'
-        time_zone = 'EEST' if date_matches[2].to_i >= 4 and date_matches[2].to_i <= 9
-        time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %Z')
-        i.link = "http://rolandleth.com/#{post[:link]}"
-        i.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
-        i.content.type = 'html'
-        i.updated = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-        i.published = DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
-        # The RSS was last updated when the last post was posted (which is first in the array)
-        maker.channel.updated ||= DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).to_time
+	      next if time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
+
+        maker.items.new_item do |item|
+	        last_updated = time_from_string(post[:datetime])
+	        item.title = post[:title]
+	        item.link = "http://rolandleth.com/#{post[:link]}"
+	        item.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
+	        item.content.type = 'html'
+	        item.updated = last_updated
+	        item.published = last_updated
+	        # The RSS was last updated when the last post was posted (which is first in the array)
+	        maker.channel.updated ||= last_updated
+        end
       end
     end
-    rss.link.rel = 'self'
-    rss.link.type = 'application/atom+xml'
+
+    rss.link.rel = 'http://rolandleth.com'
     rss.entries.each do |entry|
       entry.content.lang = 'en'
-      entry.title.type = 'html'
     end
+
     rss.to_s
   end
+
+	def time_from_string(string)
+		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+    # Time zone support sucks. Leave it like this.
+		Time.zone = 'Bucharest'
+		time_zone = Time.zone.formatted_offset
+    # A little hack to account for daylight savings of when the post was created
+		time_zone = '+03:00' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
+		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %:z')
+
+		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).in_time_zone
+	end
 
   # Sitemap
   get '/sitemap.xml' do
@@ -120,7 +134,7 @@ class Application < Sinatra::Application
   end
 
 	# Custom sync with Dropbox URL
-	get '/cmd.Dropbox.Sync/:key/?:with_delete?' do
+	get '/cmd.sync/:key/?:with_delete?' do
     not_found unless params[:key] == MY_SYNC_KEY
     with_delete = params[:with_delete]
 
@@ -140,7 +154,7 @@ class Application < Sinatra::Application
 			file_mtime = file['client_mtime'].to_s
 
       post = Posts.first(link: link)
-      # pp = Posts.first(datetime: '2015-04-30-1513')
+      # pp = Posts.first(title: 'Fastlane')
       # pp.destroy
       # pp.destroy
 
@@ -217,10 +231,8 @@ class Application < Sinatra::Application
     end
 
 		# Keep a count of all my syncs. Just because.
-		syncs = DropboxSyncs.first(:id => 1)
-    if syncs
-		  syncs.update(:count => (syncs[:count] + 1))
-    end
+		syncs = DropboxSyncs.first || DropboxSyncs.create(count: 0)
+    syncs.update(count: (syncs[:count] + 1))
 
     redirect '/', 302
 	end
@@ -253,8 +265,11 @@ class Application < Sinatra::Application
     # Posts.all.destroy!
     # return
 		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-		all_posts.map! { |struc| struc.to_h}
-		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
+		all_posts.map! { |struc| struc.to_h }
+		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
+    all_posts.reject! do |post|
+      time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
+    end
 
     # all_posts.each do |pp|
     #   puts pp[:title]

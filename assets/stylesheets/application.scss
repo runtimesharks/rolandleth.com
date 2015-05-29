@@ -35,7 +35,7 @@ em {
 .inner-quote {
 	display: inline-block;
 	margin-bottom: -2px;
-	font-size: 0.4em;
+	font-size: 0.35em;
 	font-weight: 300;
 	font-style: italic;
 //	-webkit-font-smoothing: subpixel-antialiased;
@@ -48,12 +48,14 @@ mark {
 	border-radius: 2px;
 	background-color: #fffdcc;
 	font-style: normal;
-}
-
-search-mark {
-  border-radius: 2px;
-  background-color: #fff0f4;
-  font-style: normal;
+	&.search {
+		padding: 0 0.1em 0 0.1em;
+		border-radius: 2px;
+		//background-color: #fff0f4;
+		background-color: $link-color;
+		color: $background-color;
+		font-style: normal;
+	}
 }
 
 strong {
@@ -191,6 +193,12 @@ footer {
 
 }
 
+
+@media all and (max-width: 700px) {
+	.inner-quote {
+		display: none;
+	}
+}
 
 @media screen and (max-width: 430px) {
 	img.project-screenshot {
