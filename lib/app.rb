@@ -108,7 +108,7 @@ class Application < Sinatra::Application
 		time_zone = '+03:00' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
 		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %:z')
 
-		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).in_time_zone
+		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).in_time_zone.to_time
 	end
 
   # Sitemap
