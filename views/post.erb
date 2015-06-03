@@ -1,12 +1,18 @@
 <article>
   <header>
 	  <%- # Explained this move in app.rb -%>
-    <h1><a href="/<%= link %>"><%= title -%></a></h1>
+    <h1>
+      <a href="/<%= link %>"><%= title -%></a>
+    </h1>
     <%- if (published_at = Time.at(date)) -%>
       <h4>
         <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
           <%= published_at.strftime('%b %e, %Y') -%>
         </time>
+      </h4>
+      <h4 class="separator"> - </h4>
+      <h4 class="read-time">
+        <%= "#{content.reading_time(format: :approx).to_s.gsub!('minutes', 'min')} read" -%>
       </h4>
     <%- end -%>
   </header>
