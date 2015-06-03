@@ -5,6 +5,7 @@ require 'dm-postgres-adapter'
 require 'dm-migrations'
 require 'markdown_renderer'
 require 'dropbox_keys'
+require 'readingtime'
 
 class Application < Sinatra::Application
 	include DropboxKeys
@@ -75,10 +76,10 @@ class Application < Sinatra::Application
       maker.items.do_sort = false
 
       posts.each do |post|
-	      next if time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
+	      last_updated = time_from_string(post[:datetime])
+	      next if last_updated == nil || DateTime.now.to_time < last_updated
 
         maker.items.new_item do |item|
-	        last_updated = time_from_string(post[:datetime])
 	        item.title = post[:title]
 	        item.link = "http://rolandleth.com/#{post[:link]}"
 	        item.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
