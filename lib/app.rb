@@ -58,9 +58,7 @@ class Application < Sinatra::Application
   get '/feed' do
 	  content_type 'application/atom+xml'
 
-    posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-    posts.map! { |struc| struc.to_h }
-    posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
+    posts = all_posts
     rss ||= RSS::Maker.make('atom') do |maker|
       maker.channel.icon = 'http://rolandleth.com/public/favicon.ico'
       maker.channel.logo = 'http://rolandleth.com/public/favicon.ico'
@@ -77,12 +75,11 @@ class Application < Sinatra::Application
 
       posts.each do |post|
 	      last_updated = time_from_string(post[:datetime])
-	      next if last_updated == nil || DateTime.now.to_time < last_updated
 
         maker.items.new_item do |item|
 	        item.title = post[:title]
 	        item.link = "http://rolandleth.com/#{post[:link]}"
-	        item.content.content = _markdown(post[:body].lines[2..-1].join, true)
+	        item.content.content = _markdown(post[:body].lines.join, true)
 	        item.content.type = 'html'
 	        item.updated = last_updated
 	        item.published = last_updated
@@ -173,7 +170,7 @@ class Application < Sinatra::Application
         end
 
         # If it's nil, we will create a new one, which will have a --i suffix in the link
-        post = Posts.first(:link => link)
+        post = Posts.first(link: link)
       end
 
 			# If the post exists and was modified, or the post doesn't exist
@@ -195,10 +192,10 @@ class Application < Sinatra::Application
 
     # Instead of putting the delete code inside a big if block
     # just leave the array empty if the command was done without a parameter
-    all_posts = []
-    all_posts = Posts.all if with_delete
+    posts = []
+    posts = Posts.all if with_delete
 		# Check if any post was deleted (highly unlikely)
-		all_posts.each do |post|
+		posts.each do |post|
 			delete = true
 
 			client_metadata.each do |file|
@@ -262,27 +259,28 @@ class Application < Sinatra::Application
 		redirect "/#{current_page}", 301
 	end
 
+	def all_posts
+		posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+		posts.map! { |struc| struc.to_h }
+		posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
+		posts.reject! do |post|
+			time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
+		end
+
+		posts
+	end
+
 	# Main page
 	get '/' do
     # Posts.all.destroy!
     # return
-		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-		all_posts.map! { |struc| struc.to_h }
-		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
-    all_posts.reject! do |post|
-      time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
-    end
 
-    # all_posts.each do |pp|
-    #   puts pp[:title]
-    #   p ' -- '
-    #   p pp[:datetime]
-    # end
+		posts = all_posts
 
-		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
-		posts = all_posts[0..4]
+		total_pages = (posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
+		posts_to_display = posts[0..4]
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
-		erb :index, locals: { posts: posts, page: 1, total_pages: total_pages, gap: 2 }
+		erb :index, locals: { posts: posts_to_display, page: 1, total_pages: total_pages, gap: 2 }
 	end
 
 	# Search
@@ -295,17 +293,13 @@ class Application < Sinatra::Application
 			query_array = query.downcase.split(' ')
 		end
 
-		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-		all_posts.map! { |struc| struc.to_h}
-		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
-
-		all_posts.select!	do |p|
+		posts = all_posts.select	do |p|
 			query_array.any? { |w| p[:body].downcase.include?(w) or p[:title].downcase.include?(w) }
 		end
 
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
-		if all_posts.count > 0
-			erb :index, locals: { posts: all_posts, page: 1, total_pages: 'search', gap: 2, search_terms: query_array }
+		if posts.count > 0
+			erb :index, locals: { posts: posts, page: 1, total_pages: 'search', gap: 2, search_terms: query_array }
 		else
 			search_not_found
 		end
@@ -315,24 +309,20 @@ class Application < Sinatra::Application
 	get %r{^/(\d+)$} do |current_page|
 		@meta_canonical = current_page
 
-		all_posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-		all_posts.map! { |struc| struc.to_h}
-		all_posts.sort! { |a, b| a[:datetime] <=> b[:datetime]}.reverse!
-
+		posts = all_posts
 		page = (current_page || 1).to_i
 		# Start index is the first index on each page. if page == 2 and PAGE_SIZE == 5, start_index is 5
 		start_index = (page - 1) * PAGE_SIZE
 		# End index is last index on each page
-		end_index = [start_index + PAGE_SIZE - 1, all_posts.count - 1].min
-		total_pages = (all_posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
-		# Posts to be displayed on current page
-		posts = all_posts[start_index..end_index]
+		end_index = [start_index + PAGE_SIZE - 1, posts.count - 1].min
+		total_pages = (posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
 		# gap: How many pages between first/last and current before '..' is shown
 		# Example: gap of 2, current page 5, pagination will be 1 .. 4 5 6 .. 9. Tweaked for use with a gap of 2.
 		if page > total_pages
 			not_found
 		else
-			erb :index, locals: { posts: posts, page: page, total_pages: total_pages, gap: 2 }
+			# Posts to be displayed on current page
+			erb :index, locals: { posts: posts[start_index..end_index], page: page, total_pages: total_pages, gap: 2 }
 		end
 	end
 
