@@ -4,24 +4,25 @@
     <h1>
       <a href="/<%= link %>"><%= title -%></a>
     </h1>
+    <% reading_time = content.reading_time(format: :approx)
+       if reading_time.to_s['seconds']
+         reading_time = '1 min'
+       else
+         reading_time = reading_time.gsub!('minutes', 'min')
+       end
+    -%>
     <%- if (published_at = Time.at(date)) -%>
       <h4>
         <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
           <%= published_at.strftime('%b %e, %Y') -%>
         </time>
+        <%= "- #{reading_time} read" -%>
       </h4>
-      <h4 class="separator"> - </h4>
-      <h4 class="read-time">
-        <% reading_time = content.reading_time(format: :approx)
-           if reading_time.to_s['seconds']
-              reading_time = '1 min'
-           else
-             reading_time = reading_time.gsub!('minutes', 'min')
-           end
-        -%>
+    <%- else -%>
+      <h4>
         <%= "#{reading_time} read" -%>
       </h4>
-    <%- end -%>
+    <% end -%>
   </header>
   <div class="content">
     <%= content -%>
