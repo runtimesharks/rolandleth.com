@@ -8,10 +8,11 @@ blockquote {
 }
 
 code {
-	padding: 0 0.2em 0 0.2em;
-	border: 1px solid #dcdcdc;
+	//color: #8a54bc;
+	//font-weight: 600;
+	background-color: #F8F8F8;
 	border-radius: 2px;
-	background-color: ghostWhite;
+	padding: 0.1em 0;
 	color: #703DAA;
   white-space: pre-wrap;
 	font-size: 0.85em;
@@ -21,17 +22,16 @@ code {
 pre {
 	line-height: 1.1em;
 	overflow: auto;
-	padding: 0.4em 0.2em 0.5em 0.4em;
-	border: 1px solid #dcdcdc;
+	padding: 0.4em;
+	//border: 1px solid #dcdcdc;
+	background-color: #F9F9F9;
 	border-radius: 2px;
-	background-color: ghostWhite;
 	font-size: 0.95em;
 	font-family: Consolas, Menlo, Monaco, Courier, monospace;
 
 	& code {
-		padding: 0;
-		background-color: transparent;
 		color: #666;
-		border: none;
+		white-space: pre;
+		font-weight: 300;
 	}
 }

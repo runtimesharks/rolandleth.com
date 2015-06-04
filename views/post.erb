@@ -12,7 +12,14 @@
       </h4>
       <h4 class="separator"> - </h4>
       <h4 class="read-time">
-        <%= "#{content.reading_time(format: :approx).to_s.gsub!('minutes', 'min')} read" -%>
+        <% reading_time = content.reading_time(format: :approx)
+           if reading_time.to_s['seconds']
+              reading_time = '1 min'
+           else
+             reading_time = reading_time.gsub!('minutes', 'min')
+           end
+        -%>
+        <%= "#{reading_time} read" -%>
       </h4>
     <%- end -%>
   </header>

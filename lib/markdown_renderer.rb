@@ -5,11 +5,11 @@ require 'rouge/plugins/redcarpet'
 class HTML < Redcarpet::Render::HTML
 	include Rouge::Plugins::Redcarpet # yep, that's it.
 
-  def block_code(code, language)
+  def block_code(text, language)
 		if language
-			Rouge.highlight(code, language, 'html')
+			Rouge.highlight(text, language, 'html')
 		else
-			Rouge.highlight(code, 'ruby', 'html')
+			Rouge.highlight(text, 'ruby', 'html')
 		end
   end
 end
