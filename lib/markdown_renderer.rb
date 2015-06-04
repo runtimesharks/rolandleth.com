@@ -1,24 +1,35 @@
 require 'redcarpet'
-require 'pygments'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
 
-class MarkdownRenderer < Redcarpet::Render::HTML
+class HTML < Redcarpet::Render::HTML
+	include Rouge::Plugins::Redcarpet # yep, that's it.
+
   def block_code(code, language)
 		if language
-      Pygments.highlight(code, lexer: language.to_sym)
+			Rouge.highlight(code, language, 'html')
 		else
-			Pygments.highlight(code, lexer: 'ruby')
+			Rouge.highlight(code, 'ruby', 'html')
 		end
   end
 end
 
-class MarkdownRendererForFeed < Redcarpet::Render::HTML
+class Feed < Redcarpet::Render::HTML
 end
 
-def _markdown(text)
-	return '' unless text and text.length > 0
+def _markdown(text, for_feed = false)
+	return '' unless text && text.length > 0
 
-	options = {
+	render_options = {
+		filter_html: true,
+	  hard_wrap: false,
+	  css_class: false,
+		link_attributes: { rel: 'nofollow' }
+	}
+
+	extensions = {
 			no_intra_emphasis: true,
+			lax_spacing: true,
 			tables: true,
 			fenced_code_blocks: true,
 			autolink: true,
@@ -28,24 +39,12 @@ def _markdown(text)
 	    underline: true,
 	    highlight: true
 	}
-	markdown = Redcarpet::Markdown.new(MarkdownRenderer, options)
-	markdown.render(text)
-end
-# Use the default markdown for the feed; we don't need pygmentation there and it bugs sometimes
-def _markdown_for_feed(text)
-	return '' unless text and text.length > 0
 
-	options = {
-			no_intra_emphasis: true,
-			tables: true,
-			fenced_code_blocks: true,
-			autolink: true,
-			strikethrough: true,
-			space_after_headers: true,
-			superscript: true,
-			underline: true,
-			highlight: true
-	}
-	markdown = Redcarpet::Markdown.new(MarkdownRendererForFeed, options)
-	markdown.render(text)
+	if for_feed
+		renderer = Feed.new(render_options)
+	else
+		renderer = HTML.new(render_options)
+	end
+
+	Redcarpet::Markdown.new(renderer, extensions).render(text)
 end

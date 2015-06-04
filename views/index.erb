@@ -32,7 +32,7 @@
             title.gsub!(/#{original_occurrence}/i, '<span class=\'search-mark\'>\0</span>')
           end
         end -%>
-      <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
+      <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link] } -%>
       <%- end -%>
 <%- elsif total_pages == -1
       # Explained the total_pages == -1 check in app.rb
@@ -46,7 +46,7 @@
         date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
         content = _markdown(post[:body].lines.join)
         title = post[:title] -%>
-        <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link]} -%>
+        <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link] } -%>
       <%- end -%>
   <%- if total_pages > 1 -%>
     <nav class="pagination">
