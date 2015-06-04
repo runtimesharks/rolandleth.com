@@ -82,7 +82,7 @@ class Application < Sinatra::Application
         maker.items.new_item do |item|
 	        item.title = post[:title]
 	        item.link = "http://rolandleth.com/#{post[:link]}"
-	        item.content.content = _markdown_for_feed(post[:body].lines[2..-1].join)
+	        item.content.content = _markdown(post[:body].lines[2..-1].join, true)
 	        item.content.type = 'html'
 	        item.updated = last_updated
 	        item.published = last_updated
