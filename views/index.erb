@@ -1,11 +1,23 @@
 <%- # Just a hack to skip having to create another variable. If total_pages == 'search', we are searching
     # If total_pages == -1, we are displaying a post -%>
-<%- if total_pages == 'search'
+<%- if total_pages == -1
+      # Explained the total_pages == -1 check in app.rb
+      date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+      date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
+
+      reading_time = post[:body].reading_time(format: :approx)
+      content = _markdown(post[:body].lines.join) -%>
+  <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link], reading_time: reading_time } -%>
+<%- else
       posts.each do |post|
         date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
         date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
+
+        reading_time = post[:body].reading_time(format: :approx)
         content = _markdown(post[:body].lines.join)
         title = post[:title]
+
+        search_terms ||= []
         search_terms.each do |w|
           if content.downcase.index(w)
             start_index = content.downcase.index(w)
@@ -13,17 +25,20 @@
             # This is how the search term is written inside the post's text. We search by downcasing it.
             original_occurrence = content[start_index..end_index - 1]
             content.gsub!(/#{original_occurrence}/i, '<mark class=\'search\'>\0</mark>')
+
             content.scan(/href=".*?"/).each do |s|
               edited_link = s.gsub('<mark class=\'search\'>', '')
               edited_link.gsub!('</mark>', '')
               content.gsub!(s, edited_link)
             end
+
             content.scan(/\/assets\/.*?"/).each do |s|
               edited_link = s.gsub('<mark class=\'search\'>', '')
               edited_link.gsub!('</mark>', '')
               content.gsub!(s, edited_link)
             end
           end
+
           if title.downcase.index(w)
             start_index = title.downcase.index(w)
             end_index = start_index + w.length
@@ -32,22 +47,9 @@
             title.gsub!(/#{original_occurrence}/i, '<span class=\'search-mark\'>\0</span>')
           end
         end -%>
-      <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link] } -%>
-      <%- end -%>
-<%- elsif total_pages == -1
-      # Explained the total_pages == -1 check in app.rb
-      date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-      date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-      content = _markdown(post[:body].lines.join) -%>
-      <%= erb :post, locals: { date: date, title: post[:title], content: content, link: post[:link] } -%>
-<%- else
-      posts.each do |post|
-        date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-        date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
-        content = _markdown(post[:body].lines.join)
-        title = post[:title] -%>
-        <%= erb :post, locals: { date: date, title: title, content: content, link: post[:link] } -%>
-      <%- end -%>
+    <%=  erb :post, locals: { date: date, title: title, content: content, link: post[:link], reading_time: reading_time } -%>
+  <%- end -%>
+  <% total_pages = 1 if total_pages == 'search' %>
   <%- if total_pages > 1 -%>
     <nav class="pagination">
       <%- if page > 1 -%>
