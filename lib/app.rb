@@ -142,7 +142,7 @@ class Application < Sinatra::Application
 		client = DropboxClient.new(session, ACCESS_TYPE)
 		client_metadata = client.metadata('/Apps/Editorial/posts')['contents']
 		client_metadata.each do |file|
-			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
 			link = matches[8].to_s
       link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
