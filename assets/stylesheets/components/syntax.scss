@@ -1,9 +1,12 @@
 blockquote {
-	margin: 0 0 1em;
-	padding-left: 20px;
-	border-left: 7px solid #dddddd;
+	margin: 1.5em 1em 1.5em 1em;
+	/*padding-left: 20px;*/
+	padding: 15px 15px;
+	/*border-left: 7px solid #dddddd;*/
+	border-top: 5px solid #eee;
+	border-bottom: 5px solid #eee;
 	color: #aaa;
-	font-style: normal;
+	font-style: italic;
 	font-family: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -14,7 +17,7 @@ code {
 	border-radius: 2px;
 	padding: 0.1em 0;
 	color: #703DAA;
-  white-space: pre-wrap;
+	white-space: pre-wrap;
 	font-size: 0.85em;
 	font-family: Consolas, Menlo, Monaco, Courier, monospace;
 }

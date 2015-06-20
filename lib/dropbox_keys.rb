@@ -4,5 +4,5 @@ module DropboxKeys
 	ACCESS_TYPE = :dropbox
 	AUTH_SECRET = '5agn40ihuth7gyt'
 	AUTH_KEY = 'vu3pnqmedjz789sg'
-  MY_SYNC_KEY = 'rolly'
+	MY_SYNC_KEY = 'rolly'
 end
