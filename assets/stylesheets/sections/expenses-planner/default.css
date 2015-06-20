@@ -42,11 +42,11 @@ body, html { font-size: 100%; 	padding: 0; margin: 0; }
 }
 
 body {
-    font-family: 'Lato', Calibri, Arial, sans-serif;
-    color: #ddd;
-    background: #141414;
-    font-size: 0.9em;
-    overflow-x: hidden;
+		font-family: 'Lato', Calibri, Arial, sans-serif;
+		color: #ddd;
+		background: #141414;
+		font-size: 0.9em;
+		overflow-x: hidden;
 }
 
 a {
@@ -138,12 +138,12 @@ a:hover {
 }
 
 .codrops-demos a {
-    display: inline-block;
-    margin: 1em;
-    line-height: 2;
-    color: #f3f3f3;
-    font-weight: 700;
-    border-bottom: 2px solid transparent;
+		display: inline-block;
+		margin: 1em;
+		line-height: 2;
+		color: #f3f3f3;
+		font-weight: 700;
+		border-bottom: 2px solid transparent;
 }
 
 .codrops-demos a:hover {

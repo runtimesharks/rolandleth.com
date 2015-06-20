@@ -1,14 +1,14 @@
 /* TEAM */
-Designer:     Roland Leth
-Developer:    Roland Leth
-Contact:      roland@rolandleth.com
-Twitter:      @rolandleth
-App.net:      @rolandleth
+Designer:		 Roland Leth
+Developer:		Roland Leth
+Contact:			roland@rolandleth.com
+Twitter:			@rolandleth
+App.net:			@rolandleth
 
 /* SITE */
-Last update:  2013-06-14
-Language:     English
-Doctype:      HTML5
-Tools:        Ruby, HTML, SCSS, Sinatra, Markdown
-Editors:      RubyMine, Coda 2, Espresso, Mou
-Hosted on:    Heroku
+Last update:	2013-06-14
+Language:		 English
+Doctype:			HTML5
+Tools:				Ruby, HTML, SCSS, Sinatra, Markdown
+Editors:			RubyMine, Coda 2, Espresso, Mou
+Hosted on:		Heroku

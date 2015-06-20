@@ -39,102 +39,102 @@ class Application < Sinatra::Application
 	end
 
 	configure :development do
-    # Small hack to dynamically create the postgres URL based on the currently logged in user
-    current_user = ENV['USER']
-    postgres = ENV['DATABASE_URL'] || "postgres://localhost/#{current_user}"
+		# Small hack to dynamically create the postgres URL based on the currently logged in user
+		current_user = ENV['USER']
+		postgres = ENV['DATABASE_URL'] || "postgres://localhost/#{current_user}"
 		DataMapper::setup(:default, postgres)
 		DataMapper.auto_upgrade!
 	end
 
-  # before '/example' do
-  #   # Run code before running the example route
-  # end
-  #
-  # after '/example' do
-  #   # Run code after running the example route
-  # end
+	# before '/example' do
+	#	 # Run code before running the example route
+	# end
+	#
+	# after '/example' do
+	#	 # Run code after running the example route
+	# end
 
 	# RSS
-  get '/feed' do
-	  content_type 'application/atom+xml'
+	get '/feed' do
+		content_type 'application/atom+xml'
 
-    posts = all_posts
-    rss ||= RSS::Maker.make('atom') do |maker|
-      maker.channel.icon = 'http://rolandleth.com/public/favicon.ico'
-      maker.channel.logo = 'http://rolandleth.com/public/favicon.ico'
-      maker.channel.link = 'http://rolandleth.com'
-      maker.channel.about = 'http://rolandleth.com'
-      maker.channel.title = 'Roland Leth'
-      maker.channel.description = 'Roland Leth'
-      maker.channel.author = 'Roland Leth'
-      maker.channel.contributor = 'Roland Leth'
-      maker.channel.language = 'en'
-      maker.channel.rights = "© #{Time.now.year} Roland Leth"
-      maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
-      maker.items.do_sort = false
+		posts = all_posts
+		rss ||= RSS::Maker.make('atom') do |maker|
+			maker.channel.icon = 'http://rolandleth.com/public/favicon.ico'
+			maker.channel.logo = 'http://rolandleth.com/public/favicon.ico'
+			maker.channel.link = 'http://rolandleth.com'
+			maker.channel.about = 'http://rolandleth.com'
+			maker.channel.title = 'Roland Leth'
+			maker.channel.description = 'Roland Leth'
+			maker.channel.author = 'Roland Leth'
+			maker.channel.contributor = 'Roland Leth'
+			maker.channel.language = 'en'
+			maker.channel.rights = "© #{Time.now.year} Roland Leth"
+			maker.channel.subtitle = 'iOS and Ruby development thoughts by Roland Leth.'
+			maker.items.do_sort = false
 
-      posts.each do |post|
-	      last_updated = time_from_string(post[:datetime])
+			posts.each do |post|
+				last_updated = time_from_string(post[:datetime])
 
-        maker.items.new_item do |item|
-	        item.title = post[:title]
-	        item.link = "http://rolandleth.com/#{post[:link]}"
-	        item.content.content = _markdown(post[:body].lines.join, true)
-	        item.content.type = 'html'
-	        item.updated = last_updated
-	        item.published = last_updated
-	        # The RSS was last updated when the last post was posted (which is first in the array)
-	        maker.channel.updated ||= last_updated
-        end
-      end
-    end
+				maker.items.new_item do |item|
+					item.title = post[:title]
+					item.link = "http://rolandleth.com/#{post[:link]}"
+					item.content.content = _markdown(post[:body].lines.join, true)
+					item.content.type = 'html'
+					item.updated = last_updated
+					item.published = last_updated
+					# The RSS was last updated when the last post was posted (which is first in the array)
+					maker.channel.updated ||= last_updated
+				end
+			end
+		end
 
-    rss.link.rel = 'http://rolandleth.com'
-    rss.entries.each do |entry|
-      entry.content.lang = 'en'
-    end
+		rss.link.rel = 'http://rolandleth.com'
+		rss.entries.each do |entry|
+			entry.content.lang = 'en'
+		end
 
-    rss.to_s
-  end
+		rss.to_s
+	end
 
 	def time_from_string(string)
 		date_matches = string.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-    # Time zone support sucks. Leave it like this.
+		# Time zone support sucks. Leave it like this.
 		Time.zone = 'Bucharest'
 		time_zone = Time.zone.formatted_offset
-    # A little hack to account for daylight savings of when the post was created
+		# A little hack to account for daylight savings of when the post was created
 		time_zone = '+03:00' if Time.strptime("#{date_matches}", '%Y-%m-%d-%H%M').dst?
 		time = Date._strptime("#{date_matches[4]} #{time_zone}", '%H%M %:z')
 
 		DateTime.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i, time[:hour], time[:min], 0, time[:zone]).in_time_zone.to_time
 	end
 
-  # Sitemap
-  get '/sitemap.xml' do
-    map = XmlSitemap::Map.new('rolandleth.com') do |m|
-      # Adds a simple page
-      m.add 'projects', priority: 1.0
-      m.add 'about', priority: 1.0
-      m.add 'bouncyb'
-      m.add 'sosmorse'
-      m.add 'iwordjuggle'
-      m.add 'carminder'
-      m.add 'expenses-planner', priority: 0.99
-      m.add 'privacy-policy'
-      m.add 'feed'
-      posts = repository(:default).adapter.select('SELECT * FROM application_posts')
-      posts.map! { |struc| struc.to_h }
-      posts.each do |post|
-        m.add post[:link]
-      end
-    end
-    map.render
-  end
+	# Sitemap
+	get '/sitemap.xml' do
+		map = XmlSitemap::Map.new('rolandleth.com') do |m|
+			# Adds a simple page
+			m.add 'projects', priority: 1.0
+			m.add 'about', priority: 1.0
+			m.add 'bouncyb'
+			m.add 'sosmorse'
+			m.add 'iwordjuggle'
+			m.add 'carminder'
+			m.add 'expenses-planner', priority: 0.99
+			m.add 'privacy-policy'
+			m.add 'feed'
+			posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+			posts.map! { |struc| struc.to_h }
+			posts.each do |post|
+				m.add post[:link]
+			end
+		end
+		map.render
+	end
 
 	# Custom sync with Dropbox URL
 	get '/cmd.sync/:key/?:with_delete?' do
-    not_found unless params[:key] == MY_SYNC_KEY
-    with_delete = params[:with_delete]
+		not_found unless params[:key] == MY_SYNC_KEY
+		with_delete = params[:with_delete]
 
 		session = DropboxSession.new(APP_KEY, APP_SECRET)
 		session.set_access_token(AUTH_KEY, AUTH_SECRET)
@@ -145,95 +145,95 @@ class Application < Sinatra::Application
 			matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 			datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
 			link = matches[8].to_s
-      link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
+			link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
 			link.gsub!('&', 'and')
 			link.gsub!("\s", '-')
 			link.downcase!
 			file_mtime = file['client_mtime'].to_s
 
-      post = Posts.first(link: link)
-      # pp = Posts.first(title: 'Fastlane')
-      # pp.destroy
-      # pp.destroy
+			post = Posts.first(link: link)
+			# pp = Posts.first(title: 'Fastlane')
+			# pp.destroy
+			# pp.destroy
 
-      # If the datetime isn't the same, it's just another post with the same name
-      while post && post.link == link && post.datetime != datetime
-        if post.link[-3, 2] == '--'
-          i = post.link[-1, 1].to_i
-          link.sub!("--#{i}", "--#{i + 1}")
-        # I know, I know, but I will never have so many duplicates
-        elsif post.link[-4, 2] == '--'
-          i = post.link[-2, 2].to_i
-          link.sub!("--#{i}", "--#{i + 1}")
-        else
-          link = "#{link}--#{1}"
-        end
+			# If the datetime isn't the same, it's just another post with the same name
+			while post && post.link == link && post.datetime != datetime
+				if post.link[-3, 2] == '--'
+					i = post.link[-1, 1].to_i
+					link.sub!("--#{i}", "--#{i + 1}")
+				# I know, I know, but I will never have so many duplicates
+				elsif post.link[-4, 2] == '--'
+					i = post.link[-2, 2].to_i
+					link.sub!("--#{i}", "--#{i + 1}")
+				else
+					link = "#{link}--#{1}"
+				end
 
-        # If it's nil, we will create a new one, which will have a --i suffix in the link
-        post = Posts.first(link: link)
-      end
+				# If it's nil, we will create a new one, which will have a --i suffix in the link
+				post = Posts.first(link: link)
+			end
 
 			# If the post exists and was modified, or the post doesn't exist
 			# we need to create the required strings
 			if !post || (post && post.modified != file_mtime)
-        body = client.get_file(file['path']) # Memory and time consuming
-        title = body.lines.first.gsub("\n", '') # Remove the new line character from the title line
-        body = body.lines[2..-1].join # Remove the title and the empty line after it from the body
+				body = client.get_file(file['path']) # Memory and time consuming
+				title = body.lines.first.gsub("\n", '') # Remove the new line character from the title line
+				body = body.lines[2..-1].join # Remove the title and the empty line after it from the body
 
-        # If the post exists, it means it was modified, update it
-        if post
+				# If the post exists, it means it was modified, update it
+				if post
 					post.update(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
-        # Create a new record
-        else
-	        Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
-        end
+				# Create a new record
+				else
+					Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
+				end
 			end
-    end
+		end
 
-    # Instead of putting the delete code inside a big if block
-    # just leave the array empty if the command was done without a parameter
-    posts = []
-    posts = Posts.all if with_delete
+		# Instead of putting the delete code inside a big if block
+		# just leave the array empty if the command was done without a parameter
+		posts = []
+		posts = Posts.all if with_delete
 		# Check if any post was deleted (highly unlikely)
 		posts.each do |post|
 			delete = true
 
 			client_metadata.each do |file|
-        matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
-        datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
-        link = matches[8].to_s
-        link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
-        link.gsub!('&', 'and')
-        link.gsub!("\s", '-')
-        link.downcase!
+				matches = file['path'].match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';!=\?\+\*\-\)\(]+)\.md$/)
+				datetime = matches[4].to_s + '-' + matches[5].to_s + '-' + matches[6].to_s + '-' + matches[7].to_s
+				link = matches[8].to_s
+				link.gsub!(/([#,;!:"'\.\?\[\]\{\}\(\$\/)]+)/, '')
+				link.gsub!('&', 'and')
+				link.gsub!("\s", '-')
+				link.downcase!
 
-        _post = Posts.first(link: link)
-        # If the datetime isn't the same, it's just another post with the same name
-        while _post && _post.link == link && _post.datetime != datetime
-          if _post.link[-3, 2] == '--'
-            i = _post.link[-1, 1].to_i
-            link.sub!("--#{i}", "--#{i + 1}")
-          elsif _post.link[-4, 2] == '--'
-            i = _post.link[-2, 2].to_i
-            link.sub!("--#{i}", "--#{i + 1}")
-          else
-            link = "#{link}--#{1}"
-          end
+				_post = Posts.first(link: link)
+				# If the datetime isn't the same, it's just another post with the same name
+				while _post && _post.link == link && _post.datetime != datetime
+					if _post.link[-3, 2] == '--'
+						i = _post.link[-1, 1].to_i
+						link.sub!("--#{i}", "--#{i + 1}")
+					elsif _post.link[-4, 2] == '--'
+						i = _post.link[-2, 2].to_i
+						link.sub!("--#{i}", "--#{i + 1}")
+					else
+						link = "#{link}--#{1}"
+					end
 
-          _post = Posts.first(link: link)
-        end
+					_post = Posts.first(link: link)
+				end
 
 				delete = false if link == post.link
-      end
+			end
 
 			post.destroy if delete
-    end
+		end
 
 		# Keep a count of all my syncs. Just because.
 		syncs = DropboxSyncs.first || DropboxSyncs.create(count: 0)
-    syncs.update(count: (syncs[:count] + 1))
+		syncs.update(count: (syncs[:count] + 1))
 
-    redirect '/', 302
+		redirect '/', 302
 	end
 
 	# Links to /1 are redirected to root. No reason to display http://root/1
@@ -272,8 +272,8 @@ class Application < Sinatra::Application
 
 	# Main page
 	get '/' do
-    # Posts.all.destroy!
-    # return
+		# Posts.all.destroy!
+		# return
 
 		posts = all_posts
 
@@ -344,9 +344,9 @@ class Application < Sinatra::Application
 		@meta_canonical = key
 
 		if PAGES.include? key.downcase
-      redirect '/projects', 302 if key.downcase == 'work'
-      redirect '/about', 302 if key.downcase == 'contact'
-      if key.downcase == 'projects'
+			redirect '/projects', 302 if key.downcase == 'work'
+			redirect '/about', 302 if key.downcase == 'contact'
+			if key.downcase == 'projects'
 				@title = 'Projects'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
 				redirect "#{key.downcase}", 301 if key != 'projects'
@@ -370,7 +370,7 @@ class Application < Sinatra::Application
 				return erb :'expenses-planner', layout: false
 			end
 			if key.downcase == 'carminder'
-			  redirect "#{key.downcase}", 301 if key != 'carminder'
+				redirect "#{key.downcase}", 301 if key != 'carminder'
 				return erb :carminder, layout: false
 			end
 			if key.downcase == 'about'

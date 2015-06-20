@@ -5,13 +5,13 @@ require 'rouge/plugins/redcarpet'
 class HTML < Redcarpet::Render::HTML
 	include Rouge::Plugins::Redcarpet # yep, that's it.
 
-  def block_code(text, language)
+	def block_code(text, language)
 		if language
 			Rouge.highlight(text, language, 'html')
 		else
 			Rouge.highlight(text, 'ruby', 'html')
 		end
-  end
+	end
 end
 
 class Feed < Redcarpet::Render::HTML
@@ -22,8 +22,8 @@ def _markdown(text, for_feed = false)
 
 	render_options = {
 		filter_html: true,
-	  hard_wrap: false,
-	  css_class: false,
+		hard_wrap: false,
+		css_class: false,
 		link_attributes: { rel: 'nofollow' }
 	}
 
@@ -36,8 +36,8 @@ def _markdown(text, for_feed = false)
 			strikethrough: true,
 			space_after_headers: true,
 			superscript: true,
-	    underline: true,
-	    highlight: true
+			underline: true,
+			highlight: true
 	}
 
 	if for_feed

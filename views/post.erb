@@ -1,31 +1,31 @@
 <article>
-  <header>
-    <h1>
-      <a href="/<%= link %>"><%= title -%></a>
-    </h1>
-    <%- published_at = Time.at(date)
-        if reading_time['seconds']
-          if reading_time.to_i < 15
-            reading_time = ''
-          elsif reading_time.to_i < 30
-            reading_time = '25 sec'
-          elsif reading_time.to_i < 50
-            reading_time = '40 sec'
-          end
-          reading_time.gsub!('min', 'sec')
-        else
-          reading_time.gsub!('minutes', 'min') -%>
-    <%- end -%>
-    <h4>
-      <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
-        <%= published_at.strftime('%b %e, %Y') -%>
-      </time>
-      <%- if reading_time.size > 0 -%>
-        <%= ": ~#{reading_time} read" %>
-      <%- end -%>
-    </h4>
-    </header>
-    <div class="content">
-    <%= content -%>
-  </div>
+	<header>
+		<h1>
+			<a href="/<%= link %>"><%= title -%></a>
+		</h1>
+		<%- published_at = Time.at(date)
+				if reading_time['seconds']
+					if reading_time.to_i < 15
+						reading_time = ''
+					elsif reading_time.to_i < 30
+						reading_time = '25 sec'
+					elsif reading_time.to_i < 50
+						reading_time = '40 sec'
+					end
+					reading_time.gsub!('min', 'sec')
+				else
+					reading_time.gsub!('minutes', 'min') -%>
+		<%- end -%>
+		<h4>
+			<time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
+				<%= published_at.strftime('%b %e, %Y') -%>
+			</time>
+			<%- if reading_time.size > 0 -%>
+				<%= ": ~#{reading_time} read" %>
+			<%- end -%>
+		</h4>
+		</header>
+		<div class="content">
+		<%= content -%>
+	</div>
 </article>

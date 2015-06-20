@@ -46,8 +46,8 @@ hr {
 }
 
 #menuBar hr {
-  margin: -1px 0 0;
-  padding: 0;
+	margin: -1px 0 0;
+	padding: 0;
 	border: none;
 	border-top: 2px solid #000;
 	border-bottom: 1px solid #cdcdcd;
@@ -148,8 +148,8 @@ hr {
 }
 
 .rightBlock hr {
-  margin: -1px 0 0;
-  padding: 0;
+	margin: -1px 0 0;
+	padding: 0;
 	border: none;
 	border-top: 1px solid #ededed;
 	border-bottom: 1px solid #f4f4ff;
@@ -178,8 +178,8 @@ hr {
 }
 
 .leftBlock hr {
-  margin: -1px 0 0;
-  padding: 0;
+	margin: -1px 0 0;
+	padding: 0;
 	border: none;
 	border-top: 1px solid #f4f4ff;
 	border-bottom: 1px solid #ededed;
@@ -192,8 +192,8 @@ footer {
 }
 
 footer hr {
-  margin: -1px 0 0;
-  padding: 0;
+	margin: -1px 0 0;
+	padding: 0;
 	border: none;
 	border-top: 1px solid #cdcdcd;
 	border-bottom: 2px solid #000;
