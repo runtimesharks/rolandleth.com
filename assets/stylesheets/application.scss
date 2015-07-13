@@ -7,6 +7,118 @@ html {
 	//border-left: 4px solid $link-color;
 }
 
+nav.header {
+	max-width: $max-width;
+	margin: 2.5em auto 4em auto;
+	font-family: 'Arvo';
+
+	& .banner-container {
+		border-bottom: 2px solid $title-color;
+		width: 100%;
+
+		& .banner {
+			font-size: 2.5em;
+			display: inline-block;
+		}
+
+		& form.search-loupe {
+			display: inline-block;
+			margin-top: 12px;
+			float: right;
+
+			& input.search {
+				text-align: right;
+				border-bottom: none;
+
+				&:focus {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+
+	& form.search {
+		display: none;
+		padding-top: 8px;
+
+		& input.search {
+			padding: 5px;
+			color: $link-color;
+
+			border: 0;
+			border-bottom: 1px solid $gray-color;
+			outline-width: 0;
+
+			font-family: $body-font;
+			font-size: inherit;
+
+			&::-webkit-input-placeholder{
+				color: $gray-color;
+			}
+			&::-moz-placeholder {
+				color: $gray-color;
+			}
+			&:-moz-placeholder {
+				color: $gray-color;
+			}
+
+			&:focus {
+				border-bottom: 1px solid $link-color;
+
+				&::-webkit-input-placeholder {
+					color: $link-color;
+				}
+				&::-moz-placeholder {
+					color: $link-color;
+				}
+				&:-moz-placeholder {
+					color: $link-color;
+				}
+			}
+		}
+	}
+
+	& .navigation {
+		float: right;
+		text-align: right;
+		padding-top: 8px;
+
+		& a {
+			display: inline-block;
+			margin-left: 40px;
+
+			& h2 {
+				font-size: 1.4em;
+				line-height: 1.3em;
+			}
+		}
+	}
+
+	& a {
+		color: $title-color;
+		line-height: 1.25em;
+
+		&:hover {
+			color: $link-color;
+			border-bottom: 0px;
+		}
+	}
+}
+
+body {
+	padding: 0 15px;
+	color: $text-color;
+	background: #fff;
+	font-family: $body-font;
+	font-size: 17px;
+}
+
+section {
+	max-width: $max-width;
+	margin: 0 auto;
+	clear: both;
+}
+
 a {
 	text-decoration: none;
 	color: $link-color;
@@ -29,24 +141,17 @@ em {
 }
 
 .quote {
-	float: right;
-}
-
-.inner-quote {
-	display: inline-block;
-	margin-bottom: -2px;
-	font-size: 0.35em;
+	text-align: center;
 	font-weight: 300;
 	font-style: italic;
-	font-family: 'Avenir Next';
-	margin-top: 3px;
-	vertical-align: bottom;
+	font-family: $body-font;
 }
 
 mark {
 	border-radius: 2px;
 	background-color: #fffdcc;
 	font-style: normal;
+
 	&.search {
 		padding: 0 0.1em 0 0.1em;
 		border-radius: 2px;
@@ -61,102 +166,33 @@ strong {
 	font-weight: 600;
 }
 
-body {
-	padding: 0 15px;
-	color: $text-color;
-	background: #fff;
-	font-family: 'Avenir Next', 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-size: 17px;
-}
-
-nav.header {
-	max-width: $max-width;
-	margin: 1em auto 2.5em;
-	text-align: left;
-	border-bottom: 2px solid $title-color;
-	font-family: 'Arvo';
-	font-size: 2em;
-
-	& h1 {
-		padding: 0;
-		font-size: 1.2em;
-
-		&.navigation {
-			display: inline;
-			float: right;
-			text-align: right;
-			border-bottom: none;
-			font-size: 0.7em;
-			line-height: 1.75em;
-
-			& a {
-				&:nth-child(2) {
-					padding: 0 20px;
-				}
-			}
-		}
-	}
-
-	& a {
-		@include transition(color, 0.3s);
-		color: $title-color;
-		line-height: 1.25em;
-
-		&:hover {
-			color: $link-color;
-			border-bottom: 0px;
-		}
-	}
-}
-
-header a {
-	@include transition(color, 0.3s);
-}
-
 a {
+	@include transition(color, 0.3s);
 	@include transition(border, 0.3s);
-}
-
-section {
-	max-width: 700px;
-	margin: 0 auto;
-}
-
-form.search {
-	display: inline;
-
-	& input.search {
-		padding: 5px;
-		color: $gray-color;
-		border: 1px solid $gray-color;
-		border-radius: 2px;
-		outline-width: 5px;
-		outline-color: rgba(18.00, 168.00, 218.00, 0.4);
-		font-family: inherit;
-		font-size: inherit;
-	}
 }
 
 footer {
 	max-width: $max-width;
-	margin: 2.5em auto;
+	margin: 0 auto;
 	text-align: center;
 	color: $gray-color;
 	line-height: 2em;
 
 	& div {
-			margin: 1em 0;
+			margin: 0.5em 0;
 	}
 
 	& a {
 		color: $link-color;
 
-		&.rss {
-			color: $text-color;
+		& .fa {
+			margin-left: 10px;
+			font-size: 1.3em;
 		}
 
 		&:hover {
 			color: $link-color;
+			border-bottom: none;
 		}
 	}
 
@@ -171,32 +207,54 @@ footer {
 	}
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 570px) {
 	nav.header {
-		margin-bottom: 1.2em;
-		text-align: center;
-		border-bottom: none;
-
-		& h1 {
-			border-bottom: 2px solid $title-color;
-		}
-
-		& h1.navigation {
-			float: none;
+		& .navigation {
+			& a {
+				margin-left: 12px;
+			}
 		}
 	}
-
-	.quote {
-		display: none;
-	}
-
 }
 
 
-@media all and (max-width: 700px) {
-	.inner-quote {
-		display: none;
+//@media all and (max-width: 700px) {
+//	.quote {
+//		display: none;
+//	}
+//}
+
+@media screen and (max-width: 482px) {
+	nav.header {
+		text-align: center;
+		margin-bottom: 1.2em;
+
+		& .banner-container {
+			& .banner {
+				float: none;
+			}
+
+			& form.search-loupe {
+				display: none;
+			}
+		}
+
+		& .navigation {
+			float: none;
+			text-align: center;
+		}
+
+		& form.search {
+			display: block;
+			float: none;
+			margin-bottom: 30px;
+		}
 	}
+
+	//.quote {
+	//	display: none;
+	//}
+
 }
 
 @media screen and (max-width: 430px) {
@@ -207,25 +265,13 @@ footer {
 
 @media screen and (max-width: 356px) {
 	nav.header {
-		font-size: 1.8em;
-
-		& a {
-			line-height: 1.5em;
-		}
+		font-size: 1em;
 	}
 }
 
 @media screen and (max-width: 325px) {
 	nav.header {
-		font-size: 1.55em;
-
-		& a {
-			line-height: 1.25em;
-
-			&:nth-child(2) {
-				padding: 5px;
-			}
-		}
+		font-size: 0.9em;
 	}
 }
 
