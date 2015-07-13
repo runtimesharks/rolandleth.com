@@ -23,6 +23,7 @@
 	<%- else -%>
 		<link rel="canonical" href="http://rolandleth.com">
 	<%- end -%>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href="http://rolandleth.com" rel="alternate" title="Roland Leth" type="application/atom+xml">
 	<link rel="apple-touch-icon" sizes="144x144" href="/assets/misc/apple-touch-icon-144x144.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -47,29 +48,35 @@
 </head>
 
 <body>
-	<nav role="navigation" class="header">
-		<h1 role="banner">
-			<a href="/"><%= 'Roland Leth' %></a>
-			<div class="quote">
-				<div class="inner-quote"><%= EMOJI.sample %>&nbsp&nbsp&nbsp<%= QUOTES.sample %></div>
+	<nav class="header">
+		<div class="banner-container">
+			<div class="banner" role="banner">
+				<a href="/"><%= 'Roland Leth' %></a>
 			</div>
-		</h1>
-		<h1 role="navigation" class="navigation">
-			<!--<a href="/">Home</a>-->
-			<a href="/projects">Projects</a>
-			<a href="http://github.com/rolandleth">GitHub</a>
-			<a href="/about">About</a>
-		</h1>
+		  <form class="search search-loupe" action="/search" method="get">
+		    <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..."/>
+		  </form>
+		</div>
+		<div role="navigation" class="navigation">
+			<a href="/projects"><h2>Projects</h2></a>
+			<a href="http://github.com/rolandleth"><h2>GitHub</h2></a>
+			<a href="/about"><h2>About</h2></a>
+		</div>
+	  <form class="search" action="/search" method="get">
+	    <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..."/>
+	  </form>
 	</nav>
 	<section>
 		<%= yield %>
+	  <div class="quote">
+	    <%= EMOJI.sample %>&nbsp&nbsp&nbsp<%= QUOTES.sample %>
+	  </div>
 	</section>
 	<footer role="contentinfo">
-
-		<div>© <%= Time.now.year %> Roland Leth - <a href="/feed">RSS</a>
-			<form class="search" action="/search" method="get">
-					<input type="text" class="search" name="query" size="15" maxlength="20" placeholder="Search..."/>
-			</form>
+		<div>
+		  © <%= Time.now.year %> Roland Leth
+		  <a href="https://twitter.com/rolandleth"><i class="fa fa-twitter"></i></a>
+		  <a href="/feed"><i class="fa fa-rss"></i></a>
 		</div>
 		<a href="https://plus.google.com/116830737199229269159?rel=author"></a>
 	</footer>
