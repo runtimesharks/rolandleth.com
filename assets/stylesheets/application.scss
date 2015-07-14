@@ -239,22 +239,13 @@ footer {
 			}
 		}
 
-		& .navigation {
-			float: none;
-			text-align: center;
-		}
-
 		& form.search {
 			display: block;
-			float: none;
+			float: left;
+			padding-top: 4px;
 			margin-bottom: 30px;
 		}
 	}
-
-	//.quote {
-	//	display: none;
-	//}
-
 }
 
 @media screen and (max-width: 430px) {
