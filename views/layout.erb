@@ -53,14 +53,19 @@
 			<div class="banner" role="banner">
 				<a href="/"><%= 'Roland Leth' %></a>
 			</div>
-		  <form class="search search-loupe" action="/search" method="get">
+		  <form class="search banner-search" action="/search" method="get">
 		    <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..."/>
 		  </form>
 		</div>
 		<div role="navigation" class="navigation">
-			<a href="/projects"><h2>Projects</h2></a>
-			<a href="http://github.com/rolandleth"><h2>GitHub</h2></a>
-			<a href="/about"><h2>About</h2></a>
+			<!--<a href="/projects"><h2>Projects</h2></a>-->
+			<!--<a href="http://github.com/rolandleth"><h2>GitHub</h2></a>-->
+			<!--<a href="/about"><h2>About</h2></a>-->
+		  <a href="/projects"><i class="fa fa-code"></i></a>
+		  <a href="http://github.com/rolandleth"><i class="fa fa-github"></i></a>
+		  <a href="/about"><i class="fa fa-user"></i></a>
+		  <a href="https://twitter.com/rolandleth"><i class="fa fa-twitter"></i></a>
+		  <a href="/feed"><i class="fa fa-rss"></i></a>
 		</div>
 	  <form class="search" action="/search" method="get">
 	    <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..."/>
@@ -75,8 +80,6 @@
 	<footer role="contentinfo">
 		<div>
 		  © <%= Time.now.year %> Roland Leth
-		  <a href="https://twitter.com/rolandleth"><i class="fa fa-twitter"></i></a>
-		  <a href="/feed"><i class="fa fa-rss"></i></a>
 		</div>
 		<a href="https://plus.google.com/116830737199229269159?rel=author"></a>
 	</footer>
