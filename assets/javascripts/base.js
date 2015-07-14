@@ -12,6 +12,10 @@ $(document).ready(function() {
 	//		$(this).css('visibility', 'visible');
 	//	});
 	//}, 100);
+
+	if ($(window).width() <= 370) {
+		$("input[class='search']").attr('size', 13);
+	}
 });
 
 var resizeImage = function(img) {
