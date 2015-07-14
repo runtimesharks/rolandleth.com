@@ -139,6 +139,7 @@ header {
 	word-break: break-all;
 
 	& h1 a {
+		word-break: normal;
 		color: $title-color;
 		border-bottom: 1px solid transparent;
 
