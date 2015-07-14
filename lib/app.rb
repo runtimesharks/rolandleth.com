@@ -9,7 +9,7 @@ require 'readingtime'
 
 class Application < Sinatra::Application
 	include DropboxKeys
-	PAGE_SIZE = 5
+	PAGE_SIZE = 7
 	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
 	# Posts
@@ -278,7 +278,7 @@ class Application < Sinatra::Application
 		posts = all_posts
 
 		total_pages = (posts.count.to_f / PAGE_SIZE.to_f).ceil.to_i
-		posts_to_display = posts[0..4]
+		posts_to_display = posts[0...PAGE_SIZE]
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
 		erb :index, locals: { posts: posts_to_display, page: 1, total_pages: total_pages, gap: 2 }
 	end
