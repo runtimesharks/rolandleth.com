@@ -54,12 +54,12 @@
 		<nav class="pagination">
 			<%- if page > 1 -%>
 				<%- if page == 2 -%>
-					<a class="previous" href="/" rel="previous">&larr; Previous</a>
+					<a class="previous" href="/" rel="previous">&larr; Prev</a>
 				<%- else -%>
-					<a class="previous" href="/<%= page - 1 -%>" rel="previous">&larr; Previous</a>
+					<a class="previous" href="/<%= page - 1 -%>" rel="previous">&larr; Prev</a>
 				<%- end -%>
 			<%- else -%>
-				<span class="disabled">&larr; Previous</span>
+				<span class="disabled">&larr; Prev</span>
 			<%- end -%>
 
 			<%- if page > gap -%>
