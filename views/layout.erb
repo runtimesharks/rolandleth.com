@@ -73,12 +73,12 @@
 	</nav>
 	<section>
 		<%= yield %>
+	</section>
+	<footer role="contentinfo">
 	  <div class="quote">
 	    <%= EMOJI.sample %>&nbsp&nbsp&nbsp<%= QUOTES.sample %>
 	  </div>
-	</section>
-	<footer role="contentinfo">
-		<div>
+		<div class="copyright">
 		  © <%= Time.now.year %> Roland Leth
 		</div>
 		<a href="https://plus.google.com/116830737199229269159?rel=author"></a>

@@ -173,13 +173,13 @@ a {
 
 footer {
 	max-width: $max-width;
-	margin: 0 auto;
+	margin: 3.5em auto 1em;
 	text-align: center;
 	color: $gray-color;
 	line-height: 2em;
 
-	& div {
-			margin: 0.5em 0;
+	& .copyright {
+		margin-bottom: 0.5em;
 	}
 
 	& a {
@@ -197,13 +197,7 @@ footer {
 	}
 
 	&.privacy-policy {
-		height: 0;
-		margin: 0 auto;
-
-		& div {
-			margin-top: 1em;
-			margin-bottom: 0;
-		}
+		margin: 1em auto;
 	}
 }
 
