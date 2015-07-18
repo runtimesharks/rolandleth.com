@@ -24,7 +24,7 @@ nav.header {
 		& form.banner-search {
 			background-color: rgba(0, 0, 0, 0);
 			display: inline-block;
-			margin-top: 8px;
+			margin-top: 9px;
 			float: right;
 
 			& input.search {
@@ -39,7 +39,6 @@ nav.header {
 	}
 
 	& form.search {
-		border-radius: 0;
 		display: none;
 		padding-top: 8px;
 
@@ -50,6 +49,7 @@ nav.header {
 			border: 0;
 			border-bottom: 1px solid $gray-color;
 			outline-width: 0;
+			border-radius: 0;
 
 			font-family: $body-font;
 			font-size: inherit;
