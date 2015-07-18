@@ -14,8 +14,8 @@ $(document).ready(function() {
 	//}, 100);
 
 	// Smaller search field for iPhones, since it doesn't fit at > 13
-	if ($(window).width() >= 370) {
-		$("input[class='search']").attr('size', 17);
+	if ($(window).width() <= 380) {
+		$("input[class='search']").attr('size', 13);
 	}
 });
 
