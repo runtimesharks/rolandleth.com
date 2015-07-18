@@ -21,10 +21,10 @@ nav.header {
 			display: inline-block;
 		}
 
-		& form.banner-search {
-			background-color: transparent;
+		& .banner-search {
+			background-color: rgba(0, 0, 0, 0);
 			display: inline-block;
-			margin-top: 10px;
+			margin-top: 8px;
 			float: right;
 
 			& input.search {
@@ -38,7 +38,8 @@ nav.header {
 		}
 	}
 
-	& form.search {
+	& .search {
+		border-radius: 0;
 		display: none;
 		padding-top: 8px;
 
