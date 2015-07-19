@@ -132,9 +132,9 @@ class Application < Sinatra::Application
 	end
 
 	# Custom sync with Dropbox URL
-	get '/cmd.sync/:key/?:with_delete?' do
+	get '/cmd.sync/:key/?:delete?' do
 		not_found unless params[:key] == MY_SYNC_KEY
-		with_delete = params[:with_delete]
+		with_delete = !(params.fetch :delete, '').empty?
 
 		session = DropboxSession.new(APP_KEY, APP_SECRET)
 		session.set_access_token(AUTH_KEY, AUTH_SECRET)
@@ -192,8 +192,7 @@ class Application < Sinatra::Application
 
 		# Instead of putting the delete code inside a big if block
 		# just leave the array empty if the command was done without a parameter
-		posts = []
-		posts = Posts.all if with_delete
+		posts = with_delete ? Posts.all : []
 		# Check if any post was deleted (highly unlikely)
 		posts.each do |post|
 			delete = true
