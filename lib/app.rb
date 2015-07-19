@@ -134,7 +134,7 @@ class Application < Sinatra::Application
 	# Custom sync with Dropbox URL
 	get '/cmd.sync/:key/?:delete?' do
 		not_found unless params[:key] == MY_SYNC_KEY
-		with_delete = !(params.fetch :delete, '').empty?
+		with_delete = !params[:delete].to_s.empty?
 
 		session = DropboxSession.new(APP_KEY, APP_SECRET)
 		session.set_access_token(AUTH_KEY, AUTH_SECRET)
