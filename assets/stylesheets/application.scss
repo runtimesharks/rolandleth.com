@@ -147,6 +147,7 @@ em {
 	font-weight: 300;
 	font-style: italic;
 	font-family: $body-font;
+	margin-bottom: 0.5em;
 }
 
 mark {
@@ -157,7 +158,6 @@ mark {
 	&.search {
 		padding: 0 0.1em 0 0.1em;
 		border-radius: 2px;
-		//background-color: #fff0f4;
 		background-color: $link-color;
 		color: $background-color;
 		font-style: normal;
@@ -175,10 +175,10 @@ a {
 
 footer {
 	max-width: $max-width;
-	margin: 3.5em auto 1em;
+	margin: 3em auto 1em;
 	text-align: center;
 	color: $gray-color;
-	line-height: 2em;
+	line-height: 1.5em;
 
 	& .copyright {
 		margin-bottom: 0.5em;
@@ -212,13 +212,6 @@ footer {
 		}
 	}
 }
-
-
-//@media all and (max-width: 700px) {
-//	.quote {
-//		display: none;
-//	}
-//}
 
 @media screen and (max-width: 482px) {
 	nav.header {
