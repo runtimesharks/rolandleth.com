@@ -3,6 +3,7 @@ require 'dropbox_sdk'
 
 module Post
 	include DropboxKeys
+	POSTS_TABLE = 'post_posts'
 
 	class Posts
 		include DataMapper::Resource
