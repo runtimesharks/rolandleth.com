@@ -1,7 +1,10 @@
 require 'rss'
 require 'markdown_renderer'
+require 'post'
 
 module Generators
+	include Post
+
 	def sitemap
 		map = XmlSitemap::Map.new('rolandleth.com') do |m|
 			# Adds a simple page

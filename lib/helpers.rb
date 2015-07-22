@@ -1,4 +1,8 @@
+require 'post'
+
 module Helpers
+	include Post
+
 	def all_posts
 		posts = all_posts_from_repository
 		posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!

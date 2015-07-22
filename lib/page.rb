@@ -1,4 +1,7 @@
+require 'post'
+
 module Page
+	include Post
 
 	PAGE_SIZE = 7
 	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }

@@ -2,7 +2,7 @@ require 'dm-core'
 require 'dm-postgres-adapter'
 require 'dm-migrations'
 
-require 'page'
+require 'page' # For page handling
 require 'post' # For update_posts
 require 'generators' # RSS and XML
 require 'helpers'
