@@ -19,6 +19,8 @@ module Page
 			query_array = query.downcase.split(' ')
 		end
 
+		redirect '/', 302 if query.empty?
+
 		posts = all_posts.select	do |p|
 			query_array.any? { |w| p[:body].downcase.include?(w) or p[:title].downcase.include?(w) }
 		end
@@ -56,34 +58,36 @@ module Page
 			when 'projects'
 				@title = 'Projects'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
-				redirect "#{key.downcase}", 301 if key != 'projects'
+				redirect key.downcase, 301 if key != 'projects'
 				erb :projects
 			when 'bouncyb'
 				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
-				redirect "#{key.downcase}", 301 if key != 'bouncyb'
+				redirect key.downcase, 301 if key != 'bouncyb'
 				erb :bouncyb, layout: false
 			when 'iwordjuggle'
-				redirect "#{key.downcase}", 301 if key != 'iwordjuggle'
+				redirect key.downcase, 301 if key != 'iwordjuggle'
 				erb :iwordjuggle, layout: false
 			when'sosmorse'
-				redirect "#{key.downcase}", 301 if key != 'sosmorse'
+				redirect key.downcase, 301 if key != 'sosmorse'
 				erb :sosmorse, layout: false
 			when'expenses-planner'
-				redirect "#{key.downcase}", 301 if key != 'expenses-planner'
+				redirect key.downcase, 301 if key != 'expenses-planner'
 				erb :'expenses-planner', layout: false
 			when 'carminder'
-				redirect "#{key.downcase}", 301 if key != 'carminder'
+				redirect key.downcase, 301 if key != 'carminder'
 				erb :carminder, layout: false
 			when 'about'
 				@title = 'About'
 				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
-				redirect "#{key.downcase}", 301 if key != 'about'
+				redirect key.downcase, 301 if key != 'about'
 				erb :about
 			when 'privacy-policy'
 				@title = 'Privacy Policy'
 				@meta_description = "Roland Leth's Privacy Policy"
-				redirect "#{key.downcase}", 301 if key != 'privacy-policy'
+				redirect key.downcase, 301 if key != 'privacy-policy'
 				erb :'privacy-policy'
+			else
+				not_found
 		end
 	end
 
@@ -96,7 +100,7 @@ module Page
 		if post.count > 0
 			# This means the URL was not written with lowercase letters only
 			if post[:link] != key
-				redirect "#{key.downcase}", 301
+				redirect key.downcase, 301
 			else
 				erb :index, locals: { post: post, total_pages: -1 }
 			end
