@@ -1,6 +1,6 @@
 module Helpers
 	def all_posts
-		posts = repository(:default).adapter.select('SELECT * FROM application_posts')
+		posts = repository(:default).adapter.select('SELECT * FROM post_posts')
 		posts.map! { |struc| struc.to_h }
 		posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
 		posts.reject! do |post|
