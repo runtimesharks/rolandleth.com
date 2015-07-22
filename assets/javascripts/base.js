@@ -18,14 +18,14 @@ $(document).ready(function() {
 	//	$("input[class='search']").attr('size', 13);
 	//}
 
-	var query = decodeURIComponent(location.search)
-		.split("=")[1]
-		.replace(/[\+]/g, " ");
+	//var query = decodeURIComponent(location.search)
+	//	.split("=")[1]
+	//	.replace(/[\+]/g, " ");
 	var searchField = $('input.search');
 	var bannerSearchField = $('input.banner-search');
 
-	searchField.val(query);
-	bannerSearchField.val(query);
+	//searchField.val(query);
+	//bannerSearchField.val(query);
 
 	searchField.on('input', function() {
 		bannerSearchField.val(searchField.val());

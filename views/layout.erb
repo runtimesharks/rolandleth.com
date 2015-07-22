@@ -53,8 +53,9 @@
 			<div class="banner" role="banner">
 				<a href="/"><%= 'Roland Leth' %></a>
 			</div>
+			<% query_params = request.params['query'] %>
 		  <form class="search banner-search" action="/search" method="get">
-		    <input type="text" class="search banner-search" name="query" size="20" maxlength="30" placeholder="Search..."/>
+		    <input type="text" class="search banner-search" name="query" size="20" maxlength="30" placeholder="Search..." value='<%= query_params %>'/>
 		  </form>
 		</div>
 		<div role="navigation" class="navigation">
@@ -69,7 +70,7 @@
 		  <a href="/feed"><i class="fa fa-rss"></i></a>
 		</div>
 	  <form class="search" action="/search" method="get">
-	    <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..."/>
+	    <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..." value='<%= query_params %>'/>
 	  </form>
 	</nav>
 	<section>
