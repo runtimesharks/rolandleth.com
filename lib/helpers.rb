@@ -1,11 +1,17 @@
 module Helpers
 	def all_posts
-		posts = repository(:default).adapter.select('SELECT * FROM post_posts')
-		posts.map! { |struc| struc.to_h }
+		posts = all_posts_from_repository
 		posts.sort! { |a, b| a[:datetime] <=> b[:datetime] }.reverse!
 		posts.reject! do |post|
 			time_from_string(post[:datetime]) == nil || DateTime.now.to_time < time_from_string(post[:datetime])
 		end
+
+		posts
+	end
+
+	def all_posts_from_repository
+		posts = repository(:default).adapter.select('SELECT * FROM post_posts')
+		posts.map! { |struc| struc.to_h }
 
 		posts
 	end
