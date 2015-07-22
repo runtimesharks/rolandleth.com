@@ -17,6 +17,23 @@ $(document).ready(function() {
 	//if ($(window).width() <= 380) {
 	//	$("input[class='search']").attr('size', 13);
 	//}
+
+	var query = decodeURIComponent(location.search)
+		.split("=")[1]
+		.replace(/[\+]/g, " ");
+	var searchField = $('input.search');
+	var bannerSearchField = $('input.banner-search');
+
+	searchField.val(query);
+	bannerSearchField.val(query);
+
+	searchField.on('input', function() {
+		bannerSearchField.val(searchField.val());
+	});
+
+	bannerSearchField.on('input', function() {
+		searchField.val(bannerSearchField.val());
+	});
 });
 
 var resizeImage = function(img) {
