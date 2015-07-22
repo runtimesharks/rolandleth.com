@@ -93,7 +93,7 @@ module Page
 
 	def open_individual_page(key)
 		# The select returns an array that has a structure as its only object
-		post = repository(:default).adapter.select('SELECT * FROM application_posts WHERE link= ?', key.downcase)[0].to_h
+		post = repository(:default).adapter.select("SELECT * FROM #{POSTS_TABLE} WHERE link= ?", key.downcase)[0].to_h
 		@title = post[:title]
 		@meta_description = post[:title]
 

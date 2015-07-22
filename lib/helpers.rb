@@ -10,7 +10,7 @@ module Helpers
 	end
 
 	def all_posts_from_repository
-		posts = repository(:default).adapter.select('SELECT * FROM post_posts')
+		posts = repository(:default).adapter.select("SELECT * FROM #{POSTS_TABLE}")
 		posts.map! { |struc| struc.to_h }
 
 		posts
