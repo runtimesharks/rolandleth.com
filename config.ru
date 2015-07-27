@@ -13,4 +13,6 @@ map '/assets' do
 	run sprockets
 end
 
-run Application
+map '/' do
+	run Application
+end

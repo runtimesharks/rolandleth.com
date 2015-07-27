@@ -1,4 +1,5 @@
 @import 'bourbon';
+@import 'mixins';
 @import "globals/variables";
 @import "components/reset";
 @import url(http://fonts.googleapis.com/css?family=Arvo);
@@ -91,8 +92,12 @@ nav.header {
 
 		& a {
 			display: inline-block;
-			margin-left: 20px; // 40
 			font-size: 1.4em;
+
+			margin-left: 20px; // 40
+			@media screen and (max-width: 570px) {
+				margin-left: 12px;
+			}
 
 			& h2 {
 				line-height: 1.3em;
@@ -107,6 +112,40 @@ nav.header {
 		&:hover {
 			color: $link-color;
 			border-bottom: 0px;
+		}
+	}
+
+	@media screen and (max-width: 330px) {
+		font-size: 0.9em;
+	}
+
+	@media screen and (max-width: 356px) {
+		font-size: 1em;
+	}
+
+	@media screen and (max-width: 482px) {
+		text-align: center;
+		margin-bottom: 1.2em;
+
+		& .navigation {
+			max-width: 150px;
+		}
+
+		& .banner-container {
+			& .banner {
+				float: none;
+			}
+
+			& form.banner-search {
+				display: none;
+			}
+		}
+
+		& form.search {
+			display: block;
+			float: left;
+			padding-top: 4px;
+			margin-bottom: 30px;
 		}
 	}
 }
@@ -207,59 +246,9 @@ footer {
 	}
 }
 
-@media screen and (max-width: 570px) {
-	nav.header {
-		& .navigation {
-			& a {
-				margin-left: 12px;
-			}
-		}
-	}
-}
-
-@media screen and (max-width: 482px) {
-	nav.header {
-		text-align: center;
-		margin-bottom: 1.2em;
-
-		& .navigation {
-			max-width: 150px;
-		}
-
-		& .banner-container {
-			& .banner {
-				float: none;
-			}
-
-			& form.banner-search {
-				display: none;
-			}
-		}
-
-		& form.search {
-			display: block;
-			float: left;
-			padding-top: 4px;
-			margin-bottom: 30px;
-		}
-	}
-}
-
 @media screen and (max-width: 430px) {
 	img.project-screenshot {
 		display: none;
-	}
-}
-
-@media screen and (max-width: 356px) {
-	nav.header {
-		font-size: 1em;
-	}
-}
-
-@media screen and (max-width: 330px) {
-	nav.header {
-		font-size: 0.9em;
 	}
 }
 

@@ -30,7 +30,5 @@ gem 'sprockets'
 
 # Stylesheet
 gem 'sass'
-gem 'sprockets-sass', require: 'sass'
 gem 'bourbon'
-# gem 'pygments.rb'
 gem 'rouge'
