@@ -14,6 +14,8 @@ gem 'dm-core'
 gem 'dm-postgres-adapter'
 gem 'dm-migrations'
 
+gem 'readingtime'
+
 # Web server
 gem 'puma'
 
@@ -28,6 +30,5 @@ gem 'sprockets'
 
 # Stylesheet
 gem 'sass'
-gem 'sprockets-sass', require: 'sass'
 gem 'bourbon'
-gem 'pygments.rb'
+gem 'rouge'

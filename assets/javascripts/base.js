@@ -1,26 +1,48 @@
 $(document).ready(function() {
-  $(window).resize(function() {
-    resizeImage($('img:not([class])'))
-  });
+	$(window).resize(function() {
+		resizeImage($('img:not([class])'))
+	});
 
-  $('img:not([class])').on('load',function() {
-    resizeImage($(this))
-  });
+	$('img:not([class])').on('load',function() {
+		resizeImage($(this))
+	});
 
-  //setTimeout(function() {
-  //  $('img').each(function() {
-  //    $(this).css('visibility', 'visible');
-  //  });
-  //}, 100);
+	//setTimeout(function() {
+	//	$('img').each(function() {
+	//		$(this).css('visibility', 'visible');
+	//	});
+	//}, 100);
+
+	// Smaller search field for iPhones, since it doesn't fit at > 13
+	//if ($(window).width() <= 380) {
+	//	$("input[class='search']").attr('size', 13);
+	//}
+
+	//var query = decodeURIComponent(location.search)
+	//	.split("=")[1]
+	//	.replace(/[\+]/g, " ");
+	var searchField = $('input.search');
+	var bannerSearchField = $('input.banner-search');
+
+	//searchField.val(query);
+	//bannerSearchField.val(query);
+
+	searchField.on('input', function() {
+		bannerSearchField.val(searchField.val());
+	});
+
+	bannerSearchField.on('input', function() {
+		searchField.val(bannerSearchField.val());
+	});
 });
 
 var resizeImage = function(img) {
-  if (img.width() > $('section').width()) {
-    if (!img.closest('.centered-image-wrapper').length) {
-      img.wrap("<div class='centered-image-wrapper'></div>");
-    }
-  }
-  else if (img.closest('.centered-image-wrapper').length) {
-    img.unwrap()
-  }
+	if (img.width() > $('section').width()) {
+		if (!img.closest('.centered-image-wrapper').length) {
+			img.wrap("<div class='centered-image-wrapper'></div>");
+		}
+	}
+	else if (img.closest('.centered-image-wrapper').length) {
+		img.unwrap()
+	}
 };

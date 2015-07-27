@@ -5,12 +5,14 @@ $LOAD_PATH.unshift 'lib'
 require 'app'
 
 map '/assets' do
-  sprockets = Sprockets::Environment.new
-  sprockets.append_path 'assets/javascripts'
-  sprockets.append_path 'assets/stylesheets'
-  sprockets.append_path 'assets/images'
-  sprockets.append_path 'assets/files'
-  run sprockets
+	sprockets = Sprockets::Environment.new
+	sprockets.append_path 'assets/javascripts'
+	sprockets.append_path 'assets/stylesheets'
+	sprockets.append_path 'assets/images'
+	sprockets.append_path 'assets/files'
+	run sprockets
 end
 
-run Application
+map '/' do
+	run Application
+end

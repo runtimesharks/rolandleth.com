@@ -1,45 +1,40 @@
 blockquote {
-	margin: 0 0 1em;
-	padding-left: 20px;
-	border-left: 7px solid #dddddd;
+	margin: 1.5em 1em 1.5em 1em;
+	/*padding-left: 20px;*/
+	padding: 15px 15px;
+	/*border-left: 7px solid #dddddd;*/
+	border-top: 5px solid #eee;
+	border-bottom: 5px solid #eee;
 	color: #aaa;
-	font-style: normal;
+	font-style: italic;
 	font-family: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 code {
-	//margin: 0 0 2em;
-	padding: 0 0.2em 0 0.2em;
-	border: 1px solid #dcdcdc;
+	//color: #8a54bc;
+	//font-weight: 600;
+	background-color: #F8F8F8;
 	border-radius: 2px;
-	background-color: ghostWhite;
-	//background-color: rgba(112, 61, 170, 0.05);
-	//color: #666;
+	padding: 0.1em 0;
 	color: #703DAA;
-  white-space: pre-wrap;
-//  overflow-x:hidden;
-//  width: 100px;
+	white-space: pre-wrap;
 	font-size: 0.85em;
 	font-family: Consolas, Menlo, Monaco, Courier, monospace;
 }
 
-pre code {
-	padding: 0;
-	border: medium none;
-	background-color: ghostWhite;
-	white-space: pre;
-	font-size: 0.8em;
-	font-family: Consolas, Menlo, Monaco, Courier, monospace;
-}
-
 pre {
-	line-height: 1.4em;
+	line-height: 1.1em;
 	overflow: auto;
-	padding: 0.6em 0.2em 0.5em 0.7em;
-	border: 1px solid #dcdcdc;
+	padding: 0.4em;
+	//border: 1px solid #dcdcdc;
+	background-color: #F9F9F9;
 	border-radius: 2px;
-	background-color: ghostWhite;
-	color: #666;
-	font-size: 0.8em;
+	font-size: 0.95em;
 	font-family: Consolas, Menlo, Monaco, Courier, monospace;
+
+	& code {
+		color: #666;
+		white-space: pre;
+		font-weight: 300;
+	}
 }
