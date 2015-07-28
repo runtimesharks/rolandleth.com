@@ -1,7 +1,6 @@
 @import 'bourbon';
-@import 'mixins';
-@import "globals/variables";
-@import "components/reset";
+@import 'globals/variables';
+@import 'components/reset';
 @import url(http://fonts.googleapis.com/css?family=Arvo);
 
 html {
@@ -9,12 +8,12 @@ html {
 }
 
 nav.header {
-	max-width: $max-width;
+	max-width: $max_width;
 	margin: 2.5em auto 4em auto;
 	font-family: 'Arvo';
 
 	& .banner-container {
-		border-bottom: 2px solid $title-color;
+		border-bottom: 2px solid $title_color;
 		width: 100%;
 
 		& .banner {
@@ -45,37 +44,37 @@ nav.header {
 
 		& input.search {
 			padding: 5px;
-			color: $link-color;
+			color: $link_color;
 
 			border: 0;
-			border-bottom: 1px solid $gray-color;
+			@include light_bottom_border(1px);
 			outline-width: 0;
 			border-radius: 0;
 
-			font-family: $body-font;
+			font-family: $body_font;
 			font-size: inherit;
 
 			&::-webkit-input-placeholder{
-				color: $gray-color;
+				color: $gray;
 			}
 			&::-moz-placeholder {
-				color: $gray-color;
+				color: $gray;
 			}
 			&:-moz-placeholder {
-				color: $gray-color;
+				color: $gray;
 			}
 
 			&:focus {
-				border-bottom: 1px solid $link-color;
+				border-bottom: 1px solid $link_color;
 
 				&::-webkit-input-placeholder {
-					color: $link-color;
+					color: $link_color;
 				}
 				&::-moz-placeholder {
-					color: $link-color;
+					color: $link_color;
 				}
 				&:-moz-placeholder {
-					color: $link-color;
+					color: $link_color;
 				}
 			}
 		}
@@ -95,7 +94,7 @@ nav.header {
 			font-size: 1.4em;
 
 			margin-left: 20px; // 40
-			@media screen and (max-width: 570px) {
+			@include responsive_width(570px) {
 				margin-left: 12px;
 			}
 
@@ -106,25 +105,25 @@ nav.header {
 	}
 
 	& a {
-		color: $title-color;
+		color: $title_color;
 		line-height: 1.25em;
 
 		&:hover {
-			color: $link-color;
+			color: $link_color;
 			border-bottom: 0px;
 		}
 	}
 
-	@media screen and (max-width: 330px) {
+	@include responsive_width(330px) {
 		font-size: 0.9em;
 	}
 
-	@media screen and (max-width: 356px) {
+	@include responsive_width(356px) {
 		font-size: 1em;
 	}
 
-	@media screen and (max-width: 482px) {
-		text-align: center;
+	@include responsive_width(482px) {
+		@include center_text;
 		margin-bottom: 1.2em;
 
 		& .navigation {
@@ -152,21 +151,21 @@ nav.header {
 
 body {
 	padding: 0 15px;
-	color: $text-color;
+	color: $text_color;
 	background: #fff;
-	font-family: $body-font;
+	font-family: $body_font;
 	font-size: 17px;
 }
 
 section {
-	max-width: $max-width;
+	max-width: $max_width;
 	margin: 0 auto;
 	clear: both;
 }
 
 a {
 	text-decoration: none;
-	color: $link-color;
+	color: $link_color;
 
 	&:hover {
 		border-bottom: 1px solid;
@@ -186,10 +185,10 @@ em {
 }
 
 .quote {
-	text-align: center;
+	@include center_text;
 	font-weight: 300;
 	font-style: italic;
-	font-family: $body-font;
+	font-family: $body_font;
 	margin-bottom: 0.5em;
 }
 
@@ -201,8 +200,8 @@ mark {
 	&.search {
 		padding: 0 0.1em 0 0.1em;
 		border-radius: 2px;
-		background-color: $link-color;
-		color: $background-color;
+		background-color: $link_color;
+		color: $background_color;
 		font-style: normal;
 	}
 }
@@ -217,10 +216,10 @@ a {
 }
 
 footer {
-	max-width: $max-width;
+	max-width: $max_width;
 	margin: 3em auto 1em;
-	text-align: center;
-	color: $gray-color;
+	@include center_text;
+	color: $gray;
 	line-height: 1.5em;
 
 	& .copyright {
@@ -228,7 +227,7 @@ footer {
 	}
 
 	& a {
-		color: $link-color;
+		color: $link_color;
 
 		& .fa {
 			margin-left: 10px;
@@ -236,7 +235,7 @@ footer {
 		}
 
 		&:hover {
-			color: $link-color;
+			color: $link_color;
 			border-bottom: none;
 		}
 	}
@@ -246,7 +245,7 @@ footer {
 	}
 }
 
-@media screen and (max-width: 430px) {
+@include responsive_width(430px) {
 	img.project-screenshot {
 		display: none;
 	}

@@ -1,13 +1,15 @@
+@import '../globals/variables';
+
 blockquote {
 	margin: 1.5em 1em 1.5em 1em;
 	/*padding-left: 20px;*/
 	padding: 15px 15px;
 	/*border-left: 7px solid #dddddd;*/
-	border-top: 5px solid #eee;
-	border-bottom: 5px solid #eee;
-	color: #aaa;
+	@include light_top_border(5px);
+	@include light_bottom_border(5px);
+	color: $gray;
 	font-style: italic;
-	font-family: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: $body_font;
 }
 
 code {
@@ -16,10 +18,10 @@ code {
 	background-color: #F8F8F8;
 	border-radius: 2px;
 	padding: 0.1em 0;
-	color: #703DAA;
+	color: $code_color;
 	white-space: pre-wrap;
 	font-size: 0.85em;
-	font-family: Consolas, Menlo, Monaco, Courier, monospace;
+	font-family: $code_font;
 }
 
 pre {
@@ -30,10 +32,10 @@ pre {
 	background-color: #F9F9F9;
 	border-radius: 2px;
 	font-size: 0.95em;
-	font-family: Consolas, Menlo, Monaco, Courier, monospace;
+	font-family: $code_font;
 
 	& code {
-		color: #666;
+		color: $pre_code_color;
 		white-space: pre;
 		font-weight: 300;
 	}
