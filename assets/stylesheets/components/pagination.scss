@@ -19,11 +19,11 @@ nav.pagination {
 	
 	span.gap {
 		padding: 2px;
-		color: $gray-color;
+		color: $gray;
 	}
 	
 	span.disabled {
-		color: $gray-color;
+		color: $gray;
 	}
 
 	@media #{$small-query} {

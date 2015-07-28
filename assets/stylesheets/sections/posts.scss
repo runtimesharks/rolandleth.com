@@ -1,15 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Arvo);
-@import "../globals/variables";
-@import "bourbon";
+@import '../globals/variables';
+@import 'bourbon';
 
 article {
 	padding: 3em 0 1.5em;
-	border-bottom: 1px solid #e2e2e2;
 	line-height: 1.3em;
+	@include light_bottom_border(1px);
 
 	& h4 {
 		padding-left: 2px;
-		color: $meta-color;
+		color: $gray;
 		font-size: 0.41em;
 		font-weight: lighter;
 		line-height: 2em;
@@ -18,11 +18,11 @@ article {
 
 	&.about {
 		line-height: 1.5em;
-		border-bottom: 1px solid #eee;
+		@include light_bottom_border(1px);
 	}
 
 	&.projects {
-		border-bottom: 1px solid #ddd;
+		@include light_bottom_border(1px);
 	}
 }
 
@@ -41,6 +41,7 @@ a.img:hover {
 	& span {
 		display:inline-block;
 		margin: 0.25em 0.5em 0;
+
 		&.icon-title {
 			display: block;
 			margin: -0.5em 0 0;
@@ -53,7 +54,7 @@ a.img:hover {
 }
 
 .centered {
-	text-align: center;
+	@include center_text;
 	margin: 0.5em 0;
 	font-weight: 500;
 	color: gray;
@@ -119,7 +120,7 @@ img {
 }
 
 header {
-	color: $title-color;
+	color: $title_color;
 	font-family: 'Arvo', serif;
 	font-size: 1.8em;
 	line-height: 1.2em;
@@ -128,11 +129,11 @@ header {
 
 	& h1 a {
 		word-break: normal;
-		color: $title-color;
+		color: $title_color;
 		border-bottom: 1px solid transparent;
 
 		&:hover {
-			color: $link-color;
+			color: $link_color;
 			border-bottom: 1px solid transparent;
 		}
 	}
@@ -144,7 +145,7 @@ header {
 	line-height: 1.4em;
 
 	& h2 {
-		color: $title-color;
+		color: $title_color;
 		font-family: 'Arvo', serif;
 		font-size: 1.3em;
 		margin-bottom: 0.5em;
@@ -163,24 +164,20 @@ header {
 	}
 }
 
-@media screen and (max-width: 647px) {
-	header {
-		font-size: 1.9em;
-	}
-
+@include responsive_width(647px) {
 	.content h2 {
 		font-size: 1.5em;
 		line-height: 1.1em;
 	}
 }
 
-@media screen and (max-width: 535px) {
+@include responsive_width(535px) {
 	header {
 		font-size: 1.8em;
 	}
 }
 
-@media screen and (max-width: 475px) {
+@include responsive_width(475px) {
 	header {
 		font-size: 1.7em;
 	}
