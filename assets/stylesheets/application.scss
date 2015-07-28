@@ -98,6 +98,10 @@ nav.header {
 				margin-left: 12px;
 			}
 
+			&:first-child {
+				margin-left: 0;
+			}
+
 			& h2 {
 				line-height: 1.3em;
 			}

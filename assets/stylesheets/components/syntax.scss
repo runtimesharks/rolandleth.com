@@ -2,9 +2,7 @@
 
 blockquote {
 	margin: 1.5em 1em 1.5em 1em;
-	/*padding-left: 20px;*/
 	padding: 15px 15px;
-	/*border-left: 7px solid #dddddd;*/
 	@include light_top_border(5px);
 	@include light_bottom_border(5px);
 	color: $gray;
@@ -13,8 +11,6 @@ blockquote {
 }
 
 code {
-	//color: #8a54bc;
-	//font-weight: 600;
 	background-color: #F8F8F8;
 	border-radius: 2px;
 	padding: 0.1em 0;
@@ -28,7 +24,6 @@ pre {
 	line-height: 1.1em;
 	overflow: auto;
 	padding: 0.4em;
-	//border: 1px solid #dcdcdc;
 	background-color: #F9F9F9;
 	border-radius: 2px;
 	font-size: 0.95em;
