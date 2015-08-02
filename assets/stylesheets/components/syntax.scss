@@ -1,19 +1,19 @@
 @import '../globals/variables';
 
 blockquote {
-	margin: 1.5em 1em 1.5em 1em;
-	padding: 15px 15px;
 	@include light_top_border(5px);
 	@include light_bottom_border(5px);
+	margin: 1.5em 1em 1.5em 1em;
+	padding: 15px 15px;
 	color: $gray;
 	font-style: italic;
 	font-family: $body_font;
 }
 
 code {
-	background-color: #F8F8F8;
-	border-radius: 2px;
 	padding: 0.1em 0;
+	border-radius: 2px;
+	background-color: #f8f8f8;
 	color: $code_color;
 	white-space: pre-wrap;
 	font-size: 0.85em;
@@ -21,13 +21,13 @@ code {
 }
 
 pre {
-	line-height: 1.1em;
 	overflow: auto;
 	padding: 0.4em;
-	background-color: #F9F9F9;
 	border-radius: 2px;
+	background-color: #f9f9f9;
 	font-size: 0.95em;
 	font-family: $code_font;
+	line-height: 1.1em;
 
 	& code {
 		color: $pre_code_color;
