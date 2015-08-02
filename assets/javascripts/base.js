@@ -1,10 +1,13 @@
 $(document).ready(function() {
 	$(window).resize(function() {
-		resizeImage($('img:not([class])'))
+		resizeImage($('img:not([class])'));
 	});
 
+	setupSearchFields();
+	//setupTruncationWithDotDotDot();
+
 	$('img:not([class])').on('load',function() {
-		resizeImage($(this))
+		resizeImage($(this));
 	});
 
 	//setTimeout(function() {
@@ -12,10 +15,20 @@ $(document).ready(function() {
 	//		$(this).css('visibility', 'visible');
 	//	});
 	//}, 100);
+});
 
-	//var query = decodeURIComponent(location.search)
-	//	.split("=")[1]
-	//	.replace(/[\+]/g, " ");
+var resizeImage = function(img) {
+	if (img.width() > $('section').width()) {
+		if (!img.closest('.centered-image-wrapper').length) {
+			img.wrap("<div class='centered-image-wrapper'></div>");
+		}
+	}
+	else if (img.closest('.centered-image-wrapper').length) {
+		img.unwrap();
+	}
+};
+
+var setupSearchFields = function() {
 	var searchField = $('input.search');
 	var bannerSearchField = $('input.banner-search');
 
@@ -31,9 +44,6 @@ $(document).ready(function() {
 	}
 	searchField.attr('size', size);
 
-	//searchField.val(query);
-	//bannerSearchField.val(query);
-
 	searchField.on('input', function() {
 		bannerSearchField.val(searchField.val());
 	});
@@ -41,15 +51,45 @@ $(document).ready(function() {
 	bannerSearchField.on('input', function() {
 		searchField.val(bannerSearchField.val());
 	});
-});
+};
 
-var resizeImage = function(img) {
-	if (img.width() > $('section').width()) {
-		if (!img.closest('.centered-image-wrapper').length) {
-			img.wrap("<div class='centered-image-wrapper'></div>");
+var setupTruncationWithDotDotDot = function() {
+	$('.content').dotdotdot({
+		/*	The text to add as ellipsis. */
+		ellipsis	: ' [...]',
+
+		/*	How to cut off the text/html: 'word'/'letter'/'children' */
+		wrap		: 'word',
+
+		/*	Wrap-option fallback to 'letter' for long words */
+		fallbackToLetter: true,
+
+		/*	jQuery-selector for the element to keep and put after the ellipsis. */
+		after		: null,
+
+		/*	Whether to update the ellipsis: true/'window' */
+		watch		: true,
+
+		/*	Optionally set a max-height, if null, the height will be measured. */
+		height		: 190,
+
+		/*	Deviation for the height-option. */
+		tolerance	: 0,
+
+		/*	Callback function that is fired after the ellipsis is added,
+		 receives two parameters: isTruncated(boolean), orgContent(string). */
+		callback	: function( isTruncated, orgContent ) {
+
+		},
+
+		lastCharacter	: {
+
+			/*	Remove these characters from the end of the truncated text. */
+			remove		: [ ' ', ',', ';', '.', '!', '?' ],
+
+			/*	Don't add an ellipsis if this array contains
+			 the last character of the truncated text. */
+			noEllipsis	: []
 		}
-	}
-	else if (img.closest('.centered-image-wrapper').length) {
-		img.unwrap()
-	}
+	});
 };

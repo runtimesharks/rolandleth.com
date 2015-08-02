@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 gem 'rake'
 gem 'bundler'
@@ -23,6 +24,9 @@ gem 'erubis'
 
 # Markdown
 gem 'redcarpet'
+
+# Truncates (and sanitizes) html content
+gem 'html_truncator'
 
 # Asset pipeline
 gem 'sprockets'

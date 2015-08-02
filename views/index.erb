@@ -1,5 +1,5 @@
-<%- # Just a hack to skip having to create another variable. If total_pages == 'search', we are searching
-		# If total_pages == -1, we are displaying a post -%>
+<%- require 'html_truncator'
+		# If total_pages == -1, we are displaying the single post page -%>
 <%- if total_pages == -1
 			# Explained the total_pages == -1 check in app.rb
 			date_matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
@@ -14,10 +14,19 @@
 				date = Date.new(date_matches[1].to_i, date_matches[2].to_i, date_matches[3].to_i).to_time.utc.to_i
 
 				reading_time = post[:body].reading_time(format: :approx)
-				content = _markdown(post[:body].lines.join)
+				# So the ellipsis goes inside the code block, if it ends in one, for better appearance
+				HTML_Truncator.ellipsable_tags << 'pre'
+				content = HTML_Truncator.truncate(_markdown(post[:body].lines.join),
+				                                  100, ' [...]')
+				# We don't add the Continue reading inside the custom ellipsis
+				# because it will be added inside the code blocks as well
+				if content.html_truncated?
+					content += "<br/><a href='/#{post[:link]}' onClick='_gaq.push(['_trackEvent', 'continue-reading', 'click', '#{post[:link]}']);'>Continue reading &rarr;</a>"
+				end
+
 				title = post[:title]
 
-				search_terms ||= []
+				search_terms ||= [] # If search_terms have been passed, we are on search mode
 				search_terms.each do |w|
 					if content.downcase.index(w)
 						start_index = content.downcase.index(w)
@@ -49,7 +58,7 @@
 				end -%>
 		<%=	erb :post, locals: { date: date, title: title, content: content, link: post[:link], reading_time: reading_time } -%>
 	<%- end -%>
-	<% total_pages = 1 if total_pages == 'search' %>
+	<%- # total_pages == 1 when we are searching -%>
 	<%- if total_pages > 1 -%>
 		<nav class="pagination">
 			<%- if page > 1 -%>
