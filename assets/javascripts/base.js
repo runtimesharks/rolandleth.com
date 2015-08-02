@@ -13,16 +13,23 @@ $(document).ready(function() {
 	//	});
 	//}, 100);
 
-	// Smaller search field for iPhones, since it doesn't fit at > 13
-	//if ($(window).width() <= 380) {
-	//	$("input[class='search']").attr('size', 13);
-	//}
-
 	//var query = decodeURIComponent(location.search)
 	//	.split("=")[1]
 	//	.replace(/[\+]/g, " ");
 	var searchField = $('input.search');
 	var bannerSearchField = $('input.banner-search');
+
+	// Smaller search field for iPhones, since it doesn't fit at > 13
+	var winWidth = $(window).width();
+	var size = 17;
+	switch (true) {
+		case winWidth < 320: size = 11; break;
+		case winWidth < 325: size = 12; break;
+		case winWidth < 330: size = 15; break;
+		case winWidth < 335: size = 16; break;
+		default: size = 17; break;
+	}
+	searchField.attr('size', size);
 
 	//searchField.val(query);
 	//bannerSearchField.val(query);

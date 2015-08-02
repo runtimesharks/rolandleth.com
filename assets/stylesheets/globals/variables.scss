@@ -1,19 +1,43 @@
 // Sizing
-$max-width: 700px;
+$max_width: 700px;
 
 // Colors
-$link-color: #12A8DA;
-$highligh-color: #fffeca;
-$code-background-color: ghostWhite;
-$code-border-color: #cdcdcd;
-$gray-color: #aaa;
-$background-color: #f7f7f7;
-$text-color: #444;
-$title-color: #3b3b3b;
-$meta-color: #999;
-$red-color: #f6291d;
+$link_color: #12A8DA;
+$highligh_color: #fffeca;
+$code_color: #703DAA;
+$pre_code_color: #666;
 
-$body-font: 'Avenir Next', 'Helvetica Neue', 'Helvetica', sans-serif;
+$light_gray: #eee;
+$gray: #aaa;
+$background_color: #f7f7f7;
+$text_color: #444;
+$title_color: #3b3b3b;
+$red_color: #f6291d;
+
+$body_font: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$code_font: 'Consolas', 'Menlo', 'Monaco', 'Courier', monospace;
 
 $small-query: "all and (max-width: 575px)";
 $retina-query: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5)";
+
+@mixin border_radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin center_text {
+	text-align: center;
+}
+
+@mixin light_bottom_border($size) {
+	border-bottom: $size solid $light_gray;
+}
+
+@mixin light_top_border($size) {
+	border-top: $size solid $light_gray;
+}
+
+@mixin responsive_width($width) {
+	@media screen and (max-width: $width) { @content; }
+}
