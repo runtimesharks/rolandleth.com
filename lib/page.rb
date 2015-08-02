@@ -29,7 +29,7 @@ module Page
 		end
 
 		if posts.count > 0
-			erb :index, locals: { posts: posts, page: 1, total_pages: 'search', gap: 2, search_terms: query_array }
+			erb :index, locals: { posts: posts, page: 1, total_pages: 1, gap: 2, search_terms: query_array }
 		else
 			search_not_found
 		end
@@ -61,6 +61,7 @@ module Page
 			when 'projects'
 				@title = 'Projects'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
+				# This just permanently redirects PrOjEcts to projects
 				redirect key.downcase, 301 if key != 'projects'
 				erb :projects
 			when 'bouncyb'
