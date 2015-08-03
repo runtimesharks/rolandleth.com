@@ -109,7 +109,7 @@ class Application < Sinatra::Application
 	get '/Roland-Leth-Resume.pdf' do
 		send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
 	end
-	get '/Roland-Leth-Privacy Policy.md' do
+	get '/Roland-Leth-Privacy-Policy.md' do
 		send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
 	end
 
