@@ -29,8 +29,15 @@ var resizeImage = function(img) {
 };
 
 var setupSearchFields = function() {
+	var query = decodeURIComponent(location.search)
+		.split("query=")[1]
+		.replace(/[\+]/g, " ");
+
 	var searchField = $('input.search');
 	var bannerSearchField = $('input.banner-search');
+
+	searchField.val(query);
+	bannerSearchField.val(query);
 
 	// Smaller search field for iPhones, since it doesn't fit at > 13
 	var winWidth = $(window).width();
