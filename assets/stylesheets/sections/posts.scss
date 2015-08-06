@@ -120,7 +120,7 @@ img {
 }
 
 header {
-	color: $title_color;
+	color: $text_color;
 	word-break: break-all;
 	font-weight: normal;
 	font-size: 1.8em;
@@ -129,7 +129,7 @@ header {
 
 	& h1 a {
 		border-bottom: 1px solid transparent;
-		color: $title_color;
+		color: $text_color;
 		word-break: normal;
 
 		&:hover {
@@ -147,7 +147,7 @@ header {
 	& h2 {
 		margin-bottom: 0.5em;
 		padding-top: 0.25em;
-		color: $title_color;
+		color: $text_color;
 		font-weight: normal;
 		font-size: 1.3em;
 		font-family: 'Arvo', serif;
