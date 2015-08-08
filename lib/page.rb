@@ -3,7 +3,7 @@ require 'post'
 module Page
 	include Post
 
-	PAGE_SIZE = 7
+	PAGE_SIZE = ENV['PAGE_SIZE'].to_i > 0 ? ENV['PAGE_SIZE'].to_i : 10
 	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
 	def open_main_page
