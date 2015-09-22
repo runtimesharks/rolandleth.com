@@ -1,8 +1,19 @@
-@import url(http://fonts.googleapis.com/css?family=Arvo);
 @import '../globals/variables';
 @import 'bourbon';
 
 article {
+	& h1 {
+		&.archive-years {
+			//padding-left: 5px;
+			//padding-right: 5px;
+			font-family: $header_font;
+			margin-bottom: 20px;
+			margin-top: 20px;
+			display: inline-block;
+			font-size: 2em;
+		}
+	}
+
 	padding: 3em 0 1.5em;
 	line-height: 1.3em;
 	@include light_bottom_border(1px);
@@ -10,10 +21,14 @@ article {
 	& h4 {
 		padding-left: 2px;
 		color: $gray;
-		font-weight: lighter;
+		font-weight: 500;
 		font-style: italic;
 		font-size: 0.41em;
 		line-height: 2em;
+
+		& span.tilde {
+			font-family: $body_font;
+		}
 	}
 
 	&.about {
@@ -120,16 +135,16 @@ img {
 }
 
 header {
-	color: $title_color;
+	color: $text_color;
 	word-break: break-all;
 	font-weight: normal;
 	font-size: 1.8em;
-	font-family: 'Arvo', serif;
+	font-family: $header_font;
 	line-height: 1.2em;
 
 	& h1 a {
 		border-bottom: 1px solid transparent;
-		color: $title_color;
+		color: $text_color;
 		word-break: normal;
 
 		&:hover {
@@ -147,10 +162,10 @@ header {
 	& h2 {
 		margin-bottom: 0.5em;
 		padding-top: 0.25em;
-		color: $title_color;
+		color: $text_color;
 		font-weight: normal;
 		font-size: 1.3em;
-		font-family: 'Arvo', serif;
+		font-family: $header_font;
 	}
 
 	& li {

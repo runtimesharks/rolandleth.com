@@ -29,7 +29,7 @@
   <meta name="author" content="Roland Leth">
   <!--Stylesheets-->
   <link rel="stylesheet" href="/assets/application.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
   <!--Mobile settings-->
   <link rel="apple-touch-icon" sizes="144x144" href="/assets/misc/apple-touch-icon-144x144.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -39,7 +39,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="/assets/base.js"></script>
   <!--Tracking-->
-  <script type="text/javascript">
+  <script async type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-40255117-4']);
     _gaq.push(['_trackPageview']);
@@ -54,16 +54,18 @@
     })();
   </script>
   <!--Apple's auto affiliate link script-->
-  <script type='text/javascript'>var _merchantSettings = _merchantSettings || [];
-  _merchantSettings.push(['AT', '1001l54C']);
-  (function () {
-    var autolink = document.createElement('script');
-    autolink.type = 'text/javascript';
-    autolink.async = true;
-    autolink.src = ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(autolink, s);
-  })();</script>
+  <script async type='text/javascript'>
+	  var _merchantSettings = _merchantSettings || [];
+	  _merchantSettings.push(['AT', '1001l54C']);
+	  (function () {
+		  var autolink = document.createElement('script');
+		  autolink.type = 'text/javascript';
+		  autolink.async = true;
+		  autolink.src = ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
+		  var s = document.getElementsByTagName('script')[0];
+		  s.parentNode.insertBefore(autolink, s);
+	  })();
+  </script>
 </head>
 
 <body>
@@ -73,9 +75,8 @@
       <div class="banner" role="banner">
         <a href="/"><%= 'Roland Leth' %></a>
       </div>
-      <% query_params = request.params['query'] %>
       <form class="search banner-search" action="/search" method="get">
-        <input type="text" class="search banner-search" name="query" size="20" maxlength="30" placeholder="Search..." value='<%= query_params %>'/>
+        <input type="text" class="search banner-search" name="query" size="20" maxlength="30" placeholder="Search..."/>
       </form>
     </div>
     <!--Navigation part-->
@@ -88,7 +89,7 @@
       <a href="/feed"><i class="fa fa-rss"></i></a>
     </div>
     <form class="search" action="/search" method="get">
-      <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..." value='<%= query_params %>'/>
+      <input type="text" class="search" name="query" size="17" maxlength="30" placeholder="Search..."/>
     </form>
   </nav>
   <!--Main body-->
@@ -101,7 +102,7 @@
       <%= EMOJI.sample %>&nbsp&nbsp&nbsp<%= QUOTES.sample %>
     </div>
     <div class="copyright">
-      &copy; <%= Time.now.year %> Roland Leth
+      &copy; <%= Time.now.year %>&nbsp<a href="/archive">Roland Leth</a>
     </div>
     <a href="https://plus.google.com/116830737199229269159?rel=author"></a>
   </footer>
