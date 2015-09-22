@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Arvo);
 
 body {
 	margin: auto;
@@ -11,7 +10,7 @@ h1 {
 	color: #444;
 	font-weight: normal;
 	font-size: 1.5em;
-	font-family: 'ArvoRegular';
+	font-family: 'American Typewriter', serif;
 	line-height: 1.1em;
 }
 
@@ -20,7 +19,7 @@ p {
 }
 
 p.landscape {
-	width: 300px;	
+	width: 300px;
 	float: right;
 }
 
@@ -46,7 +45,7 @@ hr {
 	box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) inset;
 }
 
-#menuBar .wrapper {	
+#menuBar .wrapper {
 	padding-top: 0;
 	height: 40px;
 }
@@ -83,7 +82,7 @@ hr {
 }
 
 #showcase h1 {
-	font-size: 2.5em;	
+	font-size: 2.5em;
 }
 
 #showcaseImage {
@@ -108,7 +107,7 @@ hr {
 	width: 230px;
 	color: #444;
 	font-weight: normal;
-	font-family: 'ArvoRegular';
+	font-family: 'American TypewriterRegular';
 	line-height: 1.1em;
 }
 
@@ -137,7 +136,7 @@ hr {
 }
 
 .rightBlock img {
-	float: right;	
+	float: right;
 	padding-right: 35px;
 }
 
@@ -155,7 +154,7 @@ hr {
 
 .smallInfo {
 	line-height: 0;
-	font-size: 0.7em;	
+	font-size: 0.7em;
 }
 
 .rightBlock {

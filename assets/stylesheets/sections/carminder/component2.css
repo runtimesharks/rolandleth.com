@@ -190,9 +190,9 @@
 }
 
 @media screen and (max-width: 63.875em) {
-	.ac-wrapper { 
-		font-size: 60%; 
-		width: 100%; 
+	.ac-wrapper {
+		font-size: 60%;
+		width: 100%;
 		padding: 0 20px;
 	}
 
@@ -201,15 +201,15 @@
 		width: 100%;
 	}
 
-	.ac-device h3 { 
+	.ac-device h3 {
 		width: 50%;
 		left: 290px;
 	}
 
-	.ac-wrapper h2 { 
-		left: 308px; 
-		padding: 0; 
-		text-align: left; 
+	.ac-wrapper h2 {
+		left: 308px;
+		padding: 0;
+		text-align: left;
 		margin-left: 30px;
 	}
 }
@@ -233,7 +233,7 @@
 		padding: 0 20px 100px;
 	}
 
-	.ac-wrapper h2 { 
+	.ac-wrapper h2 {
 		width: 100%;
 		text-align: center;
 		margin: 0 0 1em;

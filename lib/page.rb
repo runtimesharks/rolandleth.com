@@ -4,7 +4,7 @@ module Page
 	include Post
 
 	PAGE_SIZE = ENV['PAGE_SIZE'].to_i > 0 ? ENV['PAGE_SIZE'].to_i : 10
-	PAGES = %W{ about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
+	PAGES = %W{ archive about contact apps projects work bouncyb sosmorse iwordjuggle privacy-policy expenses-planner carminder }
 
 	def open_main_page
 		posts = all_posts
@@ -59,7 +59,7 @@ module Page
 
 		case key.downcase
 			when 'projects'
-				@title = 'Projects'
+				@title            = 'Projects'
 				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
 				# This just permanently redirects PrOjEcts to projects
 				redirect key.downcase, 301 if key != 'projects'
@@ -71,22 +71,27 @@ module Page
 			when 'iwordjuggle'
 				redirect key.downcase, 301 if key != 'iwordjuggle'
 				erb :iwordjuggle, layout: false
-			when'sosmorse'
+			when 'sosmorse'
 				redirect key.downcase, 301 if key != 'sosmorse'
 				erb :sosmorse, layout: false
-			when'expenses-planner'
+			when 'expenses-planner'
 				redirect key.downcase, 301 if key != 'expenses-planner'
 				erb :'expenses-planner', layout: false
 			when 'carminder'
 				redirect key.downcase, 301 if key != 'carminder'
 				erb :carminder, layout: false
 			when 'about'
-				@title = 'About'
+				@title            = 'About'
 				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
 				redirect key.downcase, 301 if key != 'about'
 				erb :about
+			when 'archive'
+				@title            = 'Archive'
+				@meta_description = "Roland Leth's archive."
+				redirect key.downcase, 301 if key != 'archive'
+				erb :archive, locals: { posts: year_month_posts }
 			when 'privacy-policy'
-				@title = 'Privacy Policy'
+				@title            = 'Privacy Policy'
 				@meta_description = "Roland Leth's Privacy Policy"
 				redirect key.downcase, 301 if key != 'privacy-policy'
 				erb :'privacy-policy'

@@ -22,7 +22,7 @@
         <%= published_at.strftime('%b %e, %Y') -%>
       </time>
       <%- if reading_time.size > 0 -%>
-        <%= ": ~#{reading_time} read" %>
+        <%= ': ' -%> <span class="tilde">&nbsp;&#126;</span> <%= "#{reading_time} read" -%>
       <%- end -%>
     </h4>
   </header>
