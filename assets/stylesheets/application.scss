@@ -1,7 +1,6 @@
 @import 'bourbon';
 @import 'globals/variables';
 @import 'components/reset';
-@import url(http://fonts.googleapis.com/css?family=Arvo);
 
 html {
 	//border-left: 4px solid $link-color;
@@ -10,7 +9,7 @@ html {
 nav.header {
 	max-width: $max_width;
 	margin: 2.5em auto 4em auto;
-	font-family: 'Arvo';
+	font-family: $header_font;
 
 	& .banner-container {
 		border-bottom: 2px solid $text_color;

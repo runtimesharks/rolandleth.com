@@ -110,4 +110,45 @@ module Post
 
 		redirect '/', 302
 	end
+
+	def worded_month(month)
+		case month.to_i
+			when 1; return 'January'
+			when 2; return 'February'
+			when 3; return 'March'
+			when 4; return 'April'
+			when 5; return 'May'
+			when 6; return 'June'
+			when 7; return 'July'
+			when 8; return 'August'
+			when 9; return 'September'
+			when 10; return 'October'
+			when 11; return 'November'
+			else; return 'December'
+		end
+	end
+
+	def year_month_posts
+		grouped_posts = {}
+
+		all_posts.each do |post|
+			matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
+			year = matches[1].to_s
+			month = worded_month(matches[2].to_s)
+			day = matches[3].to_s
+
+			title = post[:title]
+			link = post[:link]
+
+			grouped_posts[year] ||= {}
+			grouped_posts[year][month] ||= []
+
+			grouped_posts[year][month] << {
+				title: title,
+			  link: link
+			}
+		end
+
+		grouped_posts
+	end
 end
