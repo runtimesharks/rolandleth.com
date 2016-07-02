@@ -34,9 +34,9 @@ module Post
 			datetime, link, file_mtime = file_info(file)
 
 			post = Posts.first(link: link)
-			# pp = Posts.first(title: 'Fastlane')
-			# pp.destroy
-			# pp.destroy
+			# post = Posts.first(title: 'Fastlane')
+			# post.destroy
+			# post.destroy
 
 			# If the datetime isn't the same, it's just another post with the same name
 			while post && post.link == link && post.datetime != datetime
