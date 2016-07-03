@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ./partials/head %>
+<body class="container">
+	<% include ./partials/header %>
+	<% _.forEach(posts, function(months, year) { %>
+		<div class="one-half archive">
+			<h1>
+				<% /* The first character is _, so it's forced as a string, thus the object ordered */ %>
+				<%= year.substring(1, 5) %>
+			</h1>
+			<% _.forEach(months, function(posts) {
+					_.forEach(posts, function(post) {
+			%>
+						<h2>
+							<a href="<%= post.link %>"><%= post.title %></a>
+						</h2>
+			<%  })
+				})
+			%>
+		</div>
+	<% }) %>
+</body>
+<% include ./partials/footer.ejs %>
+</html>

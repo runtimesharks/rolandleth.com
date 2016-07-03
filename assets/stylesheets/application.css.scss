@@ -162,6 +162,22 @@ body {
 	max-width: $max_width;
 	margin: 0 auto;
 	clear: both;
+
+	& .archive {
+		& h1 {
+			//padding-left: 5px;
+			//padding-right: 5px;
+			font-family: $header_font;
+			margin-bottom: 20px;
+			margin-top: 20px;
+			display: inline-block;
+			font-size: 2em;
+		}
+
+		& h2 {
+			line-height: 1.3em;
+		}
+	}
 }
 
 a {

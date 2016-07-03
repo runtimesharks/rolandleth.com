@@ -2,15 +2,12 @@
  * Created by roland on 1/7/16.
  */
 
-function Post(name, body) {
-	var internal = "internal"
-
-	this.name = name
+function Post(title, body, datetime, modified, link) {
+	this.title = title
 	this.body = body
-
-	this.perk = function(arg) {
-		return "perkone " + arg
-	}
+	this.datetime = datetime
+	this.modified = modified
+	this.link = link
 }
 
 module.exports = Post

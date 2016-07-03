@@ -2,18 +2,6 @@
 @import '../globals/variables';
 
 article {
-	& h1 {
-		&.archive-years {
-			//padding-left: 5px;
-			//padding-right: 5px;
-			font-family: $header_font;
-			margin-bottom: 20px;
-			margin-top: 20px;
-			display: inline-block;
-			font-size: 2em;
-		}
-	}
-
 	padding: 3em 0 1.5em;
 	line-height: 1.3em;
 	@include light_bottom_border(1px);
