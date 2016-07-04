@@ -1,39 +1,40 @@
 {
-  "name": "rolandleth",
-  "version": "1.0.0",
-  "description": "Roland Leth's corner of the internet",
-  "main": "app.js",
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/rolandleth/rolandleth.com.git"
-  },
-  "keywords": [
-    "Roland",
-    "Leth",
-    "ruby",
-    "node",
-    "iOS",
-    "nodejs",
-    "expressjs"
-  ],
-  "author": "Roland Leth",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rolandleth/rolandleth.com/issues"
-  },
-  "homepage": "http://rolandleth.com",
-  "dependencies": {
-    "bluebird": "^3.4.1",
-    "bourbon": "^4.2.7",
-    "dropbox": "^2.0.0",
-    "ejs": "^2.4.2",
-    "express": "^4.14.0",
-    "lodash": "^4.13.1",
-    "mincer": "^1.4.1",
-    "node-sass": "^3.8.0",
-    "pg": "^6.0.1"
-  }
+	"name": "rolandleth",
+	"version": "1.0.0",
+	"description": "Roland Leth's corner of the internet",
+	"main": "app.js",
+	"scripts": {
+		"start": "heroku local web",
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/rolandleth/rolandleth.com.git"
+	},
+	"keywords": [
+		"Roland",
+		"Leth",
+		"ruby",
+		"node",
+		"iOS",
+		"nodejs",
+		"expressjs"
+	],
+	"author": "Roland Leth",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/rolandleth/rolandleth.com/issues"
+	},
+	"homepage": "http://rolandleth.com",
+	"dependencies": {
+		"bluebird": "3.4.1",
+		"bourbon": "4.2.7",
+		"dropbox": "2.0.0",
+		"ejs-mate": "2.3.0",
+		"express": "4.14.0",
+		"lodash": "4.13.1",
+		"mincer": "1.4.1",
+		"node-sass": "3.8.0",
+		"pg": "6.0.1"
+	}
 }
