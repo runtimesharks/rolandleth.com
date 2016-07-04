@@ -1,4 +1,8 @@
 <% layout('layout') %>
-<% posts.forEach(function(post) {
-	console.log(post.title + ' ' + post.date)
-}) %>
+<% block('head').append('<link rel = "stylesheet" href = "/assets/sections/post.css">') %>
+
+<div class="content">
+<% posts.forEach(function(post) { %>
+	<% include ./partials/post %>
+<% }) %>
+</div>

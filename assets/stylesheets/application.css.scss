@@ -187,28 +187,10 @@ body {
 	}
 }
 
-article {
-	padding: 3em 0 1.5em;
-	line-height: 1.3em;
-	@include light_bottom_border(1px);
-
-	& h4 {
-		padding-left: 2px;
-		color: $gray;
-		font-weight: 500;
-		font-style: italic;
-		font-size: 0.41em;
-		line-height: 2em;
-
-		& span.tilde {
-			font-family: $body_font;
-		}
-	}
-}
-
 a {
 	text-decoration: none;
 	color: $link_color;
+	@include transition(border, 0.3s);
 
 	&:hover {
 		border-bottom: 1px solid;
