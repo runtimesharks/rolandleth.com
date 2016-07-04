@@ -28,7 +28,7 @@ class Application < Sinatra::Application
 	end
 
 	# before '/example' do
-	#	 # Run code before running the example route
+	#	 # Run code before running the example roindexute
 	# end
 	#
 	# after '/example' do

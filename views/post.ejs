@@ -1,0 +1,30 @@
+<article>
+  <header>
+    <h1>
+      <a href="/<%= link %>"><%= title -%></a>
+    </h1>
+    <%- publishedAt = Time.at(date) %>
+    <h4>
+      <time datetime="<%= published_at.strftime('%B %e, %Y') -%>">
+        <%= published_at.strftime('%b %e, %Y') -%>
+      </time>
+      <%- if reading_time.size > 0 -%>
+        <%= ': ' -%> <span class="tilde">&nbsp;&#126;</span> <%= "#{reading_time} read" -%>
+      <%- end -%>
+    </h4>
+  </header>
+  <div class="content">
+    <%= content -%>
+    <%- if html_truncated -%>
+      <br/>
+      <a href='<%= link -%>'
+         onClick="_gaq.push([
+	         '_trackEvent',
+	         'continue-reading',
+	         'click',
+	         '/<%= link -%>']);
+         ">Continue reading &rarr;
+      </a>
+    <%- end -%>
+  </div>
+</article>
