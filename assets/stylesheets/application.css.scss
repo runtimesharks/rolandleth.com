@@ -165,7 +165,7 @@ body {
 }
 
 .content {
-	padding: 0.7em 0 1.5em 2px;
+	padding: 4em 0 1.5em 2px;
 	line-height: 1.4em;
 
 	& h2 {
@@ -185,27 +185,23 @@ body {
 			list-style-type: circle;
 		}
 	}
+}
 
-	&.projects {
-		@include light_bottom_border(1px);
-	}
+article {
+	padding: 3em 0 1.5em;
+	line-height: 1.3em;
+	@include light_bottom_border(1px);
 
-	& .article {
-		padding: 3em 0 1.5em;
-		line-height: 1.3em;
-		@include light_bottom_border(1px);
+	& h4 {
+		padding-left: 2px;
+		color: $gray;
+		font-weight: 500;
+		font-style: italic;
+		font-size: 0.41em;
+		line-height: 2em;
 
-		& h4 {
-			padding-left: 2px;
-			color: $gray;
-			font-weight: 500;
-			font-style: italic;
-			font-size: 0.41em;
-			line-height: 2em;
-
-			& span.tilde {
-				font-family: $body_font;
-			}
+		& span.tilde {
+			font-family: $body_font;
 		}
 	}
 }
@@ -248,16 +244,6 @@ img {
 	&:not([class]) {
 		display: table;
 		margin: 0 auto;
-	}
-
-	&.icon { // For font-awesome
-		margin: 0.15em 0.5em;
-		border-radius: 18px;
-	}
-
-	&.project-screenshot {
-		margin: 0.15em 0;
-		border-radius: 0;
 	}
 }
 

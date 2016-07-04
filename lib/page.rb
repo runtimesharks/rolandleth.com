@@ -53,53 +53,6 @@ module Page
 		end
 	end
 
-	def open_static_page(key)
-		redirect '/projects', 302 if key.downcase == 'work'
-		redirect '/about', 302 if key.downcase == 'contact'
-
-		case key.downcase
-			when 'projects'
-				@title            = 'Projects'
-				@meta_description = 'iOS, Ruby, Rails and Web projects by Roland Leth.'
-				# This just permanently redirects PrOjEcts to projects
-				redirect key.downcase, 301 if key != 'projects'
-				erb :projects
-			when 'bouncyb'
-				# Layout: false means it loads the page with it's own layout, disregarding the HTML/CSS in layout.erb
-				redirect key.downcase, 301 if key != 'bouncyb'
-				erb :bouncyb, layout: false
-			when 'iwordjuggle'
-				redirect key.downcase, 301 if key != 'iwordjuggle'
-				erb :iwordjuggle, layout: false
-			when 'sosmorse'
-				redirect key.downcase, 301 if key != 'sosmorse'
-				erb :sosmorse, layout: false
-			when 'expenses-planner'
-				redirect key.downcase, 301 if key != 'expenses-planner'
-				erb :'expenses-planner', layout: false
-			when 'carminder'
-				redirect key.downcase, 301 if key != 'carminder'
-				erb :carminder, layout: false
-			when 'about'
-				@title            = 'About'
-				@meta_description = 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
-				redirect key.downcase, 301 if key != 'about'
-				erb :about
-			when 'archive'
-				@title            = 'Archive'
-				@meta_description = "Roland Leth's archive."
-				redirect key.downcase, 301 if key != 'archive'
-				erb :archive, locals: { posts: year_month_posts }
-			when 'privacy-policy'
-				@title            = 'Privacy Policy'
-				@meta_description = "Roland Leth's Privacy Policy"
-				redirect key.downcase, 301 if key != 'privacy-policy'
-				erb :'privacy-policy.ejs'
-			else
-				not_found
-		end
-	end
-
 	def open_individual_page(key)
 		# The select returns an array that has a structure as its only object
 		post = repository(:default).adapter.select("SELECT * FROM #{POSTS_TABLE} WHERE link= ?", key.downcase)[0].to_h

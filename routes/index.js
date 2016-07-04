@@ -5,7 +5,10 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('../views/index.ejs')
+	res.render('index.ejs', {
+		title: 'Roland Leth',
+		metadata: 'Development thoughts by Roland Leth'
+	})
 })
 
 module.exports = router

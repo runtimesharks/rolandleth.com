@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('../views/about.ejs', {
+	res.render('about.ejs', {
 		title: 'About',
 		metadata: 'Some information about the blog. Details, résumé and contact information about Roland Leth.'
 	})

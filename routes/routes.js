@@ -8,5 +8,6 @@ router.use('/', require('./index'))
 router.use('/about', require('./about'))
 router.use('/archive', require('./archive'))
 router.use('/privacy-policy', require('./privacy-policy'))
+router.use('/projects', require('./projects/projects'))
 
 module.exports = router
