@@ -9,7 +9,7 @@
       content      = _markdown(post[:body].lines.join) -%>
   <%= erb :post, locals: {
 	               date:           date,
-	               title:          post[:title],
+	               title:          post[:_title],
 	               content:        content,
 	               html_truncated: false,
 	               link:           post[:link],
@@ -26,7 +26,7 @@
         HTML_Truncator.ellipsable_tags << 'pre'
         content = HTML_Truncator.truncate(_markdown(post[:body].lines.join),
                                           100, ' [&hellip;]')
-        title = post[:title]
+        title = post[:_title]
 
         search_terms ||= [] # If search_terms have been passed, we are on search mode
         search_terms.each do |w|

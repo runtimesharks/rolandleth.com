@@ -1,6 +1,6 @@
 @import 'bourbon';
 @import 'globals/variables';
-@import 'components/reset';
+@import 'globals/reset';
 
 html {
 	//border-left: 4px solid $link-color;
@@ -162,20 +162,50 @@ body {
 	max-width: $max_width;
 	margin: 0 auto;
 	clear: both;
+}
 
-	& .archive {
-		& h1 {
-			//padding-left: 5px;
-			//padding-right: 5px;
-			font-family: $header_font;
-			margin-bottom: 20px;
-			margin-top: 20px;
-			display: inline-block;
-			font-size: 2em;
+.content {
+	padding: 0.7em 0 1.5em 2px;
+	line-height: 1.4em;
+
+	& h2 {
+		margin-bottom: 0.5em;
+		padding-top: 0.25em;
+		color: $text_color;
+		font-weight: normal;
+		font-size: 1.3em;
+		font-family: $header_font;
+	}
+
+	& li {
+		list-style: disc inside;
+
+		& > ul > li {
+			padding-left: 1.5em;
+			list-style-type: circle;
 		}
+	}
 
-		& h2 {
-			line-height: 1.3em;
+	&.projects {
+		@include light_bottom_border(1px);
+	}
+
+	& .article {
+		padding: 3em 0 1.5em;
+		line-height: 1.3em;
+		@include light_bottom_border(1px);
+
+		& h4 {
+			padding-left: 2px;
+			color: $gray;
+			font-weight: 500;
+			font-style: italic;
+			font-size: 0.41em;
+			line-height: 2em;
+
+			& span.tilde {
+				font-family: $body_font;
+			}
 		}
 	}
 }
@@ -207,6 +237,28 @@ em {
 	font-style: italic;
 	font-family: $body_font;
 	margin-bottom: 0.5em;
+}
+
+img {
+	border-radius: 2px;
+	-webkit-box-shadow: #777777 0 0 3px 1px;
+	-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
+	box-shadow: #777777 0 0 7px 0; /* inset is optional */
+
+	&:not([class]) {
+		display: table;
+		margin: 0 auto;
+	}
+
+	&.icon { // For font-awesome
+		margin: 0.15em 0.5em;
+		border-radius: 18px;
+	}
+
+	&.project-screenshot {
+		margin: 0.15em 0;
+		border-radius: 0;
+	}
 }
 
 mark {
@@ -256,10 +308,6 @@ footer {
 			border-bottom: none;
 		}
 	}
-
-	&.privacy-policy {
-		margin: 1em auto;
-	}
 }
 
 @include responsive_width(430px) {
@@ -272,4 +320,3 @@ footer {
 @import "components/syntax";
 @import "components/pygments";
 @import "components/pagination";
-@import "sections/posts";

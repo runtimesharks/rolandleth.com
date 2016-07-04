@@ -25,7 +25,7 @@ module Page
 		redirect '/', 302 if query.empty?
 
 		posts = all_posts.select	do |p|
-			query_array.any? { |w| p[:body].downcase.include?(w) or p[:title].downcase.include?(w) }
+			query_array.any? { |w| p[:body].downcase.include?(w) or p[:_title].downcase.include?(w) }
 		end
 
 		if posts.count > 0
@@ -94,7 +94,7 @@ module Page
 				@title            = 'Privacy Policy'
 				@meta_description = "Roland Leth's Privacy Policy"
 				redirect key.downcase, 301 if key != 'privacy-policy'
-				erb :'privacy-policy'
+				erb :'privacy-policy.ejs'
 			else
 				not_found
 		end
@@ -103,8 +103,8 @@ module Page
 	def open_individual_page(key)
 		# The select returns an array that has a structure as its only object
 		post = repository(:default).adapter.select("SELECT * FROM #{POSTS_TABLE} WHERE link= ?", key.downcase)[0].to_h
-		@title = post[:title]
-		@meta_description = post[:title]
+		@title = post[:_title]
+		@meta_description = post[:_title]
 
 		if post.count > 0
 			# This means the URL was not written with lowercase letters only

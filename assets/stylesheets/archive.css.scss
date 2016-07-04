@@ -1,0 +1,17 @@
+@import 'globals/variables';
+
+.content {
+	font-family: $header_font;
+
+	& h1 {
+		margin-bottom: 20px;
+		margin-top: 20px;
+		display: inline-block;
+		font-size: 2em;
+	}
+
+	& h2 {
+		font-size: 1.2em;
+		margin-bottom: 0.1em;
+	}
+}

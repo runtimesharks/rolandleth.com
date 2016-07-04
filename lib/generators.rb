@@ -48,7 +48,7 @@ module Generators
 				last_updated = time_from_string(post[:datetime])
 
 				maker.items.new_item do |item|
-					item.title = post[:title]
+					item.title = post[:_title]
 					item.link = "http://rolandleth.com/#{post[:link]}"
 					item.content.content = _markdown(post[:body].lines.join, true)
 					item.content.type = 'html'

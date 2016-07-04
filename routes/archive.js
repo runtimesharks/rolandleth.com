@@ -43,7 +43,11 @@ router.get('/', function(req, res) {
 			})
 		})
 
-		res.render('../views/archive.ejs', { posts: groupedPosts })
+		res.render('../views/archive.ejs', {
+			title: 'Archive',
+			metadata: 'Roland Leth\'s archive.',
+			posts: groupedPosts
+		})
 	})
 })
 

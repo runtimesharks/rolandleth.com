@@ -20,7 +20,7 @@ $(document).ready(function() {
 });
 
 var resizeImage = function(img) {
-	if (img.width() > $('section').width()) {
+	if (img.width() > $('body').width()) {
 		if (!img.closest('.centered-image-wrapper').length) {
 			img.wrap("<div class='centered-image-wrapper'></div>");
 		}

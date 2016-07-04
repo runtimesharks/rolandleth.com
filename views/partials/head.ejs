@@ -1,60 +1,60 @@
 <head>
- <meta charset="UTF-8">
- <title>Roland Leth</title>
- <link rel="canonical" href="http://rolandleth.com">
- <!-- Icons -->
- <link rel="shortcut icon" href="/favicon.ico">
- <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/192x192.png"><!-- Android -->
- <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/favicons/180x180.png">
- <!--Metadata-->
- <link rel="author" type="text/plain" href="/humans.txt">
- <link href="http://rolandleth.com" rel="alternate" title="Roland Leth" type="application/atom+xml">
- <meta name="description" content='this.meta_description'>
- <meta name="author" content="Roland Leth">
- <!--Stylesheets-->
- <link rel="stylesheet" href="/assets/application.css">
- <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
- <!--Mobile settings-->
- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
- <meta name="HandheldFriendly" content="true">
- <meta name="MobileOptimized" content="375">
- <!--Scripts-->
- <script src="https://code.jquery.com/jquery-2.2.2.min.js"
-         integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
-         crossorigin="anonymous">
- </script>
- <script src="/assets/base.js"></script>
- <!--Tracking-->
- <script async type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-40255117-4']);
-  _gaq.push(['_trackPageview']);
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel="canonical" href="http://rolandleth.com">
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/192x192.png"><!-- Android -->
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/favicons/180x180.png">
+	<!--Metadata-->
+	<link rel="author" type="text/plain" href="/humans.txt">
+	<link href="http://rolandleth.com" rel="alternate" title="Roland Leth" type="application/atom+xml">
+	<meta name="description" content='<%= metadata %>'>
+	<meta name="author" content="Roland Leth">
+	<!--Stylesheets-->
+	<link rel="stylesheet" href="/assets/application.css">
+	<link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+	<!--Mobile settings-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="MobileOptimized" content="375">
+	<!--Scripts-->
+	<script src="https://code.jquery.com/jquery-2.2.2.min.js"
+	        integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+	        crossorigin="anonymous">
+	</script>
+	<script src="/assets/base.js"></script>
+	<!--Tracking-->
+	<script async type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-40255117-4']);
+		_gaq.push(['_trackPageview']);
 
-  (
-    function() {
-     var ga   = document.createElement('script');
-     ga.type  = 'text/javascript';
-     ga.async = true;
-     ga.src   = (
-                  'https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s    = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(ga, s);
-    })();
- </script>
- <!--Apple's auto affiliate link script-->
- <script async type='text/javascript'>
-  var _merchantSettings = _merchantSettings || [];
-  _merchantSettings.push(['AT', '1001l54C']);
-  (
-    function() {
-     var autolink   = document.createElement('script');
-     autolink.type  = 'text/javascript';
-     autolink.async = true;
-     autolink.src   = (
-                      'https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js'
-       : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
-     var s          = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(autolink, s);
-    })();
- </script>
+		(
+			function() {
+				var ga   = document.createElement('script');
+				ga.type  = 'text/javascript';
+				ga.async = true;
+				ga.src   = (
+					           'https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s    = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+	</script>
+	<!--Apple's auto affiliate link script-->
+	<script async type='text/javascript'>
+		var _merchantSettings = _merchantSettings || [];
+		_merchantSettings.push(['AT', '1001l54C']);
+		(
+			function() {
+				var autolink   = document.createElement('script');
+				autolink.type  = 'text/javascript';
+				autolink.async = true;
+				autolink.src   = (
+				                 'https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js'
+					: 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
+				var s          = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(autolink, s);
+			})();
+	</script>
 </head>

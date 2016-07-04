@@ -1,0 +1,18 @@
+/**
+ * Created by roland on 4/7/16.
+ */
+
+var router = require('express').Router()
+
+router.get('/', function(req, res) {
+	res.render('../views/privacy-policy.ejs', {
+		title: 'Privacy Policy',
+		metadata: 'Roland Leth\'s privacy policy'
+	})
+})
+
+router.get('/download', function(req, res) {
+	res.download('./assets/files/Privacy Policy.md', 'Roland Leth Privacy Policy.md')
+})
+
+module.exports = router

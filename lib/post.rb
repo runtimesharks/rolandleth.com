@@ -10,7 +10,7 @@ module Post
 		DataMapper::Property::String.length(255)
 		DataMapper::Property::Text.length(999999)
 		property :id, Serial
-		property :title, Text
+		property :_title, Text
 		property :body, Text
 		property :datetime, String
 		property :modified, String
@@ -34,7 +34,7 @@ module Post
 			datetime, link, file_mtime = file_info(file)
 
 			post = Posts.first(link: link)
-			# post = Posts.first(title: 'Fastlane')
+			# post = Posts.first(_title: 'Fastlane')
 			# post.destroy
 			# post.destroy
 
@@ -59,15 +59,15 @@ module Post
 			# we need to create the required strings
 			if !post || (post && post.modified != file_mtime)
 				body = client.get_file(file['path']) # Memory and time consuming
-				title = body.lines.first.gsub("\n", '') # Remove the new line character from the title line
-				body = body.lines[2..-1].join # Remove the title and the empty line after it from the body
+				title = body.lines.first.gsub("\n", '') # Remove the new line character from the _title line
+				body = body.lines[2..-1].join # Remove the _title and the empty line after it from the body
 
 				# If the post exists, it means it was modified, update it
 				if post
-					post.update(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
+					post.update(_title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
 					# Create a new record
 				else
-					Posts.create(title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
+					Posts.create(_title: title, body: body, datetime: datetime, modified: file_mtime, link: link)
 				end
 			end
 		end
@@ -109,46 +109,5 @@ module Post
 		syncs.update(count: (syncs[:count] + 1))
 
 		redirect '/', 302
-	end
-
-	def worded_month(month)
-		case month.to_i
-			when 1; return 'January'
-			when 2; return 'February'
-			when 3; return 'March'
-			when 4; return 'April'
-			when 5; return 'May'
-			when 6; return 'June'
-			when 7; return 'July'
-			when 8; return 'August'
-			when 9; return 'September'
-			when 10; return 'October'
-			when 11; return 'November'
-			else; return 'December'
-		end
-	end
-
-	def year_month_posts
-		grouped_posts = {}
-
-		all_posts.each do |post|
-			matches = post[:datetime].match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
-			year = matches[1].to_s
-			month = worded_month(matches[2].to_s)
-			day = matches[3].to_s
-
-			title = post[:title]
-			link = post[:link]
-
-			grouped_posts[year] ||= {}
-			grouped_posts[year][month] ||= []
-
-			grouped_posts[year][month] << {
-				title: title,
-			  link: link
-			}
-		end
-
-		grouped_posts
 	end
 end

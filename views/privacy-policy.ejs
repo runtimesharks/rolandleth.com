@@ -1,4 +1,11 @@
-<article class="projects">
+<!DOCTYPE html>
+<html lang="en">
+<% include ./partials/head %>
+<head>
+	<link rel="stylesheet" href="/assets/privacy-policy.css">
+</head>
+<body>
+	<% include ./partials/header %>
 	<div class="content">
 		<h2>Collected information</h2>
 
@@ -18,7 +25,8 @@
 
 		<h2>Analytics</h2>
 
-		<p>Analytics companies may get access to anonymous data (such as your IP address or device ID) to help me understand how my services are used. They use this data solely on my behalf. They do not share it except in aggregate form; no data is shared as to any individual user. Company privacy policies that govern their use of data: <a href="https://testflightapp.com/privacy/">TestFlight</a> for my apps and <a href="http://www.google.com/analytics/learn/privacy.html">Google Analytics</a> for this website.</p>
+		<p>Analytics companies may get access to anonymous data (such as your IP address or device ID) to help me understand how my services are used. They use this data solely on my behalf. They do not share it except in aggregate form; no data is shared as to any individual user. Company privacy policies that govern their use of data: <a href="https://www.google
+		.com/policies/privacy/">Google Analytics</a></p>
 
 		<h2>Third parties</h2>
 
@@ -30,6 +38,8 @@
 
 		<h2>Contact</h2>
 
-		<p>If you have any questions or concerns about my privacy policy, please <a href="mailto:roland@rolandleth.com">contact me</a>. If, by any chance, you'd like do download this document, you can do so <a href="/Roland-Leth-Privacy-Policy.md" onClick="_gaq.push(['_trackEvent', 'Downloads', 'md', 'Privacy Policy']);">here</a>; it's in Markdown format.</p>
+		<p>If you have any questions or concerns about my privacy policy, please <a href="mailto:roland@rolandleth.com">contact me</a>. If, by any chance, you'd like do download this document, you can do so <a href="/privacy-policy/download" onClick="_gaq.push(['_trackEvent', 'Downloads', 'md', 'Privacy Policy']);">here</a>; it's in Markdown format.</p>
 	</div>
-</article>
+	<% include ./partials/footer %>
+</body>
+</html>
