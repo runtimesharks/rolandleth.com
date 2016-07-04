@@ -5,9 +5,15 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('index.ejs', {
-		title: 'Roland Leth',
-		metadata: 'Development thoughts by Roland Leth'
+	var DB = require('../lib/db')
+	var db = new DB()
+	
+	db.fetchPosts().then(function(data) {
+		res.render('index.ejs', {
+			posts: data,
+			title: 'Roland Leth',
+			metadata: 'Development thoughts by Roland Leth'
+		})
 	})
 })
 

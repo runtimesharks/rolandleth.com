@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	var DB = require('../controllers/db')
+	var DB = require('../lib/db')
 	var db = new DB()
 
 	db.fetchPosts().then(function(data) {
@@ -23,8 +23,7 @@ router.get('/', function(req, res) {
 			'11': 'November',
 			'12': 'December'
 		}
-
-		var posts = []
+		
 		var groupedPosts = {}
 
 		data.forEach(function(post) {

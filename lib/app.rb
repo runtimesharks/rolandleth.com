@@ -76,15 +76,6 @@ class Application < Sinatra::Application
 		redirect "/#{current_page}", 301
 	end
 
-	# Main page
-	get '/' do
-		# Posts.all.destroy!
-		# return
-
-		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
-		open_main_page
-	end
-
 	# Search
 	get %r{^/search$} do
 		query = request.env['rack.request.query_hash']['query']
@@ -98,19 +89,6 @@ class Application < Sinatra::Application
 		@meta_canonical = current_page
 
 		open_page(current_page)
-	end
-
-	get '/ExpensesPlannerPressKit.zip' do
-		send_file File.open('./assets/files/Expenses Planner Press Kit.zip'), filename: 'Expenses Planner Press Kit.zip'
-	end
-	get '/CarminderPressKit.zip' do
-		send_file File.open('./assets/files/Carminder Press Kit.zip'), filename: 'Carminder Press Kit.zip'
-	end
-	get '/Roland-Leth-Resume.pdf' do
-		send_file File.open('./assets/files/Roland Leth.pdf') #, filename: 'Roland Leth - Résumé.pdf'
-	end
-	get '/Roland-Leth-Privacy-Policy.md' do
-		send_file File.open('./assets/files/Privacy Policy.md'), filename: 'Roland Leth - Privacy Policy.md'
 	end
 
 	# Individual posts and static pages
@@ -133,21 +111,5 @@ class Application < Sinatra::Application
 
 		status 200
 		erb :search_not_found
-	end
-
-	not_found do
-		@title = '404'
-		@meta_description = "This isn't the page your are looking for."
-		@meta_canonical = '404 error raised'
-
-		status 404
-		erb :not_found
-	end
-
-	error do
-		@title = 'Error'
-
-		status 500
-		erb :not_found
 	end
 end
