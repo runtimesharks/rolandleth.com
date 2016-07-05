@@ -1,27 +1,6 @@
 @import 'bourbon';
 @import 'globals/variables';
 
-article {
-	font-size: 1em;
-	padding: 3em 0 1.5em;
-	line-height: 1.3em;
-	@include light_bottom_border(1px);
-
-	& h4 {
-		font-family: $header_font;
-		padding-left: 2px;
-		margin-bottom: 20px;
-		color: $gray;
-		font-weight: 500;
-		font-style: italic;
-		font-size: 0.75em;
-
-		& span.tilde {
-			font-family: $body_font;
-		}
-	}
-}
-
 h1 {
 	line-height: 1em;
 	font-family: $header_font;
@@ -29,18 +8,20 @@ h1 {
 	margin-top: 20px;
 	display: inline-block;
 	font-size: 1.85em;
+
+	a {
+		text-decoration: none;
+		color: $text_color;
+
+		&:hover {
+			color: $link_color;
+			border-bottom: none;
+		}
+	}
 }
 
 a {
-	text-decoration: none;
-	color: $text_color;
-
-	&:hover {
-		color: $link_color;
-		border-bottom: none;
-	}
-
-	@include transition(color, 0.3s);
+	color: $link_color;
 }
 
 a.img:hover {

@@ -21,19 +21,29 @@ router.get(/^\/(\d+)$/, function(req, res) {
 })
 
 // Articles
-router.get(/^\/([\w\d\-]+)$/, function(req, res, next) {
-	fetchPosts('link', req.path.substring(1)).then(function(data) {
-		var post = data.slice(0, 1)
-		res.render('index.ejs', {
-			posts: post,
-			title: post.title,
-			metadata: post.title
+router.get(/^\/([\w\d\-]+)$/, function(req, res) {
+	fetchPosts('link', req.path.substring(1))
+		.then(function(data) {
+			if (data.length == 0) {
+				show404(res)
+			}
+
+			var post = data.slice(0, 1)
+			res.render('index', {
+				posts: post,
+				title: post.title,
+				page: 1,
+				totalPosts: 1,
+				metadata: post.title
+			})
 		})
-	})
+		.catch(function() {
+			show404(res)
+		})
 })
 
 function fetchPosts(where, value, orderBy, direction) {
-	return new Promise(function(resolve) {
+	return new Promise(function(resolve, reject) {
 		var DB = require('../lib/db')
 		var db = new DB()
 
@@ -42,7 +52,7 @@ function fetchPosts(where, value, orderBy, direction) {
 				resolve(data)
 			})
 			.catch(function(error) {
-				console.log(error)
+				reject(error)
 			})
 	})
 }
@@ -51,15 +61,31 @@ function fetchPage(page, res) {
 	var pageSize = process.env.PAGE_SIZE || 10
 	var start    = pageSize * (page - 1)
 
-	fetchPosts().then(function(data) {
-		res.render('index.ejs', {
-			posts: data.slice(start, start + pageSize),
-			page: page,
-			totalPosts: data.length,
-			title: 'Roland Leth',
-			metadata: 'Development thoughts by Roland Leth'
+	fetchPosts()
+		.then(function(data) {
+			if (start > data.length) {
+				show404(res)
+			}
+
+			res.render('index.ejs', {
+				posts: data.slice(start, start + pageSize),
+				page: page,
+				totalPosts: data.length,
+				title: 'Roland Leth',
+				metadata: 'Development thoughts by Roland Leth'
+			})
 		})
+		.catch(function() {
+			show404(res)
+		})
+}
+
+function show404(res) {
+	res.render('not-found', {
+		title: '404',
+		metadata: 'Development thoughts by Roland Leth'
 	})
+	res.stop()
 }
 
 module.exports = router

@@ -1,7 +1,7 @@
 @import 'globals/variables';
 
 .content {
-	line-height: 1.5em;
+	padding-top: 3em;
 	@include light_bottom_border(1px);
 }
 

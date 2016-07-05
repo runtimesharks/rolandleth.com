@@ -165,7 +165,7 @@ body {
 }
 
 .content {
-	padding: 4em 0 1.5em 2px;
+	padding: 1em 0 1.5em 2px;
 	line-height: 1.4em;
 
 	& h2 {
@@ -183,6 +183,27 @@ body {
 		& > ul > li {
 			padding-left: 1.5em;
 			list-style-type: circle;
+		}
+	}
+}
+
+article {
+	font-size: 1em;
+	padding: 3em 0 1.5em;
+	line-height: 1.3em;
+	@include light_bottom_border(1px);
+
+	& h4 {
+		font-family: $header_font;
+		padding-left: 2px;
+		margin-bottom: 20px;
+		color: $gray;
+		font-weight: 500;
+		font-style: italic;
+		font-size: 0.75em;
+
+		& span.tilde {
+			font-family: $body_font;
 		}
 	}
 }
