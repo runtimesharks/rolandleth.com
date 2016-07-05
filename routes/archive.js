@@ -5,11 +5,12 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	var DB = require('../lib/db')
-	var db = new DB()
-	var DBConfig = require('../lib/dbConfig')
-	var config = new DBConfig()
-	config.limit = -1
+	var DB         = require('../lib/db')
+	var db         = new DB()
+	var DBConfig   = require('../lib/dbConfig')
+	var config     = new DBConfig()
+	config.limit   = -1
+	config.columns = 'title, link, datetime'
 
 	db.fetchPosts(config).then(function(data) {
 		var wordedMonth = {
