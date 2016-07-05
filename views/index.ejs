@@ -7,6 +7,8 @@
 	<% }) %>
 </div>
 
-<% if (totalPosts > (process.env.PAGE_SIZE || 10)) { %>
+<% page = parseInt(page) %>
+<% var pages = Math.ceil(totalPosts / (process.env.PAGE_SIZE || 10)) %>
+<% if (pages > 1) { %>
 	<% include ./partials/page-navigation %>
 <% } %>
