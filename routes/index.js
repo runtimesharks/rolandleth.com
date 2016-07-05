@@ -73,6 +73,25 @@ function fetchPage(page, res) {
 				show404(res)
 			}
 
+			var htmlSave = require('htmlsave')
+
+			data.posts.forEach(function(post) {
+				if (post.body.length < 900) { return }
+				post.body = htmlSave.truncate(post.body, 700, {
+					breakword: false,
+					ellipsis: ' [&hellip;]'
+				})
+
+				post.body += "<br/> \
+					<a href='/" + post.link + "' \
+						onClick = \"_gaq.push([ \
+						'_trackEvent', \
+						'continue-reading', \
+						'click', \
+						'/" + post.link + ">']);\"> \
+						Continue reading &rarr;</a>"
+			})
+
 			res.render('index', {
 				posts: data.posts,
 				page: page,

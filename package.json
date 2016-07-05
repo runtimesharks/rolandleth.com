@@ -32,6 +32,7 @@
     "dropbox": "2.0.0",
     "ejs-mate": "2.3.0",
     "express": "4.14.0",
+    "htmlsave": "1.0.0",
     "lodash": "4.13.1",
     "marked": "0.3.5",
     "mincer": "1.4.1",
