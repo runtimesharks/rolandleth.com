@@ -7,8 +7,11 @@ var router = require('express').Router()
 router.get('/', function(req, res) {
 	var DB = require('../lib/db')
 	var db = new DB()
+	var DBConfig = require('../lib/dbConfig')
+	var config = new DBConfig()
+	config.limit = -1
 
-	db.fetchPosts().then(function(data) {
+	db.fetchPosts(config).then(function(data) {
 		var wordedMonth = {
 			'01': 'January',
 			'02': 'February',
@@ -23,10 +26,10 @@ router.get('/', function(req, res) {
 			'11': 'November',
 			'12': 'December'
 		}
-		
+
 		var groupedPosts = {}
 
-		data.forEach(function(post) {
+		data.posts.forEach(function(post) {
 			var matches = post.datetime.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 			var year        = '_' + matches[1] // Just so it is forced as a string, thus ordered
 			var month       = wordedMonth[matches[2]]

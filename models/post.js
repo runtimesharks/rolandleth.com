@@ -9,9 +9,10 @@ function Post(title, body, datetime, modified, link) {
 	var day = matches[3]
 	var hour = matches[4].slice(0, 2)
 	var minute = matches[4].slice(2, 4)
-	
+
 	this.title = title
 	this.body = body
+	this.datetime = datetime // For archive
 	this.date = new Date(year, month, day, hour, minute)
 	this.modified = modified
 	this.link = link

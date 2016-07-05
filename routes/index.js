@@ -3,8 +3,9 @@
  */
 
 var router = require('express').Router()
+var DBConfig = require('../lib/dbConfig')
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
 	fetchPage(1, res)
 })
 
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.get(/^\/(\d+)$/, function(req, res) {
 	if (req.path == '/1') {
 		res.redirect('/')
-		res.stop()
+		res.end()
 	}
 	else {
 		var page = req.path.substring(1) || 1
@@ -22,13 +23,18 @@ router.get(/^\/(\d+)$/, function(req, res) {
 
 // Articles
 router.get(/^\/([\w\d\-]+)$/, function(req, res) {
-	fetchPosts('link', req.path.substring(1))
+	var config = new DBConfig()
+	config.field = 'link'
+	config.fieldValue = req.path.substring(1)
+	config.limit = 1
+
+	fetchPosts(config)
 		.then(function(data) {
-			if (data.length == 0) {
+			if (data.posts.length == 0) {
 				show404(res)
 			}
 
-			var post = data.slice(0, 1)
+			var post = data.posts
 			res.render('index', {
 				posts: post,
 				title: post.title,
@@ -42,12 +48,12 @@ router.get(/^\/([\w\d\-]+)$/, function(req, res) {
 		})
 })
 
-function fetchPosts(where, value, orderBy, direction) {
+function fetchPosts(config) {
 	return new Promise(function(resolve, reject) {
 		var DB = require('../lib/db')
 		var db = new DB()
 
-		db.fetchPosts(where, value, orderBy, direction)
+		db.fetchPosts(config)
 			.then(function(data) {
 				resolve(data)
 			})
@@ -58,19 +64,19 @@ function fetchPosts(where, value, orderBy, direction) {
 }
 
 function fetchPage(page, res) {
-	var pageSize = process.env.PAGE_SIZE || 10
-	var start    = pageSize * (page - 1)
+	var config = new DBConfig()
+	config.offset = config.pageSize * (page - 1)
 
-	fetchPosts()
+	fetchPosts(config)
 		.then(function(data) {
-			if (start > data.length) {
+			if (config.offset > data.posts.length) {
 				show404(res)
 			}
 
-			res.render('index.ejs', {
-				posts: data.slice(start, start + pageSize),
+			res.render('index', {
+				posts: data.posts,
 				page: page,
-				totalPosts: data.length,
+				totalPosts: data.totalPosts,
 				title: 'Roland Leth',
 				metadata: 'Development thoughts by Roland Leth'
 			})
@@ -85,7 +91,7 @@ function show404(res) {
 		title: '404',
 		metadata: 'Development thoughts by Roland Leth'
 	})
-	res.stop()
+	res.end()
 }
 
 module.exports = router
