@@ -1,5 +1,5 @@
 @import 'bourbon';
-@import '../globals/variables';
+@import 'globals/variables';
 
 article {
 	font-size: 1em;
@@ -23,8 +23,9 @@ article {
 }
 
 h1 {
+	line-height: 1em;
 	font-family: $header_font;
-	margin-bottom: 10px;
+	margin-bottom: 2px;
 	margin-top: 20px;
 	display: inline-block;
 	font-size: 1.85em;

@@ -8,7 +8,7 @@ var Mincer = require('mincer')
 var pipeline = new Mincer.Environment()
 Mincer.logger.use(console)
 
-pipeline.appendPath('assets/bourbon')
+pipeline.appendPath(require('bourbon').includePaths)
 pipeline.appendPath('assets/files')
 pipeline.appendPath('assets/images')
 pipeline.appendPath('assets/javascripts')

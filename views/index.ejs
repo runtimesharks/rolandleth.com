@@ -1,8 +1,12 @@
 <% layout('layout') %>
-<% block('head').append('<link rel = "stylesheet" href = "/assets/sections/post.css">') %>
+<% block('head').append('<link rel = "stylesheet" href = "/assets/post.css">') %>
 
 <div class="content">
-<% posts.forEach(function(post) { %>
-	<% include ./partials/post %>
-<% }) %>
+	<% posts.forEach(function(post) { %>
+		<% include ./partials/post %>
+	<% }) %>
 </div>
+
+<% if (totalPosts > (process.env.PAGE_SIZE || 10)) { %>
+	<% include ./partials/page-navigation %>
+<% } %>

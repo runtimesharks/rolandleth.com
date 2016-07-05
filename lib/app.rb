@@ -53,42 +53,12 @@ class Application < Sinatra::Application
 		update_posts(with_delete)
 	end
 
-	# Links to /1 are redirected to root. No reason to display http://root/1
-	get '/1' do
-		redirect '/', 301
-	end
-
-	# Apply a permanent redirect from http://root/key/ to http://root/key (I always want links to show without '/' at end)
-	# If the $ condition is removed, it will try to redirect anything like http://root/key/anything/can/be/here to http://root/key
-	# And it would screw file downloading
-	get %r{^/([\w\d\-]+)/$} do |key|
-		redirect "/#{key}", 301
-	end
-
-	# Apply a non-permanent redirect from http://root/key/anything/can/be/here to http://root/key
-	# Might change my mind about this, thus not a permanent redirect
-	get %r{^/([\w\d\-]+)/} do |key|
-		redirect "/#{key}", 302
-	end
-
-	# Apply a permanent redirect from http://root/page#/anything/can/be/here to http://root/page# (I always want links to show without '/' at end)
-	get %r{^/(\d+)/} do |current_page|
-		redirect "/#{current_page}", 301
-	end
-
 	# Search
 	get %r{^/search$} do
 		query = request.env['rack.request.query_hash']['query']
 
 		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
 		open_search_page(query)
-	end
-
-	# Pages
-	get %r{^/(\d+)$} do |current_page|
-		@meta_canonical = current_page
-
-		open_page(current_page)
 	end
 
 	# Individual posts and static pages
