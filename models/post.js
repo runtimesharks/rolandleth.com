@@ -2,7 +2,7 @@
  * Created by roland on 1/7/16.
  */
 
-function Post(title, body, datetime, modified, link) {
+function Post(title, body, readingTime, datetime, modified, link) {
 	var matches = datetime.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 	var year = matches[1]
 	var month = matches[2] - 1 // Months are 0 indexed :|
@@ -12,6 +12,7 @@ function Post(title, body, datetime, modified, link) {
 
 	this.title = title
 	this.body = body
+	this.readingTime = readingTime
 	this.datetime = datetime // For archive
 	this.date = new Date(year, month, day, hour, minute)
 	this.modified = modified
