@@ -11,7 +11,6 @@ router.get('/', function(req, res) {
 
 // Search
 router.get('/search', function(req, res) {
-	console.log(req.query)
 	var config         = new DBConfig()
 	config.fields      = ['body', 'title']
 	config.searching   = true
