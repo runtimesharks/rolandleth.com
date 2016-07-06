@@ -4,28 +4,13 @@
 			<a href="/<%= post.link %>"><%= post.title -%></a>
 		</h1>
 		<h4>
-			<%
-			var readingTime = function() {
-				var time = post.readingTime.minutes
-				switch (true) {
-					case time <= 0.2: return ''; break
-					case time <= 0.5: return '25 sec read'; break
-					case time <= 0.8: return '45 sec read'; break
-					default: return post.readingTime.text
-				}
-			}
-			%>
-			<% var readingTime = post.readingTime.text %>
-			<% if (post.readingTime.minutes < 0.2) { %>
-				<% readingTime = '15 sec read' %>
-			<% } %>
 			<% var month = post.date.toLocaleString('en-us', { month: "short" }) %>
 			<% var date = month + ' ' + post.date.getDay() + ', ' + post.date.getFullYear() %>
 			<time datetime="<%= date %>">
 				<%= date %>
 			</time>
-			<% if (readingTime) { %>
-				: <span class="tilde">&nbsp;&#126;</span> <%= readingTime %>
+			<% if (post.readingTime) { %>
+				: <span class="tilde">&nbsp;&#126;</span> <%= post.readingTime %>
 			<% } %>
 		</h4>
 	</header>
