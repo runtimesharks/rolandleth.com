@@ -43,6 +43,6 @@ class Application < Sinatra::Application
 		@meta_canonical = '404 error raised'
 
 		status 200
-		erb :search_not_found
+		erb :'not-found-search.ejs'
 	end
 end

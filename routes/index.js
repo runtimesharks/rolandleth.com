@@ -9,6 +9,38 @@ router.get('/', function(req, res) {
 	fetchPage(1, res)
 })
 
+// Search
+router.get('/search', function(req, res) {
+	console.log(req.query)
+	var config         = new DBConfig()
+	config.fields      = ['body', 'title']
+	config.searching   = true
+	config.fieldValues = req.query.query
+		.match(/\"(.*?)\"|(\w+)/g)
+		.map(function(match) {
+			return match.replace(/"/g, '')
+		})
+
+	fetchPosts(config)
+		.then(function(data) {
+			if (data.posts.length == 0) {
+				show404(res, true)
+				return
+			}
+
+			res.render('index', {
+				posts: data.posts,
+				title: 'Search results',
+				page: 1,
+				totalPosts: data.totalPosts,
+				metadata: 'Search results'
+			})
+		})
+		.catch(function() {
+			show404(res)
+		})
+})
+
 // Pages
 router.get(/^\/(\d+)$/, function(req, res) {
 	if (req.path == '/1') {
@@ -23,15 +55,16 @@ router.get(/^\/(\d+)$/, function(req, res) {
 
 // Articles
 router.get(/^\/([\w\d\-]+)$/, function(req, res) {
-	var config = new DBConfig()
-	config.field = 'link'
-	config.fieldValue = req.path.substring(1)
-	config.limit = 1
+	var config         = new DBConfig()
+	config.fields      = 'link'
+	config.fieldValues = req.path.substring(1)
+	config.limit       = 1
 
 	fetchPosts(config)
 		.then(function(data) {
 			if (data.posts.length == 0) {
 				show404(res)
+				return
 			}
 
 			var post = data.posts
@@ -71,6 +104,7 @@ function fetchPage(page, res) {
 		.then(function(data) {
 			if (config.offset > data.posts.length) {
 				show404(res)
+				return
 			}
 
 			var htmlSave = require('htmlsave')
@@ -105,8 +139,8 @@ function fetchPage(page, res) {
 		})
 }
 
-function show404(res) {
-	res.render('not-found', {
+function show404(res, search) {
+	res.render('not-found' + (search ? '-search' : ''), {
 		title: '404',
 		metadata: 'Development thoughts by Roland Leth'
 	})
