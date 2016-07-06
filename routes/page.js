@@ -4,7 +4,7 @@
 
 var router = require('express').Router()
 var NotFound = require('./not-found')
-var DBConfig = require('../lib/dbConfig')
+var DB = require('../lib/db')
 
 router.get('/', function(req, res) {
 	if (req.baseUrl == '/1') {
@@ -18,13 +18,10 @@ router.get('/', function(req, res) {
 })
 
 function fetchPage(page, res) {
-	var config = new DBConfig()
+	var config = new DB.Config()
 	config.offset = config.pageSize * (page - 1)
 
-	var DB = require('../lib/db')
-	var db = new DB()
-
-	db.fetchPosts(config)
+	DB.fetchPosts(config)
 		.then(function(data) {
 			if (config.offset > data.totalPosts) {
 				NotFound.show(res)

@@ -4,18 +4,15 @@
 
 var router   = require('express').Router()
 var NotFound = require('./not-found')
+var DB = require('../lib/db')
 
 router.get('/', function(req, res) {
-	var DBConfig = require('../lib/dbConfig')
-	var config         = new DBConfig()
+	var config         = new DB.Config()
 	config.fields      = 'link'
 	config.fieldValues = [req.baseUrl.substring(1)]
 	config.limit       = 1
 
-	var DB = require('../lib/db')
-	var db = new DB()
-
-	db.fetchPosts(config)
+	DB.fetchPosts(config)
 		.then(function(data) {
 			if (data.posts.length == 0) {
 				NotFound.show(res)

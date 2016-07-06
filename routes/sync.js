@@ -5,6 +5,7 @@
 var router  = require('express').Router()
 var Dropbox = require('../lib/dropbox')
 var Post    = require('../models/post')
+var DB       = require('../lib/db')
 
 router.get('/', function(req, res) {
 	Dropbox.getFolder('/Apps/Editorial/posts')
@@ -37,7 +38,9 @@ router.get('/', function(req, res) {
 
 						if (folder.contents[folder.contents.length - 1] == item) {
 							posts.forEach(function(post) {
-								console.log(post.title)
+								var config = new DB.Config()
+
+
 							})
 							res.redirect('/')
 						}
