@@ -1,11 +1,4 @@
-<% layout('layout') %>
-<% block('head').append('<link rel = "stylesheet" href = "/assets/post.css">') %>
-
-<div class="content">
-	<% posts.forEach(function(post) { %>
-		<% include ./partials/post %>
-	<% }) %>
-</div>
+<% include ./partials/search %>
 
 <% page = parseInt(page) %>
 <% var pages = Math.ceil(totalPosts / (process.env.PAGE_SIZE || 10)) %>
