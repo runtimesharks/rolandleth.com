@@ -3,6 +3,7 @@
  */
 
 var router = require('express').Router()
+var NotFound = require('./not-found')
 var DBConfig = require('../lib/dbConfig')
 
 router.get('/', function(req, res) {
@@ -26,7 +27,7 @@ function fetchPage(page, res) {
 	db.fetchPosts(config)
 		.then(function(data) {
 			if (config.offset > data.totalPosts) {
-				show404(res)
+				NotFound.show(res)
 				return
 			}
 
@@ -58,16 +59,8 @@ function fetchPage(page, res) {
 			})
 		})
 		.catch(function(error) {
-			show404(res)
+			NotFound.show(res)
 		})
-}
-
-function show404(res) {
-	res.render('not-found', {
-		title: '404',
-		metadata: 'Development thoughts by Roland Leth'
-	})
-	res.end()
 }
 
 module.exports = router

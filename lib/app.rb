@@ -26,23 +26,4 @@ class Application < Sinatra::Application
 
 		update_posts(with_delete)
 	end
-
-	# Search
-	get %r{^/search$} do
-		query = request.env['rack.request.query_hash']['query']
-
-		@meta_description = 'iOS and Ruby development thoughts by Roland Leth.'
-		open_search_page(query)
-	end
-
-	def search_not_found
-		@title = 'No results found.'
-		@meta_description = 'No results found.'
-		# There's a check in layout.erb for the meta canonical link to
-		# not be displayed if the value is '404 error raised'.
-		@meta_canonical = '404 error raised'
-
-		status 200
-		erb :'not-found-search.ejs'
-	end
 end
