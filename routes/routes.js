@@ -4,6 +4,7 @@
 
 var router = require('express').Router()
 
+router.use('/feed', require('./feed'))
 router.use('/sitemap.xml', require('./sitemap'))
 router.use('/about', require('./about'))
 router.use('/archive', require('./archive'))
