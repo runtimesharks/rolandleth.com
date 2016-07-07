@@ -20,7 +20,7 @@ $(document).ready(function() {
 });
 
 var resizeImage = function(img) {
-	if (img.width() > $('section').width()) {
+	if (img.width() > $('body').width()) {
 		if (!img.closest('.centered-image-wrapper').length) {
 			img.wrap("<div class='centered-image-wrapper'></div>");
 		}
@@ -43,7 +43,7 @@ var setupSearchFields = function() {
 		bannerSearchField.val(query);
 	}
 
-	// Smaller search field for iPhones, since it doesn't fit at > 13
+	// Smaller search fields for iPhones, since it doesn't fit at > 13
 	var winWidth = $(window).width();
 	var size = 17;
 	switch (true) {

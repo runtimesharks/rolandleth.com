@@ -1,0 +1,18 @@
+<article>
+	<header>
+		<h1>
+			<a href="/<%= post.link %>"><%= post.title -%></a>
+		</h1>
+		<h4>
+			<% var month = post.date.toLocaleString('en-us', { month: "short" }) %>
+			<% var date = month + ' ' + post.date.getDate() + ', ' + post.date.getFullYear() %>
+			<time datetime="<%= date %>">
+				<%= date %>
+			</time>
+			<% if (post.readingTime) { %>
+				: <span class="tilde">&nbsp;&#126;</span> <%= post.readingTime %>
+			<% } %>
+		</h4>
+	</header>
+	<%- post.body %>
+</article>

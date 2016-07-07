@@ -9,8 +9,8 @@ var AppShowcase = (function() {
 		$screens = $el.find( '.ac-grid > a' ),
 		// the device screen image
 		$screenImg = $device.find( 'img' ).css( 'transition', 'all 0.5s ease' ),
-		// the device screen title
-		$screenTitle = $device.find( '.ac-title' ),
+		// the device screen _title
+		$screenTitle = $device.find( '.ac-_title' ),
 		// navigation arrows
 		$nav = $device.find( 'nav' ),
 		$navPrev = $nav.children( 'span:first' ),
@@ -66,7 +66,7 @@ var AppShowcase = (function() {
 		if( $screen ) {
 			// update current
 			current = $screen.index();
-			// update image and title on the device
+			// update image and _title on the device
 			$screenImg.attr( 'src', $screen.find( 'img' ).attr( 'src' ) );
 			$screenTitle.text( $screen.find( 'span' ).text() );
 		}
@@ -100,7 +100,7 @@ var AppShowcase = (function() {
 				transform : direction === 'next' ? 'scale(0.9)' : 'translateY(100px)'
 			} ).insertBefore( $screenImg );
 
-			// update title
+			// update _title
 			$screenTitle.text( $nextScreen.find( 'span' ).text() );
 
 			setTimeout( function() {
@@ -123,7 +123,7 @@ var AppShowcase = (function() {
 
 		}
 		else {
-			// update image and title on the device
+			// update image and _title on the device
 			$screenImg.attr( 'src', $nextScreen.find( 'img' ).attr( 'src' ) );
 			$screenTitle.text( $nextScreen.find( 'span' ).text() );
 			animating = false;
