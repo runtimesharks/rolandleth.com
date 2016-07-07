@@ -8,8 +8,9 @@ var DB = require('../lib/db')
 
 router.get('/', function(req, res) {
 	var config         = new DB.Config()
-	config.fields      = ['body', 'title']
 	config.searching   = true
+	config.limit       = -1
+	config.fields      = ['body', 'title']
 	config.fieldValues = req.query.query
 		.match(/\"(.*?)\"|(\w+)/g)
 		.map(function(match) {

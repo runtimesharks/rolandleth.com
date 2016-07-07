@@ -13,9 +13,9 @@ var marked = require('marked')
 
 router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 	Dropbox.getFolder('/Apps/Editorial/posts').then(function(folder) {
-		var newPosts = []
-		var config = new DB.Config()
-		config.limit = -1
+		var newPosts    = []
+		var config      = new DB.Config()
+		config.limit    = -1
 		config.updating = true
 
 		DB.fetchPosts(config).then(function(data) {
@@ -60,14 +60,14 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 						var finished = newPostIndex == newPosts.length - 1
 						// Just the one(s) with the same link
 						var posts = data.posts.filter(function(p) {
-							return p.link == newPost.link
+							return Post.linkMatch(newPost, p)
 						})
 
 						// Create
 						if (posts.length == 0) {
 							DB.createPost(newPost)
 							if (finished) {
-								res.redirect('/')
+								finish(newPosts, data.posts, res, req.params.delete)
 							}
 							return
 						}
@@ -75,28 +75,35 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 						posts.forEach(function(post) {
 							// Update
 							if (newPost.datetime == post.datetime) {
-								DB.updatePost(newPost)
+								// Only if these differ, no reason to query the db for nothing
+								if (newPost.modified != post.modified) {
+									DB.updatePost(newPost)
+								}
 								return
 							}
 
+							var variant
 							// Create a new one, with same link, but duplicated.
-							// If it has --1 already, make it --2.
-							if (post.link.slice(-3, -1).join() == '--') {
-								var variant = parseInt(post.link.slice(-1)[0])
-								variant += 1
-								newPost.link = post.link.slice(0, -1)
-								newPost.link += variant
+							// If it has --1 already, make it --2, and so on.
+							if (post.link.slice(-3, -1) == '--') {
+								variant = parseInt(post.link.slice(-1)[0])
+							}
+							else if (post.link.slice(-4, -2) == '--') {
+								variant  = parseInt(post.link.slice(-2))
 							}
 							else {
-								newPost.link += '--1'
+								variant = 0
 							}
+
+							variant += 1
+							newPost.link += '--' + variant
 
 							DB.createPost(newPost)
 						})
 
 						if (!finished) { return }
 
-						res.redirect('/')
+						finish(newPosts, data.posts, res, req.params.delete)
 					})
 				}).catch(function(error) {
 					console.log(error)
@@ -109,5 +116,31 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 		console.log(error)
 	})
 })
+
+function finish(newPosts, posts, res, performDelete) {
+	if (!performDelete) {
+		res.redirect('/')
+		return
+	}
+
+	posts.forEach(function(post, index) {
+		var existingPosts = newPosts.filter(function(newPost) {
+			return Post.linkMatch(newPost, post)
+		})
+
+		if (existingPosts.length) {
+			if (index == posts.length - 1) {
+				res.redirect('/')
+			}
+			return
+		}
+
+		DB.deletePost(post)
+
+		if (index < posts.length - 1) { return }
+
+		res.redirect('/')
+	})
+}
 
 module.exports = router

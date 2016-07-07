@@ -24,4 +24,11 @@ Post.dateFromDateTime = function(datetime) {
 	return new Date(year, month, day, hour, minute)
 }
 
+Post.linkMatch = function(newPost, post) {
+	// Yea, yea, I know. But I'll never have 100+ duplicates unknowingly :)
+	return newPost.link == post.link ||
+	       (newPost.link + '--') == post.link.slice(0, -1) ||
+	       (newPost.link + '--') == post.link.slice(0, -2)
+}
+
 module.exports = Post

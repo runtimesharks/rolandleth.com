@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 
 function fetchPage(page, res) {
 	var config = new DB.Config()
-	config.offset = config.pageSize * (page - 1)
+	config.offset = config.limit * (page - 1)
 
 	DB.fetchPosts(config)
 		.then(function(data) {
