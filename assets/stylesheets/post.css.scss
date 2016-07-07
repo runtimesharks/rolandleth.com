@@ -1,21 +1,23 @@
 @import 'bourbon';
 @import 'globals/variables';
 
-h1 {
-	line-height: 1em;
-	font-family: $header_font;
-	margin-bottom: 2px;
-	margin-top: 20px;
-	display: inline-block;
-	font-size: 1.85em;
+article {
+	h1 {
+		line-height: 1em;
+		font-family: $header_font;
+		margin-bottom: 2px;
+		margin-top: 20px;
+		display: inline-block;
+		font-size: 1.85em;
 
-	a {
-		text-decoration: none;
-		color: $text_color;
+		a {
+			text-decoration: none;
+			color: $text_color;
 
-		&:hover {
-			color: $link_color;
-			border-bottom: none;
+			&:hover {
+				color: $link_color;
+				border-bottom: none;
+			}
 		}
 	}
 }
@@ -47,24 +49,41 @@ a.img:hover {
 
 @include responsive_width(647px) {
 	.content h2 {
-		font-size: 1.5em;
+		font-size: 1.1em;
 		line-height: 1.1em;
 	}
 }
 
 @include responsive_width(535px) {
-	header {
-		font-size: 1.8em;
+	article {
+		h1 {
+			font-size: 1.4em;
+			margin-bottom: 0;
+		}
+
+		h4 {
+			font-size: 0.65em;
+			margin-bottom: 0;
+		}
 	}
 }
 
 @include responsive_width(475px) {
-	header {
-		font-size: 1.7em;
+	article {
+		padding: 1.7em 0 1.2em;
+
+		h1 {
+			font-size: 1.2em;
+		}
+
+		h4 {
+			margin-top: -2px;
+			font-size: 0.5em;
+		}
 	}
 
 	.content {
-		padding-top: 1em;
+		padding-top: 2em;
 
 		& h2 {
 			font-size: 1.3em;
