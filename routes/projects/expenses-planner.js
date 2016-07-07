@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('expenses-planner.ejs')
+	res.render('expenses-planner')
 })
 
 router.get('/press-kit', function(req, res) {

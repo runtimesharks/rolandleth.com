@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('bouncyb.ejs')
+	res.render('bouncyb')
 })
 
 module.exports = router

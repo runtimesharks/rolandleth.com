@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('iwordjuggle.ejs')
+	res.render('iwordjuggle')
 })
 
 module.exports = router

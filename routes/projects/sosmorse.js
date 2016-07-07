@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('sosmorse.ejs')
+	res.render('sosmorse')
 })
 
 module.exports = router

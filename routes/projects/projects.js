@@ -11,7 +11,7 @@ router.use('/sosmorse', require('./sosmorse'))
 router.use('/iwordjuggle', require('./iwordjuggle'))
 
 router.get('/', function(req, res) {
-	res.render('projects.ejs', {
+	res.render('projects', {
 		title: 'Projects',
 		metadata: 'iOS, Ruby, Node and JS projects by Roland Leth.'
 	})

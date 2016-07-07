@@ -13,7 +13,7 @@ router.use('/projects', require('./projects/projects'))
 router.use('/search', require('./search'))
 router.use('/cmd.sync', require('./sync'))
 router.use(/^\/(\d+)/, require('./page'))
-router.use(/^\/([\w\d\-]+)/, require('./article'))
+router.use(/^\/([\w\d\-]+)/, require('./post'))
 router.use('/', require('./page'))
 router.use('*', function(req, res) {
 	res.render('not-found', {

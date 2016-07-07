@@ -19,9 +19,9 @@ router.get('/', function(req, res) {
 				return
 			}
 
-			var post = data.posts
+			var post = data.posts[0]
 			res.render('index', {
-				posts: post,
+				posts: data.posts,
 				title: post.title,
 				page: 1,
 				totalPosts: 1,

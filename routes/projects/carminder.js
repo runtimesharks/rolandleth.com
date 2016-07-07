@@ -5,7 +5,7 @@
 var router = require('express').Router()
 
 router.get('/', function(req, res) {
-	res.render('carminder.ejs')
+	res.render('carminder')
 })
 
 router.get('/press-kit', function(req, res) {
