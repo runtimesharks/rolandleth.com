@@ -11,7 +11,10 @@ var DB       = require('../lib/db')
 var readingTime = require('reading-time')
 var marked = require('marked')
 
-router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
+router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {
+	var shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
+	var forced = req.params.key1 == 'force' || req.params.key2 == 'force'
+
 	Dropbox.getFolder('/Apps/Editorial/posts').then(function(folder) {
 		var newPosts    = []
 		var config      = new DB.Config()
@@ -67,7 +70,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 						if (posts.length == 0) {
 							DB.createPost(newPost)
 							if (finished) {
-								finish(newPosts, data.posts, res, req.params.delete)
+								finish(newPosts, data.posts, res, shouldDelete)
 							}
 							return
 						}
@@ -76,7 +79,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 							// Update
 							if (newPost.datetime == post.datetime) {
 								// Only if these differ, no reason to query the db for nothing
-								if (newPost.modified != post.modified) {
+								if (newPost.modified != post.modified || forced) {
 									DB.updatePost(newPost)
 								}
 								return
@@ -103,7 +106,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:delete?', function(req, res) {
 
 						if (!finished) { return }
 
-						finish(newPosts, data.posts, res, req.params.delete)
+						finish(newPosts, data.posts, res, shouldDelete)
 					})
 				}).catch(function(error) {
 					console.log(error)

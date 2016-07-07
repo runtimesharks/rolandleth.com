@@ -4,8 +4,11 @@
   "description": "Roland Leth's corner of the internet",
   "main": "app.js",
   "scripts": {
-    "start": "heroku local web",
-    "test": "test"
+    "start": "heroku local web"
+  },
+  "engines": {
+    "node": "6.2.2",
+    "npm": "3.9.5"
   },
   "repository": {
     "type": "git",
