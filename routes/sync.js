@@ -22,6 +22,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 		config.updating = true
 
 		DB.fetchPosts(config).then(function(data) {
+			var posts = data.posts
 			folder.contents.forEach(function(item) {
 				var matches  = item.path.match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 				var datetime = matches[4] + '-' + matches[5] + '-' + matches[6] + '-' + matches[7]
@@ -59,27 +60,45 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 					if (newPosts.length != folder.contents.length)  { return }
 					// We are at the last file
 
+					// First remove any posts corresponding to deleted files.
+					if (shouldDelete) {
+						// Iterate through existing posts, and if no corresponding
+						// file is found, delete the post, and remove it from the data.
+						data.posts.forEach(function(post, index) {
+							var matchingNewPosts = newPosts.filter(function(newPost) {
+								return Post.linksMatch(newPost, post) &&
+								       newPost.datetime == post.datetime
+							})
+
+							if (matchingNewPosts.length) { return }
+
+							DB.deletePost(post)
+							posts.splice(index, 1)
+						})
+					}
+
 					newPosts.forEach(function(newPost, newPostIndex) {
 						var finished = newPostIndex == newPosts.length - 1
+
 						// Just the one(s) with the same link
-						var posts = data.posts.filter(function(p) {
-							return Post.linkMatch(newPost, p)
+						var matchingPosts = posts.filter(function(p) {
+							return Post.linksMatch(newPost, p)
 						})
 
 						// Create
-						if (posts.length == 0) {
+						if (matchingPosts.length == 0) {
 							DB.createPost(newPost)
 							if (finished) {
-								finish(newPosts, data.posts, res, shouldDelete)
+								res.redirect('/')
 							}
 							return
 						}
 
-						posts.forEach(function(post) {
+						matchingPosts.forEach(function(matchingPost) {
 							// Update
-							if (newPost.datetime == post.datetime) {
+							if (newPost.datetime == matchingPost.datetime) {
 								// Only if these differ, no reason to query the db for nothing
-								if (newPost.modified != post.modified || forced) {
+								if (newPost.modified != matchingPost.modified || forced) {
 									DB.updatePost(newPost)
 								}
 								return
@@ -88,11 +107,11 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 							var variant
 							// Create a new one, with same link, but duplicated.
 							// If it has --1 already, make it --2, and so on.
-							if (post.link.slice(-3, -1) == '--') {
-								variant = parseInt(post.link.slice(-1)[0])
+							if (matchingPost.link.slice(-3, -1) == '--') {
+								variant = parseInt(matchingPost.link.slice(-1)[0])
 							}
-							else if (post.link.slice(-4, -2) == '--') {
-								variant  = parseInt(post.link.slice(-2))
+							else if (matchingPost.link.slice(-4, -2) == '--') {
+								variant  = parseInt(matchingPost.link.slice(-2))
 							}
 							else {
 								variant = 0
@@ -106,7 +125,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 
 						if (!finished) { return }
 
-						finish(newPosts, data.posts, res, shouldDelete)
+						res.redirect('/')
 					})
 				}).catch(function(error) {
 					console.log(error)
@@ -119,31 +138,5 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 		console.log(error)
 	})
 })
-
-function finish(newPosts, posts, res, performDelete) {
-	if (!performDelete) {
-		res.redirect('/')
-		return
-	}
-
-	posts.forEach(function(post, index) {
-		var existingPosts = newPosts.filter(function(newPost) {
-			return Post.linkMatch(newPost, post)
-		})
-
-		if (existingPosts.length) {
-			if (index == posts.length - 1) {
-				res.redirect('/')
-			}
-			return
-		}
-
-		DB.deletePost(post)
-
-		if (index < posts.length - 1) { return }
-
-		res.redirect('/')
-	})
-}
 
 module.exports = router
