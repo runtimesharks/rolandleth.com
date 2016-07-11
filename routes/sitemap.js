@@ -2,8 +2,10 @@
  * Created by roland on 7/7/16.
  */
 
+'use strict'
+
 var router = require('express').Router()
-var SiteMap = require('../lib/sitemap')
+const SiteMap = require('../lib/sitemap')
 
 router.get('/', function(req, res) {
 	SiteMap.create().then(function(xml) {

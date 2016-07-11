@@ -2,8 +2,10 @@
  * Created by roland on 7/7/16.
  */
 
+'use strict'
+
 var router = require('express').Router()
-var Feed = require('../lib/feed')
+const Feed = require('../lib/feed')
 
 router.get('/', function(req, res) {
 	Feed.create().then(function(xml) {

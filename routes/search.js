@@ -2,12 +2,14 @@
  * Created by roland on 6/7/16.
  */
 
+'use strict'
+
 var router = require('express').Router()
-var NotFound = require('./not-found')
-var DB = require('../lib/db')
+const NotFound = require('./not-found')
+const DB = require('../lib/db')
 
 router.get('/', function(req, res) {
-	var config         = new DB.Config()
+	const config         = new DB.Config()
 	config.searching   = true
 	config.limit       = -1
 	config.fields      = ['body', 'title']

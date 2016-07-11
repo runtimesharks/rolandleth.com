@@ -2,6 +2,8 @@
  * Created by roland on 6/7/16.
  */
 
+'use strict'
+
 function NotFound() {}
 
 NotFound.show = function(res, search) {

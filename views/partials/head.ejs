@@ -1,3 +1,4 @@
+<% 'use strict' %>
 <meta charset="UTF-8">
 <title><%= title %></title>
 <link rel="canonical" href="<%= 'http://rolandleth.com' + path %>">
@@ -27,34 +28,34 @@
 <script src="/assets/base.js"></script>
 <!--Tracking-->
 <script async type="text/javascript">
-	var _gaq = _gaq || [];
+	const _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-40255117-4']);
 	_gaq.push(['_trackPageview']);
 
 	(
 		function() {
-			var ga   = document.createElement('script');
+			const ga   = document.createElement('script');
 			ga.type  = 'text/javascript';
 			ga.async = true;
 			ga.src   = (
 				           'https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s    = document.getElementsByTagName('script')[0];
+			const s    = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(ga, s);
 		})();
 </script>
 <!--Apple's auto affiliate link script-->
 <script async type='text/javascript'>
-	var _merchantSettings = _merchantSettings || [];
+	const _merchantSettings = _merchantSettings || [];
 	_merchantSettings.push(['AT', '1001l54C']);
 	(
 		function() {
-			var autolink   = document.createElement('script');
+			const autolink   = document.createElement('script');
 			autolink.type  = 'text/javascript';
 			autolink.async = true;
 			autolink.src   = (
 			                 'https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js'
 				: 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
-			var s          = document.getElementsByTagName('script')[0];
+			const s          = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(autolink, s);
 		})();
 </script>

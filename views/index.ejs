@@ -1,7 +1,8 @@
+<% 'use strict' %>
 <% include ./partials/search %>
 
 <% page = parseInt(page) %>
-<% var pages = Math.ceil(totalPosts / (process.env.PAGE_SIZE || 10)) %>
+<% const pages = Math.ceil(totalPosts / (process.env.PAGE_SIZE || 10)) %>
 <% if (pages > 1) { %>
 	<% include ./partials/page-navigation %>
 <% } %>

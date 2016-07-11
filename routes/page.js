@@ -2,9 +2,11 @@
  * Created by roland on 1/7/16.
  */
 
+'use strict'
+
 var router = require('express').Router()
-var NotFound = require('./not-found')
-var DB = require('../lib/db')
+const NotFound = require('./not-found')
+const DB = require('../lib/db')
 
 router.get('/', function(req, res) {
 	if (req.baseUrl == '/1') {
@@ -18,7 +20,7 @@ router.get('/', function(req, res) {
 })
 
 function fetchPage(page, res) {
-	var config = new DB.Config()
+	const  config = new DB.Config()
 	config.offset = config.limit * (page - 1)
 
 	DB.fetchPosts(config)
@@ -28,7 +30,7 @@ function fetchPage(page, res) {
 				return
 			}
 
-			var htmlSave = require('htmlsave')
+			const htmlSave = require('htmlsave')
 
 			data.posts.forEach(function(post) {
 				if (post.body.length < 900) { return }

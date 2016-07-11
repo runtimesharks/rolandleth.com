@@ -5,45 +5,45 @@
 'use strict'
 
 var router  = require('express').Router()
-var Dropbox = require('../lib/dropbox')
-var Post    = require('../models/post')
-var DB       = require('../lib/db')
-var readingTime = require('reading-time')
-var marked = require('marked')
+const Dropbox = require('../lib/dropbox')
+const Post    = require('../models/post')
+const DB       = require('../lib/db')
+const readingTime = require('reading-time')
+const marked = require('marked')
 
 router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {
-	var shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
-	var forced = req.params.key1 == 'force' || req.params.key2 == 'force'
+	const shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
+	const forced = req.params.key1 == 'force' || req.params.key2 == 'force'
 
 	Dropbox.getFolder('/Apps/Editorial/posts').then(function(folder) {
-		var newPosts    = []
-		var config      = new DB.Config()
+		let newPosts    = []
+		const config      = new DB.Config()
 		config.limit    = -1
 		config.updating = true
 
 		DB.fetchPosts(config).then(function(data) {
 			var posts = data.posts
 			folder.contents.forEach(function(item) {
-				var matches  = item.path.match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
-				var datetime = matches[4] + '-' + matches[5] + '-' + matches[6] + '-' + matches[7]
-				var link     = matches[8]
+				const  matches  = item.path.match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
+				const datetime = matches[4] + '-' + matches[5] + '-' + matches[6] + '-' + matches[7]
+				let link     = matches[8]
 				link         = link.replace(new RegExp(/([#,;!:"\'\.\?\[\]\{\}\(\$\/)]+)/, 'g'), '')
 				link         = link.replace(new RegExp('&', 'g'), 'and')
 				link         = link.replace(new RegExp(' ', 'g'), '-')
 				link         = link.toLowerCase()
 
-				var title    = ''
-				var body     = ''
-				var modified = item.client_mtime
+				let title    = ''
+				let body     = ''
+				let modified = item.client_mtime
 
 				Dropbox.getFile(item.path).then(function(file) {
-					var lines = file.toString().split('\n')
+					let lines = file.toString().split('\n')
 					title     = lines[0]
 					lines.splice(0, 2)
 					body = lines.join('\n')
 
-					var time = function() {
-						var t = readingTime(body)
+					const time = function() {
+						const t = readingTime(body)
 						switch (true) {
 							case t <= 0.2: return ''; break
 							case t <= 0.5: return '25 sec read'; break
@@ -65,7 +65,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 						// Iterate through existing posts, and if no corresponding
 						// file is found, delete the post, and remove it from the data.
 						data.posts.forEach(function(post, index) {
-							var matchingNewPosts = newPosts.filter(function(newPost) {
+							let matchingNewPosts = newPosts.filter(function(newPost) {
 								return Post.linksMatch(newPost, post) &&
 								       newPost.datetime == post.datetime
 							})
@@ -78,10 +78,10 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 					}
 
 					newPosts.forEach(function(newPost, newPostIndex) {
-						var finished = newPostIndex == newPosts.length - 1
+						let finished = newPostIndex == newPosts.length - 1
 
 						// Just the one(s) with the same link
-						var matchingPosts = posts.filter(function(p) {
+						let matchingPosts = posts.filter(function(p) {
 							return Post.linksMatch(newPost, p)
 						})
 
@@ -104,7 +104,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 								return
 							}
 
-							var variant
+							let variant
 							// Create a new one, with same link, but duplicated.
 							// If it has --1 already, make it --2, and so on.
 							if (matchingPost.link.slice(-3, -1) == '--') {

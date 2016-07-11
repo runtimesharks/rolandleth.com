@@ -2,6 +2,8 @@
  * Created by roland on 3/7/16.
  */
 
+'use strict'
+
 var router = require('express').Router()
 
 router.use('/feed', require('./feed'))

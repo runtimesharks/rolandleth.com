@@ -2,12 +2,14 @@
  * Created by roland on 6/7/16.
  */
 
+'use strict'
+
 var router   = require('express').Router()
-var NotFound = require('./not-found')
-var DB = require('../lib/db')
+const NotFound = require('./not-found')
+const DB = require('../lib/db')
 
 router.get('/', function(req, res) {
-	var config         = new DB.Config()
+	const config         = new DB.Config()
 	config.fields      = 'link'
 	config.fieldValues = [req.baseUrl.substring(1)]
 	config.limit       = 1
@@ -19,7 +21,7 @@ router.get('/', function(req, res) {
 				return
 			}
 
-			var post = data.posts[0]
+			const post = data.posts[0]
 			res.render('index', {
 				posts: data.posts,
 				title: post.title,
