@@ -1,11 +1,10 @@
 _ = require('lodash')
-Promise = require('bluebird')
-var express = require('express')
-var app = express()
-var engine = require('ejs-mate')
-var Mincer = require('mincer')
+const express = require('express')
+const app = express()
+const engine = require('ejs-mate') // For locals, layouts and partials
+const Mincer = require('mincer') // For the pipeline
 
-var pipeline = new Mincer.Environment()
+const pipeline = new Mincer.Environment()
 Mincer.logger.use(console)
 
 pipeline.appendPath(require('bourbon').includePaths)
@@ -20,7 +19,7 @@ app.use('/assets', Mincer.createServer(pipeline))
 // To pass in the canonical URL without a possible trailing slash.
 // This way no 301 are required for indexing.
 app.use(function(req, res, next) {
-	var path = req.path
+	let path = req.path
 	if (path.slice(-1) == '/') {
 		path = path.slice(0, -1)
 	}

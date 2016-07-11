@@ -7,6 +7,7 @@
 var router = require('express').Router()
 const NotFound = require('./not-found')
 const DB = require('../lib/db')
+const Post = require('../models/post')
 
 router.get('/', function(req, res) {
 	const config         = new DB.Config()
@@ -25,6 +26,10 @@ router.get('/', function(req, res) {
 				NotFound.show(res, true)
 				return
 			}
+
+			data.posts.forEach(function(post) {
+				post.body = Post.truncatedBody(post)
+			})
 
 			res.render('partials/search', {
 				posts: data.posts,

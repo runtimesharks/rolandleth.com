@@ -7,6 +7,7 @@
 var router = require('express').Router()
 const NotFound = require('./not-found')
 const DB = require('../lib/db')
+const Post = require('../models/post')
 
 router.get('/', function(req, res) {
 	if (req.baseUrl == '/1') {
@@ -30,23 +31,8 @@ function fetchPage(page, res) {
 				return
 			}
 
-			const htmlSave = require('htmlsave')
-
 			data.posts.forEach(function(post) {
-				if (post.body.length < 900) { return }
-				post.body = htmlSave.truncate(post.body, 700, {
-					breakword: false,
-					ellipsis: ' [&hellip;]'
-				})
-
-				post.body += "<br/> \
-					<a href='/" + post.link + "' \
-						onClick = \"_gaq.push([ \
-						'_trackEvent', \
-						'continue-reading', \
-						'click', \
-						'/" + post.link + ">']);\"> \
-						Continue reading &rarr;</a>"
+				post.body = Post.truncatedBody(post)
 			})
 
 			res.render('index', {
