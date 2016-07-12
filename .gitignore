@@ -12,6 +12,7 @@
 *.pages
 .bundle
 .DS_STORE
+lib/dropbox_keys.rb
 
 .idea/rolandleth.iml
 .idea/workspace.xml
