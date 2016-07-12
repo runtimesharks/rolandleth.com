@@ -4,7 +4,7 @@
 
 'use strict'
 
-var router = require('express').Router()
+const router = require('express').Router()
 const NotFound = require('./not-found')
 const DB = require('../lib/db')
 const Post = require('../models/post')
@@ -24,28 +24,26 @@ function fetchPage(page, res) {
 	const  config = new DB.Config()
 	config.offset = config.limit * (page - 1)
 
-	DB.fetchPosts(config)
-		.then(function(data) {
-			if (config.offset > data.totalPosts) {
-				NotFound.show(res)
-				return
-			}
-
-			data.posts.forEach(function(post) {
-				post.body = Post.truncatedBody(post)
-			})
-
-			res.render('index', {
-				posts: data.posts,
-				page: page,
-				totalPosts: data.totalPosts,
-				title: 'Roland Leth',
-				metadata: 'Development thoughts by Roland Leth'
-			})
-		})
-		.catch(function(error) {
+	DB.fetchPosts(config).then(function(data) {
+		if (config.offset > data.totalPosts) {
 			NotFound.show(res)
+			return
+		}
+
+		data.posts.forEach(function(post) {
+			post.body = Post.truncatedBody(post)
 		})
+
+		res.render('index', {
+			posts: data.posts,
+			page: page,
+			totalPosts: data.totalPosts,
+			title: 'Roland Leth',
+			metadata: 'Development thoughts by Roland Leth'
+		})
+	}).catch(function() {
+		NotFound.show(res)
+	})
 }
 
 module.exports = router

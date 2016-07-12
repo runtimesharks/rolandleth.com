@@ -4,7 +4,7 @@
 
 'use strict'
 
-var router = require('express').Router()
+const router = require('express').Router()
 const SiteMap = require('../lib/sitemap')
 
 router.get('/', function(req, res) {

@@ -4,7 +4,7 @@
 
 'use strict'
 
-var router = require('express').Router()
+const router = require('express').Router()
 const Feed = require('../lib/feed')
 
 router.get('/', function(req, res) {

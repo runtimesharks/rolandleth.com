@@ -4,7 +4,7 @@
 
 'use strict'
 
-var router  = require('express').Router()
+const router  = require('express').Router()
 const Dropbox = require('../lib/dropbox')
 const Post    = require('../models/post')
 const DB       = require('../lib/db')
@@ -18,7 +18,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 	Dropbox.getFolder('/Apps/Editorial/posts').then(function(folder) {
 		let newPosts    = []
 		const config      = new DB.Config()
-		config.limit    = -1
+		config.limit    = 0
 		config.updating = true
 
 		DB.fetchPosts(config).then(function(data) {
@@ -127,15 +127,11 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 
 						res.redirect('/')
 					})
-				}).catch(function(error) {
-					console.log(error)
 				})
 			})
 		}).catch(function(error) {
 			console.log(error)
 		})
-	}).catch(function(error) {
-		console.log(error)
 	})
 })
 

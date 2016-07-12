@@ -4,12 +4,12 @@
 
 'use strict'
 
-var router = require('express').Router()
+const router = require('express').Router()
 const DB = require('../lib/db')
 
 router.get('/', function(req, res) {
-	const  config     = new DB.Config()
-	config.limit   = -1
+	const  config  = new DB.Config()
+	config.limit   = 0
 	config.columns = 'title, link, datetime'
 
 	const wordedMonth = {

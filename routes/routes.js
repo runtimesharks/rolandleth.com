@@ -4,7 +4,7 @@
 
 'use strict'
 
-var router = require('express').Router()
+const router = require('express').Router()
 
 router.use('/feed', require('./feed'))
 router.use('/sitemap.xml', require('./sitemap'))
