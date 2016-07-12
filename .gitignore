@@ -21,3 +21,4 @@
 node_modules/*
 npm-debug.log
 /*.env
+lib/dropbox_keys.rb
