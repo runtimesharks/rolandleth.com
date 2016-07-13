@@ -14,11 +14,11 @@ router.get('/', function(req, res) {
 	config.searching   = true
 	config.limit       = 0
 	config.fields      = ['body', 'title']
-	config.fieldValues = req.query.query
-		.match(/\"(.*?)\"|(\w+)/g)
-		.map(function(match) {
-			return match.replace(/"/g, '')
-		})
+	config.fieldValues = [req.query.query]
+//		.match(/\"(.*?)\"|(\w+)/g)
+//		.map(function(match) {
+//			return match.replace(/"/g, '')
+//		})
 
 	DB.fetchPosts(config).then(function(data) {
 		if (data.posts.length == 0) {
