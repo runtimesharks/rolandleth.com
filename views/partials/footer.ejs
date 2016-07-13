@@ -1,0 +1,27 @@
+<%
+'use strict'
+
+const quotes = [
+	'Tables turn, bridges burn, you live and learn.',
+	'Dream big, if you dare to dream.',
+	"Your time is limited, so don't waste it living someone else's life.",
+	'Be yourself, everyone else is taken.',
+	'[...] avoid the trap of thinking you have something to lose.',
+	'A lot can happen between now and \'never\'.'
+]
+const emoji = ['💤', '🌟', '💭', '🗿', '👣', '🐶']
+%>
+
+<footer role="contentinfo">
+	<div class="quote">
+		<%= _.sample(emoji) %>&nbsp&nbsp&nbsp<%= _.sample(quotes) %>
+	</div>
+	<div class="copyright">
+		&copy;
+		<%= new Date().getFullYear() %>
+		&nbspRoland Leth
+		&nbsp&mdash;&nbsp
+		<a href="/archive">Archive</a>
+	</div>
+	<a href="https://plus.google.com/116830737199229269159?rel=author"></a>
+</footer>

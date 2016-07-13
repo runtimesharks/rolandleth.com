@@ -1,0 +1,136 @@
+/**
+ * Created by roland on 6/7/16.
+ */
+
+'use strict'
+
+const Promise = require('bluebird')
+const router  = require('express').Router()
+const Dropbox = require('../lib/dropbox')
+const Post    = require('../models/post')
+const DB       = require('../lib/db')
+const readingTime = require('reading-time')
+const marked = require('marked')
+
+router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {
+	const shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
+	const forced = req.params.key1 == 'force' || req.params.key2 == 'force'
+
+	const config    = new DB.Config()
+	config.limit    = 0
+	config.updating = true
+
+	Promise.all([DB.fetchPosts(config), Dropbox.getFolder('/posts')]).then(function(data) {
+		let posts = data[0].posts
+		const folder = data[1]
+
+		Promise.map(folder.contents, function(item) {
+			return Promise.join(item, Dropbox.getFile(item.path), function(item, file) {
+				return { item: item, file: file }
+			})
+		}).map(function(dropboxData) {
+			const item = dropboxData.item
+			const file = dropboxData.file
+
+			const  matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
+			const datetime = matches[2] + '-' + matches[3] + '-' + matches[4] + '-' + matches[5]
+			let link     = matches[6]
+			link         = link.replace(new RegExp(/([#,;!:"\'\.\?\[\]\{\}\(\$\/)]+)/, 'g'), '')
+			link         = link.replace(new RegExp('&', 'g'), 'and')
+			link         = link.replace(new RegExp(' ', 'g'), '-')
+			link         = link.toLowerCase()
+
+			let lines = file.toString().split('\n')
+			const title     = lines[0]
+			lines.splice(0, 2)
+			const body = lines.join('\n')
+
+			const modified = item.client_mtime
+			const time = function() {
+				const t = readingTime(body)
+				switch (true) {
+					case t <= 0.2: return ''; break
+					case t <= 0.5: return '25 sec read'; break
+					case t <= 0.8: return '45 sec read'; break
+					default: return t.text
+				}
+			}()
+
+			return new Post(title, marked(body), time,
+				datetime, modified, link)
+		}).then(function(newPosts) {
+			if (shouldDelete) {
+				// Iterate through existing posts, and if no corresponding
+				// file is found, delete the post, and remove it from the data.
+				data[0].posts.forEach(function(post, index) {
+					let matchingNewPosts = newPosts.filter(function(newPost) {
+						return Post.linksMatch(newPost, post) &&
+						       newPost.datetime == post.datetime
+					})
+
+					if (matchingNewPosts.length) { return }
+
+					DB.deletePost(post)
+					posts.splice(index, 1)
+				})
+			}
+
+			Promise.map(newPosts, function(newPost) {
+				// Just the one(s) with the same link
+				let matchingPosts = posts.filter(function(p) {
+					return Post.linksMatch(newPost, p)
+				})
+
+				let returnObject = {
+					newPost: newPost,
+					matchingPosts: matchingPosts
+				}
+
+				// Create
+				if (matchingPosts.length == 0) {
+					DB.createPost(newPost)
+				}
+
+				return returnObject
+			}).each(function(data) {
+				const newPost = data.newPost
+				const matchingPosts = data.matchingPosts
+
+				matchingPosts.forEach(function(matchingPost) {
+					// Update
+					if (newPost.datetime == matchingPost.datetime) {
+						// Only if these differ, no reason to query the db for nothing
+						if (newPost.modified != matchingPost.modified || forced) {
+							DB.updatePost(newPost)
+						}
+						return
+					}
+
+					let variant
+					// Create a new one, with same link, but duplicated.
+					// If it has --1 already, make it --2, and so on.
+					if (matchingPost.link.slice(-3, -1) == '--') {
+						variant = parseInt(matchingPost.link.slice(-1)[0])
+					}
+					else if (matchingPost.link.slice(-4, -2) == '--') {
+						variant  = parseInt(matchingPost.link.slice(-2))
+					}
+					else {
+						variant = 0
+					}
+
+					variant += 1
+					newPost.link += '--' + variant
+
+					DB.createPost(newPost)
+				})
+			}).then(function() {
+				res.redirect('/')
+			})
+		})
+	}).catch(function(error) {
+		console.log(error)
+	})
+})
+
+module.exports = router

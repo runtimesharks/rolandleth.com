@@ -1,0 +1,58 @@
+<% 'use strict' %>
+<nav class="pagination">
+	<% /* The arrow */ %>
+	<% const gap = 2 %>
+	<% if (page == 1) { %>
+		<span class="disabled">&larr; Prev</span>
+	<% } else if (page == 2) { %>
+		<a class="previous" href="/" rel="previous">&larr; Prev</a>
+	<% } else { %>
+		<a class="previous" href="/<%= page - 1 %>" rel="previous">&larr; Prev</a>
+	<% } %>
+
+	<% /* The gap */ %>
+	<% if (page > gap) { %>
+		<a href="/">1</a>
+		<% if (page == gap * 2) { %>
+			<a href="/2">2</a>
+		<% } else if (page > gap * 2) { %>
+			<span class="gap">&hellip;</span>
+		<% } %>
+	<% } %>
+
+	<% /* The previous page */ %>
+	<% if (page > 1) { %>
+		<% /* If the current page is 2, prev button links to '/' instead of / 1 */ %>
+		<% /* Also prev pagination - number links to '/' instead of current page - 1 */ %>
+		<% if (page == 2) { %>
+			<a href="/" rel="previous"><%= page - 1 %></a>
+		<% } else { %>
+			<a href="/<%= page - 1 %>" rel="previous"><%= page - 1 %></a>
+		<% } %>
+	<% } %>
+
+	<% /* The current page */ %>
+	<span class="current"><%= page %></span>
+
+	<% /* The next page */ %>
+	<% if (page < pages - 1) { %>
+		<a href="/<%= page + 1 %>" rel="next"><%= page + 1 %></a>
+	<% } %>
+
+	<% /* The gap */ %>
+	<% if (page < pages - gap) { %>
+		<% if (pages - page + 1 > gap * 2) { %>
+			<span class="gap">&hellip;</span>
+		<% } else { %>
+			<a href="/<%= pages - 1 %>"><%= pages - 1 %></a>
+		<% } %>
+	<% } %>
+
+	<% /* The arrow */ %>
+	<% if (page < pages) { %>
+		<a href="/<%= pages %>"><%= pages %></a>
+		<a class="next" href="/<%= page + 1 %>" rel="next">Next &rarr;</a>
+	<% } else { %>
+		<span class="disabled">Next &rarr;</span>
+	<% } %>
+</nav>
