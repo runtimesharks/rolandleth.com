@@ -20,7 +20,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 	config.limit    = 0
 	config.updating = true
 
-	Promise.all([DB.fetchPosts(config), Dropbox.getFolder('/Apps/Editorial/posts')]).then(function(data) {
+	Promise.all([DB.fetchPosts(config), Dropbox.getFolder('/posts')]).then(function(data) {
 		let posts = data[0].posts
 		const folder = data[1]
 
@@ -32,9 +32,9 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 			const item = dropboxData.item
 			const file = dropboxData.file
 
-			const  matches  = item.path.match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
-			const datetime = matches[4] + '-' + matches[5] + '-' + matches[6] + '-' + matches[7]
-			let link     = matches[8]
+			const  matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
+			const datetime = matches[2] + '-' + matches[3] + '-' + matches[4] + '-' + matches[5]
+			let link     = matches[6]
 			link         = link.replace(new RegExp(/([#,;!:"\'\.\?\[\]\{\}\(\$\/)]+)/, 'g'), '')
 			link         = link.replace(new RegExp('&', 'g'), 'and')
 			link         = link.replace(new RegExp(' ', 'g'), '-')
