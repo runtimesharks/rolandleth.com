@@ -4,6 +4,16 @@
 
 'use strict'
 
+/**
+ * The Post model.
+ * @param title
+ * @param body
+ * @param readingTime
+ * @param datetime
+ * @param modified
+ * @param link
+ * @constructor
+ */
 function Post(title = '', body = '', readingTime = '', datetime = '', modified = '', link = '') {
 	this.title = title
 	this.body = body
