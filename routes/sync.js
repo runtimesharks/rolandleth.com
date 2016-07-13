@@ -4,6 +4,7 @@
 
 'use strict'
 
+const Promise = require('bluebird')
 const router  = require('express').Router()
 const Dropbox = require('../lib/dropbox')
 const Post    = require('../models/post')
@@ -20,11 +21,17 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 	config.updating = true
 
 	Promise.all([DB.fetchPosts(config), Dropbox.getFolder('/Apps/Editorial/posts')]).then(function(data) {
-		let newPosts = []
 		let posts = data[0].posts
 		const folder = data[1]
 
-		folder.contents.forEach(function(item) {
+		Promise.map(folder.contents, function(item) {
+			return Promise.join(item, Dropbox.getFile(item.path), function(item, file) {
+				return { item: item, file: file }
+			})
+		}).map(function(dropboxData) {
+			const item = dropboxData.item
+			const file = dropboxData.file
+
 			const  matches  = item.path.match(/\/(apps)\/(editorial)\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 			const datetime = matches[4] + '-' + matches[5] + '-' + matches[6] + '-' + matches[7]
 			let link     = matches[8]
@@ -33,101 +40,92 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 			link         = link.replace(new RegExp(' ', 'g'), '-')
 			link         = link.toLowerCase()
 
-			let title    = ''
-			let body     = ''
-			let modified = item.client_mtime
+			let lines = file.toString().split('\n')
+			const title     = lines[0]
+			lines.splice(0, 2)
+			const body = lines.join('\n')
 
-			Dropbox.getFile(item.path).then(function(file) {
-				let lines = file.toString().split('\n')
-				title     = lines[0]
-				lines.splice(0, 2)
-				body = lines.join('\n')
+			const modified = item.client_mtime
+			const time = function() {
+				const t = readingTime(body)
+				switch (true) {
+					case t <= 0.2: return ''; break
+					case t <= 0.5: return '25 sec read'; break
+					case t <= 0.8: return '45 sec read'; break
+					default: return t.text
+				}
+			}()
 
-				const time = function() {
-					const t = readingTime(body)
-					switch (true) {
-						case t <= 0.2: return ''; break
-						case t <= 0.5: return '25 sec read'; break
-						case t <= 0.8: return '45 sec read'; break
-						default: return t.text
-					}
-				}()
-
-				newPosts.push(
-					new Post(title, marked(body), time,
-						datetime, modified, link)
-				)
-
-				if (newPosts.length != folder.contents.length)  { return }
-				// We are at the last file
-
-				// First remove any posts corresponding to deleted files.
-				if (shouldDelete) {
-					// Iterate through existing posts, and if no corresponding
-					// file is found, delete the post, and remove it from the data.
-					data[0].posts.forEach(function(post, index) {
-						let matchingNewPosts = newPosts.filter(function(newPost) {
-							return Post.linksMatch(newPost, post) &&
-							       newPost.datetime == post.datetime
-						})
-
-						if (matchingNewPosts.length) { return }
-
-						DB.deletePost(post)
-						posts.splice(index, 1)
+			return new Post(title, marked(body), time,
+				datetime, modified, link)
+		}).then(function(newPosts) {
+			if (shouldDelete) {
+				// Iterate through existing posts, and if no corresponding
+				// file is found, delete the post, and remove it from the data.
+				data[0].posts.forEach(function(post, index) {
+					let matchingNewPosts = newPosts.filter(function(newPost) {
+						return Post.linksMatch(newPost, post) &&
+						       newPost.datetime == post.datetime
 					})
+
+					if (matchingNewPosts.length) { return }
+
+					DB.deletePost(post)
+					posts.splice(index, 1)
+				})
+			}
+
+			Promise.map(newPosts, function(newPost) {
+				// Just the one(s) with the same link
+				let matchingPosts = posts.filter(function(p) {
+					return Post.linksMatch(newPost, p)
+				})
+
+				let returnObject = {
+					newPost: newPost,
+					matchingPosts: matchingPosts
 				}
 
-				newPosts.forEach(function(newPost, newPostIndex) {
-					let finished = newPostIndex == newPosts.length - 1
+				// Create
+				if (matchingPosts.length == 0) {
+					DB.createPost(newPost)
+				}
 
-					// Just the one(s) with the same link
-					let matchingPosts = posts.filter(function(p) {
-						return Post.linksMatch(newPost, p)
-					})
+				return returnObject
+			}).each(function(data) {
+				const newPost = data.newPost
+				const matchingPosts = data.matchingPosts
 
-					// Create
-					if (matchingPosts.length == 0) {
-						DB.createPost(newPost)
-						if (finished) {
-							res.redirect('/')
+				matchingPosts.forEach(function(matchingPost) {
+					// Update
+					if (newPost.datetime == matchingPost.datetime) {
+						// Only if these differ, no reason to query the db for nothing
+						if (newPost.modified != matchingPost.modified || forced) {
+							DB.updatePost(newPost)
 						}
 						return
 					}
 
-					matchingPosts.forEach(function(matchingPost) {
-						// Update
-						if (newPost.datetime == matchingPost.datetime) {
-							// Only if these differ, no reason to query the db for nothing
-							if (newPost.modified != matchingPost.modified || forced) {
-								DB.updatePost(newPost)
-							}
-							return
-						}
+					let variant
+					// Create a new one, with same link, but duplicated.
+					// If it has --1 already, make it --2, and so on.
+					if (matchingPost.link.slice(-3, -1) == '--') {
+						variant = parseInt(matchingPost.link.slice(-1)[0])
+					}
+					else if (matchingPost.link.slice(-4, -2) == '--') {
+						variant  = parseInt(matchingPost.link.slice(-2))
+					}
+					else {
+						variant = 0
+					}
 
-						let variant
-						// Create a new one, with same link, but duplicated.
-						// If it has --1 already, make it --2, and so on.
-						if (matchingPost.link.slice(-3, -1) == '--') {
-							variant = parseInt(matchingPost.link.slice(-1)[0])
-						}
-						else if (matchingPost.link.slice(-4, -2) == '--') {
-							variant  = parseInt(matchingPost.link.slice(-2))
-						}
-						else {
-							variant = 0
-						}
+					variant += 1
+					newPost.link += '--' + variant
 
-						variant += 1
-						newPost.link += '--' + variant
-
-						DB.createPost(newPost)
-					})
-
-					if (!finished) { return }
-
-					res.redirect('/')
+					DB.createPost(newPost)
 				})
+			}).then(function() {
+				res.redirect('/')
 			})
 		})
 	}).catch(function(error) {
