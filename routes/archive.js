@@ -5,13 +5,9 @@
 'use strict'
 
 const router = require('express').Router()
-const DB = require('../lib/db')
+const Db     = require('../lib/db')
 
 router.get('/', function(req, res) {
-	const  config  = new DB.Config()
-	config.limit   = 0
-	config.columns = 'title, link, datetime'
-
 	const wordedMonth = {
 		'01': 'January',
 		'02': 'February',
@@ -27,7 +23,7 @@ router.get('/', function(req, res) {
 		'12': 'December'
 	}
 
-	DB.fetchPosts(config).then(function(data) {
+	Db.fetchArchivePosts().then(function(data) {
 		let groupedPosts = {}
 
 		data.posts.forEach(function(post) {

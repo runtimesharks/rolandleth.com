@@ -6,12 +6,12 @@
 
 /**
  * The Post model.
- * @param title
- * @param body
- * @param readingTime
- * @param datetime
- * @param modified
- * @param link
+ * @param {String} title
+ * @param {String} body
+ * @param {String} readingTime
+ * @param {String} datetime
+ * @param {String} modified
+ * @param {String} link
  * @constructor
  */
 function Post(title = '', body = '', readingTime = '', datetime = '', modified = '', link = '') {
@@ -25,8 +25,9 @@ function Post(title = '', body = '', readingTime = '', datetime = '', modified =
 }
 
 /**
- * @param datetime YYYY-MM-dd format parameter
- * @returns {*} A new Date corresponding to the parameter passed in
+ * Converts a string of YYYY-MM-dd format into a Date.
+ * @param {String} datetime - YYYY-MM-dd format parameter
+ * @returns {String|Date} A new Date corresponding to the parameter passed in, or an empty string.
  */
 Post.dateFromDateTime = function(datetime) {
 	if (!datetime) { return '' }
@@ -42,8 +43,8 @@ Post.dateFromDateTime = function(datetime) {
 
 /**
  * Truncates the body of a post to 700 characters, if it's longer than 900, otherwise it does nothing.
- * @param post The post for which the body's truncation is required.
- * @returns {string} The truncated body.
+ * @param {Post} post - The post for which the body's truncation is required.
+ * @returns {String} The truncated body.
  */
 Post.truncatedBody = function(post) {
 	if (post.body.length < 900) { return post.body }
@@ -68,9 +69,9 @@ Post.truncatedBody = function(post) {
 
 /**
  * Tests if two posts have matching links, by checking for --X variations on the first parameter.
- * @param newPost The file post.
- * @param post The database post.
- * @returns {boolean} True, if the two links match, false if they do not.
+ * @param {Post} newPost - The file post.
+ * @param {Post} post - The database post.
+ * @returns {Boolean} True, if the two links match, false if they do not.
  */
 Post.linksMatch = function(newPost, post) {
 	// Yea, yea, I know. But I'll never have 100+ duplicates unknowingly :)
