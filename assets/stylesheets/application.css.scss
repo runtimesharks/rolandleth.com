@@ -31,6 +31,7 @@ nav.header {
 				border-bottom: none;
 
 				&:focus {
+					outline: transparent none;
 					border-bottom: none;
 				}
 			}

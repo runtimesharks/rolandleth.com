@@ -4,23 +4,21 @@
 
 'use strict'
 
-const router = require('express').Router()
+const router   = require('express').Router()
 const NotFound = require('./not-found')
-const DB = require('../lib/db')
-const Post = require('../models/post')
+const Db       = require('../lib/db')
+const Post     = require('../models/post')
 
 router.get('/', function(req, res) {
-	const config         = new DB.Config()
-	config.searching   = true
-	config.limit       = 0
-	config.fields      = ['body', 'title']
-	config.fieldValues = [req.query.query]
+	// Regex to match all words between quotes as a single param,
+	// and the words outside quotes as individual params.
+//	req.query.query
 //		.match(/\"(.*?)\"|(\w+)/g)
 //		.map(function(match) {
 //			return match.replace(/"/g, '')
 //		})
 
-	DB.fetchPosts(config).then(function(data) {
+	Db.searchPosts(req.query.query).then(function(data) {
 		if (data.posts.length == 0) {
 			NotFound.show(res, true)
 			return

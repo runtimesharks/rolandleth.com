@@ -4,23 +4,19 @@
 
 'use strict'
 
-const Promise = require('bluebird')
-const router  = require('express').Router()
-const Dropbox = require('../lib/dropbox')
-const Post    = require('../models/post')
-const DB       = require('../lib/db')
+const Promise     = require('bluebird')
+const router      = require('express').Router()
+const Dropbox     = require('../lib/dropbox')
+const Post        = require('../models/post')
+const Db          = require('../lib/db')
 const readingTime = require('reading-time')
-const marked = require('marked')
+const marked      = require('marked')
 
 router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {
 	const shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
 	const forced = req.params.key1 == 'force' || req.params.key2 == 'force'
 
-	const config    = new DB.Config()
-	config.limit    = 0
-	config.updating = true
-
-	Promise.all([DB.fetchPosts(config), Dropbox.getFolder('/posts')]).then(function(data) {
+	Promise.all([Db.fetchPostsForUpdating(), Dropbox.getFolder('/posts')]).then(function(data) {
 		let posts = data[0].posts
 		const folder = data[1]
 
@@ -32,7 +28,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 			const item = dropboxData.item
 			const file = dropboxData.file
 
-			const  matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
+			const matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 			const datetime = matches[2] + '-' + matches[3] + '-' + matches[4] + '-' + matches[5]
 			let link     = matches[6]
 			link         = link.replace(new RegExp(/([#,;!:"\'\.\?\[\]\{\}\(\$\/)]+)/, 'g'), '')
@@ -70,7 +66,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 
 					if (matchingNewPosts.length) { return }
 
-					DB.deletePost(post)
+					Db.deletePost(post)
 					posts.splice(index, 1)
 				})
 			}
@@ -88,7 +84,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 
 				// Create
 				if (matchingPosts.length == 0) {
-					DB.createPost(newPost)
+					Db.createPost(newPost)
 				}
 
 				return returnObject
@@ -101,7 +97,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 					if (newPost.datetime == matchingPost.datetime) {
 						// Only if these differ, no reason to query the db for nothing
 						if (newPost.modified != matchingPost.modified || forced) {
-							DB.updatePost(newPost)
+							Db.updatePost(newPost)
 						}
 						return
 					}
@@ -122,7 +118,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 					variant += 1
 					newPost.link += '--' + variant
 
-					DB.createPost(newPost)
+					Db.createPost(newPost)
 				})
 			}).then(function() {
 				res.redirect('/')

@@ -4,10 +4,11 @@
 
 'use strict'
 
-const router = require('express').Router()
+const router   = require('express').Router()
 const NotFound = require('./not-found')
-const DB = require('../lib/db')
-const Post = require('../models/post')
+const Db       = require('../lib/db')
+const DbConfig = require('../models/dbConfig')
+const Post     = require('../models/post')
 
 router.get('/', function(req, res) {
 	if (req.baseUrl == '/1') {
@@ -21,10 +22,9 @@ router.get('/', function(req, res) {
 })
 
 function fetchPage(page, res) {
-	const  config = new DB.Config()
-	config.offset = config.limit * (page - 1)
+	const config = DbConfig.page(page)
 
-	DB.fetchPosts(config).then(function(data) {
+	Db.fetchPosts(config).then(function(data) {
 		if (config.offset > data.totalPosts) {
 			NotFound.show(res)
 			return

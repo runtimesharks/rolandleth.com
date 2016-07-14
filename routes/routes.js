@@ -4,6 +4,7 @@
 
 'use strict'
 
+const NotFound = require('./not-found')
 const router = require('express').Router()
 
 router.use('/feed', require('./feed'))
@@ -18,10 +19,7 @@ router.use(/^\/(\d+)/, require('./page'))
 router.use(/^\/([\w\d\-]+)/, require('./post'))
 router.use('/', require('./page'))
 router.use('*', function(req, res) {
-	res.render('not-found', {
-		title: 'Not found',
-		metadata: 'Development thoughts by Roland Leth.'
-	})
+	NotFound.show(res)
 })
 
 module.exports = router
