@@ -14,7 +14,9 @@ $text_color: #3b3b3b;
 $red_color: #f6291d;
 
 $header_font: 'American Typewriter', serif;
-$body_font: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$light_font: 'Avenir Next', sans-serif;
+//$body_font: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$body_font: 'Verdana', 'Arial', sans-serif;
 $code_font: 'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace;
 
 $small-query: "all and (max-width: 575px)";

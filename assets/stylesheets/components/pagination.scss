@@ -26,6 +26,8 @@ nav.pagination {
 	}
 
 	@media #{$small-query} {
+		margin: 1em auto;
+
 		a, span.gap {
 			margin: 0;
 			display: none;

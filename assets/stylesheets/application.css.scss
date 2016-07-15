@@ -43,7 +43,7 @@ nav.header {
 		padding-top: 8px;
 
 		& input.search {
-			padding: 5px;
+			padding: 4px 0;
 			color: $link_color;
 
 			border: 0;
@@ -51,8 +51,12 @@ nav.header {
 			outline-width: 0;
 			border-radius: 0;
 
-			font-family: $body_font;
-			font-size: inherit;
+			font-family: $light_font;
+			font-size: 1em;
+
+			@include responsive_width(482px) {
+				font-size: 0.9em;
+			}
 
 			&::-webkit-input-placeholder{
 				color: $gray;
@@ -158,7 +162,6 @@ body {
 	color: $text_color;
 	background: #fff;
 	font-family: $body_font;
-	font-size: 17px;
 
 	max-width: $max_width;
 	margin: 0 auto;
@@ -191,7 +194,7 @@ body {
 article {
 	font-size: 1em;
 	padding: 2em 0 1.5em;
-	line-height: 1.3em;
+	line-height: 1.5em;
 	@include light_bottom_border(1px);
 
 	& h4 {
@@ -233,9 +236,9 @@ em {
 
 .quote {
 	@include center_text;
-	font-weight: 300;
+	font-weight: 200;
 	font-style: italic;
-	font-family: $body_font;
+	font-family: $light_font;
 	margin-bottom: 0.5em;
 }
 
