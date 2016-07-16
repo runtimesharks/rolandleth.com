@@ -6,7 +6,7 @@
 	font-weight: 500;
 	font-size: 0.75em;
 
-	& span {
+	span {
 		display: inline-block;
 		margin: 0.25em 0.5em 0;
 
@@ -15,10 +15,14 @@
 			margin: -0.5em 0 0;
 		}
 
-		& > a > img {
+		> a > img {
 			margin: 0.15em 0.3em;
 		}
 	}
+}
+
+a.image {
+	border-bottom: none;
 }
 
 .content {
@@ -26,16 +30,16 @@
 }
 
 .centered {
-	@include center_text;
+	text-align: center;
 	margin: 0.5em 0;
 	color: gray;
 	font-weight: 500;
 
-	& a:first-child img {
+	a:first-child img {
 		margin-left: 0;
 	}
 
-	& a:last-child img {
+	a:last-child img {
 		margin-right: 0;
 	}
 
@@ -45,7 +49,7 @@
 	margin: 0;
 }
 
-figure.with-header {
+.with-header {
 	display: inline-block;
 	margin: 0 0.5em 1em 0;
 }
@@ -76,22 +80,16 @@ img {
 }
 
 h1 {
-	color: $text_color;
-	word-break: break-all;
-	font-weight: normal;
-	font-size: 1.8em;
-	font-family: $header_font;
-	line-height: 1.2em;
 	margin-bottom: 1em;
 
-	& a {
+	a {
 		border-bottom: 1px solid transparent;
-		color: $text_color;
+		color: $textColor;
 		word-break: normal;
 
 		&:hover {
 			border-bottom: 1px solid transparent;
-			color: $link_color;
+			color: $linkColor;
 		}
 	}
 }

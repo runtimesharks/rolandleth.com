@@ -2,17 +2,16 @@
 
 .content {
 	margin-top: 0.1em;
-	font-family: $header_font;
+	font-family: $headerFont;
+}
 
-	& h1 {
-		margin-bottom: 20px;
-		margin-top: 20px;
-		display: inline-block;
-		font-size: 2em;
-	}
+h1 {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
 
-	& h2 {
-		font-size: 1.2em;
-		margin-bottom: 0.1em;
-	}
+h2 {
+	font-size: 1.2em;
+	margin-bottom: 0.1em;
+	padding-top: 0.25em;
 }

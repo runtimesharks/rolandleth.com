@@ -1,23 +1,23 @@
 @import '../globals/variables';
 
 blockquote {
-	@include light_top_border(5px);
-	@include light_bottom_border(5px);
+	@include lightTopBorder(5px);
+	@include lightBottomBorder(5px);
 	margin: 1.5em 1em 1.5em 1em;
 	padding: 15px 15px;
 	color: $gray;
 	font-style: italic;
-	font-family: $body_font;
+	font-family: $bodyFont;
 }
 
 code {
 	padding: 0.1em 0;
 	border-radius: 2px;
 	background-color: #f9f9f9;
-	color: $code_color;
+	color: $codeColor;
 	white-space: pre-wrap;
 	font-size: 0.85em;
-	font-family: $code_font;
+	font-family: $codeFont;
 }
 
 pre {
@@ -26,11 +26,11 @@ pre {
 	border-radius: 2px;
 	background-color: #f9f9f9;
 	font-size: 0.95em;
-	font-family: $code_font;
+	font-family: $codeFont;
 	line-height: 1.1em;
 
-	& code {
-		color: $pre_code_color;
+	code {
+		color: $preCodeColor;
 		white-space: pre;
 		font-weight: 300;
 	}

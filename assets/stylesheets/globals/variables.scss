@@ -1,45 +1,48 @@
 // Sizing
-$max_width: 700px;
+$maxWidth: 700px;
 
 // Colors
-$link_color: #12A8DA;
-$highligh_color: #fffeca;
-$code_color: #703DAA;
-$pre_code_color: #666;
+$linkColor: #12A8DA;
+$highlighColor: #fffeca;
+$codeColor: #703DAA;
+$preCodeColor: #666;
 
-$light_gray: #eee;
+$lightGray: #eee;
 $gray: #aaa;
-$background_color: #f7f7f7;
-$text_color: #3b3b3b;
-$red_color: #f6291d;
+$backgroundColor: #f7f7f7;
+$textColor: #3b3b3b;
+$redColor: #f6291d;
 
-$header_font: 'American Typewriter', serif;
-$light_font: 'Avenir Next', sans-serif;
+$headerFont: 'American Typewriter', serif;
+$lightFont: 'Avenir Next', sans-serif;
 //$body_font: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$body_font: 'Verdana', 'Arial', sans-serif;
-$code_font: 'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace;
+$bodyFont: 'Verdana', 'Arial', sans-serif;
+$codeFont: 'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace;
 
-$small-query: "all and (max-width: 575px)";
-$retina-query: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5)";
+$smallQuery: "all and (max-width: 575px)";
+$retinaQuery: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5)";
 
-@mixin border_radius($radius) {
+@mixin borderRadius($radius) {
 	-webkit-border-radius: $radius;
 	-moz-border-radius: $radius;
 	border-radius: $radius;
 }
 
-@mixin center_text {
-	text-align: center;
+@mixin lightBottomBorder($size) {
+	border-bottom: $size solid $lightGray;
 }
 
-@mixin light_bottom_border($size) {
-	border-bottom: $size solid $light_gray;
+@mixin lightTopBorder($size) {
+	border-top: $size solid $lightGray;
 }
 
-@mixin light_top_border($size) {
-	border-top: $size solid $light_gray;
-}
-
-@mixin responsive_width($width) {
+@mixin responsiveWidth($width) {
 	@media screen and (max-width: $width) { @content; }
+}
+
+@mixin transition($prop, $duration) {
+	-webkit-transition: $prop $duration ease-in-out;
+	-moz-transition: $prop $duration ease-in-out;
+	-o-transition: $prop $duration ease-in-out;
+	transition: $prop $duration ease-in-out;
 }
