@@ -1,0 +1,145 @@
+@import '../globals/variables';
+
+form {
+	display: none;
+	padding-top: 8px;
+}
+
+input {
+	padding: 4px 0;
+	color: $linkColor;
+
+	border: 0;
+	@include lightBottomBorder(1px);
+	outline-width: 0;
+	border-radius: 0;
+
+	font-family: $lightFont;
+	font-size: 1em;
+
+	@include responsiveWidth(482px) {
+		font-size: 0.9em;
+	}
+
+	&::-webkit-input-placeholder{
+		color: $gray;
+	}
+	&::-moz-placeholder {
+		color: $gray;
+	}
+	&:-moz-placeholder {
+		color: $gray;
+	}
+
+	&:focus {
+		border-bottom: 1px solid $linkColor;
+
+		&::-webkit-input-placeholder {
+			color: $linkColor;
+		}
+		&::-moz-placeholder {
+			color: $linkColor;
+		}
+		&:-moz-placeholder {
+			color: $linkColor;
+		}
+	}
+}
+
+.banner {
+	font-size: 2.5em;
+	display: inline-block;
+}
+
+.banner-container {
+	border-bottom: 2px solid $textColor;
+	width: 100%;
+
+	form {
+		background-color: rgba(0, 0, 0, 0);
+		display: inline-block;
+		margin-top: 9px;
+		float: right;
+	}
+
+	input {
+		text-align: right;
+		border-bottom: none;
+
+		&:focus {
+			outline: transparent none;
+			border-bottom: none;
+		}
+	}
+}
+
+.navigation {
+	float: right;
+	text-align: right;
+	margin-top: 1px;
+
+	.fa {
+		margin-top: 8px;
+	}
+
+	// The icon ones
+	a {
+		display: inline-block;
+		font-size: 1.4em;
+
+		margin-left: 20px; // 40
+		@include responsiveWidth(570px) {
+			margin-left: 12px;
+		}
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+nav {
+	max-width: $maxWidth;
+	margin: 2.5em auto 4em auto;
+	font-family: $headerFont;
+
+	a {
+		line-height: 1.25em;
+	}
+
+	@include responsiveWidth(330px) {
+		font-size: 0.9em;
+	}
+
+	@include responsiveWidth(356px) {
+		font-size: 1em;
+	}
+
+	@include responsiveWidth(482px) {
+		text-align: center;
+		margin-bottom: 1.2em;
+	}
+}
+
+@include responsiveWidth(482px) {
+	form {
+		display: block;
+		float: left;
+		padding-top: 4px;
+		margin-bottom: 30px;
+	}
+
+	.banner {
+		float: none;
+	}
+
+	.banner-container {
+		form {
+			display: none;
+		}
+	}
+
+	.navigation {
+		max-width: 150px;
+	}
+}

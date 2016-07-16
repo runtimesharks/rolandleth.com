@@ -7,7 +7,6 @@ const Mincer = require('mincer') // For the pipeline
 const pipeline = new Mincer.Environment()
 Mincer.logger.use(console)
 
-pipeline.appendPath(require('bourbon').includePaths)
 pipeline.appendPath('assets/files')
 pipeline.appendPath('assets/images')
 pipeline.appendPath('assets/javascripts')
