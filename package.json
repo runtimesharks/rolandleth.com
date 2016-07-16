@@ -31,6 +31,7 @@
   "homepage": "http://rolandleth.com",
   "dependencies": {
     "bluebird": "3.4.1",
+    "body-parser": "1.15.2",
     "ejs": "2.4.2",
     "ejs-mate": "2.3.0",
     "express": "4.14.0",

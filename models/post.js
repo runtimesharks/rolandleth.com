@@ -4,6 +4,8 @@
 
 'use strict'
 
+const read = require('reading-time')
+
 /**
  * The Post model.
  * @param {String} title
@@ -78,6 +80,36 @@ Post.linksMatch = function(newPost, post) {
 	return newPost.link == post.link ||
 	       (newPost.link + '--') == post.link.slice(0, -1) ||
 	       (newPost.link + '--') == post.link.slice(0, -2)
+}
+
+/**
+ * Creates a link out of a title.
+ * @param title The post's title.
+ * @returns {String} A safe link.
+ */
+Post.createLink = function(title) {
+	return title.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, '')
+		.replace(/&/g, 'and')
+		.replace(/\s|\./g, '-')
+		.toLowerCase()
+}
+
+/**
+ * Creates a friedly reading time text.
+ * @param body The post's body.
+ * @returns {String} A string in '1 min read' format.
+ */
+Post.readingTime = function(body) {
+	return function() {
+		const t = read(body)
+		console.log(t)
+		switch (true) {
+			case t.minutes <= 0.2: return ''; break
+			case t.minutes <= 0.5: return '25 sec read'; break
+			case t.minutes <= 0.8: return '45 sec read'; break
+			default: return t.text
+		}
+	}()
 }
 
 module.exports = Post

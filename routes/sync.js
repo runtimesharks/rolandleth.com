@@ -9,8 +9,30 @@ const router      = require('express').Router()
 const Dropbox     = require('../lib/dropbox')
 const Post        = require('../models/post')
 const Db          = require('../lib/db')
-const readingTime = require('reading-time')
 const marked      = require('marked')
+
+router.get('/create/' + process.env.MY_SYNC_KEY, function(req, res) {
+	res.render('create-post', {
+		title: 'Create',
+		metadata: 'Create a post'
+	})
+})
+
+router.post('/create/', function(req, res) {
+	const body = req.body
+
+	if (body.syncKey != process.env.MY_SYNC_KEY) {
+		require('./not-found').show(res)
+		return
+	}
+
+	const post = new Post(
+		body.title, marked(body.body),
+		Post.readingTime(body.body), body.datetime,
+		(new Date()).toString(), Post.createLink(body.title))
+
+	console.log(post)
+})
 
 router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {
 	const shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
@@ -30,11 +52,7 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 
 			const matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 			const datetime = matches[2] + '-' + matches[3] + '-' + matches[4] + '-' + matches[5]
-			let link     = matches[6]
-			link         = link.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, '')
-			link         = link.replace(/&/g, 'and')
-			link         = link.replace(/\s|\./g, '-')
-			link         = link.toLowerCase()
+			let link     = Post.createLink(matches[6])
 
 			let lines = file.toString().split('\n')
 			const title     = lines[0]
@@ -42,17 +60,8 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 			const body = lines.join('\n')
 
 			const modified = item.client_mtime
-			const time = function() {
-				const t = readingTime(body)
-				switch (true) {
-					case t <= 0.2: return ''; break
-					case t <= 0.5: return '25 sec read'; break
-					case t <= 0.8: return '45 sec read'; break
-					default: return t.text
-				}
-			}()
 
-			return new Post(title, marked(body), time,
+			return new Post(title, marked(body), Post.readingTime(body),
 				datetime, modified, link)
 		}).then(function(newPosts) {
 			if (shouldDelete) {

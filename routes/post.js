@@ -19,9 +19,8 @@ router.get('/', function(req, res) {
 		res.render('index', {
 			posts: data.posts,
 			title: post.title,
-			page: 1,
-			totalPosts: 1,
-			metadata: post.title
+			metadata: post.title,
+			pageNavigation: ''
 		})
 	}).catch(function() {
 		NotFound.show(res)

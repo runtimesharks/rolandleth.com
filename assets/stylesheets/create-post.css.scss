@@ -1,0 +1,28 @@
+@import 'globals/variables';
+
+h1 {
+	line-height: 1em;
+	vertical-align: top;
+}
+
+.input-wrapper {
+	display: block;
+	margin-top: 40px;
+}
+
+input {
+	margin: 0;
+	padding: 1px 0;
+}
+
+.submit {
+	font-family: $headerFont;
+	font-size: 2em;
+	border: 0;
+	background-color: transparent;
+	margin-top: 40px;
+}
+
+textarea {
+	width: 80%;
+}
