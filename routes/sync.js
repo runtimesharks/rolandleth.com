@@ -21,17 +21,12 @@ router.get('/create/' + process.env.MY_SYNC_KEY, function(req, res) {
 router.post('/create/', function(req, res) {
 	const body = req.body
 
-	if (body.syncKey != process.env.MY_SYNC_KEY) {
-		require('./not-found').show(res)
-		return
-	}
+	// Create the file first, if it doesn't work, stay on the page.
+	Dropbox.createFile(body).then(function(data) {
+		if (!data) { res.end(); return }
 
-	const post = new Post(
-		body.title, marked(body.body),
-		Post.readingTime(body.body), body.datetime,
-		(new Date()).toString(), Post.createLink(body.title))
-
-	console.log(post)
+		res.redirect('/cmd.sync/' + process.env.MY_SYNC_KEY)
+	})
 })
 
 router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {

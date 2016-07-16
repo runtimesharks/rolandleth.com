@@ -6,7 +6,16 @@ h1 {
 }
 
 .input-wrapper {
-	display: block;
+	width: 100%;
+
+	&.half {
+		width: 50%;
+	}
+	&.left {
+		float: left;
+	}
+
+	display: inline-block;
 	margin-top: 40px;
 }
 
@@ -20,9 +29,38 @@ input {
 	font-size: 2em;
 	border: 0;
 	background-color: transparent;
-	margin-top: 40px;
+	margin-top: -10px;
+	text-align: center;
 }
 
 textarea {
-	width: 80%;
+	padding: 5px;
+	margin-top: 20px;
+	font-family: $bodyFont;
+	font-size: 0.8em;
+	width: 95%;
+	border: 1px solid $lightGray;
+
+	&:focus {
+		outline: transparent none;
+		border: 1px solid $linkColor;
+	}
+}
+
+@include responsiveWidth(482px) {
+	h1 {
+		font-size: 1.2em;
+	}
+
+	.submit {
+		font-size: 1.5em;
+	}
+
+	.input-wrapper {
+		margin-top: 20px;
+	}
+
+	textarea {
+		margin-top: 10px;
+	}
 }

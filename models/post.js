@@ -102,7 +102,6 @@ Post.createLink = function(title) {
 Post.readingTime = function(body) {
 	return function() {
 		const t = read(body)
-		console.log(t)
 		switch (true) {
 			case t.minutes <= 0.2: return ''; break
 			case t.minutes <= 0.5: return '25 sec read'; break
