@@ -44,6 +44,37 @@ Post.dateFromDateTime = function(datetime) {
 }
 
 /**
+ * Converts a date string into a date, then into a string of YYYY-MM-dd format.
+ * @param {String} dateString - The string to be converted.
+ * @returns {String} A string of YYYY-MM-dd format.
+ */
+Post.datetimeFromDate = function(dateString) {
+	const date = new Date(dateString)
+	let month = (date.getMonth() + 1).toString()
+	let day = date.getDate().toString()
+	let hours = date.getHours().toString()
+	let minutes = date.getMinutes().toString()
+
+	if (month.length == 1) {
+		month = '0' + month
+	}
+
+	if (day.length == 1) {
+		day = '0' + day
+	}
+
+	if (hours.length == 1) {
+		hours = '0' + hours
+	}
+
+	if (minutes.length == 1) {
+		minutes = '0' + minutes
+	}
+
+	return date.getFullYear() + '-' + month + '-' + day + '-' + hours + minutes
+}
+
+/**
  * Truncates the body of a post to 700 characters, if it's longer than 900, otherwise it does nothing.
  * @param {Post} post - The post for which the body's truncation is required.
  * @returns {String} The truncated body.
