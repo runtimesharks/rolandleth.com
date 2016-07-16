@@ -31,9 +31,9 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 			const matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
 			const datetime = matches[2] + '-' + matches[3] + '-' + matches[4] + '-' + matches[5]
 			let link     = matches[6]
-			link         = link.replace(new RegExp(/([#,;!:"\'\.\?\[\]\{\}\(\$\/)]+)/, 'g'), '')
-			link         = link.replace(new RegExp('&', 'g'), 'and')
-			link         = link.replace(new RegExp(' ', 'g'), '-')
+			link         = link.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, '')
+			link         = link.replace(/&/g, 'and')
+			link         = link.replace(/\s|\./g, '-')
 			link         = link.toLowerCase()
 
 			let lines = file.toString().split('\n')
