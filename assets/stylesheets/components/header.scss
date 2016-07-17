@@ -1,6 +1,34 @@
 @import '../globals/variables';
 
-input {
+.site-header {
+	max-width: $maxWidth;
+	margin: 2.5em auto 0 auto;
+	font-family: $headerFont;
+	
+	a {
+		line-height: 1.25em;
+	}
+	
+	@include responsiveWidth(330px) {
+		font-size: 0.9em;
+	}
+	
+	@include responsiveWidth(356px) {
+		font-size: 1em;
+	}
+	
+	@include responsiveWidth(482px) {
+		text-align: center;
+		margin-bottom: 1.2em;
+	}
+}
+
+.search-form {
+	display: none;
+	padding-top: 8px;
+}
+
+.text-field {
 	padding: 4px 0;
 	color: $linkColor;
 
@@ -16,7 +44,7 @@ input {
 		font-size: 0.9em;
 	}
 
-	&::-webkit-input-placeholder{
+	&::-webkit-input-placeholder {
 		color: $gray;
 	}
 	&::-moz-placeholder {
@@ -50,14 +78,14 @@ input {
 	border-bottom: 2px solid $textColor;
 	width: 100%;
 
-	form {
+	.search-form {
 		background-color: rgba(0, 0, 0, 0);
 		display: inline-block;
 		margin-top: 9px;
 		float: right;
 	}
 
-	input {
+	.text-field {
 		text-align: right;
 		border-bottom: none;
 
@@ -67,7 +95,7 @@ input {
 	}
 }
 
-input:focus {
+.text-field:focus {
 	outline: transparent none;
 }
 
@@ -78,68 +106,30 @@ input:focus {
 
 	.fa {
 		margin-top: 8px;
-	}
+		margin-left: 20px; // 40
 
-	// The icon ones
-	a {
 		display: inline-block;
 		font-size: 1.4em;
 
-		margin-left: 20px; // 40
 		@include responsiveWidth(570px) {
 			margin-left: 12px;
 		}
-
-		&:first-child {
-			margin-left: 0;
-		}
-	}
-}
-
-nav {
-	form {
-		display: none;
-		padding-top: 8px;
 	}
 
-	max-width: $maxWidth;
-	margin: 2.5em auto 4em auto;
-	font-family: $headerFont;
-
-	a {
-		line-height: 1.25em;
-	}
-
-	@include responsiveWidth(330px) {
-		font-size: 0.9em;
-	}
-
-	@include responsiveWidth(356px) {
-		font-size: 1em;
-	}
-
-	@include responsiveWidth(482px) {
-		text-align: center;
-		margin-bottom: 1.2em;
+	a:first-child .fa {
+		margin-left: 0;
 	}
 }
 
 @include responsiveWidth(482px) {
-	nav form {
+	.search-form {
 		display: block;
 		float: left;
 		padding-top: 4px;
-		margin-bottom: 47px;
 	}
 
-	.banner {
-		float: none;
-	}
-
-	.banner-container {
-		form {
-			display: none;
-		}
+	.banner-container .search-form {
+		display: none;
 	}
 
 	.navigation {

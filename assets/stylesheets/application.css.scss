@@ -13,11 +13,11 @@ body {
 
 	max-width: $maxWidth;
 	margin: 0 auto;
-	clear: both;
 }
 
 .content {
-	padding: 1em 0 1.5em 2px;
+	clear: both;
+	padding: 6em 0 0.5em 2px;
 	line-height: 1.4em;
 }
 
@@ -30,11 +30,12 @@ li {
 	}
 }
 
-article {
+.article {
 	font-size: 1em;
-	padding: 2em 0 1.5em;
 	line-height: 1.5em;
 	@include lightBottomBorder(1px);
+	padding-bottom: 1.5em;
+	margin-bottom: 3em;
 }
 
 h1 {
@@ -55,23 +56,12 @@ h4 {
 	font-style: italic;
 	font-size: 0.75em;
 
-	& span.tilde {
+	.tilde {
 		font-family: $bodyFont;
 	}
 }
 
-header a, nav a {
-	color: $textColor;
-	border-bottom: none;
-
-	&:hover {
-		color: $linkColor;
-	}
-
-	@include transition(color, 0.3s);
-}
-
-a, nav.pagination a {
+a {
 	text-decoration: none;
 	color: $linkColor;
 	border-bottom: 1px solid transparent;
@@ -81,6 +71,17 @@ a, nav.pagination a {
 
 	&:hover {
 		border-bottom-color: $linkColor;
+	}
+	
+	.article-header &, .site-header & {
+		color: $textColor;
+		border-bottom: none;
+		
+		&:hover {
+			color: $linkColor;
+		}
+		
+		@include transition(color, 0.3s);
 	}
 }
 
@@ -121,7 +122,7 @@ strong {
 }
 
 @include responsiveWidth(430px) {
-	img.project-screenshot {
+	.project-screenshot {
 		display: none;
 	}
 }
