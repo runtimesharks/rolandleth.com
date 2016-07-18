@@ -49,7 +49,7 @@ textarea {
 	}
 }
 
-@include responsiveWidth(482px) {
+@include responsiveWidth($phoneMedia) {
 	h1 {
 		font-size: 1.2em;
 	}
