@@ -2,7 +2,6 @@
 
 h1 {
 	margin-bottom: 2px;
-	margin-top: 20px;
 }
 
 .centered-image-wrapper {
@@ -35,10 +34,6 @@ h1 {
 }
 
 @include responsiveWidth(475px) {
-	article {
-		padding: 1.7em 0 1.2em;
-	}
-
 	h1 {
 		line-height: 1.3em;
 	}
@@ -49,5 +44,10 @@ h1 {
 
 	.content {
 		padding-top: 2em;
+		padding-bottom: 0;
+	}
+	
+	nav.pagination {
+		margin-top: 0;
 	}
 }

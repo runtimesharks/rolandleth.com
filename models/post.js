@@ -4,6 +4,8 @@
 
 'use strict'
 
+const read = require('reading-time')
+
 /**
  * The Post model.
  * @param {String} title
@@ -39,6 +41,37 @@ Post.dateFromDateTime = function(datetime) {
 	const minute  = matches[4].slice(2, 4)
 
 	return new Date(year, month, day, hour, minute)
+}
+
+/**
+ * Converts a date string into a date, then into a string of YYYY-MM-dd format.
+ * @param {String} dateString - The string to be converted.
+ * @returns {String} A string of YYYY-MM-dd format.
+ */
+Post.datetimeFromDate = function(dateString) {
+	const date = new Date(dateString)
+	let month = (date.getMonth() + 1).toString()
+	let day = date.getDate().toString()
+	let hours = date.getHours().toString()
+	let minutes = date.getMinutes().toString()
+
+	if (month.length == 1) {
+		month = '0' + month
+	}
+
+	if (day.length == 1) {
+		day = '0' + day
+	}
+
+	if (hours.length == 1) {
+		hours = '0' + hours
+	}
+
+	if (minutes.length == 1) {
+		minutes = '0' + minutes
+	}
+
+	return date.getFullYear() + '-' + month + '-' + day + '-' + hours + minutes
 }
 
 /**
@@ -78,6 +111,35 @@ Post.linksMatch = function(newPost, post) {
 	return newPost.link == post.link ||
 	       (newPost.link + '--') == post.link.slice(0, -1) ||
 	       (newPost.link + '--') == post.link.slice(0, -2)
+}
+
+/**
+ * Creates a link out of a title.
+ * @param title The post's title.
+ * @returns {String} A safe link.
+ */
+Post.createLink = function(title) {
+	return title.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, '')
+		.replace(/&/g, 'and')
+		.replace(/\s|\./g, '-')
+		.toLowerCase()
+}
+
+/**
+ * Creates a friedly reading time text.
+ * @param body The post's body.
+ * @returns {String} A string in '1 min read' format.
+ */
+Post.readingTime = function(body) {
+	return function() {
+		const t = read(body)
+		switch (true) {
+			case t.minutes <= 0.2: return ''; break
+			case t.minutes <= 0.5: return '25 sec read'; break
+			case t.minutes <= 0.8: return '45 sec read'; break
+			default: return t.text
+		}
+	}()
 }
 
 module.exports = Post

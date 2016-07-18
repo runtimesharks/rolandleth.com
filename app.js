@@ -3,6 +3,10 @@ const express = require('express')
 const app = express()
 const engine = require('ejs-mate') // For locals, layouts and partials
 const Mincer = require('mincer') // For the pipeline
+const bodyParser = require('body-parser') // For POST calls
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const pipeline = new Mincer.Environment()
 Mincer.logger.use(console)

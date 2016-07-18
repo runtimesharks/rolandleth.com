@@ -4,60 +4,51 @@ span {
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
+
+	&:before {
+		position: absolute;
+		background-image: url(/assets/misc/404_shadow.png);
+		background-size: 100%;
+
+		top: 80%;
+		right: 0;
+		height: 40px;
+		content: "";
+	}
+
+	&.the-404:before {
+		left: 0;
+		max-width: 425px;
+	}
+
+	.the-404-search:before {
+		left: 11%;
+		max-width: 380px;
+	}
 }
 
-span.the-404:before {
-	position: absolute;
-	top: 80%;
-	right: 0px;
-	left: 0px;
-	max-width: 425px;
-	height: 40px;
-	content: "";
-	background-image: url(/assets/misc/404_shadow.png);
-	background-size: 100%;
-}
-
-span.the-404-search:before {
-	position: absolute;
-	top: 80%;
-	right: 0px;
-	left: 11%;
-	max-width: 380px;
-	height: 40px;
-	content: "";
-	background-image: url(/assets/misc/404_shadow.png);
-	background-size: 100%;
-}
 
 h1 {
+	display: block;
+	margin: 0 auto;
+	font-weight: bold;
+	text-align: center;
+	color: $textColor;
+
 	&.the-404 {
-		margin: 20% 0 0;
-		text-shadow: 0 -1px 0 rgba(0,0,0,0.9);
 		font-size: 13em;
-		font-weight: bold;
-		line-height: 1em;
-		text-align: center;
-		color: $textColor;
 	}
 
 	&.the-404-search {
-		margin: 20% 0 0;
-		text-shadow: 0 -1px 0 rgba(0,0,0,0.9);
 		font-size: 10em;
-		font-weight: bold;
-		line-height: 1em;
-		text-align: center;
-		color: $textColor;
 	}
 }
 
-p.error-message {
+.error-message {
 	max-width: 450px;
-	margin: 20px auto 0;
 	font-size: 1.3em;
 	line-height: 1.3em;
-	margin-bottom: 20%;
+	margin: 20px auto;
 	text-align: center;
 }
 

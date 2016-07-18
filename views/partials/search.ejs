@@ -1,8 +1,6 @@
 <% layout('layout') %>
-<% block('head').append('<link rel = "stylesheet" href = "/assets/post.css">') %>
+<% block('head').append('<link rel="stylesheet" href="/assets/post.css">') %>
 
-<div class="content">
-	<% posts.forEach(function(post) { %>
+<% posts.forEach(function(post) { %>
 	<% include ./post %>
-	<% }) %>
-</div>
+<% }) %>

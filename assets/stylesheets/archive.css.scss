@@ -1,12 +1,12 @@
 @import 'globals/variables';
 
 .content {
-	margin-top: 0.1em;
+	padding-top: 4em;
 	font-family: $headerFont;
 }
 
 h1 {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	margin-top: 20px;
 }
 
@@ -14,4 +14,10 @@ h2 {
 	font-size: 1.2em;
 	margin-bottom: 0.1em;
 	padding-top: 0.25em;
+}
+
+@include responsiveWidth(475px) {
+	.content {
+		padding-top: 2em;
+	}
 }

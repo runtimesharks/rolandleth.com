@@ -4,6 +4,7 @@
 
 'use strict'
 
+const ejs = require('ejs')
 const router   = require('express').Router()
 const NotFound = require('./not-found')
 const Db       = require('../lib/db')
@@ -34,15 +35,30 @@ function fetchPage(page, res) {
 			post.body = Post.truncatedBody(post)
 		})
 
-		res.render('index', {
-			posts: data.posts,
-			page: page,
-			totalPosts: data.totalPosts,
-			title: 'Roland Leth',
-			metadata: 'Development thoughts by Roland Leth'
-		})
+		const pages = Math.ceil(data.totalPosts / (parseInt(process.env.PAGE_SIZE) || 10))
+
+		if (pages > 1) {
+			const path = './views/partials/page-navigation.ejs'
+			const options = { page: parseInt(page), pages: pages }
+
+			ejs.renderFile(path, options, function(err, str) {
+				render(res, data.posts, str)
+			})
+		}
+		else {
+			render(res, data.posts)
+		}
 	}).catch(function() {
 		NotFound.show(res)
+	})
+}
+
+function render(res, posts, pageNavigation = '') {
+	res.render('index', {
+		posts: posts,
+		title: 'Roland Leth',
+		metadata: 'Development thoughts by Roland Leth',
+		pageNavigation: pageNavigation
 	})
 }
 

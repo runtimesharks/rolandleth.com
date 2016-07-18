@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ./partials/head %>
+	<% include ./partials/head.ejs %>
 	<%- block('head') %>
 </head>
 <body>
-	<% include ./partials/header %>
-	<%- body %>
-	<% include ./partials/footer %>
+	<% include ./partials/header.ejs %>
+	<%- block('before-content') %>
+	<div class="content">
+		<%- body %>
+	</div>
+	<%- block('after-content') %>
+	<% include ./partials/footer.ejs %>
 </body>
 </html>

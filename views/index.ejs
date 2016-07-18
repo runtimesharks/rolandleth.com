@@ -1,8 +1,5 @@
-<% 'use strict' %>
-<% include ./partials/search %>
+<% include ./partials/search.ejs %>
 
-<% page = parseInt(page) %>
-<% const pages = Math.ceil(totalPosts / (process.env.PAGE_SIZE || 10)) %>
-<% if (pages > 1) { %>
-	<% include ./partials/page-navigation %>
+<% if (pageNavigation) { %>
+	<%- block('after-content').append(pageNavigation) %>
 <% } %>

@@ -26,7 +26,7 @@ a.image {
 }
 
 .content {
-	padding-top: 0.4em;
+	padding-top: 5em;
 }
 
 .centered {
@@ -91,5 +91,15 @@ h1 {
 			border-bottom: 1px solid transparent;
 			color: $linkColor;
 		}
+	}
+}
+
+.site-footer {
+	margin-top: 1em;
+}
+
+@include responsiveWidth(475px) {
+	.content {
+		padding-top: 2em;
 	}
 }

@@ -24,7 +24,7 @@ function DbConfig() {
 	this.fieldValues    = null
 	this.orderBy        = 'datetime'
 	this.orderDirection = 'ASC'
-	this.limit          = process.env.PAGE_SIZE || 10
+	this.limit          = parseInt(process.env.PAGE_SIZE) || 10
 	this.offset         = 0
 }
 
