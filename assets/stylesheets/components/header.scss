@@ -71,6 +71,9 @@
 }
 
 .navigation {
+	// Because FA icons take a bit to load, and there's a height difference,
+	// and all the content moves down after they load.
+	min-height: 32px;
 	text-align: right;
 	margin-top: 1px;
 
