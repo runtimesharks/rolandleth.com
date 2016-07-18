@@ -81,11 +81,13 @@ Post.datetimeFromDate = function(dateString) {
  */
 Post.truncatedBody = function(post) {
 	if (post.body.length < 900) { return post.body }
-
-	const truncateHTML = require('html-truncate') // This one is really fast (400ms vs 80)
-	const body = truncateHTML(post.body, 700, {
+	
+	const truncateHTML = require('truncate-html') // This one is really fast (400ms vs 80)
+	const body = truncateHTML(post.body, {
+		length: 700,
 		ellipsis: ' [&hellip;]',
-		keepImageTag: true
+		stripTags: false,
+		excludes: ['img']
 	})
 
 	return body + "\

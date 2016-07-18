@@ -35,7 +35,6 @@
     "ejs": "2.4.2",
     "ejs-mate": "2.3.0",
     "express": "4.14.0",
-    "html-truncate": "1.2.1",
     "lodash": "4.13.1",
     "marked": "0.3.5",
     "mincer": "1.4.1",
@@ -45,7 +44,8 @@
     "prismjs": "1.5.1",
     "reading-time": "1.1.0",
     "request": "2.73.0",
-    "rss": "1.2.1"
+    "rss": "1.2.1",
+    "truncate-html": "0.0.6"
   },
   "devDependencies": {}
 }
