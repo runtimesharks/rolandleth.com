@@ -86,8 +86,7 @@ Post.truncatedBody = function(post) {
 	const body = truncateHTML(post.body, {
 		length: 700,
 		ellipsis: ' [&hellip;]',
-		stripTags: false,
-		excludes: ['img']
+		stripTags: false
 	})
 
 	return body + "\
