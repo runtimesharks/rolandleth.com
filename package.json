@@ -45,7 +45,7 @@
     "reading-time": "1.1.0",
     "request": "2.73.0",
     "rss": "1.2.1",
-    "truncate-html": "0.0.6"
+    "truncate-html": "0.1.0"
   },
   "devDependencies": {}
 }
