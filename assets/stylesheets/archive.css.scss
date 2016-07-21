@@ -16,7 +16,7 @@ h2 {
 	padding-top: 0.25em;
 }
 
-@include responsiveWidth(475px) {
+@include responsiveWidth($smallMedia) {
 	.content {
 		padding-top: 2em;
 	}

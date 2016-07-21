@@ -33,18 +33,13 @@ h1 {
 	}
 }
 
-@include responsiveWidth(475px) {
+@include responsiveWidth($phoneMedia) {
 	h1 {
 		line-height: 1.3em;
 	}
 
 	h4 {
 		margin-top: -2px;
-	}
-
-	.content {
-		padding-top: 2em;
-		padding-bottom: 0;
 	}
 	
 	nav.pagination {

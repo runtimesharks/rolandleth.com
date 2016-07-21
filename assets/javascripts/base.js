@@ -3,7 +3,7 @@ $(document).ready(function() {
 		resizeImage($('img:not([class])'));
 	});
 
-	setupSearchFields();
+	setupSearchField();
 
 	var images = $('img:not([class])');
 	for (var i = 0; i < images.length; i++) {
@@ -30,9 +30,8 @@ var resizeImage = function(img) {
 	}
 };
 
-var setupSearchFields = function() {
-	var searchField = $('input.search');
-	var bannerSearchField = $('input.banner-search');
+var setupSearchField = function() {
+	var searchField = $('input.text-field');
 
 	if (location.search.length) {
 		var query = decodeURIComponent(location.search)
@@ -40,7 +39,6 @@ var setupSearchFields = function() {
 			.replace(/[\+]/g, " ");
 
 		searchField.val(query);
-		bannerSearchField.val(query);
 	}
 
 	// Smaller search fields for iPhones, since it doesn't fit at > 13
@@ -56,12 +54,4 @@ var setupSearchFields = function() {
 		default: size = 20; break;
 	}
 	searchField.attr('size', size);
-
-	searchField.on('input', function() {
-		bannerSearchField.val(searchField.val());
-	});
-
-	bannerSearchField.on('input', function() {
-		searchField.val(bannerSearchField.val());
-	});
 };
