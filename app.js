@@ -26,6 +26,10 @@ app.use(function(req, res, next) {
 	if (path.slice(-1) == '/') {
 		path = path.slice(0, -1)
 	}
+	// Future proof. These disable embedding the site in an external one.
+	res.setHeader('Content-Security-Policy', 'frame-ancestors \'none\'')
+	// Old and current.
+	res.setHeader('X-Frame-Options', 'DENY')
 	res.locals.path = path
 	next()
 })
