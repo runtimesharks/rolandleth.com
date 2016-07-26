@@ -32,20 +32,20 @@
   "dependencies": {
     "bluebird": "3.4.1",
     "body-parser": "1.15.2",
-    "ejs": "2.4.2",
+    "ejs": "2.5.1",
     "ejs-mate": "2.3.0",
     "express": "4.14.0",
-    "lodash": "4.13.1",
+    "lodash": "4.14.0",
     "marked": "0.3.5",
     "mincer": "1.4.1",
     "node-dropbox": "0.1.7",
     "node-sass": "3.8.0",
-    "pg": "6.0.1",
+    "pg": "6.0.3",
     "prismjs": "1.5.1",
     "reading-time": "1.1.0",
-    "request": "2.73.0",
+    "request": "2.74.0",
     "rss": "1.2.1",
-    "truncate-html": "0.1.0"
+    "truncate-html": "0.1.1"
   },
   "devDependencies": {}
 }
