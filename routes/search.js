@@ -28,11 +28,10 @@ router.get("/", function(req, res) {
 			post.body = Post.truncatedBody(post)
 		})
 
-		res.render("partials/search", {
+		res.render("index", {
 			posts: data.posts,
 			title: "Search results",
-			page: 1,
-			totalPosts: data.totalPosts,
+			page: "search",
 			metadata: "Search results"
 		})
 	}).catch(function() {

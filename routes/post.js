@@ -16,8 +16,8 @@ router.get("/", function(req, res) {
 		}
 
 		const post = data.posts[0]
-		res.render("index", {
-			posts: data.posts,
+		res.render("post", {
+			post: post,
 			title: post.title,
 			metadata: post.title
 		})

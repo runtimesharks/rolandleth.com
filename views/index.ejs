@@ -1,7 +1,13 @@
-<% include ./partials/search.ejs %>
-<% if (typeof page != "undefined" && page > 1) { %>
-	<% block("head").append('<meta name="robots" content="noindex,nofollow">') %>
+<% layout("layout") %>
+<% block("head").append('<link rel="stylesheet" href="/assets/post.css">') %>
+
+<% if (page == "search" || parseInt(page) > 1) { %>
+	<% block("head").append('<meta name="robots" content="noindex, noarchive">') %>
 <% } %>
+
+<% posts.forEach(function(post) { %>
+	<% include ./partials/post.ejs %>
+<% }) %>
 
 <% if (typeof pageNavigation != "undefined") { %>
 	<%- block("after-content").append(pageNavigation) %>
