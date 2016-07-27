@@ -2,18 +2,18 @@
  * Created by roland on 1/7/16.
  */
 
-'use strict'
+"use strict"
 
-const ejs = require('ejs')
-const router   = require('express').Router()
-const NotFound = require('./not-found')
-const Db       = require('../lib/db')
-const DbConfig = require('../models/dbConfig')
-const Post     = require('../models/post')
+const ejs = require("ejs")
+const router   = require("express").Router()
+const NotFound = require("./not-found")
+const Db       = require("../lib/db")
+const DbConfig = require("../models/dbConfig")
+const Post     = require("../models/post")
 
-router.get('/', function(req, res) {
-	if (req.baseUrl == '/1') {
-		res.redirect('/')
+router.get("/", function(req, res) {
+	if (req.baseUrl == "/1") {
+		res.redirect("/")
 		res.end()
 	}
 	else {
@@ -38,26 +38,27 @@ function fetchPage(page, res) {
 		const pages = Math.ceil(data.totalPosts / (parseInt(process.env.PAGE_SIZE) || 10))
 
 		if (pages > 1) {
-			const path = './views/partials/page-navigation.ejs'
+			const path = "./views/partials/page-navigation.ejs"
 			const options = { page: parseInt(page), pages: pages }
 
 			ejs.renderFile(path, options, function(err, str) {
-				render(res, data.posts, str)
+				render(res, data.posts, page, str)
 			})
 		}
 		else {
-			render(res, data.posts)
+			render(res, data.posts, page)
 		}
 	}).catch(function() {
 		NotFound.show(res)
 	})
 }
 
-function render(res, posts, pageNavigation = '') {
-	res.render('index', {
+function render(res, posts, page, pageNavigation) {
+	res.render("index", {
 		posts: posts,
-		title: 'Roland Leth',
-		metadata: 'Development thoughts by Roland Leth',
+		title: "Roland Leth",
+		metadata: "Development thoughts by Roland Leth",
+		page: page,
 		pageNavigation: pageNavigation
 	})
 }

@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/rolandleth/rolandleth.com/issues"
   },
-  "homepage": "http://rolandleth.com",
+  "homepage": "https://rolandleth.com",
   "dependencies": {
     "bluebird": "3.4.1",
     "body-parser": "1.15.2",

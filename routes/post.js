@@ -2,13 +2,13 @@
  * Created by roland on 6/7/16.
  */
 
-'use strict'
+"use strict"
 
-const router   = require('express').Router()
-const NotFound = require('./not-found')
-const Db = require('../lib/db')
+const router   = require("express").Router()
+const NotFound = require("./not-found")
+const Db = require("../lib/db")
 
-router.get('/', function(req, res) {
+router.get("/", function(req, res) {
 	Db.fetchPost(req.baseUrl.substring(1)).then(function(data) {
 		if (data.posts.length == 0) {
 			NotFound.show(res)
@@ -16,11 +16,10 @@ router.get('/', function(req, res) {
 		}
 
 		const post = data.posts[0]
-		res.render('index', {
+		res.render("index", {
 			posts: data.posts,
 			title: post.title,
-			metadata: post.title,
-			pageNavigation: ''
+			metadata: post.title
 		})
 	}).catch(function() {
 		NotFound.show(res)

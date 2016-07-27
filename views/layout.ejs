@@ -2,15 +2,15 @@
 <html>
 <head>
 	<% include ./partials/head.ejs %>
-	<%- block('head') %>
+	<%- block("head", "") %>
 </head>
 <body>
 	<% include ./partials/header.ejs %>
-	<%- block('before-content') %>
+	<%- block("before-content", "") %>
 	<div class="content">
 		<%- body %>
 	</div>
-	<%- block('after-content') %>
+	<%- block("after-content", "") %>
 	<% include ./partials/footer.ejs %>
 </body>
 </html>

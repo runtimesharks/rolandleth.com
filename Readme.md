@@ -1,6 +1,6 @@
 # rolandleth.com
 
-Really simple [Node.js](http://www.nodejs.org/) app for my [site](http://rolandleth.com). I write my posts with [Markdown](http://daringfireball.net/projects/markdown/), save them to a Dropbox folder and access a custom URL which fetches new/modified posts and saves them in a Postgres database. Nothing fancy.
+Really simple [Node.js](http://www.nodejs.org/) app for my [site](https://rolandleth.com). I write my posts with [Markdown](http://daringfireball.net/projects/markdown/), save them to a Dropbox folder and access a custom URL which fetches new/modified posts and saves them in a Postgres database. Nothing fancy.
 
 ## Running Locally
 

@@ -1,5 +1,8 @@
 <% include ./partials/search.ejs %>
+<% if (typeof page != "undefined" && page > 1) { %>
+	<% block("head").append('<meta name="robots" content="noindex,nofollow">') %>
+<% } %>
 
-<% if (pageNavigation) { %>
-	<%- block('after-content').append(pageNavigation) %>
+<% if (typeof pageNavigation != "undefined") { %>
+	<%- block("after-content").append(pageNavigation) %>
 <% } %>

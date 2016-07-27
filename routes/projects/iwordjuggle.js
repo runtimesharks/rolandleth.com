@@ -2,12 +2,12 @@
  * Created by roland on 4/7/16.
  */
 
-'use strict'
+"use strict"
 
-const router = require('express').Router()
+const router = require("express").Router()
 
-router.get('/', function(req, res) {
-	res.render('iwordjuggle')
+router.get("/", function(req, res) {
+	res.render("iwordjuggle")
 })
 
 module.exports = router

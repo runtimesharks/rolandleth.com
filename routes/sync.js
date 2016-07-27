@@ -2,38 +2,38 @@
  * Created by roland on 6/7/16.
  */
 
-'use strict'
+"use strict"
 
-const Promise     = require('bluebird')
-const router      = require('express').Router()
-const Dropbox     = require('../lib/dropbox')
-const Post        = require('../models/post')
-const Db          = require('../lib/db')
-const marked      = require('marked')
+const Promise     = require("bluebird")
+const router      = require("express").Router()
+const Dropbox     = require("../lib/dropbox")
+const Post        = require("../models/post")
+const Db          = require("../lib/db")
+const marked      = require("marked")
 
-router.get('/create/' + process.env.MY_SYNC_KEY, function(req, res) {
-	res.render('create-post', {
-		title: 'Create',
-		metadata: 'Create a post'
+router.get("/create/" + process.env.MY_SYNC_KEY, function(req, res) {
+	res.render("create-post", {
+		title: "Create",
+		metadata: "Create a post"
 	})
 })
 
-router.post('/create/', function(req, res) {
+router.post("/create/", function(req, res) {
 	const body = req.body
 
-	// Create the file first, if it doesn't work, stay on the page.
+	// Create the file first, if it doesn"t work, stay on the page.
 	Dropbox.createFile(body).then(function(data) {
 		if (!data) { res.end(); return }
 
-		res.redirect('/cmd.sync/' + process.env.MY_SYNC_KEY)
+		res.redirect("/cmd.sync/" + process.env.MY_SYNC_KEY)
 	})
 })
 
-router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) {
-	const shouldDelete = req.params.key1 == 'delete' || req.params.key2 == 'delete'
-	const forced = req.params.key1 == 'force' || req.params.key2 == 'force'
+router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) {
+	const shouldDelete = req.params.key1 == "delete" || req.params.key2 == "delete"
+	const forced = req.params.key1 == "force" || req.params.key2 == "force"
 
-	Promise.all([Db.fetchPostsForUpdating(), Dropbox.getFolder('/posts')]).then(function(data) {
+	Promise.all([Db.fetchPostsForUpdating(), Dropbox.getFolder("/posts")]).then(function(data) {
 		let posts = data[0].posts
 		const folder = data[1]
 
@@ -46,13 +46,13 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 			const file = dropboxData.file
 
 			const matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
-			const datetime = matches[2] + '-' + matches[3] + '-' + matches[4] + '-' + matches[5]
+			const datetime = matches[2] + "-" + matches[3] + "-" + matches[4] + "-" + matches[5]
 			let link       = Post.createLink(matches[6])
 
-			let lines   = file.toString().split('\n')
+			let lines   = file.toString().split("\n")
 			const title = lines[0]
 			lines.splice(0, 2)
-			const body = lines.join('\n')
+			const body = lines.join("\n")
 
 			const modified = item.client_mtime
 
@@ -109,10 +109,10 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 					let variant
 					// Create a new one, with same link, but duplicated.
 					// If it has --1 already, make it --2, and so on.
-					if (matchingPost.link.slice(-3, -1) == '--') {
+					if (matchingPost.link.slice(-3, -1) == "--") {
 						variant = parseInt(matchingPost.link.slice(-1)[0])
 					}
-					else if (matchingPost.link.slice(-4, -2) == '--') {
+					else if (matchingPost.link.slice(-4, -2) == "--") {
 						variant  = parseInt(matchingPost.link.slice(-2))
 					}
 					else {
@@ -120,12 +120,12 @@ router.get('/' + process.env.MY_SYNC_KEY + '/:key1?/:key2?', function(req, res) 
 					}
 
 					variant += 1
-					newPost.link += '--' + variant
+					newPost.link += "--" + variant
 
 					Db.createPost(newPost)
 				})
 			}).then(function() {
-				res.redirect('/')
+				res.redirect("/")
 			})
 		})
 	}).catch(function(error) {
