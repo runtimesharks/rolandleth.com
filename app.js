@@ -9,7 +9,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const pipeline = new Mincer.Environment()
-Mincer.logger.use(console)
+
+if (process.env.ENV_TYPE == "development" && false) {
+	Mincer.logger.use(console)
+}
 
 pipeline.appendPath("assets/files")
 pipeline.appendPath("assets/images")
