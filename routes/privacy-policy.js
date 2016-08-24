@@ -13,8 +13,4 @@ router.get("/", function(req, res) {
 	})
 })
 
-router.get("/download", function(req, res) {
-	res.download("./assets/files/Privacy Policy.md", "Roland Leth Privacy Policy.md")
-})
-
 module.exports = router
