@@ -7,7 +7,7 @@
     "start": "heroku local web"
   },
   "engines": {
-    "node": "6.3.0",
+    "node": "6.4.0",
     "npm": "3.10.3"
   },
   "repository": {
@@ -35,9 +35,9 @@
     "ejs": "2.5.1",
     "ejs-mate": "2.3.0",
     "express": "4.14.0",
-    "lodash": "4.14.0",
-    "marked": "0.3.5",
-    "mincer": "1.4.1",
+    "lodash": "4.14.2",
+    "marked": "0.3.6",
+    "mincer": "1.4.2",
     "node-dropbox": "0.1.7",
     "node-sass": "3.8.0",
     "pg": "6.0.3",
