@@ -18,7 +18,8 @@ router.get("/create/" + process.env.MY_SYNC_KEY, function(req, res) {
 	})
 })
 
-router.post("/create/", function(req, res) {
+router.post("/create", function(req, res) {
+	if (req.params.token != process.env.MY_SYNC_KEY) { res.redirect("/"); return }
 	const body = req.body
 
 	// Create the file first, if it doesn"t work, stay on the page.
