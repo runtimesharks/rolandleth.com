@@ -4,26 +4,65 @@
 
 "use strict"
 
-const read = require("reading-time")
+const readingTime = require("reading-time")
+const truncateHTML = require("truncate-html") // This one is really fast (400ms vs 80)
 
 /**
  * The Post model.
  * @param {String} title
  * @param {String} body
- * @param {String} readingTime
  * @param {String} datetime
  * @param {String} modified
  * @param {String} link
+ * @param {String} readingTime
+ * @param {String} truncatedBody
  * @constructor
  */
-function Post(title = "", body = "", readingTime = "", datetime = "", modified = "", link = "") {
+function Post(title = "", body = "", datetime = "", modified = "", link = "", readingTime = timeToRead(body), truncatedBody = truncateBody(body, link)) {
 	this.title = title
 	this.body = body
+	this.truncatedBody = truncatedBody
 	this.readingTime = readingTime
 	this.datetime = datetime
 	this.date = Post.dateFromDateTime(datetime) || ""
 	this.modified = modified
 	this.link = link
+}
+
+/**
+ * Creates a friedly reading time text.
+ * @param body The post's body.
+ * @returns {String} A string in "1 min read" format.
+ */
+function timeToRead(body) {
+	return function() {
+		const t = readingTime(body)
+		switch (true) {
+			case t.minutes <= 0.2: return ""; break
+			case t.minutes <= 0.5: return "25 sec read"; break
+			case t.minutes <= 0.8: return "45 sec read"; break
+			default: return t.text
+		}
+	}()
+}
+
+/**
+ * Truncates the body of a post to 700 characters, if it's longer than 900, otherwise it does nothing.
+ * @param body {String} The post of the body.
+ * @param link {String} The link of the body.
+ * @returns {String} The truncated body.
+ */
+function truncateBody(body, link) {
+	if (body.length < 900) { return body }
+	
+	const truncatedBody = truncateHTML(body, {
+		length: 700,
+		ellipsis: " [&hellip;]",
+		stripTags: false,
+		keepWhitespaces: true
+	})
+	
+	return truncatedBody + "<br/><a href='/" + link + "' onClick=\"_gaq.push(['_trackEvent', 'continue-reading', 'click', '/" + link + "']);\">Continue reading &rarr;</a>"
 }
 
 /**
@@ -75,34 +114,6 @@ Post.datetimeFromDate = function(dateString) {
 }
 
 /**
- * Truncates the body of a post to 700 characters, if it"s longer than 900, otherwise it does nothing.
- * @param {Post} post - The post for which the body"s truncation is required.
- * @returns {String} The truncated body.
- */
-Post.truncatedBody = function(post) {
-	if (post.body.length < 900) { return post.body }
-	
-	const truncateHTML = require("truncate-html") // This one is really fast (400ms vs 80)
-	const body = truncateHTML(post.body, {
-		length: 700,
-		ellipsis: " [&hellip;]",
-		stripTags: false,
-		keepWhitespaces: true
-	})
-
-	return body + "\
-	      <br/> \
-				<a href='/" + post.link + "' \
-						onClick = \"_gaq.push([\
-						'_trackEvent', \
-						'continue-reading', \
-						'click', \
-						'/" + post.link + ">']);\">\
-						Continue reading &rarr;\
-	       </a>"
-}
-
-/**
  * Tests if two posts have matching links, by checking for --X variations on the first parameter.
  * @param {Post} newPost - The file post.
  * @param {Post} post - The database post.
@@ -117,7 +128,7 @@ Post.linksMatch = function(newPost, post) {
 
 /**
  * Creates a link out of a title.
- * @param title The post"s title.
+ * @param title The post's title.
  * @returns {String} A safe link.
  */
 Post.createLink = function(title) {
@@ -125,23 +136,6 @@ Post.createLink = function(title) {
 		.replace(/&/g, "and")
 		.replace(/\s|\./g, "-")
 		.toLowerCase()
-}
-
-/**
- * Creates a friedly reading time text.
- * @param body The post"s body.
- * @returns {String} A string in "1 min read" format.
- */
-Post.readingTime = function(body) {
-	return function() {
-		const t = read(body)
-		switch (true) {
-			case t.minutes <= 0.2: return ""; break
-			case t.minutes <= 0.5: return "25 sec read"; break
-			case t.minutes <= 0.8: return "45 sec read"; break
-			default: return t.text
-		}
-	}()
 }
 
 module.exports = Post

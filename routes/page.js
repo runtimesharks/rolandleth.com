@@ -4,12 +4,10 @@
 
 "use strict"
 
-const ejs = require("ejs")
 const router   = require("express").Router()
 const NotFound = require("./not-found")
 const Db       = require("../lib/db")
 const DbConfig = require("../models/dbConfig")
-const Post     = require("../models/post")
 
 router.get("/", function(req, res) {
 	if (req.baseUrl == "/1") {
@@ -32,7 +30,7 @@ function fetchPage(page, res) {
 		}
 
 		data.posts.forEach(function(post) {
-			post.body = Post.truncatedBody(post)
+			post.body = post.truncatedBody
 		})
 
 		const pages = Math.ceil(data.totalPosts / (parseInt(process.env.PAGE_SIZE) || 10))
@@ -40,7 +38,8 @@ function fetchPage(page, res) {
 		if (pages > 1) {
 			const path = "./views/partials/page-navigation.ejs"
 			const options = { page: parseInt(page), pages: pages }
-
+			const ejs = require("ejs")
+			
 			ejs.renderFile(path, options, function(err, str) {
 				render(res, data.posts, page, str)
 			})

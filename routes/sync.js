@@ -4,12 +4,10 @@
 
 "use strict"
 
-const Promise     = require("bluebird")
 const router      = require("express").Router()
 const Dropbox     = require("../lib/dropbox")
 const Post        = require("../models/post")
 const Db          = require("../lib/db")
-const marked      = require("marked")
 
 router.get("/create/" + process.env.MY_SYNC_KEY, function(req, res) {
 	res.render("create-post", {
@@ -22,7 +20,7 @@ router.post("/create", function(req, res) {
 	if (req.params.token != process.env.MY_SYNC_KEY) { res.redirect("/"); return }
 	const body = req.body
 
-	// Create the file first, if it doesn"t work, stay on the page.
+	// Create the file first, if it doesn't work, stay on the page.
 	Dropbox.createFile(body).then(function(data) {
 		if (!data) { res.end(); return }
 
@@ -31,6 +29,8 @@ router.post("/create", function(req, res) {
 })
 
 router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) {
+	const Promise = require("bluebird")
+	const marked = require("marked")
 	const shouldDelete = req.params.key1 == "delete" || req.params.key2 == "delete"
 	const forced = req.params.key1 == "force" || req.params.key2 == "force"
 
@@ -54,11 +54,9 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 			const title = lines[0]
 			lines.splice(0, 2)
 			const body = lines.join("\n")
-
 			const modified = item.client_mtime
-
-			return new Post(title, marked(body), Post.readingTime(body),
-				datetime, modified, link)
+			
+			return new Post(title, marked(body), datetime, modified, link)
 		}).then(function(newPosts) {
 			if (shouldDelete) {
 				// Iterate through existing posts, and if no corresponding

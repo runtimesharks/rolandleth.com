@@ -7,7 +7,6 @@
 const router   = require("express").Router()
 const NotFound = require("./not-found")
 const Db       = require("../lib/db")
-const Post     = require("../models/post")
 
 router.get("/", function(req, res) {
 	// Regex to match all words between quotes as a single param,
@@ -17,7 +16,7 @@ router.get("/", function(req, res) {
 //		.map(function(match) {
 //			return match.replace(/"/g, "")
 //		})
-
+	
 	Db.searchPosts(req.query.query).then(function(data) {
 		if (data.posts.length == 0) {
 			NotFound.show(res, true)
@@ -25,7 +24,7 @@ router.get("/", function(req, res) {
 		}
 
 		data.posts.forEach(function(post) {
-			post.body = Post.truncatedBody(post)
+			post.body = post.truncatedBody
 		})
 
 		res.render("index", {
