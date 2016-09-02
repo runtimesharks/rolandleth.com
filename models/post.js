@@ -18,7 +18,8 @@ const truncateHTML = require("truncate-html") // This one is really fast (400ms 
  * @param {String} truncatedBody
  * @constructor
  */
-function Post(title = "", body = "", datetime = "", modified = "", link = "", readingTime = timeToRead(body), truncatedBody = truncateBody(body, link)) {
+function Post(title = "", body = "", datetime = "", modified = (new Date()).toDateString(),
+              link = Post.createLink(title), readingTime = timeToRead(body), truncatedBody = truncateBody(body, link)) {
 	this.title = title
 	this.body = body
 	this.truncatedBody = truncatedBody
@@ -66,8 +67,8 @@ function truncateBody(body, link) {
 }
 
 /**
- * Converts a string of YYYY-MM-dd format into a Date.
- * @param {String} datetime - YYYY-MM-dd format parameter
+ * Converts a string of yyyy-MM-dd format into a Date.
+ * @param {String} datetime - yyyy-MM-dd format parameter
  * @returns {String|Date} A new Date corresponding to the parameter passed in, or an empty string.
  */
 Post.dateFromDateTime = function(datetime) {
@@ -83,9 +84,9 @@ Post.dateFromDateTime = function(datetime) {
 }
 
 /**
- * Converts a date string into a date, then into a string of YYYY-MM-dd format.
+ * Converts a date string into a date, then into a string of yyyy-MM-dd format.
  * @param {String} dateString - The string to be converted.
- * @returns {String} A string of YYYY-MM-dd format.
+ * @returns {String} A string of yyyy-MM-dd format.
  */
 Post.datetimeFromDate = function(dateString) {
 	const date = new Date(dateString)
