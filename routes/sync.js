@@ -17,7 +17,7 @@ router.get("/create/" + process.env.MY_SYNC_KEY, function(req, res) {
 })
 
 router.post("/create", function(req, res) {
-	if (req.params.token != process.env.MY_SYNC_KEY) { res.redirect("/"); return }
+	if (req.body.token != process.env.MY_SYNC_KEY) { res.redirect("/"); return }
 	const body = req.body
 
 	// Create the file first, if it doesn't work, stay on the page.
@@ -47,7 +47,7 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 			const file = dropboxData.file
 
 			const matches  = item.path.match(/\/(posts)\/(\d{4})-(\d{2})-(\d{2})-(\d{4})-([\w\s\.\/\}\{\[\]_#&@$:"';,!=\?\+\*\-\)\(]+)\.md$/)
-			const datetime = matches[2] + "-" + matches[3] + "-" + matches[4] + "-" + matches[5]
+			const datetime = [matches[2], matches[3], matches[4], matches[5]].join("-")
 			let link       = Post.createLink(matches[6])
 
 			let lines   = file.toString().split("\n")

@@ -104,6 +104,15 @@ img {
 
 	&:not([class]) {
 		display: table;
+		margin: 10px auto;
+	}
+	
+	.centered & {
+		display: inline;
+		margin: 10px;
+	}
+	
+	.centered-image-wrapper & {
 		margin: 0 auto;
 	}
 }
