@@ -43,7 +43,6 @@ var setupSearchField = function() {
 
 	// Smaller search fields for iPhones, since it doesn't fit at > 13
 	var winWidth = $(window).width();
-	console.log($(window).width())
 	var size = 17;
 	switch (true) {
 		case winWidth < 280: size = 10; break;

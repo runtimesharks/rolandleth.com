@@ -19,23 +19,23 @@
 function DbConfig() {
 	this.updating       = false
 	this.searching      = false
-	this.columns        = '*'
+	this.columns        = "*"
 	this.fields         = null
 	this.fieldValues    = null
-	this.orderBy        = 'datetime'
-	this.orderDirection = 'ASC'
+	this.orderBy        = "datetime"
+	this.orderDirection = "ASC"
 	this.limit          = parseInt(process.env.PAGE_SIZE) || 10
 	this.offset         = 0
 }
 
 /**
- * Limit one, link as field, and the post's link as fieldValue.
- * @param {String} link - The post's link to fetch it by.
+ * Limit one, link as field, and the post"s link as fieldValue.
+ * @param {String} link - The post"s link to fetch it by.
  * @returns {DbConfig} The {@link DbConfig} object.
  */
 DbConfig.post = function(link) {
 	const config       = new DbConfig()
-	config.fields      = ['link']
+	config.fields      = ["link"]
 	config.fieldValues = [link]
 	config.limit       = 1
 
@@ -84,7 +84,7 @@ DbConfig.feed = function() {
 DbConfig.siteMap = function() {
 	const config = new DbConfig()
 	config.limit = 0
-	config.columns = 'link, modified, datetime'
+	config.columns = "link, modified, datetime"
 
 	return config
 }
@@ -96,7 +96,7 @@ DbConfig.siteMap = function() {
 DbConfig.archive = function() {
 	const  config  = new DbConfig()
 	config.limit   = 0
-	config.columns = 'title, link, datetime'
+	config.columns = "title, link, datetime"
 
 	return config
 }
@@ -110,7 +110,7 @@ DbConfig.search = function(query) {
 	const config = new DbConfig()
 	config.limit = 0
 	config.searching = true
-	config.fields      = ['body', 'title']
+	config.fields      = ["body", "title"]
 	config.fieldValues = [query]
 
 	return config

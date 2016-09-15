@@ -2,37 +2,77 @@
  * Created by roland on 1/7/16.
  */
 
-'use strict'
+"use strict"
 
-const read = require('reading-time')
+const readingTime = require("reading-time")
+const truncateHTML = require("truncate-html") // This one is really fast (400ms vs 80)
 
 /**
  * The Post model.
  * @param {String} title
  * @param {String} body
- * @param {String} readingTime
  * @param {String} datetime
  * @param {String} modified
  * @param {String} link
+ * @param {String} readingTime
+ * @param {String} truncatedBody
  * @constructor
  */
-function Post(title = '', body = '', readingTime = '', datetime = '', modified = '', link = '') {
+function Post(title = "", body = "", datetime = "", modified = (new Date()).toDateString(),
+              link = Post.createLink(title), readingTime = timeToRead(body), truncatedBody = truncateBody(body, link)) {
 	this.title = title
 	this.body = body
+	this.truncatedBody = truncatedBody
 	this.readingTime = readingTime
 	this.datetime = datetime
-	this.date = Post.dateFromDateTime(datetime) || ''
+	this.date = Post.dateFromDateTime(datetime) || ""
 	this.modified = modified
 	this.link = link
 }
 
 /**
- * Converts a string of YYYY-MM-dd format into a Date.
- * @param {String} datetime - YYYY-MM-dd format parameter
+ * Creates a friedly reading time text.
+ * @param body The post's body.
+ * @returns {String} A string in "1 min read" format.
+ */
+function timeToRead(body) {
+	return function() {
+		const t = readingTime(body)
+		switch (true) {
+			case t.minutes <= 0.2: return ""; break
+			case t.minutes <= 0.5: return "25 sec read"; break
+			case t.minutes <= 0.8: return "45 sec read"; break
+			default: return t.text
+		}
+	}()
+}
+
+/**
+ * Truncates the body of a post to 700 characters, if it's longer than 900, otherwise it does nothing.
+ * @param body {String} The post of the body.
+ * @param link {String} The link of the body.
+ * @returns {String} The truncated body.
+ */
+function truncateBody(body, link) {
+	if (body.length < 900) { return body }
+	
+	const truncatedBody = truncateHTML(body, {
+		length: 700,
+		ellipsis: " [&hellip;]",
+		stripTags: false,
+		keepWhitespaces: true
+	})
+	
+	return truncatedBody + "<br/><a href='/" + link + "' onClick=\"_gaq.push(['_trackEvent', 'continue-reading', 'click', '/" + link + "']);\">Continue reading &rarr;</a>"
+}
+
+/**
+ * Converts a string of yyyy-MM-dd format into a Date.
+ * @param {String} datetime - yyyy-MM-dd format parameter
  * @returns {String|Date} A new Date corresponding to the parameter passed in, or an empty string.
  */
 Post.dateFromDateTime = function(datetime) {
-	if (!datetime) { return '' }
+	if (!datetime) { return "" }
 	const matches = datetime.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 	const year    = matches[1]
 	const month   = matches[2] - 1 // Months are 0 indexed :|
@@ -44,9 +84,9 @@ Post.dateFromDateTime = function(datetime) {
 }
 
 /**
- * Converts a date string into a date, then into a string of YYYY-MM-dd format.
+ * Converts a date string into a date, then into a string of yyyy-MM-dd format.
  * @param {String} dateString - The string to be converted.
- * @returns {String} A string of YYYY-MM-dd format.
+ * @returns {String} A string of yyyy-MM-dd format.
  */
 Post.datetimeFromDate = function(dateString) {
 	const date = new Date(dateString)
@@ -56,50 +96,22 @@ Post.datetimeFromDate = function(dateString) {
 	let minutes = date.getMinutes().toString()
 
 	if (month.length == 1) {
-		month = '0' + month
+		month = "0" + month
 	}
 
 	if (day.length == 1) {
-		day = '0' + day
+		day = "0" + day
 	}
 
 	if (hours.length == 1) {
-		hours = '0' + hours
+		hours = "0" + hours
 	}
 
 	if (minutes.length == 1) {
-		minutes = '0' + minutes
+		minutes = "0" + minutes
 	}
 
-	return date.getFullYear() + '-' + month + '-' + day + '-' + hours + minutes
-}
-
-/**
- * Truncates the body of a post to 700 characters, if it's longer than 900, otherwise it does nothing.
- * @param {Post} post - The post for which the body's truncation is required.
- * @returns {String} The truncated body.
- */
-Post.truncatedBody = function(post) {
-	if (post.body.length < 900) { return post.body }
-	
-	const truncateHTML = require('truncate-html') // This one is really fast (400ms vs 80)
-	const body = truncateHTML(post.body, {
-		length: 700,
-		ellipsis: ' [&hellip;]',
-		stripTags: false,
-		keepWhitespaces: true
-	})
-
-	return body + "\
-	      <br/> \
-				<a href='/" + post.link + "'\
-						onClick = \"_gaq.push([\
-						'_trackEvent', \
-						'continue-reading', \
-						'click', \
-						'/" + post.link + ">']);\">\
-						Continue reading &rarr;\
-	       </a>"
+	return date.getFullYear() + "-" + month + "-" + day + "-" + hours + minutes
 }
 
 /**
@@ -109,10 +121,10 @@ Post.truncatedBody = function(post) {
  * @returns {Boolean} True, if the two links match, false if they do not.
  */
 Post.linksMatch = function(newPost, post) {
-	// Yea, yea, I know. But I'll never have 100+ duplicates unknowingly :)
+	// Yea, yea, I know. But I"ll never have 100+ duplicates unknowingly :)
 	return newPost.link == post.link ||
-	       (newPost.link + '--') == post.link.slice(0, -1) ||
-	       (newPost.link + '--') == post.link.slice(0, -2)
+	       (newPost.link + "--") == post.link.slice(0, -1) ||
+	       (newPost.link + "--") == post.link.slice(0, -2)
 }
 
 /**
@@ -121,27 +133,10 @@ Post.linksMatch = function(newPost, post) {
  * @returns {String} A safe link.
  */
 Post.createLink = function(title) {
-	return title.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, '')
-		.replace(/&/g, 'and')
-		.replace(/\s|\./g, '-')
+	return title.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, "")
+		.replace(/&/g, "and")
+		.replace(/\s|\./g, "-")
 		.toLowerCase()
-}
-
-/**
- * Creates a friedly reading time text.
- * @param body The post's body.
- * @returns {String} A string in '1 min read' format.
- */
-Post.readingTime = function(body) {
-	return function() {
-		const t = read(body)
-		switch (true) {
-			case t.minutes <= 0.2: return ''; break
-			case t.minutes <= 0.5: return '25 sec read'; break
-			case t.minutes <= 0.8: return '45 sec read'; break
-			default: return t.text
-		}
-	}()
 }
 
 module.exports = Post

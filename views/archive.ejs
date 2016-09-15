@@ -1,5 +1,8 @@
-<% layout('layout') %>
-<% block('head').append('<link rel="stylesheet" href="/assets/archive.css">') %>
+<% layout("layout") %>
+<% block("head").append(
+	'<link rel="stylesheet" href="/assets/archive.css"> \
+	<meta name="robots" content="noarchive">'
+) %>
 
 <% _.forEach(posts, function(months, year) { %>
 	<div class="one-half archive">

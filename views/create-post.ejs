@@ -1,7 +1,7 @@
-<% layout('layout') %>
-<% block('head').append(
+<% layout("layout") %>
+<% block("head").append(
 	'<link rel="stylesheet" href="/assets/create-post.css"> \
-  <meta name="robots" content="noindex,nofollow">'
+  <meta name="robots" content="none">'
 ) %>
 
 <form method="post" action="/cmd.sync/create">
@@ -18,7 +18,11 @@
 		<textarea title="Body" rows="20" name="body"></textarea>
 	</div>
 
-	<div class="input-wrapper">
+	<div class="input-wrapper half left">
 		<input class="button" type="submit">
+	</div>
+	
+	<div class="input-wrapper half">
+		<h1>Token: </h1>&nbsp;&nbsp;<input class="text-field" title="Token" type="text" name="token">
 	</div>
 </form>
