@@ -4,13 +4,14 @@ const app = express()
 const engine = require("ejs-mate") // For locals, layouts and partials
 const Mincer = require("mincer") // For the pipeline
 const bodyParser = require("body-parser") // For POST calls
+const helpers = require("./lib/helpers.js")
 
+app.use(helpers.secureAndNakedRedirect)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const pipeline = new Mincer.Environment()
-
-if (process.env.ENV_TYPE == "development" && false) {
+if (helpers.development && false) {
 	Mincer.logger.use(console)
 }
 
@@ -22,21 +23,8 @@ pipeline.appendPath("assets/stylesheets")
 app.use(express.static("./public"))
 app.use("/assets", Mincer.createServer(pipeline))
 
-// To pass in the canonical URL without a possible trailing slash.
-// This way no 301 are required for indexing.
-app.use(function(req, res, next) {
-	let path = req.path
-	if (path.slice(-1) == "/") {
-		path = path.slice(0, -1)
-	}
-	// Future proof. These disable embedding the site in an external one.
-	res.setHeader("Content-Security-Policy", "frame-ancestors 'none'")
-	// Old and current.
-	res.setHeader("X-Frame-Options", "DENY")
-	res.locals.path = path
-	next()
-})
-
+app.use(helpers.setCanonicalMeta)
+app.use(helpers.setDisableEmbeddingHeaders)
 app.use("/", require("./routes/routes"))
 app.engine("ejs", engine)
 app.set("view engine", "ejs")

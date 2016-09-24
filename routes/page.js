@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
 		res.end()
 	}
 	else {
-		var page = req.baseUrl.substring(1) || 1
+		const page = req.baseUrl.substring(1) || 1
 		fetchPage(page, res)
 	}
 })
