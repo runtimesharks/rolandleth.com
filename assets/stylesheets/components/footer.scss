@@ -18,3 +18,13 @@
 	font-family: $lightFont;
 	margin-bottom: 0.5em;
 }
+
+img:not([class]) {
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	display: inline;
+	margin: 0 0 -6px;
+	height: 30px;
+}
