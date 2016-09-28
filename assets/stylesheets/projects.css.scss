@@ -81,17 +81,6 @@ img {
 
 h1 {
 	margin-bottom: 1em;
-
-	a {
-		border-bottom: 1px solid transparent;
-		color: $textColor;
-		word-break: normal;
-
-		&:hover {
-			border-bottom: 1px solid transparent;
-			color: $linkColor;
-		}
-	}
 }
 
 .site-footer {

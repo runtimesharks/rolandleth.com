@@ -6,6 +6,7 @@
 
 const readingTime = require("reading-time")
 const truncateHTML = require("truncate-html") // This one is really fast (400ms vs 80)
+require("../lib/date")
 
 /**
  * The Post model.
@@ -48,7 +49,7 @@ function timeToRead(body) {
 }
 
 /**
- * Truncates the body of a post to 700 characters, if it's longer than 900, otherwise it does nothing.
+ * Truncates the body of a post to 700 characters, but only if it's longer than 900; otherwise it does nothing.
  * @param body {String} The post of the body.
  * @param link {String} The link of the body.
  * @returns {String} The truncated body.
@@ -79,8 +80,10 @@ Post.dateFromDateTime = function(datetime) {
 	const day     = matches[3]
 	const hour    = matches[4].slice(0, 2)
 	const minute  = matches[4].slice(2, 4)
+	const postDate = new Date(year, month, day, hour, minute)
 
-	return new Date(year, month, day, hour, minute)
+	// Convert to UTC, but offset hours to match Bucharest timezone.
+	return new Date(Date.UTC(year, month, day, hour - (postDate.dst() ? 3 : 2), minute))
 }
 
 /**
