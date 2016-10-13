@@ -52,13 +52,14 @@ function fetchPage(page, res) {
 	})
 }
 
-function render(res, posts, page, pageNavigation) {
+function render(res, posts, page, navigation) {
 	res.render("index", {
 		posts: posts,
 		title: "Roland Leth",
 		metadata: "Development thoughts by Roland Leth",
 		page: page,
-		pageNavigation: pageNavigation
+		singlePost: false,
+		navigation: navigation
 	})
 }
 

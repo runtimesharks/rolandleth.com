@@ -4,11 +4,11 @@
   "description": "Roland Leth's corner of the internet",
   "main": "app.js",
   "scripts": {
-    "start": "heroku local web"
+    "start": "forego start -p 3000"
   },
   "engines": {
-    "node": "6.6.0",
-    "npm": "3.10.7"
+    "node": "6.8.0",
+    "npm": "3.10.8"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,5 @@
     "request": "2.74.0",
     "rss": "1.2.1",
     "truncate-html": "0.1.1"
-  },
-  "devDependencies": {}
+  }
 }

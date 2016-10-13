@@ -64,7 +64,7 @@ function truncateBody(body, link) {
 		keepWhitespaces: true
 	})
 	
-	return truncatedBody + "<br/><a href='/" + link + "' onClick=\"_gaq.push(['_trackEvent', 'continue-reading', 'click', '/" + link + "']);\">Continue reading &rarr;</a>"
+	return truncatedBody + "<br/><a href='/" + link + "' onClick=\"_gaq.push(['_trackEvent', 'post-open', 'click', '[CR] /" + link + "']);\">Continue reading &rarr;</a>"
 }
 
 /**
