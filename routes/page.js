@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
 		res.end()
 	}
 	else {
-		var page = req.baseUrl.substring(1) || 1
+		const page = req.baseUrl.substring(1) || 1
 		fetchPage(page, res)
 	}
 })
@@ -52,13 +52,14 @@ function fetchPage(page, res) {
 	})
 }
 
-function render(res, posts, page, pageNavigation) {
+function render(res, posts, page, navigation) {
 	res.render("index", {
 		posts: posts,
 		title: "Roland Leth",
 		metadata: "Development thoughts by Roland Leth",
 		page: page,
-		pageNavigation: pageNavigation
+		singlePost: false,
+		navigation: navigation
 	})
 }
 

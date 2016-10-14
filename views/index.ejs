@@ -9,6 +9,6 @@
 	<% include ./partials/post.ejs %>
 <% }) %>
 
-<% if (typeof pageNavigation != "undefined") { %>
-	<%- block("after-content").append(pageNavigation) %>
+<% if (typeof navigation != "undefined") { %>
+	<%- block("after-content").append(navigation) %>
 <% } %>

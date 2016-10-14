@@ -17,9 +17,16 @@ const emoji = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
 		<%= _.sample(emoji) %>&nbsp&nbsp&nbsp<%= _.sample(quotes) %>
 	</div>
 	<div class="copyright">
+		<div class="ssl">
+			<script language="JavaScript" type="text/javascript">
+				TrustLogo("https://rolandleth.com/assets/misc/ssl-logo.png", "CL1", "aaa");
+			</script>
+		</div>
 		&copy;
 		<%= new Date().getFullYear() %>
 		&nbspRoland Leth
+		&nbsp&mdash;&nbsp
+		<a class="home" href="/" rel="home" onClick="_gaq.push(['_trackEvent', 'home', 'click', 'Home [footer]']);">Home</a>
 		&nbsp&mdash;&nbsp
 		<a href="/archive">Archive</a>
 	</div>

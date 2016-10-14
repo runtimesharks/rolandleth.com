@@ -2,7 +2,11 @@
 <article class="article">
 	<header class="article-header">
 		<h1>
-			<a href="/<%= post.link %>"><%= post.title -%></a>
+			<% if (singlePost) { %>
+				<a href="/<%= post.link %>"><%= post.title %></a>
+			<% } else { %>
+				<a href="/<%= post.link %>" onClick="_gaq.push(['_trackEvent', 'post-open', 'click', '/<%= post.link %>']);"><%= post.title %></a>
+			<% } %>
 		</h1>
 		<h4>
 			<% const month = post.date.toLocaleString('en-us', { month: "short" }) %>

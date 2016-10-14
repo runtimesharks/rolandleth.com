@@ -19,7 +19,8 @@ router.get("/", function(req, res) {
 		res.render("post", {
 			post: post,
 			title: post.title,
-			metadata: post.title
+			metadata: post.title,
+			singlePost: true
 		})
 	}).catch(function() {
 		NotFound.show(res)

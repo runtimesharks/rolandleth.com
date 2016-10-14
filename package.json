@@ -4,11 +4,11 @@
   "description": "Roland Leth's corner of the internet",
   "main": "app.js",
   "scripts": {
-    "start": "heroku local web"
+    "start": "heroku local web --port 3000"
   },
   "engines": {
-    "node": "6.5.0",
-    "npm": "3.10.3"
+    "node": "6.8.0",
+    "npm": "3.10.8"
   },
   "repository": {
     "type": "git",
@@ -30,22 +30,22 @@
   },
   "homepage": "https://rolandleth.com",
   "dependencies": {
-    "bluebird": "3.4.1",
+    "async": "2.1.1",
+    "bluebird": "3.4.6",
     "body-parser": "1.15.2",
-    "ejs": "2.5.1",
+    "ejs": "2.5.2",
     "ejs-mate": "2.3.0",
     "express": "4.14.0",
-    "lodash": "4.15.0",
+    "lodash": "4.16.4",
     "marked": "0.3.6",
-    "mincer": "1.4.2",
-    "node-dropbox": "0.1.7",
-    "node-sass": "3.8.0",
-    "pg": "6.0.3",
+    "mincer": "1.5.0",
+    "node-dropbox": "0.1.8",
+    "node-sass": "3.10.1",
+    "pg": "6.1.0",
     "prismjs": "1.5.1",
     "reading-time": "1.1.0",
-    "request": "2.74.0",
+    "request": "2.75.0",
     "rss": "1.2.1",
     "truncate-html": "0.1.1"
-  },
-  "devDependencies": {}
+  }
 }

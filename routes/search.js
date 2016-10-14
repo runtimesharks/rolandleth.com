@@ -31,7 +31,8 @@ router.get("/", function(req, res) {
 			posts: data.posts,
 			title: "Search results",
 			page: "search",
-			metadata: "Search results"
+			metadata: "Search results",
+			singlePost: false
 		})
 	}).catch(function() {
 		NotFound.show(res)
