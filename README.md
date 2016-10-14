@@ -57,22 +57,9 @@ If you'd like a Dropbox access token, you can go to `https://developers.dropbox.
 
 #### Running
 
-1. Inside `package.json`, under `scripts -> start` you will find `heroku local web`: this will run the app on port `5000`, by looking for, and loading a `.env` file.
-2. You can change the start script to `node app.js`: this will run the app on port `3000`, but it will not load any `.env` file.
+Inside `package.json`, under `scripts -> start` you will find `heroku local web --port 3000`: this will run the app on port `3000`, by looking for, and loading a `.env` file.
 
-From the terminal:
-
-```bash
-npm start (will run the start script mentioned above)
-# Or directly:
-1. -> heroku local web
-2. -> node app.js
-```
-
-Go to:
-
-1. [http://localhost:5000](http://localhost:5000)
-2. [http://localhost:3000](http://localhost:3000)
+From the terminal run `npm start`, and go to [http://localhost:3000](http://localhost:3000).
 
 #### Only if you're not using Dropbox, nor local files
 
