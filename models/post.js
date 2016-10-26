@@ -81,8 +81,8 @@ Post.dateFromDateTime = function(datetime) {
 	const hour    = matches[4].slice(0, 2)
 	const minute  = matches[4].slice(2, 4)
 	const postDate = new Date(year, month, day, hour, minute)
-
-	// Convert to UTC, but offset hours to match Bucharest timezone.
+	
+	// Convert to UTC, but offset hours to match Bucharest timezone -- Not working, obviously :|
 	return new Date(Date.UTC(year, month, day, hour - (postDate.dst() ? 3 : 2), minute))
 }
 
