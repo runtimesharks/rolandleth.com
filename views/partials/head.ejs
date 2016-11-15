@@ -27,34 +27,26 @@
 </script>
 <script src="/assets/base.js"></script>
 <!--Tracking-->
-<script async type="text/javascript">
-	var _gaq = _gaq || []
-	_gaq.push(["_setAccount", "UA-40255117-4"])
-	_gaq.push(["_trackPageview"])
-
-	(function() {
-		const ga = document.createElement("script")
-		ga.type  = "text/javascript"
-		ga.async = true
-		ga.src   = ("https:" == document.location.protocol ? "https://ssl" : "http://www")
-		           + ".google-analytics.com/ga.js"
-		const s = document.getElementsByTagName("script")[0]
-		s.parentNode.insertBefore(ga, s)
-	})()
+<script>
+	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
+	ga.l =+ new Date
+	ga('create', 'UA-40255117-4', 'auto')
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/assets/tracking.js"></script>
 <!--Apple's auto affiliate link script-->
 <script async type="text/javascript">
 	var _merchantSettings = _merchantSettings || []
-	_merchantSettings.push(["AT", "1001l54C"])
+	_merchantSettings.push(["AT", "1001l54C"]);
 	
 	(function() {
-		const autolink = document.createElement("script")
+		var autolink = document.createElement("script")
 		autolink.type  = "text/javascript"
 		autolink.async = true
 		autolink.src   = "https:" == document.location.protocol
 			? "https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js"
 			: "http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js"
-		const s = document.getElementsByTagName("script")[0]
+		var s = document.getElementsByTagName("script")[0]
 		s.parentNode.insertBefore(autolink, s)
 	})()
 </script>
