@@ -5,6 +5,8 @@
 "use strict"
 
 $(document).ready(function() {
+	ga('send', 'pageview')
+	
 	// Home
 	$('.home-banner, .home-navigation, .home-footer').on('click', function() {
 		var classes = $(this).attr('class').split(" ")

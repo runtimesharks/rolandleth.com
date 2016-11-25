@@ -30,9 +30,9 @@
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
 	ga.l =+ new Date
-	ga('create', 'UA-40255117-4', 'auto')
+	ga('create', '<%= (process.env.ENV_TYPE == "development" ? "UA-40255117-5" : "UA-40255117-4") %>', 'auto')
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://www.google-analytics.com/analytics.js"></script>
 <script src="/assets/tracking.js"></script>
 <!--Apple's auto affiliate link script-->
 <script async type="text/javascript">
