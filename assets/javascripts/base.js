@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
-	$(window).load(resizeImages)
-	$(window).resize(resizeImages)
+	$(window).on('load', resizeImages)
+	$(window).on('resize', resizeImages)
 	
 	setupSearchField()
 })
