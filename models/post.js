@@ -20,7 +20,7 @@ require("../lib/date")
  * @constructor
  */
 function Post(title = "", body = "", datetime = "", modified = (new Date()).toDateString(),
-              link = Post.createLink(title), readingTime = timeToRead(body), truncatedBody = truncateBody(body, link)) {
+              link = Post.createLink(title), readingTime = timeToRead(body), truncatedBody = truncateBody(title, body, link)) {
 	this.title = title
 	this.body = body
 	this.truncatedBody = truncatedBody
@@ -50,11 +50,12 @@ function timeToRead(body) {
 
 /**
  * Truncates the body of a post to 700 characters, but only if it's longer than 900; otherwise it does nothing.
+ * @param title {String} The title of the body; used for tracking.
  * @param body {String} The post of the body.
  * @param link {String} The link of the body.
  * @returns {String} The truncated body.
  */
-function truncateBody(body, link) {
+function truncateBody(title, body, link) {
 	if (body.length < 900) { return body }
 	
 	const truncatedBody = truncateHTML(body, {
@@ -64,7 +65,7 @@ function truncateBody(body, link) {
 		keepWhitespaces: true
 	})
 	
-	return truncatedBody + "<br/><a href='/" + link + "' onClick=\"_gaq.push(['_trackEvent', 'post-open', 'click', '[CR] /" + link + "']);\">Continue reading &rarr;</a>"
+	return truncatedBody + "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
 }
 
 /**
@@ -81,8 +82,8 @@ Post.dateFromDateTime = function(datetime) {
 	const hour    = matches[4].slice(0, 2)
 	const minute  = matches[4].slice(2, 4)
 	const postDate = new Date(year, month, day, hour, minute)
-
-	// Convert to UTC, but offset hours to match Bucharest timezone.
+	
+	// Convert to UTC, but offset hours to match Bucharest timezone -- Not working, obviously :|
 	return new Date(Date.UTC(year, month, day, hour - (postDate.dst() ? 3 : 2), minute))
 }
 

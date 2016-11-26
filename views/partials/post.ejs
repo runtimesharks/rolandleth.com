@@ -3,9 +3,9 @@
 	<header class="article-header">
 		<h1>
 			<% if (singlePost) { %>
-				<a href="/<%= post.link %>"><%= post.title %></a>
+				<%= post.title %>
 			<% } else { %>
-				<a href="/<%= post.link %>" onClick="_gaq.push(['_trackEvent', 'post-open', 'click', '/<%= post.link %>']);"><%= post.title %></a>
+				<a class="post-title" href="/<%= post.link %>" data-post-title="<%= post.title %>"><%= post.title %></a>
 			<% } %>
 		</h1>
 		<h4>
