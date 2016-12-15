@@ -11,9 +11,9 @@ blockquote {
 }
 
 code {
-	padding: 0.1em 0;
+	padding: 0.1em 0.2em;
 	border-radius: 2px;
-	background-color: #f9f9f9;
+	background-color: #F9F9F9;
 	color: $codeColor;
 	white-space: pre-wrap;
 	font-size: 0.85em;
@@ -21,16 +21,21 @@ code {
 }
 
 pre {
-	overflow: auto;
-	padding: 0.4em;
+	&[class*="language-"] {
+		overflow: auto;
+		padding: 0.5em 0 0.5em 1em;
+	}
+	
 	border-radius: 2px;
 	border-left: 2px solid $codeColor;
-	background-color: #f9f9f9;
+	background-color: #FFF;
 	font-size: 0.95em;
 	font-family: $codeFont;
 	line-height: 1.1em;
 
 	code {
+		padding-left: 0;
+		background-color: #FFF;
 		color: $preCodeColor;
 		white-space: pre;
 		font-weight: 300;
