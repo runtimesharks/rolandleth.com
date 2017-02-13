@@ -46,7 +46,7 @@ $(document).ready(function() {
 function labelFor(postTitle, continueReading) {
 	var label = postTitle
 	
-	if (label == "404") {
+	if (label === "404") {
 		label = $(this).attr('href').splice(1)
 	}
 	

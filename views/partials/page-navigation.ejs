@@ -2,9 +2,9 @@
 <nav class="pagination">
 	<% /* The arrow */ %>
 	<% const gap = 2 %>
-	<% if (page == 1) { %>
+	<% if (page === 1) { %>
 		<span class="disabled">&larr; Prev</span>
-	<% } else if (page == 2) { %>
+	<% } else if (page === 2) { %>
 		<a class="previous" href="/" rel="previous">&larr; Prev</a>
 	<% } else { %>
 		<a class="previous" href="/<%= page - 1 %>" rel="previous">&larr; Prev</a>
@@ -13,7 +13,7 @@
 	<% /* The gap */ %>
 	<% if (page > gap) { %>
 		<a href="/">1</a>
-		<% if (page == gap * 2) { %>
+		<% if (page === gap * 2) { %>
 			<a href="/2">2</a>
 		<% } else if (page > gap * 2) { %>
 			<span class="gap">&hellip;</span>
@@ -24,7 +24,7 @@
 	<% if (page > 1) { %>
 		<% /* If the current page is 2, prev button links to '/' instead of / 1 */ %>
 		<% /* Also prev pagination - number links to '/' instead of current page - 1 */ %>
-		<% if (page == 2) { %>
+		<% if (page === 2) { %>
 			<a href="/" rel="previous"><%= page - 1 %></a>
 		<% } else { %>
 			<a href="/<%= page - 1 %>" rel="previous"><%= page - 1 %></a>

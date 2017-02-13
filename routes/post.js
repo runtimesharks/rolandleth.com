@@ -10,7 +10,7 @@ const Db = require("../lib/db")
 
 router.get("/", function(req, res) {
 	Db.fetchPost(req.baseUrl.substring(1)).then(function(data) {
-		if (data.posts.length == 0) {
+		if (data.posts.length === 0) {
 			NotFound.show(res)
 			return
 		}

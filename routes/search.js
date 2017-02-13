@@ -18,7 +18,7 @@ router.get("/", function(req, res) {
 //		})
 	
 	Db.searchPosts(req.query.query).then(function(data) {
-		if (data.posts.length == 0) {
+		if (data.posts.length === 0) {
 			NotFound.show(res, true)
 			return
 		}

@@ -10,7 +10,7 @@ const Db       = require("../lib/db")
 const DbConfig = require("../models/dbConfig")
 
 router.get("/", function(req, res) {
-	if (req.baseUrl == "/1") {
+	if (req.baseUrl === "/1") {
 		res.redirect("/")
 		res.end()
 	}

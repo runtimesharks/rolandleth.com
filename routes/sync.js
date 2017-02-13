@@ -17,7 +17,7 @@ router.get("/create/" + process.env.MY_SYNC_KEY, function(req, res) {
 })
 
 router.post("/create", function(req, res) {
-	if (req.body.token != process.env.MY_SYNC_KEY) { res.redirect("/"); return }
+	if (req.body.token !== process.env.MY_SYNC_KEY) { res.redirect("/"); return }
 	const body = req.body
 
 	// Create the file first, if it doesn't work, stay on the page.
@@ -31,8 +31,8 @@ router.post("/create", function(req, res) {
 router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) {
 	const Promise = require("bluebird")
 	const marked = require("marked")
-	const shouldDelete = req.params.key1 == "delete" || req.params.key2 == "delete"
-	const forced = req.params.key1 == "force" || req.params.key2 == "force"
+	const shouldDelete = req.params.key1 === "delete" || req.params.key2 === "delete"
+	const forced = req.params.key1 === "force" || req.params.key2 === "force"
 
 	Promise.all([Db.fetchPostsForUpdating(), Dropbox.getFolder("/posts")]).then(function(data) {
 		let posts = data[0].posts
@@ -64,11 +64,12 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 				data[0].posts.forEach(function(post, index) {
 					let matchingNewPosts = newPosts.filter(function(newPost) {
 						return Post.linksMatch(newPost, post) &&
-						       newPost.datetime == post.datetime
+						       newPost.datetime === post.datetime
 					})
 
 					if (matchingNewPosts.length) { return }
-
+					
+					//noinspection JSIgnoredPromiseFromCall
 					Db.deletePost(post)
 					posts.splice(index, 1)
 				})
@@ -86,7 +87,8 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 				}
 
 				// Create
-				if (matchingPosts.length == 0) {
+				if (matchingPosts.length === 0) {
+					//noinspection JSIgnoredPromiseFromCall
 					Db.createPost(newPost)
 				}
 
@@ -97,9 +99,10 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 
 				matchingPosts.forEach(function(matchingPost) {
 					// Update
-					if (newPost.datetime == matchingPost.datetime) {
+					if (newPost.datetime === matchingPost.datetime) {
 						// Only if these differ, no reason to query the db for nothing
-						if (newPost.modified != matchingPost.modified || forced) {
+						if (newPost.modified !== matchingPost.modified || forced) {
+							//noinspection JSIgnoredPromiseFromCall
 							Db.updatePost(newPost)
 						}
 						return
@@ -108,10 +111,10 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 					let variant
 					// Create a new one, with same link, but duplicated.
 					// If it has --1 already, make it --2, and so on.
-					if (matchingPost.link.slice(-3, -1) == "--") {
+					if (matchingPost.link.slice(-3, -1) === "--") {
 						variant = parseInt(matchingPost.link.slice(-1)[0])
 					}
-					else if (matchingPost.link.slice(-4, -2) == "--") {
+					else if (matchingPost.link.slice(-4, -2) !== "--") {
 						variant  = parseInt(matchingPost.link.slice(-2))
 					}
 					else {
@@ -120,7 +123,8 @@ router.get("/" + process.env.MY_SYNC_KEY + "/:key1?/:key2?", function(req, res) 
 
 					variant += 1
 					newPost.link += "--" + variant
-
+					
+					//noinspection JSIgnoredPromiseFromCall
 					Db.createPost(newPost)
 				})
 			}).then(function() {

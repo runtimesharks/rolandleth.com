@@ -99,19 +99,19 @@ Post.datetimeFromDate = function(dateString) {
 	let hours = date.getHours().toString()
 	let minutes = date.getMinutes().toString()
 
-	if (month.length == 1) {
+	if (month.length === 1) {
 		month = "0" + month
 	}
 
-	if (day.length == 1) {
+	if (day.length === 1) {
 		day = "0" + day
 	}
 
-	if (hours.length == 1) {
+	if (hours.length === 1) {
 		hours = "0" + hours
 	}
 
-	if (minutes.length == 1) {
+	if (minutes.length === 1) {
 		minutes = "0" + minutes
 	}
 
@@ -126,9 +126,9 @@ Post.datetimeFromDate = function(dateString) {
  */
 Post.linksMatch = function(newPost, post) {
 	// Yea, yea, I know. But I"ll never have 100+ duplicates unknowingly :)
-	return newPost.link == post.link ||
-	       (newPost.link + "--") == post.link.slice(0, -1) ||
-	       (newPost.link + "--") == post.link.slice(0, -2)
+	return newPost.link === post.link ||
+	       (newPost.link + "--") === post.link.slice(0, -1) ||
+	       (newPost.link + "--") === post.link.slice(0, -2)
 }
 
 /**

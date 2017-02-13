@@ -7,8 +7,7 @@
     "start": "heroku local web --port 3000"
   },
   "engines": {
-    "node": "6.9.1",
-    "npm": "3.10.8"
+    "node": "7.5.0"
   },
   "repository": {
     "type": "git",
@@ -30,22 +29,22 @@
   },
   "homepage": "https://rolandleth.com",
   "dependencies": {
-    "async": "2.1.2",
-    "bluebird": "3.4.6",
-    "body-parser": "1.15.2",
-    "ejs": "2.5.2",
+    "async": "2.1.4",
+    "bluebird": "3.4.7",
+    "body-parser": "^1.16.1",
+    "ejs": "2.5.5",
     "ejs-mate": "2.3.0",
-    "express": "4.14.0",
-    "lodash": "4.16.4",
+    "express": "^4.14.1",
+    "lodash": "4.17.4",
     "marked": "0.3.6",
     "mincer": "1.5.0",
     "node-dropbox": "0.1.8",
-    "node-sass": "3.10.1",
-    "pg": "6.1.0",
-    "prismjs": "1.5.1",
+    "node-sass": "^4.5.0",
+    "pg": "6.1.2",
+    "prismjs": "1.6.0",
     "reading-time": "1.1.0",
-    "request": "2.76.0",
-    "rss": "1.2.1",
-    "truncate-html": "0.1.1"
+    "request": "2.79.0",
+    "rss": "^1.2.2",
+    "truncate-html": "0.1.2"
   }
 }

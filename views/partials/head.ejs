@@ -28,7 +28,7 @@
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
 	ga.l =+ new Date
-	ga('create', '<%= (process.env.ENV_TYPE == "development" ? "UA-40255117-5" : "UA-40255117-4") %>', 'auto')
+	ga('create', '<%= (process.env.ENV_TYPE === "development" ? "UA-40255117-5" : "UA-40255117-4") %>', 'auto')
 </script>
 <script async src="/assets/analytics.js"></script>
 <script async src="/assets/tracking.js"></script>
