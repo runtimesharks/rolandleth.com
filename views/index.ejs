@@ -1,7 +1,7 @@
 <% layout("layout") %>
 <% block("head").append('<link rel="stylesheet" href="/assets/post.css">') %>
 
-<% if (page == "search" || parseInt(page) > 1) { %>
+<% if (page === "search" || parseInt(page) > 1) { %>
 	<% block("head").append('<meta name="robots" content="noindex, noarchive">') %>
 <% } %>
 
@@ -9,6 +9,6 @@
 	<% include ./partials/post.ejs %>
 <% }) %>
 
-<% if (typeof navigation != "undefined") { %>
+<% if (typeof navigation !== "undefined") { %>
 	<%- block("after-content").append(navigation) %>
 <% } %>
