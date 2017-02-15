@@ -2,35 +2,37 @@
  * Created by roland on 16.11.2016.
  */
 
+/* jshint browser: true, undef: false */
+
 "use strict"
 
 $(document).ready(function() {
-	ga('send', 'pageview')
+	ga("send", "pageview")
 	
 	// Home
-	$('.home-banner, .home-navigation, .home-footer').on('click', function() {
-		var classes = $(this).attr('class').split(" ")
+	$(".home-banner, .home-navigation, .home-footer").on("click", function() {
+		var classes = $(this).attr("class").split(" ")
 		var type = classes[0].split("-")[1]
 		
-		ga('send', 'event', 'Home', 'click', 'Home [' + type + ']')
+		ga("send", "event", "Home", "click", "Home [" + type + "]")
 	})
 	
 	// Posts
-	$('.post-title, .post-continue-reading').on('click', function() {
+	$(".post-title, .post-continue-reading").on("click", function() {
 		var label = labelFor(
-			$(this).data('post-title'),
-			$(this).hasClass('post-continue-reading')
+			$(this).data("post-title"),
+			$(this).hasClass("post-continue-reading")
 		)
 		
-		ga('send', 'event', 'Post open', 'click', label)
+		ga("send", "event", "Post open", "click", label)
 	})
 	
 	// Downloads
-	$('.download-resume, .download-privacy-policy').on('click', function() {
+	$(".download-resume, .download-privacy-policy").on("click", function() {
 		var label = ""
 		var action = ""
 		
-		if ($(this).hasClass('download-resume')) {
+		if ($(this).hasClass("download-resume")) {
 			label = "Résumé"
 			action = "PDF"
 		}
@@ -39,7 +41,7 @@ $(document).ready(function() {
 			action = "md"
 		}
 		
-		ga('send', 'event', 'Download', action, label)
+		ga("send", "event", "Download", action, label)
 	})
 })
 
@@ -47,7 +49,7 @@ function labelFor(postTitle, continueReading) {
 	var label = postTitle
 	
 	if (label === "404") {
-		label = $(this).attr('href').splice(1)
+		label = $(this).attr("href").splice(1)
 	}
 	
 	if (continueReading) {

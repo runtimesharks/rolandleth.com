@@ -8,9 +8,13 @@
  * @property {int} totalPosts - The total number of posts in the db.
  * @constructor
  */
-function DbResult() {
-	this.posts      = []
-	this.totalPosts = 0
+class DbResult {
+	
+	constructor() {
+		this.posts      = []
+		this.totalPosts = 0
+	}
+	
 }
 
 module.exports = DbResult
