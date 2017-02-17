@@ -1,0 +1,126 @@
+@import '../globals/variables';
+
+.site-header {
+	max-width: $maxWidth;
+	margin: 2.5em auto 0 auto;
+	font-family: $headerFont;
+	
+	a {
+		line-height: 1.25em;
+	}
+	
+	@include responsiveWidth(330px) {
+		font-size: 0.9em;
+	}
+	
+	@include responsiveWidth(356px) {
+		font-size: 1em;
+	}
+}
+
+.banner {
+	font-size: 2.5em;
+	display: inline-block;
+}
+
+.banner-border {
+	width: 100%;
+	border-bottom: 2px solid $textColor;
+}
+
+.search-form {
+	background-color: rgba(0, 0, 0, 0);
+	display: inline-block;
+	margin-top: 17px;
+	float: right;
+}
+
+.text-field {
+	padding: 4px 0;
+	color: $linkColor;
+	border: 0;
+	text-align: right;
+	border-bottom: none;
+	outline: none;
+	border-radius: 0;
+	
+	font-family: $lightFont;
+	font-size: 1em;
+	
+	&::-webkit-input-placeholder {
+		color: $gray;
+	}
+	&::-moz-placeholder {
+		color: $gray;
+	}
+	&:-moz-placeholder {
+		color: $gray;
+	}
+	
+	&:focus {
+		&::-webkit-input-placeholder {
+			color: $linkColor;
+		}
+		&::-moz-placeholder {
+			color: $linkColor;
+		}
+		&:-moz-placeholder {
+			color: $linkColor;
+		}
+	}
+}
+
+.navigation {
+	// Because FA icons take a bit to load, and there's a height difference,
+	// and all the content moves down after they load.
+	min-height: 32px;
+	text-align: right;
+	margin-top: 1px;
+
+	.fa {
+		margin-top: 8px;
+		margin-left: 20px; // 40
+
+		display: inline-block;
+		font-size: 1.4em;
+
+		@include responsiveWidth(570px) {
+			margin-left: 12px;
+		}
+	}
+
+	a:first-child .fa {
+		margin-left: 0;
+	}
+}
+
+@include responsiveWidth($phoneMedia) {
+	.banner {
+		text-align: center;
+	}
+	
+	.text-field {
+		@include lightBottomBorder(1px);
+		font-size: 0.9em;
+		text-align: left;
+		
+		&:focus {
+			border-bottom: 1px solid $linkColor;
+		}
+	}
+	
+	.search-form {
+		float: left;
+		margin-top: 6px;
+	}
+
+	.banner {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.navigation {
+		margin-left: auto;
+		max-width: 150px;
+	}
+}

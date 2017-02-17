@@ -1,0 +1,7 @@
+{
+	"default": {
+		"port": "8000",
+		"host": "localhost",
+		"securityLayer": "none"
+	}
+}
