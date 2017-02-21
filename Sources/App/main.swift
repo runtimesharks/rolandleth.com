@@ -1,11 +1,12 @@
 import Vapor
+import VaporPostgreSQL
 
-let drop = Droplet()
+let drop = C.drop
 
 drop.get { req in
-    return try drop.view.make("welcome", [
-    	"message": drop.localization[req.lang, "welcome", "title"]
-    ])
+	return try JSON(node: Post.all())
 }
+
+//drop.get("/") { _ in return }
 
 drop.run()
