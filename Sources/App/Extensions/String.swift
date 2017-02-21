@@ -19,6 +19,7 @@ extension String {
 	var length: Int { return characters.count }
 	var first: String { return self[0..<1] }
 	var last: String { return self[length - 1..<length] }
+	var nsRange: NSRange { return NSRange(location: 0, length: length) }
 	
 	mutating func dropLast(_ n: Int = 1) {
 		self = self[0..<length - n]

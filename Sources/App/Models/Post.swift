@@ -21,16 +21,6 @@ struct Post {
 	let link: String
 	let readingTime: String
 	
-	init(title: String, body: String, datetime: String, link: String, truncatedBody: String? = nil, readingTime: String? = nil) {
-		self.id = nil
-		self.title = title
-		self.body = body
-		self.datetime = datetime
-		self.link = link
-		self.truncatedBody = truncatedBody ?? Post.truncate(body, to: 500)
-		self.readingTime = readingTime ?? Post.readingTime(for: body)
-	}
-	
 }
 
 extension Post: Model {
@@ -81,6 +71,119 @@ extension Post: NodeRepresentable {
 
 extension Post {
 	
+	/// Converts the `datetime` field into a `Date`.
+	///
+	/// - Returns: A `Date` corresponding to the post's `datetime`, or `nil` if invalid.
+	func date() -> Date? {
+		let calendar = Calendar.current
+		
+		guard
+			let regex = try? NSRegularExpression(pattern: "(\\d{4})-(\\d{2})-(\\d{2})-(\\d{4})",
+			                                     options: .caseInsensitive),
+			case let matches = regex.matches(in: datetime,
+			                                 range: datetime.nsRange).map({ $0.range }),
+			matches.count == 4,
+			let yearRange = matches.first,
+			case let monthRange = matches[1],
+			case let dayRange = matches[2],
+			let timeRange = matches.last,
+			timeRange.length == 4,
+			let year = Int(datetime.substring(with: datetime.range(from: yearRange))),
+			let month = Int(datetime.substring(with: datetime.range(from: monthRange))),
+			let day = Int(datetime.substring(with: datetime.range(from: dayRange))),
+			case let time = datetime.substring(with: datetime.range(from: timeRange)),
+			let hour = Int(time[0..<2]),
+			let minute = Int(time[2..<4])
+		else { return nil }
+		
+		let components = DateComponents(year: year, month: month, day: day,
+		                                hour: hour, minute: minute)
+		
+		return calendar.date(from: components)
+	}
+	
+	
+	/// Tests if the link matches another post's link, by checking for --X variations.
+	///
+	/// - Parameter post: The post to check against.
+	/// - Returns: A flag which indicates if the links are equal.
+	func hasMatchingLink(with post: Post) -> Bool {
+		return
+			// post-link
+			link == link
+			// post-link--1
+			|| link + "--" == post.link[post.link.length - 3..<post.link.length]
+			// post-link--10
+			|| link + "--" == post.link[post.link.length - 4..<post.link.length]
+	}
+	
+	init(title: String, body: String, datetime: String) {
+		self.id = nil
+		self.title = title
+		self.body = body
+		self.datetime = datetime
+		link = Post.link(from: title)
+		
+		let truncation = Post.truncate(body, to: 500)
+		let truncationSuffix: String
+		
+		if truncation.performed {
+			truncationSuffix = "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
+		}
+		else {
+			truncationSuffix = ""
+		}
+		
+		truncatedBody = truncation.text + truncationSuffix
+		readingTime = Post.readingTime(for: body)
+	}
+	
+}
+
+extension Post {
+	
+	
+	/// Creates a link out of a title.
+	///
+	/// - Parameter title: the post's title.
+	/// - Returns: A safe link.
+	static func link(from title: String) -> String {
+		let regex = try! NSRegularExpression(pattern: "([#,;!:'\"\\$\\?\\(\\)\\[\\]\\{\\}\\/\\\\]+)",
+		                                     options: .caseInsensitive)
+		return regex
+			.stringByReplacingMatches(in: title,
+			                          range: title.nsRange,
+			                          withTemplate: "")
+			.replacingOccurrences(of: "&", with: "and")
+			.replacingOccurrences(of: " ", with: "-")
+			.replacingOccurrences(of: ".", with: "-")
+			.lowercased()
+	}
+	
+	
+	/// Converts a `Date` into a string of yyyy-MM-dd format.
+	///
+	/// - Parameter date: The `Date` to be converted.
+	/// - Returns: A string of yyyy-MM-dd format.
+	static func datetime(from date: Date) -> String? {
+		let c = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
+		                                        from: date)
+		guard
+			let year = c.year,
+			let month = c.month?.doubleDigitString,
+			let day = c.day?.doubleDigitString,
+			let hour = c.hour?.doubleDigitString,
+			let minute = c.minute?.doubleDigitString
+		else { return nil }
+		
+		return "\(year)-\(month)-\(day)-\(hour)\(minute)"
+	}
+	
+	
+	/// Creates a friendly reading time text.
+	///
+	/// - Parameter text: The text for which a reading time is desired.
+	/// - Returns: A string in "X min/sec read" format.
 	static func readingTime(for text: String) -> String {
 		let text = NSMutableString(string: text)
 		let range = NSRange(location: 0, length: text.length)
@@ -114,7 +217,23 @@ extension Post {
 		return readingTime
 	}
 	
-	static func truncate(_ text: String, to size: Int, wordWrap: Bool = false) -> String {
+	
+	/// Truncates a text to a number of characters, but only if it's longer than said number + 30%; otherwise it does nothing.
+	///
+	/// - Parameters:
+	///   - text: The text to be truncated.
+	///   - size: The size to be truncated to.
+	///   - wordWrap: A flag which determines if the truncation should stop at a word boundary.
+	/// - Returns: The truncated text, and a Bool which indicates if truncation happened.
+	static func truncate(_ text: String, to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
+		let shouldTruncate = String.httpTagRegex
+			.stringByReplacingMatches(in: text,
+			                          range: text.nsRange,
+			                          withTemplate: "")
+			.length > Int(Double(size) * 1.3)
+		
+		guard shouldTruncate else { return (text, false) }
+		
 		// The size of the actual string that will be visible, without HTML.
 		var printedSize = 0
 		// The starting position of the string that will be visible - starts after the current matched tag.
@@ -222,7 +341,7 @@ extension Post {
 			output += " [&hellip;]"
 		}
 		
-		return output
+		return (output, true)
 	}
 	
 }
