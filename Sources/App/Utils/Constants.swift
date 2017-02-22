@@ -7,17 +7,22 @@
 //
 
 import Foundation
+import HTTP
 import Vapor
 import VaporPostgreSQL
 
 struct C {
 	
+	private static let middleware: [Middleware] = [
+		RedirectMiddleware(),
+		HeadersMiddleware()
+	]
+	
 	static let drop: Droplet = {
 		let d = Droplet()
 		
 		d.preparations = [Post.self]
-		d.addConfigurable(middleware: RedirectMiddleware(), name: "redirects")
-		d.addConfigurable(middleware: HeadersMiddleware(), name: "headers")
+		d.middleware.append(contentsOf: middleware)
 		try? d.addProvider(VaporPostgreSQL.Provider.self)
 		
 		return d

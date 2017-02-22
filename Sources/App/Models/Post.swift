@@ -38,6 +38,8 @@ struct Post {
 	let datetime: String
 	let link: String
 	
+	static var postsPerPage: Int { return C.drop.config["servers", "postsPerPage"]?.int ?? 10 }
+	
 }
 
 extension Post: Model {
@@ -194,7 +196,7 @@ extension Post {
 		
 		guard
 			let posts = try? Post.query()
-				.filter("link", contains: link).run()
+				.filter("link", contains: link, sensitive: true).run()
 				// Just in the rare case where we have post-title
 				// and not only post-title-XX exists, but also post-title-extra.
 				.filter({ $0.linkMatches(link) })

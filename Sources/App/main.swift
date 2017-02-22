@@ -1,29 +1,17 @@
 import Vapor
-import VaporPostgreSQL
-import Foundation
 
 let drop = C.drop
 
-drop.get { req in
-	
-//	for _ in 0..<10 {
-		var p1 = Post(title: "Title two", body: "Short y", datetime: "2017-02-21-1707")
-//		var p2 = Post(title: "Title two", body: "Short body", datetime: "2017-02-21-1302")
-	
-	p1.saveOrUpdate()
-	
-	let start = Date()
-		
-	try Post.query().filter("link", contains: "title-one").run()
-	
-	let finish = Date()
-	let executionTime = finish.timeIntervalSince(start)
-	
-	print(String(format: "Execution Time: %.4f", executionTime))
-	
-	return try JSON(node: Post.all())
-}
-
-//drop.get("/") { _ in return }
+drop.get("/feed", handler: FeedController.create)
+drop.get("/sitemap.xml", handler: SitemapController.create)
+drop.get("/about", handler: AboutController.display)
+drop.get("/archive", handler: ArchiveController.display)
+drop.get("/privacy-policy", handler: PrivacyController.display)
+drop.get("/projects", handler: ProjectsController.display)
+drop.get("/downloads", handler: DownloadsController.process)
+drop.get("/cmd.sync", handler: SyncController.perform)
+drop.get("/search", handler: SearchController.perform)
+drop.get("/", ":id", handler: PageController.display)
+drop.get("/", handler: PageController.display)
 
 drop.run()
