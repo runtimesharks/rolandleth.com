@@ -15,4 +15,10 @@ extension Int {
 		return "\(self)"
 	}
 	
+	var tripleDigitString: String {
+		if self < 10 { return "00\(self)" }
+		if self < 100 { return "0\(self)" }
+		return "\(self)"
+	}
+	
 }

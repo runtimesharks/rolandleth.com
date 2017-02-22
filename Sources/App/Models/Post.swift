@@ -11,15 +11,32 @@ import Vapor
 
 struct Post {
 	
+	// Model.
 	var id: Node?
 	var exists = false
 	
 	let title: String
-	let body: String
-	let truncatedBody: String
+	var body: String {
+		didSet {
+			let truncation = Post.truncate(body, to: 500)
+			let truncationSuffix: String
+			
+			if truncation.performed {
+				truncationSuffix = "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
+			}
+			else {
+				truncationSuffix = ""
+			}
+			
+			truncatedBody = truncation.text + truncationSuffix
+			
+			readingTime = Post.readingTime(for: body)
+		}
+	}
+	var truncatedBody = ""
+	var readingTime = ""
 	let datetime: String
 	let link: String
-	let readingTime: String
 	
 }
 
@@ -43,12 +60,32 @@ extension Post: Model {
 			posts.string("truncatedbody", length: 999, optional: false, unique: false, default: nil)
 			posts.string("datetime", length: 70, optional: false, unique: false, default: nil)
 			posts.string("link", length: 100, optional: false, unique: true, default: nil)
-			posts.string("readingtime", length: 20, optional: false, unique: false, default: "")
+			posts.string("readingtime", length: 20, optional: false, unique: false, default: nil)
 		}
 	}
 	
 	static func revert(_ database: Database) throws {
 		try database.delete("posts")
+	}
+	
+	
+	/// Tries to save the entity, and if it already exists, it updates its body.
+	mutating func saveOrUpdate() {
+		do {
+			try save()
+		}
+		catch {
+			if DatabaseError(error) == .alreadyExists {
+				do {
+					var p = try Post.query().filter("link", link).first()
+					p?.body = body
+					try p?.save()
+				}
+				catch let e {
+					print(e)
+				}
+			}
+		}
 	}
 	
 }
@@ -69,6 +106,7 @@ extension Post: NodeRepresentable {
 	
 }
 
+// MARK: - Instance methods
 extension Post {
 	
 	/// Converts the `datetime` field into a `Date`.
@@ -102,19 +140,12 @@ extension Post {
 		return calendar.date(from: components)
 	}
 	
-	
-	/// Tests if the link matches another post's link, by checking for --X variations.
+	/// Tests if the link matches another, by checking if they're equal and for --X variations.
 	///
-	/// - Parameter post: The post to check against.
+	/// - Parameter link: The link to check against.
 	/// - Returns: A flag which indicates if the links are equal.
-	func hasMatchingLink(with post: Post) -> Bool {
-		return
-			// post-link
-			link == link
-			// post-link--1
-			|| link + "--" == post.link[post.link.length - 3..<post.link.length]
-			// post-link--10
-			|| link + "--" == post.link[post.link.length - 4..<post.link.length]
+	func linkMatches(_ link: String) -> Bool {
+		return self.link == link || self.link.contains("\(link)--")
 	}
 	
 	init(title: String, body: String, datetime: String) {
@@ -122,35 +153,37 @@ extension Post {
 		self.title = title
 		self.body = body
 		self.datetime = datetime
-		link = Post.link(from: title)
-		
-		let truncation = Post.truncate(body, to: 500)
-		let truncationSuffix: String
-		
-		if truncation.performed {
-			truncationSuffix = "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
-		}
-		else {
-			truncationSuffix = ""
-		}
-		
-		truncatedBody = truncation.text + truncationSuffix
-		readingTime = Post.readingTime(for: body)
+		link = Post.link(from: title, with: datetime)
 	}
 	
 }
 
+// MARK: - Static methods
 extension Post {
 	
+	/// Returns the variation for a link. --X means it's a post with a duplicate title. Rarely happens.
+	///
+	/// - Parameter link: The link to check.
+	/// - Returns: The variation of the link, or `0` if it's the original.
+	private static func variation(for link: String) -> Int {
+		guard
+			let v = link.components(separatedBy: "--").last,
+			let variation = Int(v)
+		else { return 0 }
+		
+		return variation
+	}
 	
 	/// Creates a link out of a title.
 	///
-	/// - Parameter title: the post's title.
+	/// - Parameters:
+	///   - title: The post's title.
+	///   - datetime: The post's datetime.
 	/// - Returns: A safe link.
-	static func link(from title: String) -> String {
+	fileprivate static func link(from title: String, with datetime: String) -> String {
 		let regex = try! NSRegularExpression(pattern: "([#,;!:'\"\\$\\?\\(\\)\\[\\]\\{\\}\\/\\\\]+)",
 		                                     options: .caseInsensitive)
-		return regex
+		let link = regex
 			.stringByReplacingMatches(in: title,
 			                          range: title.nsRange,
 			                          withTemplate: "")
@@ -158,14 +191,29 @@ extension Post {
 			.replacingOccurrences(of: " ", with: "-")
 			.replacingOccurrences(of: ".", with: "-")
 			.lowercased()
+		
+		guard
+			let posts = try? Post.query()
+				.filter("link", contains: link).run()
+				// Just in the rare case where we have post-title
+				// and not only post-title-XX exists, but also post-title-extra.
+				.filter({ $0.linkMatches(link) })
+				.sorted(by: { Post.variation(for: $0.link) < Post.variation(for: $1.link) }),
+			let lastLink = posts.last?.link
+		else { return link }
+		
+		guard let postToUpdate = posts.filter({ $0.datetime == datetime }).first else {
+			return link + "--\(Post.variation(for: lastLink) + 1)"
+		}
+		
+		return postToUpdate.link
 	}
-	
 	
 	/// Converts a `Date` into a string of yyyy-MM-dd format.
 	///
 	/// - Parameter date: The `Date` to be converted.
 	/// - Returns: A string of yyyy-MM-dd format.
-	static func datetime(from date: Date) -> String? {
+	fileprivate static func datetime(from date: Date) -> String? {
 		let c = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
 		                                        from: date)
 		guard
@@ -179,12 +227,11 @@ extension Post {
 		return "\(year)-\(month)-\(day)-\(hour)\(minute)"
 	}
 	
-	
 	/// Creates a friendly reading time text.
 	///
 	/// - Parameter text: The text for which a reading time is desired.
 	/// - Returns: A string in "X min/sec read" format.
-	static func readingTime(for text: String) -> String {
+	fileprivate static func readingTime(for text: String) -> String {
 		let text = NSMutableString(string: text)
 		let range = NSRange(location: 0, length: text.length)
 		String.httpTagRegex.replaceMatches(in: text, range: range, withTemplate: "")
@@ -217,7 +264,6 @@ extension Post {
 		return readingTime
 	}
 	
-	
 	/// Truncates a text to a number of characters, but only if it's longer than said number + 30%; otherwise it does nothing.
 	///
 	/// - Parameters:
@@ -225,7 +271,7 @@ extension Post {
 	///   - size: The size to be truncated to.
 	///   - wordWrap: A flag which determines if the truncation should stop at a word boundary.
 	/// - Returns: The truncated text, and a Bool which indicates if truncation happened.
-	static func truncate(_ text: String, to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
+	fileprivate static func truncate(_ text: String, to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
 		let shouldTruncate = String.httpTagRegex
 			.stringByReplacingMatches(in: text,
 			                          range: text.nsRange,
