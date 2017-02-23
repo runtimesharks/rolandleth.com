@@ -3,31 +3,31 @@
 <link rel="canonical" href="https://rolandleth.com#(path)">
 <!-- Icons -->
 <link rel="shortcut icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/192x192.png"><!-- Android -->
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/favicons/180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/192x192.png"><!-- Android -->
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/favicons/180x180.png">
 <!--Metadata-->
 <link rel="author" type="text/plain" href="/humans.txt">
 <link href="https://rolandleth.com" rel="alternate" title="Roland Leth" type="application/atom+xml">
 <meta name="description" content="<%= metadata %>">
 <meta name="author" content="Roland Leth">
 <!--Stylesheets-->
-<link rel="stylesheet" href="/assets/globals/prism.css">
-<link rel="stylesheet" href="/assets/application.css">
-<link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/styles/globals/prism.css">
+<link rel="stylesheet" href="/styles/application.css">
+<link rel="stylesheet" href="/styles/font-awesome/css/font-awesome.min.css">
 <!--Mobile settings-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="HandheldFriendly" content="true">
 <meta name="MobileOptimized" content="375">
 <!--Scripts-->
-<script src="/assets/prism.min.js"></script>
-<script src="/assets/jquery.min.js">
+<script src="/js/prism.min.js"></script>
+<script src="/js/jquery.min.js">
 </script>
-<script src="/assets/base.js"></script>
+<script src="/js/base.js"></script>
 <!--Tracking-->
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
 	ga.l =+ new Date
 	ga('create', '#(process.env.ENV_TYPE === "development" ? "UA-40255117-5" : "UA-40255117-4")', 'auto')
 </script>
-<script async src="/assets/analytics.js"></script>
-<script async src="/assets/tracking.js"></script>
+<script async src="/js/analytics.js"></script>
+<script async src="/js/tracking.js"></script>

@@ -21,8 +21,8 @@ struct C {
 	static let drop: Droplet = {
 		let d = Droplet()
 		
-		d.preparations = [Post.self]
-		d.middleware.append(contentsOf: middleware)
+		d.preparations += Post.self
+		d.middleware += middleware
 		try? d.addProvider(VaporPostgreSQL.Provider.self)
 		
 		return d

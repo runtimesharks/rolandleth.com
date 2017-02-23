@@ -1,7 +1,7 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/assets/post.css">
+	<link rel="stylesheet" href="/styles/post.css">
 
 	#if(isSearch || page > 1) {
 		<meta name="robots" content="noindex, noarchive">

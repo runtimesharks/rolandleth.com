@@ -6,15 +6,25 @@
 //
 //
 
-import Foundation
-import Vapor
 import HTTP
-import VaporPostgreSQL
 
 struct DownloadsController {
 	
-	static func process(with request: Request) throws -> ResponseRepresentable {
-		return try JSON(node: "download")
+	static func process(with request: Request, path: String) throws -> ResponseRepresentable {
+		let asset: String = {
+			switch path {
+			case "privacy-policy.md": return "Roland Leth - Privacy Policy.md"
+			case "resume.pdf": return "Roland Leth - Résumé.pdf"
+			case "europass.pdf": return "Roland Leth - Europass.pdf"
+			case "carminder-press-kit.zip": return "Carminder Press Kit.zip"
+			case "expenses-planner-press-kit.zip": return "Expenses Planner Press Kit.zip"
+			default: return ""
+			}
+		}()
+		
+		guard !asset.isEmpty else { return try NotFoundController.display(with: request) }
+		
+		return Response(redirect: "/files/\(asset)")
 	}
 	
 }

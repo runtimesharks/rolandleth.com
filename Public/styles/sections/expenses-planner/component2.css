@@ -49,7 +49,7 @@
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	transition: all 0.3s ease;
-	background: url('/assets/misc/iPhone.png') no-repeat;
+	background: url('/images/misc/iPhone.png') no-repeat;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;

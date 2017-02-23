@@ -6,19 +6,22 @@
 //
 //
 
-import Foundation
-import Vapor
 import HTTP
-import VaporPostgreSQL
 
 struct NotFoundController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
+		let params = [
+			"title": "404",
+			"path": request.uri.path
+		]
+		
 		if request.uri.path == "/search" {
-			return try JSON(node: "no results")
+			return try C.drop.view.make("not-found-search", params
+			)
 		}
 		
-		return try JSON(node: "not found")
+		return try C.drop.view.make("not-found", params)
 	}
 	
 }
