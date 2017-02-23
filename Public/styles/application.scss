@@ -1,5 +1,5 @@
 @import 'globals/variables';
-@import 'globals/reset';
+@import 'globals/reset.css';
 
 html {
 	//border-left: 4px solid $link-color;
@@ -71,15 +71,15 @@ a {
 	&:hover {
 		border-bottom-color: $linkColor;
 	}
-	
+
 	.article-header &, .site-header & {
 		color: $textColor;
 		border-bottom: none;
-		
+
 		&:hover {
 			color: $linkColor;
 		}
-		
+
 		@include transition(color, 0.3s);
 	}
 }
@@ -106,12 +106,12 @@ img {
 		display: table;
 		margin: 10px auto;
 	}
-	
+
 	.centered & {
 		display: inline;
 		margin: 10px;
 	}
-	
+
 	.centered-image-wrapper & {
 		margin: 0 auto;
 	}
