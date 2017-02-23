@@ -16,6 +16,15 @@ struct SearchController {
 	static func perform(with request: Request) throws -> ResponseRepresentable {
 		guard
 			let query = request.query?.object?["q"]?.string,
+			!query.trim().isEmpty
+		else { return try JSON(node: ["results": []]) }
+		
+		return try JSON(node: "search raw")
+	}
+	
+	static func display(with request: Request) throws -> ResponseRepresentable {
+		guard
+			let query = request.query?.object?["q"]?.string,
 			!query.trim().isEmpty,
 //			let driver = C.drop.database?.driver as? PostgreSQLDriver,
 //			case let sql = "SELECT * FROM posts WHERE title ILIKE '%\(query)%' OR body ILIKE '%\(query)%'",

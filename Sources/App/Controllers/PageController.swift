@@ -13,6 +13,21 @@ import VaporPostgreSQL
 
 struct PageController {
 	
+	static func fetch(with request: Request, page: Int) throws -> ResponseRepresentable {
+		let posts = try fetchPosts(for: page, with: request).makeNode()
+		
+		print("posts: \(posts.array!.count)")
+		
+		return try JSON(node: ["posts": posts])
+	}
+	
+	private static func fetchPosts(for page: Int, with request: Request) -> [Post] {
+		let posts = try? Post.query().limit(Post.postsPerPage,
+		                                    withOffset: Post.postsPerPage * (page - 1)).run()
+		
+		return posts ?? []
+	}
+	
 	/// Attempts to display the page, redirecting to root if it's the first page, or to 404 if the page is invalid.
 	static func display(with request: Request) throws -> ResponseRepresentable {
 		let params = request.parameters
@@ -38,11 +53,9 @@ struct PageController {
 	}
 	
 	private static func display(page: Int, with request: Request) throws -> ResponseRepresentable {
-		guard
-			let posts = try? Post.query()
-				.limit(Post.postsPerPage, withOffset: Post.postsPerPage * (page - 1)).run(),
-			!posts.isEmpty
-			else { return try NotFoundController.display(with: request) }
+		guard case let posts = fetchPosts(for: page, with: request), !posts.isEmpty else {
+			return try NotFoundController.display(with: request)
+		}
 		
 		print("page: \(page), posts: \(posts.count)")
 		

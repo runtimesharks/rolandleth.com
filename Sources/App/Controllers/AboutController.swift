@@ -17,4 +17,8 @@ struct AboutController {
 		return try JSON(node: "about")
 	}
 	
+	static func create(with request: Request) throws -> ResponseRepresentable {
+		return try JSON(node: "about raw")
+	}
+	
 }

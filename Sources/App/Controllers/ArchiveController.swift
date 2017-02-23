@@ -17,4 +17,8 @@ struct ArchiveController {
 		return try JSON(node: "archive")
 	}
 	
+	static func create(with request: Request) throws -> ResponseRepresentable {
+		return try JSON(node: "archive raw")
+	}
+	
 }
