@@ -5818,7 +5818,6 @@
 		OBJ_1407 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		OBJ_1409 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		OBJ_141 /* bss_fd.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bss_fd.c; sourceTree = "<group>"; };
-		OBJ_1411 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
 		OBJ_1412 /* Config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Config; sourceTree = SOURCE_ROOT; };
 		OBJ_1413 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = SOURCE_ROOT; };
 		OBJ_1414 /* Localization */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Localization; sourceTree = SOURCE_ROOT; };
@@ -9298,13 +9297,12 @@
 			path = "Packages/CLibreSSL-1.0.0/Sources/CLibreSSL";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_1410 /* Tests */,
-				OBJ_1411 /* assets */,
 				OBJ_1412 /* Config */,
 				OBJ_1413 /* lib */,
 				OBJ_1414 /* Localization */,
@@ -9315,7 +9313,6 @@
 				OBJ_1419 /* views */,
 				OBJ_1420 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_657 /* include */ = {
@@ -11496,7 +11493,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1420 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

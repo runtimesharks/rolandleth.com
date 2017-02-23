@@ -15,7 +15,7 @@ const emoji = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
 	<div class="copyright">
 		<div class="ssl">
 			<script language="JavaScript" type="text/javascript">
-				TrustLogo("https://rolandleth.com/assets/misc/ssl-logo.png", "CL1", "aaa");
+				TrustLogo("https://rolandleth.com/images/misc/ssl-logo.png", "CL1", "aaa");
 			</script>
 		</div>
 		&copy;
