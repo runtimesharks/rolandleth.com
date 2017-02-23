@@ -1,0 +1,10 @@
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/styles/post.css">
+	<link rel="stylesheet" href="/assets/post-page.css">
+}
+
+#export("body") {
+	#embed("Partials/article")
+}

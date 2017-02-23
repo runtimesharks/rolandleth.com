@@ -37,6 +37,7 @@ struct Post {
 	var readingTime = ""
 	let datetime: String
 	let link: String
+	let date: String
 	
 	static var postsPerPage: Int { return C.drop.config["servers", "postsPerPage"]?.int ?? 10 }
 	
@@ -48,10 +49,12 @@ extension Post: Model {
 		id = try node.extract("id")
 		title = try node.extract("title")
 		body = try node.extract("body")
-		datetime = try node.extract("datetime")
+		let datetime = try node.extract("datetime") as String
+		self.datetime = datetime
 		link = try node.extract("link")
 		truncatedBody = try node.extract("truncatedbody")
 		readingTime = try node.extract("readingtime")
+		date = Post.shortDate(from: datetime)
 	}
 	
 	static func prepare(_ database: Database) throws {
@@ -102,7 +105,8 @@ extension Post: NodeRepresentable {
 			"truncatedBody": truncatedBody,
 			"datetime": datetime,
 			"link": link,
-			"readingTime": readingTime]
+			"readingTime": readingTime,
+			"date": date]
 		)
 	}
 	
@@ -110,37 +114,6 @@ extension Post: NodeRepresentable {
 
 // MARK: - Instance methods
 extension Post {
-	
-	/// Converts the `datetime` field into a `Date`.
-	///
-	/// - Returns: A `Date` corresponding to the post's `datetime`, or `nil` if invalid.
-	func date() -> Date? {
-		let calendar = Calendar.current
-		
-		guard
-			let regex = try? NSRegularExpression(pattern: "(\\d{4})-(\\d{2})-(\\d{2})-(\\d{4})",
-			                                     options: .caseInsensitive),
-			case let matches = regex.matches(in: datetime,
-			                                 range: datetime.nsRange).map({ $0.range }),
-			matches.count == 4,
-			let yearRange = matches.first,
-			case let monthRange = matches[1],
-			case let dayRange = matches[2],
-			let timeRange = matches.last,
-			timeRange.length == 4,
-			let year = Int(datetime.substring(with: datetime.range(from: yearRange))),
-			let month = Int(datetime.substring(with: datetime.range(from: monthRange))),
-			let day = Int(datetime.substring(with: datetime.range(from: dayRange))),
-			case let time = datetime.substring(with: datetime.range(from: timeRange)),
-			let hour = Int(time[0..<2]),
-			let minute = Int(time[2..<4])
-		else { return nil }
-		
-		let components = DateComponents(year: year, month: month, day: day,
-		                                hour: hour, minute: minute)
-		
-		return calendar.date(from: components)
-	}
 	
 	/// Tests if the link matches another, by checking if they're equal and for --X variations.
 	///
@@ -156,12 +129,42 @@ extension Post {
 		self.body = body
 		self.datetime = datetime
 		link = Post.link(from: title, with: datetime)
+		date = Post.shortDate(from: datetime)
 	}
 	
 }
 
 // MARK: - Static methods
 extension Post {
+	
+	fileprivate static func shortDate(from datetime: String) -> String {
+		guard let d = Post.date(from: datetime) else { return "" }
+		return C.dateFormatter.string(from: d)
+	}
+	
+	/// Converts the `datetime` field into a `Date`.
+	///
+	/// - Returns: A `Date` corresponding to the post's `datetime`, or `nil` if invalid.
+	static func date(from datetime: String) -> Date? {
+		let calendar = Calendar.current
+		
+		guard
+			case let matches = datetime.components(separatedBy: "-"),
+			matches.count == 4,
+			let year = Int(matches[0]),
+			let month = Int(matches[1]),
+			let day = Int(matches[2]),
+			case let time = matches[3],
+			time.length == 4,
+			let hour = Int(time[0..<2]),
+			let minute = Int(time[2..<4])
+			else { return nil }
+		
+		let components = DateComponents(year: year, month: month, day: day,
+		                                hour: hour, minute: minute)
+		
+		return calendar.date(from: components)
+	}
 	
 	/// Returns the variation for a link. --X means it's a post with a duplicate title. Rarely happens.
 	///

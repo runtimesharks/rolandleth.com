@@ -1,7 +1,4 @@
-<%
-"use strict"
-
-const quotes = [
+#(quotes) = [
 	"Tables turn, bridges burn, you live and learn.",
 	"Dream big, if you dare to dream.",
 	"Your time is limited, so don't waste it living someone else's life.",
@@ -10,11 +7,10 @@ const quotes = [
 	"A lot can happen between now and \"never\"."
 ]
 const emoji = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
-%>
 
 <footer class="site-footer" role="contentinfo">
 	<div class="quote">
-		<%= _.sample(emoji) %>&nbsp&nbsp&nbsp<%= _.sample(quotes) %>
+		#raw() { <%= _.sample(emoji) %>&nbsp&nbsp&nbsp<%= _.sample(quotes) %> }
 	</div>
 	<div class="copyright">
 		<div class="ssl">
@@ -35,7 +31,7 @@ const emoji = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
 	<script async type="text/javascript">
 		var _merchantSettings = _merchantSettings || []
 		_merchantSettings.push(["AT", "1001l54C"]);
-		
+
 		(function() {
 			var autolink = document.createElement("script")
 			autolink.type  = "text/javascript"

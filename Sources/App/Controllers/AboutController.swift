@@ -14,7 +14,10 @@ import VaporPostgreSQL
 struct AboutController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try JSON(node: "about")
+		return try C.drop.view.make("about", [
+			"title": "About",
+			"path": request.uri.path]
+		)
 	}
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {

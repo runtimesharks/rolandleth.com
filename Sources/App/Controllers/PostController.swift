@@ -35,7 +35,12 @@ struct PostController {
 		
 		print("post: \(link)")
 		
-		return try JSON(node: post)
+		return try C.drop.view.make("post", [
+			"post": post,
+			"title": post.title,
+			"path": request.uri.path,
+			"singlePost": true]
+		)
 	}
 
 }

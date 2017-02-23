@@ -17,4 +17,8 @@ struct ProjectsController {
 		return try JSON(node: "projects")
 	}
 	
+	static func display(with request: Request, project: String) throws -> ResponseRepresentable {
+		return try drop.view.make("Standalone/\(project).html")
+	}
+	
 }

@@ -1,5 +1,8 @@
-<% layout("layout") %>
-<% block("head").append('<link rel="stylesheet" href="/assets/about.css">') %>
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/assets/about.css">
+}
 
 <div><img class="about" src="/assets/misc/MyPic.jpg" alt="My Picture" /></div>
 <p>
@@ -18,8 +21,8 @@
 			.com">Heroku</a>. It’s written using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, with the help of <a href="http://lightpaper.42squares.in">LightPaper</a> and <a href="http://omz-software.com/editorial/">Editorial</a>.
 </p>
 
-<% block("after-content").append('\
-	<div class="privacy-footer" role="extra contentinfo">\
-		<a href="/privacy-policy">Privacy Policy</a></p>\
-	</div>')
-%>
+#export("after-content") {
+	<div class="privacy-footer" role="extra contentinfo">
+		<a href="/privacy-policy">Privacy Policy</a></p>
+	</div>
+}

@@ -1,7 +1,6 @@
-<% "use strict" %>
 <meta charset="UTF-8">
-<title><%= title %></title>
-<link rel="canonical" href="<%= "https://rolandleth.com" + path %>">
+<title>#(title)</title>
+<link rel="canonical" href="https://rolandleth.com#(path)">
 <!-- Icons -->
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/192x192.png"><!-- Android -->
@@ -28,8 +27,7 @@
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
 	ga.l =+ new Date
-	ga('create', '<%= (process.env.ENV_TYPE === "development" ? "UA-40255117-5" : "UA-40255117-4") %>', 'auto')
+	ga('create', '#(process.env.ENV_TYPE === "development" ? "UA-40255117-5" : "UA-40255117-4")', 'auto')
 </script>
 <script async src="/assets/analytics.js"></script>
 <script async src="/assets/tracking.js"></script>
-

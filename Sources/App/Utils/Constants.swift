@@ -28,4 +28,16 @@ struct C {
 		return d
 	}()
 	
+	static var dateFormatter: DateFormatter {
+		struct Static {
+			static let formatter = DateFormatter()
+		}
+		
+		// Reset every time and set the required properties outside
+		Static.formatter.locale = Locale(identifier:"en_US_POSIX")
+		Static.formatter.dateFormat = "MMM dd, yyyy"
+		
+		return Static.formatter
+	}
+	
 }
