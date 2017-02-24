@@ -21,8 +21,7 @@ struct PageController {
 	}
 	
 	private static func fetchPosts(for page: Int, with request: Request) -> [Post] {
-		let posts = try? Post.query().limit(Post.postsPerPage,
-		                                    withOffset: Post.postsPerPage * (page - 1)).run()
+		let posts = try? Post.query().sorted().paginated(to: page).run()
 		
 		return posts ?? []
 	}
@@ -59,19 +58,18 @@ struct PageController {
 		print("page: \(page), posts: \(posts.count)")
 		
 		let totalPosts = try Post.query().count()
-		return try drop.view.make(
-			"article-list",
-			[
-				"title": "Roland Leth",
-				"path": "/\(page)",
-				"page": page,
-				"gap": 2,
-				"doubleGap": 4,
-				"pages": totalPosts / Post.postsPerPage,
-				"posts": posts.makeNode(),
-				"showPagination": totalPosts > Post.postsPerPage
-			],
-			for: request)
+		let params: [String: NodeRepresentable] = [
+			"title": "Roland Leth",
+			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth.",
+			"uriPath": "/",
+			"path": "/\(page)",
+			"page": page
+		]
+		
+		return try drop.view.showResults(with: params,
+		                                 for: request,
+		                                 posts: posts,
+		                                 totalPosts: totalPosts)
 	}
 	
 }

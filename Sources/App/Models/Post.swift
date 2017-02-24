@@ -18,79 +18,50 @@ struct Post {
 	let title: String
 	var body: String {
 		didSet {
-			let truncation = Post.truncate(body, to: 500)
-			let truncationSuffix: String
-			
-			if truncation.performed {
-				truncationSuffix = "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
-			}
-			else {
-				truncationSuffix = ""
-			}
-			
-			truncatedBody = truncation.text + truncationSuffix
-			
+			updateTruncatedBody()
 			readingTime = Post.readingTime(for: body)
 		}
 	}
-	var truncatedBody = ""
-	var readingTime = ""
+	var truncatedBody: String
+	var readingTime: String
 	let datetime: String
 	let link: String
 	let date: String
 	
 	static var postsPerPage: Int { return drop.config["servers", "postsPerPage"]?.int ?? 10 }
 	
-}
-
-extension Post: Model {
+	private mutating func updateTruncatedBody() {
+		let truncation = Post.truncate(body, to: 500)
+		let truncationSuffix: String
+		
+		if truncation.performed {
+			truncationSuffix = "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
+		}
+		else {
+			truncationSuffix = ""
+		}
+		
+		truncatedBody = truncation.text + truncationSuffix
+	}
 	
-	init(node: Node, in context: Context) throws {
-		id = try node.extract("id")
-		title = try node.extract("title")
-		body = try node.extract("body")
-		let datetime = try node.extract("datetime") as String
+	/// Tests if the link matches another, by checking if they're equal and for --X variations.
+	///
+	/// - Parameter link: The link to check against.
+	/// - Returns: A flag which indicates if the links are equal.
+	func linkMatches(_ link: String) -> Bool {
+		return self.link == link || self.link.contains("\(link)--")
+	}
+	
+	init(title: String, body: String, datetime: String) {
+		self.id = nil
+		self.title = title
+		self.body = body
 		self.datetime = datetime
-		link = try node.extract("link")
-		truncatedBody = try node.extract("truncatedbody")
-		readingTime = try node.extract("readingtime")
+		link = Post.link(from: title, with: datetime)
 		date = Post.shortDate(from: datetime)
-	}
-	
-	static func prepare(_ database: Database) throws {
-		try database.create("posts") { posts in
-			posts.id()
-			posts.string("title", length: 9_999, optional: false, unique: false, default: nil)
-			posts.string("body", length: 9_999, optional: false, unique: false, default: nil)
-			posts.string("truncatedbody", length: 999, optional: false, unique: false, default: nil)
-			posts.string("datetime", length: 70, optional: false, unique: false, default: nil)
-			posts.string("link", length: 100, optional: false, unique: true, default: nil)
-			posts.string("readingtime", length: 20, optional: false, unique: false, default: nil)
-		}
-	}
-	
-	static func revert(_ database: Database) throws {
-		try database.delete("posts")
-	}
-	
-	
-	/// Tries to save the entity, and if it already exists, it updates its body.
-	mutating func saveOrUpdate() {
-		do {
-			try save()
-		}
-		catch {
-			if DatabaseError(error) == .alreadyExists {
-				do {
-					var p = try Post.query().filter("link", link).first()
-					p?.body = body
-					try p?.save()
-				}
-				catch let e {
-					print(e)
-				}
-			}
-		}
+		readingTime = Post.readingTime(for: body)
+		truncatedBody = ""
+		updateTruncatedBody()
 	}
 	
 }
@@ -112,32 +83,10 @@ extension Post: NodeRepresentable {
 	
 }
 
-// MARK: - Instance methods
-extension Post {
-	
-	/// Tests if the link matches another, by checking if they're equal and for --X variations.
-	///
-	/// - Parameter link: The link to check against.
-	/// - Returns: A flag which indicates if the links are equal.
-	func linkMatches(_ link: String) -> Bool {
-		return self.link == link || self.link.contains("\(link)--")
-	}
-	
-	init(title: String, body: String, datetime: String) {
-		self.id = nil
-		self.title = title
-		self.body = body
-		self.datetime = datetime
-		link = Post.link(from: title, with: datetime)
-		date = Post.shortDate(from: datetime)
-	}
-	
-}
-
 // MARK: - Static methods
 extension Post {
 	
-	fileprivate static func shortDate(from datetime: String) -> String {
+	static func shortDate(from datetime: String) -> String {
 		guard let d = Post.date(from: datetime) else { return "" }
 		return DateFormatter.shared.string(from: d)
 	}
@@ -218,7 +167,7 @@ extension Post {
 	///
 	/// - Parameter date: The `Date` to be converted.
 	/// - Returns: A string of yyyy-MM-dd format.
-	fileprivate static func datetime(from date: Date) -> String? {
+	static func datetime(from date: Date) -> String? {
 		let c = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
 		                                        from: date)
 		guard

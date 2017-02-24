@@ -14,6 +14,8 @@ import VaporPostgreSQL
 struct SitemapController {
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
+		request.headers["Content-Type"] = "text/xml"
+		
 		return try JSON(node: "sitemap")
 	}
 	

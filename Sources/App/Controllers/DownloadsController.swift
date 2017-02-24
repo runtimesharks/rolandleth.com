@@ -11,6 +11,9 @@ import HTTP
 struct DownloadsController {
 	
 	static func process(with request: Request, path: String) throws -> ResponseRepresentable {
+//		headers["Content-Type"] = "application/pdf; filename=\(fileName)"
+//		headers["Content-Disposition"] = "inline; filename=\(fileName)"
+		
 		let asset: String = {
 			switch path {
 			case "privacy-policy.md": return "Roland Leth - Privacy Policy.md"

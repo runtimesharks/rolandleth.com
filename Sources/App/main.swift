@@ -14,6 +14,7 @@ drop.get("/projects", String.self, handler: ProjectsController.display)
 drop.get("/downloads", String.self, handler: DownloadsController.process)
 drop.get("/cmd.sync", handler: SyncController.perform)
 drop.get("/search", handler: SearchController.display)
+drop.get("/search", ":page", handler: SearchController.display)
 drop.get("/", ":id", handler: PageController.display)
 drop.get("/", handler: PageController.display)
 

@@ -6,22 +6,15 @@
 }
 
 #export("body") {
-	#loop(posts, "months", "year") {
+	#loop(posts, "data") {
 		<div class="one-half archive">
 			<h1>
-				#(//) { The first character is _, so it's forced as a string, thus the object ordered }
-				#(//) { year.substring(1, 5) %> }
+				#(data.year)
 			</h1>
-			#(//) {
-				<% _.forEach(months, function(posts) {
-						_.forEach(posts, function(post) {
-				%>
-							<h2>
-								<a href="<%= post.link %>"><%= post.title %></a>
-							</h2>
-				<%  })
-					})
-				%>
+			#loop(data.posts, "post") {
+				<h2>
+					<a href="#(post.link)">#(post.title)</a>
+				</h2>
 			}
 		</div>
 	}

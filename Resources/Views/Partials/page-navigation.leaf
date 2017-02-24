@@ -1,19 +1,18 @@
 <nav class="pagination">
-
 	#(//) { The arrow }
 	#equal(page, "1") {
 		<span class="disabled">&larr; Prev</span>
 	} ##equal(page, "2") {
-		<a class="previous" href="/" rel="previous">&larr; Prev</a>
+		<a class="previous" href="#(uriPath)#(query)" rel="previous">&larr; Prev</a>
 	} ##else() {
-		<a class="previous" href="/#subtract(page, "1")" rel="previous">&larr; Prev</a>
+		<a class="previous" href="#(uriPath)#subtract(page, "1")#(query)" rel="previous">&larr; Prev</a>
 	}
 
 	#(//) { The gap }
 	#greaterThan(page, gap) {
-		<a href="/">1</a>
+		<a href="#(uriPath)#(query)">1</a>
 		#equal(page, doubleGap) {
-			<a href="/2">2</a>
+			<a href="#(uriPath)2#(query)">2</a>
 		} ##greaterThan(page, doubleGap) {
 			<span class="gap">&hellip;</span>
 		}
@@ -26,9 +25,9 @@
 			Also prev pagination - number links to '/' instead of current page - 1
 		}
 		#equal(page, "2") {
-			<a href="/" rel="previous">#subtract(page, "1")</a>
+			<a href="#(uriPath)#(query)" rel="previous">#subtract(page, "1")</a>
 		} ##else() {
-			<a href="/#subtract(page, "1")" rel="previous">#subtract(page, "1")</a>
+			<a href="#(uriPath)#subtract(page, "1")#(query)" rel="previous">#subtract(page, "1")</a>
 		}
 	}
 
@@ -38,7 +37,7 @@
 	#(//) { The next page }
 	#subtract(page, "1") {
 		#lessThan(page, self) {
-			<a href="/#add(page, "1")" rel="next">#add(page, "1")</a>
+			<a href="#(uriPath)#add(page, "1")#(query)" rel="next">#add(page, "1")</a>
 		}
 	}
 
@@ -50,7 +49,7 @@
 					#greaterThan(self, doubleGap) {
 						<span class="gap">&hellip;</span>
 					} ##else() {
-						<a href="/#subtract(pages, "1")">#subtract(pages, "1")</a>
+						<a href="#(uriPath)#subtract(pages, "1")#(query)">#subtract(pages, "1")</a>
 					}
 				}
 			}
@@ -59,8 +58,8 @@
 
 	#(//) { The arrow }
 	#lessThan(page, pages) {
-		<a href="/#(pages)">#(pages)</a>
-		<a class="next" href="/#add(page, "1")" rel="next">Next &rarr;</a>
+		<a href="#(uriPath)#(pages)#(query)">#(pages)</a>
+		<a class="next" href="#(uriPath)#add(page, "1")#(query)" rel="next">Next &rarr;</a>
 	} ##else() {
 		<span class="disabled">Next &rarr;</span>
 	}

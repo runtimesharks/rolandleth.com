@@ -19,8 +19,7 @@ struct PostController {
 	
 	private static func fetchPost(with link: String) -> Post? {
 		guard
-			let query = try? Post.query()
-				.filter("link", contains: link, sensitive: true),
+			let query = try? Post.query().filter("link", .contains(sensitive: false), link),
 			let post = try? query.first()
 		else { return nil }
 		
@@ -35,9 +34,10 @@ struct PostController {
 		print("post: \(link)")
 		
 		return try drop.view.make("post", [
-			"post": post,
 			"title": post.title,
 			"path": request.uri.path,
+			"metadata": post.title,
+			"post": post,
 			"singlePost": true]
 		)
 	}
