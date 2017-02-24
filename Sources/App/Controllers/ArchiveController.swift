@@ -12,7 +12,7 @@ import HTTP
 struct ArchiveController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try C.drop.view.make("archive", [
+		return try drop.view.make("archive", [
 			"title": "Archive",
 			"path": request.uri.path]
 		)

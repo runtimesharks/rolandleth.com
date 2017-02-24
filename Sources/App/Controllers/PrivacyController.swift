@@ -11,7 +11,7 @@ import HTTP
 struct PrivacyController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try C.drop.view.make("privacy-policy", [
+		return try drop.view.make("privacy-policy", [
 			"title": "Privacy Policy",
 			"path": request.uri.path
 			]

@@ -25,7 +25,7 @@ struct SearchController {
 		guard
 			let query = request.query?.object?["q"]?.string,
 			!query.trim().isEmpty,
-//			let driver = C.drop.database?.driver as? PostgreSQLDriver,
+//			let driver = drop.database?.driver as? PostgreSQLDriver,
 //			case let sql = "SELECT * FROM posts WHERE title ILIKE '%\(query)%' OR body ILIKE '%\(query)%'",
 //			let results = try? driver.raw(sql),
 //			let posts = results.nodeArray?.flatMap({ try? Post(node: $0) }),

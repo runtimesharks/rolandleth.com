@@ -13,11 +13,11 @@ extension Request {
 	
 	var isInsecure: Bool {
 		// Specific to Heroku's SSL handling.
-		return headers["x-forwarded-proto"]?.string == "https" && C.drop.environment == .production
+		return headers["x-forwarded-proto"]?.string == "https" && drop.environment == .production
 	}
 	
 	var hasWWW: Bool {
-		return uri.host.hasPrefix("www") && C.drop.environment == .production
+		return uri.host.hasPrefix("www") && drop.environment == .production
 	}
 	
 	var hasTrailingSlash: Bool {

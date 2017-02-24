@@ -1,6 +1,8 @@
 import Vapor
+import VaporPostgreSQL
+import HTTP
 
-let drop = C.drop
+let drop = Droplet().setUp()
 
 drop.get("/feed", handler: FeedController.create)
 drop.get("/sitemap.xml", handler: SitemapController.create)

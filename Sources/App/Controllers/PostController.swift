@@ -34,7 +34,7 @@ struct PostController {
 		
 		print("post: \(link)")
 		
-		return try C.drop.view.make("post", [
+		return try drop.view.make("post", [
 			"post": post,
 			"title": post.title,
 			"path": request.uri.path,

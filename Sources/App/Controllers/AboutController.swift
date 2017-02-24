@@ -12,7 +12,7 @@ import HTTP
 struct AboutController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try C.drop.view.make("about", [
+		return try drop.view.make("about", [
 			"title": "About",
 			"path": request.uri.path]
 		)

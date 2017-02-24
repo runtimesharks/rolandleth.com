@@ -6,7 +6,6 @@
 //
 //
 
-import Foundation
 import HTTP
 import URI
 
@@ -23,7 +22,7 @@ struct RedirectMiddleware: Middleware {
 		}()
 		
 		let uri = URI(
-			scheme: C.drop.environment == .production ? "https" : "http",
+			scheme: drop.environment == .production ? "https" : "http",
 			userInfo: request.uri.userInfo,
 			host: request.uri.host.replacingOccurrences(of: "www.", with: ""),
 			port: request.uri.port,

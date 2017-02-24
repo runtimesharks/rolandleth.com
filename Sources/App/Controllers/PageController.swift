@@ -58,7 +58,18 @@ struct PageController {
 		
 		print("page: \(page), posts: \(posts.count)")
 		
-		return try JSON(node: posts)
+		let totalPosts = try Post.query().count()
+		return try drop.view.make(
+			"article-list",
+			[
+				"page": page.makeNode(),
+				"gap": 2,
+				"doubleGap": 4,
+				"pages": totalPosts / Post.postsPerPage,
+				"posts": posts.makeNode(),
+				"showPagination": totalPosts > Post.postsPerPage
+			],
+			for: request)
 	}
 	
 }

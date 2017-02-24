@@ -17,11 +17,11 @@ struct NotFoundController {
 		]
 		
 		if request.uri.path == "/search" {
-			return try C.drop.view.make("not-found-search", params
+			return try drop.view.make("not-found-search", params
 			)
 		}
 		
-		return try C.drop.view.make("not-found", params)
+		return try drop.view.make("not-found", params)
 	}
 	
 }

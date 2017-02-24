@@ -39,7 +39,7 @@ struct Post {
 	let link: String
 	let date: String
 	
-	static var postsPerPage: Int { return C.drop.config["servers", "postsPerPage"]?.int ?? 10 }
+	static var postsPerPage: Int { return drop.config["servers", "postsPerPage"]?.int ?? 10 }
 	
 }
 
@@ -139,7 +139,7 @@ extension Post {
 	
 	fileprivate static func shortDate(from datetime: String) -> String {
 		guard let d = Post.date(from: datetime) else { return "" }
-		return C.dateFormatter.string(from: d)
+		return DateFormatter.shared.string(from: d)
 	}
 	
 	/// Converts the `datetime` field into a `Date`.

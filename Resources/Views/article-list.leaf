@@ -15,7 +15,7 @@
 }
 
 #export("after-content") {
-	#if(showNavigation) {
+	#if(showPagination) {
 		#embed("Partials/page-navigation")
 	}
 }
