@@ -1,16 +1,6 @@
-#(quotes) = [
-	"Tables turn, bridges burn, you live and learn.",
-	"Dream big, if you dare to dream.",
-	"Your time is limited, so don't waste it living someone else's life.",
-	"Be yourself, everyone else is taken.",
-	"[...] avoid the trap of thinking you have something to lose.",
-	"A lot can happen between now and \"never\"."
-]
-const emoji = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
-
 <footer class="site-footer" role="contentinfo">
 	<div class="quote">
-		#raw() { <%= _.sample(emoji) %>&nbsp&nbsp&nbsp<%= _.sample(quotes) %> }
+		#(emoji) &nbsp&nbsp&nbsp #(quote)
 	</div>
 	<div class="copyright">
 		<div class="ssl">
@@ -19,9 +9,7 @@ const emoji = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
 			</script>
 		</div>
 		&copy;
-		<%= new Date().getFullYear() %>
-		&nbspRoland Leth
-		&nbsp&mdash;&nbsp
+		#(year) &nbspRoland Leth &nbsp&mdash;&nbsp
 		<a class="home-footer" href="/" rel="home">Home</a>
 		&nbsp&mdash;&nbsp
 		<a href="/archive">Archive</a>

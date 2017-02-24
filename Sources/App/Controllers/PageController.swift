@@ -62,7 +62,9 @@ struct PageController {
 		return try drop.view.make(
 			"article-list",
 			[
-				"page": page.makeNode(),
+				"title": "Roland Leth",
+				"path": "/\(page)",
+				"page": page,
 				"gap": 2,
 				"doubleGap": 4,
 				"pages": totalPosts / Post.postsPerPage,
