@@ -105,8 +105,7 @@ struct SyncController {
 			contents = folderContents
 		}
 		
-		_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
-		group.enter()
+		_ = group.wait(timeout: DispatchTime(secondsFromNow: 240))
 		
 		contents.forEach { fileMetadata in
 			guard
@@ -114,17 +113,12 @@ struct SyncController {
 				let fileName = path.components(separatedBy: "/").last,
 				case let fileSplit = fileName.components(separatedBy: "-"),
 				fileSplit.count > 4,
-				case let datetime = "\(fileSplit[0])-\(fileSplit[1])-\(fileSplit[2])-\(fileSplit[3])",
-				let fileTitle = fileName
-					.replacingOccurrences(of: "\(datetime)-", with: "")
-					.components(separatedBy: ".md").first
+				case let datetime = "\(fileSplit[0])-\(fileSplit[1])-\(fileSplit[2])-\(fileSplit[3])"
 			else { return }
 			
-			let innerGroup = DispatchGroup()
-			innerGroup.enter()
+			group.enter()
 			
 			Dropbox.fetchFile(at: path) { fileContents in
-				defer { innerGroup.leave() }
 				guard
 					let fileContents = fileContents,
 					!fileContents.isEmpty,
@@ -132,17 +126,17 @@ struct SyncController {
 					fileContentsSplit.count > 1,
 					let title = fileContentsSplit.first,
 					case let body = fileContentsSplit.dropFirst().joined(separator: "\n\n")
-				else { return }
+				else { return group.leave() }
 				
-				var post = Post(title: title, body: body, datetime: datetime)
+				let htmlBody = MarkNoteParser.toHtml(body)
+				var post = Post(title: title, body: htmlBody, datetime: datetime)
 				post.saveOrUpdate()
 				success = true
+				group.leave()
 			}
 			
-			_ = innerGroup.wait(timeout: DispatchTime(secondsFromNow: 20))
+			_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
 		}
-		
-		_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
 		
 		return success
 	}

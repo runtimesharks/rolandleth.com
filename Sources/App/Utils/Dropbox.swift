@@ -36,9 +36,9 @@ struct Dropbox {
 	}
 	
 	static func fetchFile(at path: String, completion: @escaping (String?) -> Void) {
-		guard
-			let url = URL(string: "\(Dropbox.apiContentRoot)/files/auto\(path)")
-			else { return completion(nil) }
+		let path = path.replacingOccurrences(of: " ", with: "%20")
+		let urlString = "\(Dropbox.apiContentRoot)/files/auto\(path)"
+		guard let url = URL(string: urlString) else { return completion(nil) }
 		
 		let request = url.dropboxAuthenticatedRequest()
 		
@@ -46,7 +46,7 @@ struct Dropbox {
 			guard
 				let data = data,
 				let file = String(data: data, encoding: .utf8)
-				else { return }
+			else { return }
 			
 			completion(file)
 		}.resume()

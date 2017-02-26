@@ -10,10 +10,31 @@ import Foundation
 
 extension String {
 	
-	subscript (range: Range<Int>) -> String {
-		let start = index(startIndex, offsetBy: range.lowerBound, limitedBy: endIndex)
-		let end = index(startIndex, offsetBy: range.upperBound, limitedBy: endIndex)
-		return self[start!..<end!]
+	subscript(i: Int) -> Character {
+		return self[index(startIndex, offsetBy: i)]
+	}
+	
+	subscript(i: Int) -> String {
+		return String(self[i] as Character)
+	}
+	
+	subscript(r: Range<Int>) -> String {
+		return substring(with: Range(uncheckedBounds: (lower: index(startIndex, offsetBy: r.lowerBound),
+		                                               upper: index(startIndex, offsetBy: r.upperBound))
+			)
+		)
+	}
+	
+	subscript(range: NSRange) -> String {
+		let end = range.location + range.length
+		return self[Range(uncheckedBounds: (lower: range.location, upper: end))]
+	}
+	
+	subscript(substring: String) -> Range<String.Index>? {
+		return range(of: substring,
+		             options: .literal,
+		             range: Range(uncheckedBounds: (lower: startIndex, upper: endIndex)),
+		             locale: NSLocale.current)
 	}
 	
 	var length: Int { return characters.count }
