@@ -1,12 +1,12 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/assets/create-post.css">
+	<link rel="stylesheet" href="/styles/create-post.css">
 	<meta name="robots" content="none">
 }
 
 #export("body") {
-	<form method="post" action="/cmd.sync/create">
+	<form method="post" action="/cmd.sync/create-post">
 		<div class="input-wrapper half left">
 			<h1>Title: </h1>&nbsp;&nbsp;<input class="text-field" title="Title" type="text" name="title">
 		</div>

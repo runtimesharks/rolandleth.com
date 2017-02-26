@@ -3,16 +3,16 @@
 	#equal(page, "1") {
 		<span class="disabled">&larr; Prev</span>
 	} ##equal(page, "2") {
-		<a class="previous" href="#(uriPath)#(query)" rel="previous">&larr; Prev</a>
+		<a class="previous" href="#(root)#(query)" rel="previous">&larr; Prev</a>
 	} ##else() {
-		<a class="previous" href="#(uriPath)#subtract(page, "1")#(query)" rel="previous">&larr; Prev</a>
+		<a class="previous" href="#(root)#subtract(page, "1")#(query)" rel="previous">&larr; Prev</a>
 	}
 
 	#(//) { The gap }
 	#greaterThan(page, gap) {
-		<a href="#(uriPath)#(query)">1</a>
+		<a href="#(root)#(query)">1</a>
 		#equal(page, doubleGap) {
-			<a href="#(uriPath)2#(query)">2</a>
+			<a href="#(root)2#(query)">2</a>
 		} ##greaterThan(page, doubleGap) {
 			<span class="gap">&hellip;</span>
 		}
@@ -25,9 +25,9 @@
 			Also prev pagination - number links to '/' instead of current page - 1
 		}
 		#equal(page, "2") {
-			<a href="#(uriPath)#(query)" rel="previous">#subtract(page, "1")</a>
+			<a href="#(root)#(query)" rel="previous">#subtract(page, "1")</a>
 		} ##else() {
-			<a href="#(uriPath)#subtract(page, "1")#(query)" rel="previous">#subtract(page, "1")</a>
+			<a href="#(root)#subtract(page, "1")#(query)" rel="previous">#subtract(page, "1")</a>
 		}
 	}
 
@@ -37,7 +37,7 @@
 	#(//) { The next page }
 	#subtract(page, "1") {
 		#lessThan(page, self) {
-			<a href="#(uriPath)#add(page, "1")#(query)" rel="next">#add(page, "1")</a>
+			<a href="#(root)#add(page, "1")#(query)" rel="next">#add(page, "1")</a>
 		}
 	}
 
@@ -49,7 +49,7 @@
 					#greaterThan(self, doubleGap) {
 						<span class="gap">&hellip;</span>
 					} ##else() {
-						<a href="#(uriPath)#subtract(pages, "1")#(query)">#subtract(pages, "1")</a>
+						<a href="#(root)#subtract(pages, "1")#(query)">#subtract(pages, "1")</a>
 					}
 				}
 			}
@@ -58,8 +58,8 @@
 
 	#(//) { The arrow }
 	#lessThan(page, pages) {
-		<a href="#(uriPath)#(pages)#(query)">#(pages)</a>
-		<a class="next" href="#(uriPath)#add(page, "1")#(query)" rel="next">Next &rarr;</a>
+		<a href="#(root)#(pages)#(query)">#(pages)</a>
+		<a class="next" href="#(root)#add(page, "1")#(query)" rel="next">Next &rarr;</a>
 	} ##else() {
 		<span class="disabled">Next &rarr;</span>
 	}

@@ -36,14 +36,12 @@ struct SearchController {
 			!posts.isEmpty
 			else { return try NotFoundController.display(with: request) }
 		
-		print("search: \(query), posts: \(posts.count)")
-		
 		let totalPosts = try sql.count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Searching: \(query)",
 			"metadata": "Search results.",
 			"query": "?query=\(query)",
-			"uriPath": page == 2 ? "/search" : "/search/",
+			"root": page == 2 ? "/search" : "/search/",
 			"path": "/search",
 			"page": page
 		]

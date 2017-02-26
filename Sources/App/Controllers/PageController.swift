@@ -15,8 +15,6 @@ struct PageController {
 	static func fetch(with request: Request, page: Int) throws -> ResponseRepresentable {
 		let posts = try fetchPosts(for: page, with: request).makeNode()
 		
-		print("posts: \(posts.array!.count)")
-		
 		return try JSON(node: ["posts": posts])
 	}
 	
@@ -31,8 +29,10 @@ struct PageController {
 		let params = request.parameters
 		
 		if let page = try? params.extract("id") as Int {
-			guard page > 1 else { return Response(redirect: "/") }
-			guard request.uri.query?.isEmpty != false else { return Response(redirect: "/\(page)") }
+			guard page > 1 else { return request.rootRedirect }
+			guard request.uri.query?.isEmpty != false else {
+				return Response(headers: request.headers, redirect: "/\(page)")
+			}
 			
 			return try display(page: page, with: request)
 		}
@@ -41,7 +41,7 @@ struct PageController {
 		}
 		else if request.uri.path == "/" {
 			if request.uri.query?.isEmpty == false {
-				return Response(redirect: "/")
+				return request.rootRedirect
 			}
 			
 			return try display(page: 1, with: request)
@@ -55,13 +55,11 @@ struct PageController {
 			return try NotFoundController.display(with: request)
 		}
 		
-		print("page: \(page), posts: \(posts.count)")
-		
 		let totalPosts = try Post.query().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
 			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth.",
-			"uriPath": "/",
+			"root": "/",
 			"path": "/\(page)",
 			"page": page
 		]

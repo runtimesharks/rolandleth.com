@@ -15,12 +15,12 @@ extension Post: Model {
 		id = try node.extract("id")
 		title = try node.extract("title")
 		body = try node.extract("body")
-		let datetime = try node.extract("datetime") as String
-		self.datetime = datetime
+		datetime = try node.extract("datetime")
+		modified = try node.extract("modified")
 		link = try node.extract("link")
 		truncatedBody = try node.extract("truncatedbody")
 		readingTime = try node.extract("readingtime")
-		date = Post.shortDate(from: datetime)
+		date = try node.extract("date")
 	}
 	
 	static func prepare(_ database: Database) throws {
@@ -31,6 +31,7 @@ extension Post: Model {
 			posts.string("truncatedbody", length: 999, optional: false, unique: false, default: nil)
 			posts.string("datetime", length: 15, optional: false, unique: false, default: nil)
 			posts.string("date", length: 12, optional: false, unique: false, default: nil)
+			posts.string("modified", length: 15, optional: false, unique: false, default: nil)
 			posts.string("link", length: 100, optional: false, unique: true, default: nil)
 			posts.string("readingtime", length: 20, optional: false, unique: false, default: nil)
 		}

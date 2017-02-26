@@ -6,12 +6,21 @@
 //
 //
 
-import Foundation
 import HTTP
 import Vapor
 import VaporPostgreSQL
 
 extension Droplet {
+	
+	var syncKey: String {
+		return config["servers", "default", "syncKey"]?.string ?? ""
+	}
+	var dropboxKey: String {
+		return config["servers", "default", "dropboxKey"]?.string ?? ""
+	}
+	var postsPerPage: Int {
+		return config["servers", "default", "postsPerPage"]?.int ?? 10
+	}
 	
 	func setUp() -> Self {
 		if let leaf = view as? LeafRenderer {
@@ -52,25 +61,6 @@ extension Droplet {
 		p6.saveOrUpdate()
 		p7.saveOrUpdate()
 		p8.saveOrUpdate()
-	}
-	
-}
-
-extension ViewRenderer {
-	
-	func showResults(with params: [String: NodeRepresentable], for request: Request, posts: [Post], totalPosts: Int) throws -> ResponseRepresentable {
-		var params = params
-		let baseParams: [String: NodeRepresentable] = [
-			"gap": 2,
-			"doubleGap": 4,
-			"posts": try posts.makeNode(),
-			"pages": Int(ceil(Double(totalPosts) / Double(Post.postsPerPage))),
-			"showPagination": totalPosts > Post.postsPerPage
-		]
-		
-		baseParams.forEach { params[$0] = $1 }
-		
-		return try drop.view.make("article-list", params, for: request)
 	}
 	
 }

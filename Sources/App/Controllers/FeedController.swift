@@ -13,7 +13,7 @@ import VaporPostgreSQL
 struct FeedController {
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
-		request.headers["Content-Type"] = "text/xml"
+		request.setContentType(to: .xml)
 		
 		return try JSON(node: "feed")
 	}

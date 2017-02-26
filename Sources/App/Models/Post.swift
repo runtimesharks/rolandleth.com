@@ -27,8 +27,8 @@ struct Post {
 	let datetime: String
 	let link: String
 	let date: String
-	
-	static var postsPerPage: Int { return drop.config["servers", "postsPerPage"]?.int ?? 10 }
+	let modified: String
+	var path: String { return "/posts/\(datetime)-\(title).md" }
 	
 	private mutating func updateTruncatedBody() {
 		let truncation = Post.truncate(body, to: 500)
@@ -59,6 +59,7 @@ struct Post {
 		self.datetime = datetime
 		link = Post.link(from: title, with: datetime)
 		date = Post.shortDate(from: datetime)
+		modified = datetime
 		readingTime = Post.readingTime(for: body)
 		truncatedBody = ""
 		updateTruncatedBody()
@@ -77,7 +78,8 @@ extension Post: NodeRepresentable {
 			"datetime": datetime,
 			"link": link,
 			"readingTime": readingTime,
-			"date": date]
+			"date": date,
+			"modified": modified]
 		)
 	}
 	

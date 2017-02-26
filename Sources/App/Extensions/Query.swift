@@ -11,12 +11,12 @@ import Fluent
 
 extension Query {
 	
-	func sorted(past: Bool = false) throws -> Query<T> {
+	func sorted(future: Bool = false) throws -> Query<T> {
 		let q = try self
 			.sort("datetime", .descending)
 			.sort("title", .ascending)
 		
-		if past { return q }
+		if future { return q }
 		
 		return try q.filteredPast()
 	}
@@ -29,7 +29,7 @@ extension Query {
 	}
 	
 	func paginated(to page: Int) throws -> Query<T> {
-		return try limit(Post.postsPerPage, withOffset: Post.postsPerPage * (page - 1))
+		return try limit(drop.postsPerPage, withOffset: drop.postsPerPage * (page - 1))
 	}
 	
 	func filteredPast() throws -> Query<T> {

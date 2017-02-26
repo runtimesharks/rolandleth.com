@@ -31,8 +31,6 @@ struct PostController {
 			return try NotFoundController.display(with: request)
 		}
 		
-		print("post: \(link)")
-		
 		return try drop.view.make("post", [
 			"title": post.title,
 			"path": request.uri.path,

@@ -25,6 +25,10 @@ struct HeadersMiddleware: Middleware {
 			age = 86400 // A day for pages and posts.
 		}
 		
+		if let contentType = request.headers["Content-Type"] {
+			response.headers["Content-Type"] = contentType
+		}
+		
 		response.headers["Cache-Control"] = "public, max-age=\(age)"
 		// Disable the embedding of the site in an external one.
 		response.headers["Content-Security-Policy"] = "frame-ancestors 'none'" // Future proof.

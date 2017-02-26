@@ -38,4 +38,24 @@ extension Request {
 	var quote: String { return Request.quotes[Request.qi] }
 	var emoji: String { return Request.emojis[Request.qi] }
 	
+	var rootRedirect: Response {
+		return Response(headers: headers, redirect: "/", permanently: false)
+	}
+	
+}
+
+extension Message {
+	
+	func setContentType(to type: ContentType) {
+		headers["Content-Type"] = type.rawValue
+	}
+	
+}
+
+extension URLRequest {
+	
+	mutating func setContentType(to type: ContentType) {
+		setValue(type.rawValue, forHTTPHeaderField: "Content-Type")
+	}
+	
 }
