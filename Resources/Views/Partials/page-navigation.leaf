@@ -35,7 +35,7 @@
 	<span class="current">#(page)</span>
 
 	#(//) { The next page }
-	#subtract(page, "1") {
+	#subtract(pages, "1") {
 		#lessThan(page, self) {
 			<a href="#(root)#add(page, "1")#(query)" rel="next">#add(page, "1")</a>
 		}

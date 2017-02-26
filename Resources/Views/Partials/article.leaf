@@ -21,5 +21,9 @@
 			</h4>
 		}
 	</header>
-	#raw(post.body)
+	#if(singlePost) {
+		#raw(post.body)
+	} ##else() {
+		#raw(post.truncatedBody)
+	}
 </article>

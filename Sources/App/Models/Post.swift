@@ -211,9 +211,9 @@ extension Post {
 			
 			switch seconds {
 			case 0..<20: readingTime = ""
-			case 20...30: readingTime = "~ \(25) sec read"
-			case 30...50: readingTime = "~ \(45) sec read"
-			default: readingTime = "~ 1 min to read"
+			case 20...30: readingTime = "\(25) sec read"
+			case 30...50: readingTime = "\(45) sec read"
+			default: readingTime = "1 min read"
 			}
 		}
 		
@@ -311,8 +311,11 @@ extension Post {
 			
 			output += tag
 			
-			// Empty tags, or escaped characters don't require closing.
-			guard !tag.isEmpty, tag.first != "&", tag.last != ";" else { continue }
+			// Tags with less than 2 characters, brs, or escaped characters don't require closing.
+			guard
+				tag.length > 2, tag != "<br/>",
+				tag.first != "&", tag.last != ";"
+			else { continue }
 			// Images don't require closing.
 			if tag.length > 4, tag[0..<4] == "<img" { continue }
 			// If we're closing a tag, remove if from the stack.

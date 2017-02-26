@@ -22,6 +22,9 @@ code {
 
 pre {
 	&[class*="language-"] {
+		& code[class*="language-"] {
+			tab-size: 3;
+		}
 		overflow: auto;
 		padding: 0.5em 0 0.5em 1em;
 	}

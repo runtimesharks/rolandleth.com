@@ -249,6 +249,8 @@ pre {
   pre[class*="language-"] {
     overflow: auto;
     padding: 0.5em 0 0.5em 1em; }
+    pre[class*="language-"] code[class*="language-"] {
+      tab-size: 3; }
   pre code {
     padding-left: 0;
     background-color: #FFF;
