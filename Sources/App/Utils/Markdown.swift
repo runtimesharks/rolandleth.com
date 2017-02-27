@@ -356,6 +356,7 @@ public struct Markdown {
 		
 		text = encodeAmpsAndAngles(text)
 		text = doItalicsAndBold(text)
+		text = doMark(text)
 		text = doHardBreaks(text)
 		
 		return text
@@ -381,7 +382,7 @@ public struct Markdown {
 			if (grafs[i].hasPrefix("```")) {
 				var cssClass = "no-highlight"
 				if inCodeBlock {
-					grafs[i] = "codepreendtoken</code></pre>"
+					grafs[i] = "</code></pre>"
 				}
 				else {
 					if grafs[i].length > 3 {
@@ -427,8 +428,7 @@ public struct Markdown {
 		return grafs
 			.joined(separator: "\n")
 			.replacingOccurrences(of: "\n[&hellip;]", with: "&nbsp;[&hellip;]")
-			.replacingOccurrences(of: "\ncodepreendtoken", with: "")
-			.replacingOccurrences(of: "codeprestarttoken\n", with: "")
+			.replacingOccurrences(of: "precodestarttoken\n", with: "")
 	}
 	
 	fileprivate mutating func setup() {
@@ -1298,6 +1298,8 @@ public struct Markdown {
 		return "<code>\(span)</code>"
 	}
 	
+	fileprivate static let _mark = Regex("(==)([^\\s].+?[^\\s])(==)",
+	                                     options: RegexOptions.IgnorePatternWhitespace.union(RegexOptions.Singleline))
 	fileprivate static let _bold = Regex("(\\*\\*|__) (?=\\S) (.+?[*_]*) (?<=\\S) \\1",
 	                                     options: RegexOptions.IgnorePatternWhitespace.union(RegexOptions.Singleline))
 	fileprivate static let _strictBold = Regex("(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)\\2(?=\\S)(.*?\\S)\\2\\2(?!\\2)(?=[\\W_]|$)",
@@ -1321,6 +1323,11 @@ public struct Markdown {
 			text = Markdown._italic.replace(text, "<em>$2</em>")
 		}
 		return text
+	}
+	
+	/// Turn Markdown ==marked== into HTML mark tag
+	fileprivate func doMark(_ text: String) -> String {
+		return Markdown._mark.replace(text, "<mark>$2</mark>")
 	}
 	
 	/// Turn markdown line breaks (two space at end of line) into HTML break tags

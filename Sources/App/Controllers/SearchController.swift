@@ -49,7 +49,7 @@ struct SearchController {
 		let params: [String: NodeRepresentable] = [
 			"title": "Searching: \(query)",
 			"metadata": "Search results.",
-			"query": "?query=\(query)",
+			"query": "?query=\(query.addingPercentEncoding(withAllowedCharacters: .letters)!)",
 			"root": "/search/",
 			"page": page
 		]
