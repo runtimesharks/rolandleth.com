@@ -84,7 +84,7 @@ struct SyncController {
 		return Response.rootRedirect
 	}
 	
-	static func sync(delete: Bool = false) -> Bool {
+	static func sync(delete performDelete: Bool = false) -> Bool {
 		let group = DispatchGroup()
 		var success = false
 		
@@ -103,6 +103,8 @@ struct SyncController {
 		}
 		
 		_ = group.wait(timeout: DispatchTime(secondsFromNow: 240))
+		
+		var dbPosts: [Post] = []
 		
 		contents.forEach { fileMetadata in
 			guard
@@ -137,6 +139,8 @@ struct SyncController {
 					post.modified = modified
 				}
 				
+				if performDelete { dbPosts.append(post) }
+				
 				post.saveOrUpdate()
 				success = true
 				group.leave()
@@ -145,7 +149,16 @@ struct SyncController {
 			_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
 		}
 		
-		guard delete else { return success }
+		guard performDelete, let posts = try? Post.all() else { return success }
+		
+		for post in posts {
+			let existsInDropbox = dbPosts.contains {
+				post.link == $0.link && post.datetime == $0.datetime
+			}
+			guard !existsInDropbox else { continue }
+			
+			try? post.delete()
+		}
 		
 		return success
 	}
