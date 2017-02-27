@@ -41,14 +41,21 @@ extension ViewRenderer {
 	}
 	
 	func make(_ path: String, with params: [String: NodeRepresentable], for request: Request) throws -> View {
+		let fullRoot: String = {
+			var p = "\(request.uri.scheme)://\(request.uri.host)"
+			if drop.environment == .development {
+				p += ":8000"
+			}
+			return p
+		}()
 		let footerParams: [String: NodeRepresentable] = [
 			"quote": quote,
 			"emoji": emoji,
-			"baseRootPath": "\(request.uri.scheme)://\(request.uri.host)/"
+			"fullRoot": fullRoot
 		]
 		
 		let metadataParams: [String: NodeRepresentable] = [
-			"path": request.uri.path,
+			"path": request.pathWithoutTrailingSlash,
 			"metadata": params["title"] as? String ?? "" // Will be overwritten if it exists in the next step
 		]
 		

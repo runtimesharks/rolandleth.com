@@ -60,7 +60,6 @@ struct PageController {
 			"title": "Roland Leth",
 			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth.",
 			"root": "/",
-			"path": "/\(page)",
 			"page": page
 		]
 		

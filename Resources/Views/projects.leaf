@@ -1,5 +1,9 @@
 #extend("base")
 
+#export("head") {
+	<link rel="stylesheet" href="/styles/projects.css">
+}
+
 #export("body") {
 	<div class="article">
 		<h1>Apps</h1>
@@ -54,7 +58,7 @@
 	<div class="article">
 		<h1>Ruby</h1>
 		<p>
-			This blog: written in <a href="http://github.com/rolandleth/rolandleth.com">Node.js</a>, or <a
+			This blog: written in Swift, formerly in <a href="http://github.com/rolandleth/rolandleth.com">Node.js</a>, and <a
 				href="http://github.com/rolandleth/rolandleth.com/tree/sinatra">Sinatra</a> (unmaintained).<br>
 			<a href="https://github.com/rolandleth/Unused.rb">Unused.rb.</a> Find and delete unused assets in your Xcode project.<br>
 			<a href="https://github.com/rolandleth/lines-of-code.rb">Lines-Of-Code.rb.</a> Count the lines of code in your Xcode project (or in any folder, actually).

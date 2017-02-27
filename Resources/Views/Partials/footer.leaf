@@ -5,7 +5,7 @@
 	<div class="copyright">
 		<div class="ssl">
 			<script language="JavaScript" type="text/javascript">
-				TrustLogo("#(baseRootPath)/images/misc/ssl-logo.png", "CL1", "aaa");
+				TrustLogo("#(fullRoot)/images/misc/ssl-logo.png", "CL1", "aaa");
 			</script>
 		</div>
 		&copy;

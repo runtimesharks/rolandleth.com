@@ -13,20 +13,15 @@ struct RedirectMiddleware: Middleware {
 	
 	func respond(to request: Request, chainingTo next: Responder) throws -> Response {
 		guard
-			request.isInsecure || request.hasWWW || request.hasTrailingSlash
+			request.isInsecure || request.hasWWW
 		else { return try next.respond(to: request) }
-		
-		let path: String = {
-			if request.hasTrailingSlash { return request.uri.path.droppingLast() }
-			return request.uri.path
-		}()
 		
 		let uri = URI(
 			scheme: drop.environment == .production ? "https" : "http",
 			userInfo: request.uri.userInfo,
 			host: request.uri.host.replacingOccurrences(of: "www.", with: ""),
 			port: request.uri.port,
-			path: path,
+			path: request.pathWithoutTrailingSlash,
 			query: request.uri.query,
 			rawQuery: request.uri.rawQuery,
 			fragment: request.uri.fragment

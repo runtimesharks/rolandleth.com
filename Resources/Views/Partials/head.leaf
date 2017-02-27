@@ -1,13 +1,13 @@
 <meta charset="UTF-8">
 <title>#(title)</title>
-<link rel="canonical" href="https://rolandleth.com#(path)">
+<link rel="canonical" href="#(fullRoot)#(path)">
 <!-- Icons -->
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/192x192.png"><!-- Android -->
 <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/favicons/180x180.png">
 <!--Metadata-->
 <link rel="author" type="text/plain" href="/humans.txt">
-<link href="https://rolandleth.com" rel="alternate" title="Roland Leth" type="application/atom+xml">
+<link href="#(fullRoot)" rel="alternate" title="Roland Leth" type="application/atom+xml">
 <meta name="description" content="<%= metadata %>">
 <meta name="author" content="Roland Leth">
 <!--Stylesheets-->

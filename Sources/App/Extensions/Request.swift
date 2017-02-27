@@ -28,6 +28,10 @@ extension Request {
 		return Response(headers: headers, redirect: "/", permanently: false)
 	}
 	
+	var pathWithoutTrailingSlash: String {
+		if hasTrailingSlash { return uri.path.droppingLast() }
+		return uri.path
+	}
 }
 
 extension Message {

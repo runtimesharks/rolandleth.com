@@ -12,15 +12,16 @@ import VaporPostgreSQL
 
 struct ProjectsController {
 	
+	private static let params = [
+		"title": "Projects",
+		"metadata": "iOS, Ruby, Node and JS projects by Roland Leth."
+	]
+	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try JSON(node: "projects")
+		return try drop.view.make("projects", with: params, for: request)
 	}
 	
 	static func display(with request: Request, project: String) throws -> ResponseRepresentable {
-		let params = [
-			"title": "Projects",
-			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth."
-		]
 		return try drop.view.make("Standalone/\(project).html", with: params, for: request)
 	}
 	
