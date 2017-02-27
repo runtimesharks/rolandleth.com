@@ -6,13 +6,27 @@
 //
 //
 
+import Foundation
 import HTTP
 import Vapor
 
+private var qi: Int { return Int(arc4random() % UInt32(quotes.count - 1)) }
+private let quotes = [
+	"Tables turn, bridges burn, you live and learn.",
+	"Dream big, if you dare to dream.",
+	"Your time is limited, so don't waste it living someone else's life.",
+	"Be yourself, everyone else is taken.",
+	"[...] avoid the trap of thinking you have something to lose.",
+	"A lot can happen between now and \"never\"."
+]
+private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
+
 extension ViewRenderer {
 	
+	var quote: String { return quotes[qi] }
+	var emoji: String { return emojis[qi] }
+	
 	func showResults(with params: [String: NodeRepresentable], for request: Request, posts: [Post], totalPosts: Int) throws -> ResponseRepresentable {
-		var params = params
 		let baseParams: [String: NodeRepresentable] = [
 			"gap": 2,
 			"doubleGap": 4,
@@ -21,9 +35,26 @@ extension ViewRenderer {
 			"showPagination": totalPosts > drop.postsPerPage
 		]
 		
-		baseParams.forEach { params[$0] = $1 }
+		let params = params + baseParams
 		
-		return try drop.view.make("article-list", params, for: request)
+		return try make("article-list", with: params, for: request)
+	}
+	
+	func make(_ path: String, with params: [String: NodeRepresentable], for request: Request) throws -> View {
+		let footerParams: [String: NodeRepresentable] = [
+			"quote": quote,
+			"emoji": emoji,
+			"baseRootPath": "\(request.uri.scheme)://\(request.uri.host)/"
+		]
+		
+		let metadataParams: [String: NodeRepresentable] = [
+			"path": request.uri.path,
+			"metadata": params["title"] as? String ?? "" // Will be overwritten if it exists in the next step
+		]
+		
+		let params = footerParams + metadataParams + params
+		
+		return try make(path, params)
 	}
 	
 }

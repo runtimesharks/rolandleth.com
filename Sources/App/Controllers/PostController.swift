@@ -52,13 +52,12 @@ struct PostController {
 			return try NotFoundController.display(with: request)
 		}
 		
-		return try drop.view.make("post", [
+		let params: [String: NodeRepresentable] = [
 			"title": post.title,
-			"path": request.uri.path,
-			"metadata": post.title,
 			"post": post,
 			"singlePost": true]
-		)
+		
+		return try drop.view.make("post", with: params, for: request)
 	}
 
 }

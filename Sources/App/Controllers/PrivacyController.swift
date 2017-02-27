@@ -11,11 +11,11 @@ import HTTP
 struct PrivacyController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try drop.view.make("privacy-policy", [
+		let params = [
 			"title": "Privacy Policy",
-			"metadata": "Roland Leth's privacy policy",
-			"path": request.uri.path]
-		)
+			"metadata": "Roland Leth's privacy policy"
+		]
+		return try drop.view.make("privacy-policy", with: params, for: request)
 	}
 	
 }

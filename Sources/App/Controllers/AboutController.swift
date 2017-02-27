@@ -12,11 +12,11 @@ import HTTP
 struct AboutController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		return try drop.view.make("about", [
+		let params = [
 			"title": "About",
-			"metadata": "Some information about the blog. Details, résumé and contact information about Roland Leth.",
-			"path": request.uri.path]
-		)
+			"metadata": "Some information about the blog. Details, résumé and contact information about Roland Leth."
+		]
+		return try drop.view.make("about", with: params, for: request)
 	}
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {

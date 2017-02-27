@@ -23,7 +23,7 @@ struct SyncController {
 		case "delete": success = sync(force: false, delete: true)
 		case "force-delete": fallthrough
 		case "delete-force": success = sync(force: true, delete: true)
-		case "create": return try drop.view.make("create-post", for: request)
+		case "create": return try drop.view.make("create-post", with: [:], for: request)
 		default: success = sync(force: false, delete: false)
 		}
 		

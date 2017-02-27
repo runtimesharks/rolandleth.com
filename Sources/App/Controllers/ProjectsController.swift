@@ -17,10 +17,11 @@ struct ProjectsController {
 	}
 	
 	static func display(with request: Request, project: String) throws -> ResponseRepresentable {
-		return try drop.view.make("Standalone/\(project).html", [
+		let params = [
 			"title": "Projects",
-			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth."]
-		)
+			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth."
+		]
+		return try drop.view.make("Standalone/\(project).html", with: params, for: request)
 	}
 	
 }

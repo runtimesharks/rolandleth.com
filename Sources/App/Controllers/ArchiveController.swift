@@ -53,12 +53,13 @@ struct ArchiveController {
 			                     "posts": posts])
 		}
 		
-		return try drop.view.make("archive", [
+		let params: [String: NodeRepresentable] = [
 			"title": "Archive",
 			"metadata": "Roland Leth's archive.",
-			"path": request.uri.path.makeNode(),
-			"posts": groupedPosts.makeNode()]
-		)
+			"posts": try groupedPosts.makeNode()
+		]
+		
+		return try drop.view.make("archive", with: params, for: request)
 	}
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
