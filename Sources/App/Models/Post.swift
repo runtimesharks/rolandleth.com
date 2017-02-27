@@ -96,10 +96,11 @@ extension Post: NodeRepresentable {
 extension Post {
 	
 	fileprivate static func html(from body: String) -> String {
-		var options = MarkdownOptions()
-		options.linkEmails = false
-		var md = Markdown(options: options)
-		return md.transform(body)
+//		var options = MarkdownOptions()
+//		options.linkEmails = false
+//		var md = Markdown(options: options)
+//		return md.transform(body)
+		return MarkNoteParser.toHtml(body)
 	}
 	
 	static func shortDate(from datetime: String) -> String {

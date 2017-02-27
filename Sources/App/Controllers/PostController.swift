@@ -28,22 +28,21 @@ struct PostController {
 //		let group = DispatchGroup()
 //		let datetime = "2013-12-04-1831"
 //		group.enter()
-//		Dropbox.fetchFile(at: "/posts/2017-01-30-1801-Breaking labeled scopes.md") { fileContents in
+//		Dropbox.fetchFile(at: "/posts/2017-02-27-1102-Server side Swift with Vapor.md") { fileContents in
 //			guard
 //				let fileContents = fileContents,
 //				!fileContents.isEmpty,
 //				case let fileContentsSplit = fileContents.components(separatedBy: "\n\n"),
 //				fileContentsSplit.count > 1,
 //				let title = fileContentsSplit.first,
-//				case let body = fileContentsSplit.dropFirst().joined(separator: "\n\n")
+//				case var body = fileContentsSplit.dropFirst().joined(separator: "\n\n")
 //				else { return group.leave() }
 //			
-////			let htmlBody = MarkNoteParser.toHtml(bodly)
-//			var options = MarkdownOptions()
-//			options.linkEmails = false
-//			var md = Markdown(options: options)
-//			let htmlBody = md.transform(body)
-//			post = Post(title: title, body: htmlBody, datetime: datetime)
+//			body += "\nThis is ***a ~~test.~~***"
+//			body += "\nThis is ==a ~~test~~.=="
+//			body += "\nThis is *a **new** ~~great ==test==.~~!*"
+//			
+//			post = Post(title: title, body: body, datetime: datetime)
 //			group.leave()
 //		}
 //		

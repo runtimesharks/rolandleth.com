@@ -373,28 +373,25 @@ public class MarkNoteParser: NSObject {
 			let ch:Character = line[line.index(start, offsetBy: i)]
 			
 			switch ch {
-			case "*","_","~":
-				if (i + 1 > len - 1) {
+			case "=", "~":
+				if i + 1 > len - 1 {
 					output.append(ch)
 					return
 				}
-				var tag: String = {
-					switch ch {
-					case "~": return "del"
-					default: return "em"
-					}
-				}()
 				
 				let s = line.index(start, offsetBy: i)
 				let e = line.index(s, offsetBy: 2)
 				
-				if line[s..<e] == "\(ch)\(ch)" {
-					if ch == "*" {
-						tag = "strong"
-					}
-					i += 1
+				if line[s..<e] != "\(ch)\(ch)" {
+					output.append(ch)
+					break
 				}
 				
+				let tag = ch == "=" ? "mark" : "del"
+				
+				i += 1
+				
+				// Bold, em, del and mark tags have to be closed in inversed order, compared to all other HTML tags.
 				if let tagIndex = blockEndTags.index(of: "</\(tag)>") {
 					output += "</\(tag)>"
 					blockEndTags.remove(at: tagIndex)
@@ -404,32 +401,31 @@ public class MarkNoteParser: NSObject {
 					blockEndTags.append("</\(tag)>")
 				}
 				
-//				if line[line.index(start, offsetBy: i + 1)] == ch {
-//					//possible **
-//					if let strongIndex = blockEndTags.index(of: "</strong>") {
-//						output += "</strong>"
-//						blockEndTags.remove(at: strongIndex)
-//					}
-//					else {
-//						output += "<strong>"
-//						blockEndTags.append("</strong>")
-//					}
-//					i += 1 // To skip over the second * or _
-////					let remaining = line.substring(from: line.index(start, offsetBy: i + 2))
-////					i += scanClosedChar(MarkNoteParser.charArray(ch, len: 2),inStr: remaining,tag: strong) + 1
-//				} else {
-//					if let emIndex = blockEndTags.index(of: "</em>") {
-//						output += "</em>"
-//						blockEndTags.remove(at: emIndex)
-//					}
-//					else {
-//						output += "<em>"
-//						blockEndTags.append("</em>")
-//					}
-////					let remaining = line.substring(from: line.index(start, offsetBy: i + 1))
-////					i += 1
-////					i += scanClosedChar("\(ch)",inStr: remaining,tag: "em")
-//				}
+			case "*", "_":
+				var tag = "em"
+				
+				// Can't be a closing bold, if there's no char left.
+				if i < len - 1 {
+					let s = line.index(start, offsetBy: i)
+					let e = line.index(s, offsetBy: 2)
+					
+					if line[s..<e] == "\(ch)\(ch)" {
+						if ch == "*" {
+							tag = "strong"
+						}
+						i += 1
+					}
+				}
+				
+				// Bold, em, del and mark tags have to be closed in inversed order, compared to all other HTML tags.
+				if let tagIndex = blockEndTags.index(of: "</\(tag)>") {
+					output += "</\(tag)>"
+					blockEndTags.remove(at: tagIndex)
+				}
+				else {
+					output += "<\(tag)>"
+					blockEndTags.append("</\(tag)>")
+				}
 			case "`":
 				let remaining = line.substring(from: line.index(start, offsetBy: i + 1))
 				i += scanClosedChar("`",inStr: remaining,tag: "code")
