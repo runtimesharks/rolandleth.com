@@ -10,6 +10,7 @@
 		2A7215901E62F836008B1CD3 /* MarkNoteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A72158E1E62F836008B1CD3 /* MarkNoteParser.swift */; };
 		2A7215911E62F836008B1CD3 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A72158F1E62F836008B1CD3 /* StringExtensions.swift */; };
 		2AE0C3661E641099009FD3B1 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C3651E641099009FD3B1 /* Dictionary.swift */; };
+		2AE0C3681E645106009FD3B1 /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C3671E645105009FD3B1 /* Markdown.swift */; };
 		OBJ_1485 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1486 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1487 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -5468,6 +5469,7 @@
 		2A72158E1E62F836008B1CD3 /* MarkNoteParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkNoteParser.swift; sourceTree = "<group>"; };
 		2A72158F1E62F836008B1CD3 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		2AE0C3651E641099009FD3B1 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		2AE0C3671E645105009FD3B1 /* Markdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1000 /* FrameSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSerializer.swift; sourceTree = "<group>"; };
@@ -8657,6 +8659,7 @@
 			children = (
 				2A72158D1E62F836008B1CD3 /* MarkNoteParser */,
 				OBJ_1425 /* Dropbox.swift */,
+				2AE0C3671E645105009FD3B1 /* Markdown.swift */,
 				OBJ_1427 /* Queue.swift */,
 			);
 			path = Utils;
@@ -13121,6 +13124,7 @@
 				OBJ_3906 /* Post.swift in Sources */,
 				OBJ_3907 /* Dropbox.swift in Sources */,
 				OBJ_3909 /* Queue.swift in Sources */,
+				2AE0C3681E645106009FD3B1 /* Markdown.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,12 +22,13 @@ struct PostController {
 		guard
 			let query = try? Post.query().filter("link", .contains(sensitive: false), link),
 			let post = try? query.first()
+//			var post = try? query.first()
 		else { return nil }
 		
 //		let group = DispatchGroup()
 //		let datetime = "2013-12-04-1831"
 //		group.enter()
-//		Dropbox.fetchFile(at: "/posts/2013-12-04-1831-App Store reviews.md") { fileContents in
+//		Dropbox.fetchFile(at: "/posts/2017-01-30-1801-Breaking labeled scopes.md") { fileContents in
 //			guard
 //				let fileContents = fileContents,
 //				!fileContents.isEmpty,
@@ -37,7 +38,11 @@ struct PostController {
 //				case let body = fileContentsSplit.dropFirst().joined(separator: "\n\n")
 //				else { return group.leave() }
 //			
-//			let htmlBody = MarkNoteParser.toHtml(body)
+////			let htmlBody = MarkNoteParser.toHtml(bodly)
+//			var options = MarkdownOptions()
+//			options.linkEmails = false
+//			var md = Markdown(options: options)
+//			let htmlBody = md.transform(body)
 //			post = Post(title: title, body: htmlBody, datetime: datetime)
 //			group.leave()
 //		}

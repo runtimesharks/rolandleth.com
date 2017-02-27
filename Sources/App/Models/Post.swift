@@ -58,7 +58,7 @@ struct Post {
 		self.title = title
 		self.rawBody = body
 		self.datetime = datetime
-		self.body = MarkNoteParser.toHtml(body)
+		self.body = Post.html(from: body)
 		link = Post.link(from: title, with: datetime)
 		date = Post.shortDate(from: datetime)
 		modified = datetime
@@ -94,6 +94,13 @@ extension Post: NodeRepresentable {
 
 // MARK: - Static methods
 extension Post {
+	
+	fileprivate static func html(from body: String) -> String {
+		var options = MarkdownOptions()
+		options.linkEmails = false
+		var md = Markdown(options: options)
+		return md.transform(body)
+	}
 	
 	static func shortDate(from datetime: String) -> String {
 		guard let d = Post.date(from: datetime) else { return "" }
