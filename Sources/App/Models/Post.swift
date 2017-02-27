@@ -205,7 +205,7 @@ extension Post {
 	fileprivate static func readingTime(for text: String) -> String {
 		let text = NSMutableString(string: text)
 		let range = NSRange(location: 0, length: text.length)
-		String.httpTagRegex.replaceMatches(in: text, range: range, withTemplate: "")
+		String.httpTagRegex?.replaceMatches(in: text, range: range, withTemplate: "")
 		
 		let spaces = CharacterSet(charactersIn: " \n?!.,()[]{}=/*+-_")
 		let a = text
@@ -243,13 +243,15 @@ extension Post {
 	///   - wordWrap: A flag which determines if the truncation should stop at a word boundary.
 	/// - Returns: The truncated text, and a Bool which indicates if truncation happened.
 	fileprivate static func truncate(_ text: String, to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
-		let shouldTruncate = String.httpTagRegex
-			.stringByReplacingMatches(in: text,
-			                          range: text.nsRange,
-			                          withTemplate: "")
+		let shouldTruncate = String.httpTagRegex?
+			.stringByReplacingMatches(in: text, range: text.nsRange, withTemplate: "")
 			.length > Int(Double(size) * 1.2)
 		
-		guard shouldTruncate else { return (text, false) }
+		
+		guard
+			shouldTruncate,
+			let tagRegex = String.httpTagRegex
+		else { return (text, false) }
 		
 		// The size of the actual string that will be visible, without HTML.
 		var printedSize = 0
@@ -266,7 +268,7 @@ extension Post {
 			// The range of the remaining text, starting from our current position.
 			let remainingRange = NSRange(location: position, length: remainingLength)
 			// The range of the first tag in our remaining text.
-			var tagRange = String.httpTagRegex.rangeOfFirstMatch(in: text, range: remainingRange)
+			var tagRange = tagRegex.rangeOfFirstMatch(in: text, range: remainingRange)
 			
 			if tagRange.location == NSNotFound || tagRange.length == NSNotFound {
 				tagRange.location = text.length
@@ -342,13 +344,22 @@ extension Post {
 			tags.append(tag)
 		}
 		
+		let termination = "&nbsp;&nbsp;[&hellip;]"
+		
 		// We're assuming valid HTML, so we will iterate
 		// over the open tags, in reverse, and close them in order.
 		for (index, tag) in tags.reversed().enumerated() {
 			let isHref = tag.contains("<a href")
-			// Display the termination character before closing the tag, unless it's a href.
-			// It would be wrong to display it after a paragraph or pre block.
-			if index == 0, !isHref { output += " [&hellip;]" }
+			let isPre = tag == "<pre>"
+			let isP = tag == "<p>"
+			let addTerminationBeforeClosing = isPre || isP
+			
+			// Display the termination character after closing the tag, 
+			// unless it's a paragraph or pre block.
+			if index == tags.count - 1, addTerminationBeforeClosing {
+				output += termination
+			}
+			
 			// Close the tag.
 			if isHref {
 				output += "</a>"
@@ -356,9 +367,10 @@ extension Post {
 			else {
 				output += "</\(tag[1..<tag.length - 1])>"
 			}
-			// If the last tag is a href, add the termination character after closing it.
-			guard index == 0, isHref else { continue }
-			output += " [&hellip;]"
+			
+			if index == tags.count - 1, !addTerminationBeforeClosing {
+				output += termination
+			}
 		}
 		
 		return (output, true)

@@ -39,11 +39,20 @@ struct SearchController {
 			let allResults = try? driver.raw(sql),
 			let totalPosts = allResults.array?.count,
 			let results = try? driver.raw(limitedSql),
-			let posts = results.nodeArray?.flatMap({ try? Post(node: $0) }),
+			var posts = results.nodeArray?.flatMap({ try? Post(node: $0) }),
 //			case let sql = try Post.query().sorted().filtered(by: query),
 //			case let posts = try sql.paginated(to: page).run(),
 			!posts.isEmpty
 			else { return try NotFoundController.display(with: request) }
+		
+		try posts.enumerated().forEach { i, _ in
+			var tb: String {
+				get { return posts[i].truncatedBody }
+				set { posts[i].truncatedBody = newValue }
+			}
+			
+			try tb.addSearchMarkTags(around: query)
+		}
 		
 //		let totalPosts = try sql.count()
 		let params: [String: NodeRepresentable] = [
@@ -58,6 +67,35 @@ struct SearchController {
 		                                 for: request,
 		                                 posts: posts,
 		                                 totalPosts: totalPosts)
+	}
+	
+}
+
+fileprivate extension String {
+	
+	mutating func addSearchMarkTags(around string: String) throws {
+		// Wrap the value between a mark of class 'search', to style it
+		let addRegex = try NSRegularExpression(pattern: string,
+		                                       options: .caseInsensitive)
+		// And remove the occurrences of the search marks on that line,
+		// otherwise links and images will break
+		let markOpen = "<mark class=\"search\">"
+		let markClose = "</mark>"
+		let markPattern = "<([^>]*?)\(markOpen)(.+?)\(markClose)(.*?)>"
+		let removeRegex = try NSRegularExpression(pattern: markPattern,
+		                                          options: .caseInsensitive)
+		
+		self = addRegex.stringByReplacingMatches(in: self, range: nsRange,
+			withTemplate: "\(markOpen)$0\(markClose)")
+		
+		removeRegex
+			.matches(in: self, range: nsRange)
+			.map { $0.range }
+			.reversed()
+			.forEach {
+				self = replacingOccurrences(of: markOpen, with: "", range: range(from: $0))
+				self = replacingOccurrences(of: markClose, with: "", range: range(from: $0))
+		}
 	}
 	
 }

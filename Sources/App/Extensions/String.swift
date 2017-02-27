@@ -50,7 +50,7 @@ extension String {
 		return self[0..<length - n]
 	}
 	
-	static let httpTagRegex = try! NSRegularExpression(pattern: "</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;",
+	static let httpTagRegex = try? NSRegularExpression(pattern: "</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;",
 	                                                   options: .caseInsensitive)
 	
 	func range(from nsRange: NSRange) -> Range<String.Index> {

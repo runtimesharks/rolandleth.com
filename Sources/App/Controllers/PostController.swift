@@ -28,7 +28,7 @@ struct PostController {
 //		let group = DispatchGroup()
 //		let datetime = "2013-12-04-1831"
 //		group.enter()
-//		Dropbox.fetchFile(at: "/posts/2017-02-27-1102-Server side Swift with Vapor.md") { fileContents in
+//		Dropbox.fetchFile(at: "/posts/2017-01-20-1601-Assign if not nil; if nil, then assign.md") { fileContents in
 //			guard
 //				let fileContents = fileContents,
 //				!fileContents.isEmpty,
