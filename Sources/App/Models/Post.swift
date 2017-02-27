@@ -16,6 +16,7 @@ struct Post {
 	var exists = false
 	
 	let title: String
+	var rawBody: String
 	var body: String {
 		didSet {
 			updateTruncatedBody()
@@ -27,11 +28,11 @@ struct Post {
 	let datetime: String
 	let link: String
 	let date: String
-	let modified: String
+	var modified: String
 	var path: String { return "/posts/\(datetime)-\(title).md" }
 	
 	private mutating func updateTruncatedBody() {
-		let truncation = Post.truncate(body, to: 500)
+		let truncation = Post.truncate(body, to: 600)
 		let truncationSuffix: String
 		
 		if truncation.performed {
@@ -55,14 +56,19 @@ struct Post {
 	init(title: String, body: String, datetime: String) {
 		self.id = nil
 		self.title = title
-		self.body = body
+		self.rawBody = body
 		self.datetime = datetime
+		self.body = MarkNoteParser.toHtml(body)
 		link = Post.link(from: title, with: datetime)
 		date = Post.shortDate(from: datetime)
 		modified = datetime
 		readingTime = Post.readingTime(for: body)
 		truncatedBody = ""
 		updateTruncatedBody()
+		
+		// Not saving much by saving the data instead of always computing it,
+		// and it's just 30ms on average, but sometimes it's up to 70-80ms.
+		// Either way, the less loading time, the happier the user.
 	}
 	
 }
@@ -74,6 +80,7 @@ extension Post: NodeRepresentable {
 			"id": id,
 			"title": title,
 			"body": body,
+			"rawBody": rawBody,
 			"truncatedBody": truncatedBody,
 			"datetime": datetime,
 			"link": link,
@@ -203,7 +210,7 @@ extension Post {
 		let readingTime: String
 		
 		if time >= 1 {
-			readingTime = "~ \(minutes) min read"
+			readingTime = "\(minutes) min read"
 		}
 		else {
 			let minuteRemainder = time - Double(minutes)
@@ -232,7 +239,7 @@ extension Post {
 			.stringByReplacingMatches(in: text,
 			                          range: text.nsRange,
 			                          withTemplate: "")
-			.length > Int(Double(size) * 1.3)
+			.length > Int(Double(size) * 1.2)
 		
 		guard shouldTruncate else { return (text, false) }
 		

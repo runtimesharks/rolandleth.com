@@ -19,12 +19,9 @@ struct SyncController {
 		
 		let success: Bool
 		switch command {
-		case "force": success = sync(force: true, delete: false)
-		case "delete": success = sync(force: false, delete: true)
-		case "force-delete": fallthrough
-		case "delete-force": success = sync(force: true, delete: true)
+		case "delete": success = sync(delete: true)
 		case "create": return try drop.view.make("create-post", with: [:], for: request)
-		default: success = sync(force: false, delete: false)
+		default: success = sync()
 		}
 		
 		guard success else { return JSON("Sync failed.") }
@@ -87,7 +84,7 @@ struct SyncController {
 		return Response.rootRedirect
 	}
 	
-	static func sync(force: Bool, delete: Bool) -> Bool {
+	static func sync(delete: Bool = false) -> Bool {
 		let group = DispatchGroup()
 		var success = false
 		
@@ -128,8 +125,18 @@ struct SyncController {
 					case let body = fileContentsSplit.dropFirst().joined(separator: "\n\n")
 				else { return group.leave() }
 				
-				let htmlBody = MarkNoteParser.toHtml(body)
-				var post = Post(title: title, body: htmlBody, datetime: datetime)
+				var post = Post(title: title, body: body, datetime: datetime)
+				
+				if let fullModified = fileMetadata["modified"] as? String,
+					fullModified.length > 21,
+					case let rawModified = fullModified[5..<22],
+					case let df = DateFormatter.shared,
+					case _ = df.dateFormat = "d MMM yyyy HH:mm",
+					let modifiedDate = df.date(from: rawModified),
+					let modified = Post.datetime(from: modifiedDate) {
+					post.modified = modified
+				}
+				
 				post.saveOrUpdate()
 				success = true
 				group.leave()
@@ -137,6 +144,8 @@ struct SyncController {
 			
 			_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
 		}
+		
+		guard delete else { return success }
 		
 		return success
 	}
