@@ -41,17 +41,10 @@ extension ViewRenderer {
 	}
 	
 	func make(_ path: String, with params: [String: NodeRepresentable], for request: Request) throws -> View {
-		let fullRoot: String = {
-			var p = "\(request.uri.scheme)://\(request.uri.host)"
-			if drop.environment == .development {
-				p += ":8000"
-			}
-			return p
-		}()
 		let footerParams: [String: NodeRepresentable] = [
 			"quote": quote,
 			"emoji": emoji,
-			"fullRoot": fullRoot
+			"fullRoot": request.domain
 		]
 		
 		let metadataParams: [String: NodeRepresentable] = [

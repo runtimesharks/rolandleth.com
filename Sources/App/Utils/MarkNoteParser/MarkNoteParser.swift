@@ -476,7 +476,7 @@ public class MarkNoteParser: NSObject {
 					link.url = URLTag(url: line.substring(begin: i + 1 + posArray[1] + 1, end: i + 1 + posArray[2] - 1))
 					output += link.toHtml()
 					i +=  posArray[2] + 1
-				}else {
+				} else {
 					// check reference defintion
 					let pos = remaining.indexOf("]:")
 					if pos > 0 && pos < remaining.length - "]:".length {
@@ -487,7 +487,7 @@ public class MarkNoteParser: NSObject {
 						info.url = URLTag(url: remaining2)
 						self.arrReferenceInfo.append(info)
 						i += pos + "]:".length + remaining2.length
-					} else {
+					} else if pos > 0 {
 						let posArray2 = MarkNoteParser.detectPositions(["]","[","]"],inStr: remaining)
 						if posArray2.count == 3 {
 							//is reference usage
@@ -501,6 +501,9 @@ public class MarkNoteParser: NSObject {
 							output += refer.placeHolder()
 							i +=  pos + posArray2[2] + 1 + 1
 						}
+					}
+					else {
+						output += String(ch)
 					}
 				}
 			case "\"":

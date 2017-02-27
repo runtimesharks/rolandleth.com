@@ -21,6 +21,9 @@ extension Droplet {
 	var postsPerPage: Int {
 		return config["servers", "default", "postsPerPage"]?.int ?? 10
 	}
+	var port: String {
+		return config["servers", "default", "port"]?.string ?? "8000"
+	}
 	
 	func setUp() -> Self {
 		if let leaf = view as? LeafRenderer {

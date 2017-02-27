@@ -25,7 +25,9 @@ struct HeadersMiddleware: Middleware {
 			age = 86400 // A day for pages and posts.
 		}
 		
-		if let contentType = request.headers["Content-Type"] {
+		// If the request already contains Content-Type and we're at root,
+		// we're probably here from a redirect, so we shouldn't pass its Content-Type.
+		if let contentType = request.headers["Content-Type"], request.uri.path != "/" {
 			response.headers["Content-Type"] = contentType
 		}
 		

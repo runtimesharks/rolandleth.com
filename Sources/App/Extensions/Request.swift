@@ -32,6 +32,12 @@ extension Request {
 		if hasTrailingSlash { return uri.path.droppingLast() }
 		return uri.path
 	}
+	
+	var domain: String {
+		let base = "\(uri.scheme)://\(uri.host)"
+		return drop.environment == .development ? base + ":\(drop.port)" : base
+	}
+	
 }
 
 extension Message {
