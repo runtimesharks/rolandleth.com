@@ -323,7 +323,7 @@ public struct Markdown {
 		var text = doHeaders(text)
 		text = doHorizontalRules(text)
 		text = doLists(text)
-		text = doCodeBlocks(text)
+		//        text = doCodeBlocks(text)
 		text = doBlockQuotes(text)
 		
 		// We already ran HashHTMLBlocks() before, in Markdown(), but that
@@ -362,7 +362,7 @@ public struct Markdown {
 	}
 	
 	fileprivate static let _newlinesLeadingTrailing = Regex("^\\n+|\\n+\\z")
-	fileprivate static let _newlinesMultiple = Regex("\\n{2,}")
+	fileprivate static let _newlinesMultiple = Regex("\\n{1,}")
 	fileprivate static let _leadingWhitespace = Regex("^\\p{Z}*")
 	
 	fileprivate static let _htmlBlockHash = Regex("\u{1A}H\\d+H")
@@ -375,9 +375,23 @@ public struct Markdown {
 		var grafs = Markdown._newlinesMultiple.split(
 			Markdown._newlinesLeadingTrailing.replace(text, ""))
 		let grafsLength = grafs.count
+		var inCodeBlock = false
 		
 		for i in 0..<grafsLength {
-			if (grafs[i].hasPrefix("\u{1A}H")) {
+			if (grafs[i].hasPrefix("```")) {
+				var cssClass = "no-highlight"
+				if inCodeBlock {
+					grafs[i] = "codepreendtoken</code></pre>"
+				}
+				else {
+					if grafs[i].length > 3 {
+						cssClass = "language-" + grafs[i].substring(begin: 3, end: grafs[i].length - 1)
+					}
+					grafs[i] = "<pre><code class=\"\(cssClass)\">precodestarttoken"
+				}
+				inCodeBlock = !inCodeBlock
+			}
+			else if grafs[i].hasPrefix("\u{1A}H"), !inCodeBlock {
 				// unhashify HTML blocks
 				if unhash {
 					var sanityCheck = 50 // just for safety, guard against an infinite loop
@@ -402,7 +416,7 @@ public struct Markdown {
 					}*/
 				}
 			}
-			else
+			else if !inCodeBlock
 			{
 				// do span level processing inside the block, then wrap result in <p> tags
 				let paragraph = Markdown._leadingWhitespace.replace(runSpanGamut(grafs[i]), "<p>") + "</p>"
@@ -410,7 +424,11 @@ public struct Markdown {
 			}
 		}
 		
-		return grafs.joined(separator: "\n\n")
+		return grafs
+			.joined(separator: "\n")
+			.replacingOccurrences(of: "\n[&hellip;]", with: "&nbsp;[&hellip;]")
+			.replacingOccurrences(of: "\ncodepreendtoken", with: "")
+			.replacingOccurrences(of: "codeprestarttoken\n", with: "")
 	}
 	
 	fileprivate mutating func setup() {
