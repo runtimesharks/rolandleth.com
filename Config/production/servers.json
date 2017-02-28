@@ -1,5 +1,5 @@
 {
 	"default": {
-		"port": "$PORT"
+		"port": "7318"
 	}
 }

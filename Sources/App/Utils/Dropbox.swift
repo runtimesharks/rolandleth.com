@@ -10,6 +10,11 @@ import Foundation
 
 struct Dropbox {
 	
+	private static let session: URLSession = {
+		let config = URLSessionConfiguration.default
+		let s = URLSession(configuration: config)
+		return s
+	}()
 	private static let apiRoot = "https://api.dropbox.com/1"
 	private static let apiContentRoot = "https://api-content.dropbox.com/1"
 	
@@ -18,15 +23,18 @@ struct Dropbox {
 		
 		let request = url.dropboxAuthenticatedRequest()
 		
-		URLSession.shared.dataTask(with: request) { (data, response, error) in
+		session.dataTask(with: request) { (responseData, response, error) in
 			guard
-				let data = data,
+				let data = responseData,
 				let rawJSON = try? JSONSerialization.jsonObject(
 					with: data,
 					options: .allowFragments
 				),
 				let JSON = rawJSON as? [String: Any]
-			else { return completion([:])}
+			else {
+				let d = responseData ?? Data(bytes: "Empty response".bytes)
+				return completion(["rawData": d])
+			}
 			
 			completion(JSON)
 		}.resume()
@@ -39,7 +47,7 @@ struct Dropbox {
 		
 		let request = url.dropboxAuthenticatedRequest()
 		
-		URLSession.shared.dataTask(with: request) { (data, response, error) in
+		session.dataTask(with: request) { (data, response, error) in
 			guard
 				let data = data,
 				let file = String(data: data, encoding: .utf8)
@@ -61,7 +69,7 @@ struct Dropbox {
 		request.httpBody = data
 		request.setContentType(to: .plain)
 		
-		URLSession.shared.dataTask(with: request) { (data, response, error) in
+		session.dataTask(with: request) { (data, response, error) in
 			guard
 				let data = data,
 				let rawJSON = try? JSONSerialization.jsonObject(
