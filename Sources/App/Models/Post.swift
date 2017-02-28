@@ -96,10 +96,6 @@ extension Post: NodeRepresentable {
 extension Post {
 	
 	fileprivate static func html(from body: String) -> String {
-//		var options = MarkdownOptions()
-//		options.linkEmails = false
-//		var md = Markdown(options: options)
-//		return md.transform(body)
 		return MarkNoteParser.toHtml(body)
 	}
 	
@@ -155,17 +151,14 @@ extension Post {
 		let regex = try! NSRegularExpression(pattern: "([#,;!:'\"\\$\\?\\(\\)\\[\\]\\{\\}\\/\\\\]+)",
 		                                     options: .caseInsensitive)
 		let link = regex
-			.stringByReplacingMatches(in: title,
-			                          range: title.nsRange,
-			                          withTemplate: "")
+			.stringByReplacingMatches(in: title, options: [], range: title.nsRange, withTemplate: "")
 			.replacingOccurrences(of: "&", with: "and")
 			.replacingOccurrences(of: " ", with: "-")
 			.replacingOccurrences(of: ".", with: "-")
 			.lowercased()
 		
 		guard
-			let posts = try? Post.query()
-				.filter("link", contains: link, sensitive: true).run()
+			let posts = try? Post.query().filter("link", .equals, link).run()
 				// Just in the rare case where we have post-title
 				// and not only post-title-XX exists, but also post-title-extra.
 				.filter({ $0.linkMatches(link) })
@@ -205,7 +198,7 @@ extension Post {
 	fileprivate static func readingTime(for text: String) -> String {
 		let text = NSMutableString(string: text)
 		let range = NSRange(location: 0, length: text.length)
-		String.httpTagRegex?.replaceMatches(in: text, range: range, withTemplate: "")
+		_ = String.httpTagRegex?.replaceMatches(in: text, options: [], range: range, withTemplate: "")
 		
 		let spaces = CharacterSet(charactersIn: " \n?!.,()[]{}=/*+-_")
 		let a = text
@@ -244,7 +237,7 @@ extension Post {
 	/// - Returns: The truncated text, and a Bool which indicates if truncation happened.
 	fileprivate static func truncate(_ text: String, to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
 		let shouldTruncate = String.httpTagRegex?
-			.stringByReplacingMatches(in: text, range: text.nsRange, withTemplate: "")
+			.stringByReplacingMatches(in: text, options: [], range: text.nsRange, withTemplate: "")
 			.length > Int(Double(size) * 1.2)
 		
 		
@@ -268,7 +261,7 @@ extension Post {
 			// The range of the remaining text, starting from our current position.
 			let remainingRange = NSRange(location: position, length: remainingLength)
 			// The range of the first tag in our remaining text.
-			var tagRange = tagRegex.rangeOfFirstMatch(in: text, range: remainingRange)
+			var tagRange = tagRegex.rangeOfFirstMatch(in: text, options: [], range: remainingRange)
 			
 			if tagRange.location == NSNotFound || tagRange.length == NSNotFound {
 				tagRange.location = text.length

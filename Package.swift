@@ -7,12 +7,6 @@ let package = Package(
 		.Package(url: "https://github.com/vapor/postgresql-provider", majorVersion: 1)
 	],
 	exclude: [
-		"assets",
-		"lib",
-		"models",
-		"routes",
-		"views",
-		
 		"Config",
 		"Database",
 		"Localization",

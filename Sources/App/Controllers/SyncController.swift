@@ -6,10 +6,10 @@
 //
 //
 
+import Foundation
 import Vapor
 import HTTP
-import VaporPostgreSQL
-import Foundation
+import Dispatch
 import Jay
 
 struct SyncController {

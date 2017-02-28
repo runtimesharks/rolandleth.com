@@ -28,9 +28,9 @@ struct SearchController {
 		guard
 			let query = request.query?.object?["query"]?.string,
 			!query.trim().isEmpty,
+			// Fluent doesn't support case insensitive queries, yet :(
 			let driver = drop.database?.driver as? PostgreSQLDriver,
 			let datetime = Post.datetime(from: Date()),
-			// Fluent doesn't support case insensitive queries, yet :(
 			case var sql = "SELECT * FROM posts WHERE ",
 			case _ = sql += "(title ILIKE '%\(query)%' OR rawbody ILIKE '%\(query)%') AND ",
 			case _ = sql += "datetime <= '\(datetime)' ",
@@ -46,12 +46,7 @@ struct SearchController {
 			else { return try NotFoundController.display(with: request) }
 		
 		try posts.enumerated().forEach { i, _ in
-			var tb: String {
-				get { return posts[i].truncatedBody }
-				set { posts[i].truncatedBody = newValue }
-			}
-			
-			try tb.addSearchMarkTags(around: query)
+			try posts[i].truncatedBody.addSearchMarkTags(around: query)
 		}
 		
 //		let totalPosts = try sql.count()
@@ -85,11 +80,11 @@ fileprivate extension String {
 		let removeRegex = try NSRegularExpression(pattern: markPattern,
 		                                          options: .caseInsensitive)
 		
-		self = addRegex.stringByReplacingMatches(in: self, range: nsRange,
+		self = addRegex.stringByReplacingMatches(in: self, options: [], range: nsRange,
 			withTemplate: "\(markOpen)$0\(markClose)")
 		
 		removeRegex
-			.matches(in: self, range: nsRange)
+			.matches(in: self, options: [], range: nsRange)
 			.map { $0.range }
 			.reversed()
 			.forEach {

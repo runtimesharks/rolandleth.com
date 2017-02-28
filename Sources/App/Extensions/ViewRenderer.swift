@@ -10,7 +10,14 @@ import Foundation
 import HTTP
 import Vapor
 
-private var qi: Int { return Int(arc4random() % UInt32(quotes.count - 1)) }
+private var qi: Int {
+	let max = quotes.count - 1
+	#if os(Linux)
+		return Int(random() % max)
+	#else
+		return Int(arc4random() % UInt32(max))
+	#endif
+}
 private let quotes = [
 	"Tables turn, bridges burn, you live and learn.",
 	"Dream big, if you dare to dream.",

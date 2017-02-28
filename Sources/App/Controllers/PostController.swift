@@ -7,6 +7,7 @@
 //
 
 //import Foundation
+//import Dispatch
 import Vapor
 import HTTP
 import VaporPostgreSQL
@@ -20,7 +21,7 @@ struct PostController {
 	
 	private static func fetchPost(with link: String) -> Post? {
 		guard
-			let query = try? Post.query().filter("link", .contains(sensitive: false), link),
+			let query = try? Post.query().filter("link", .equals, link),
 			let post = try? query.first()
 //			var post = try? query.first()
 		else { return nil }
