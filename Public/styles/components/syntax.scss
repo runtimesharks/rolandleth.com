@@ -1,0 +1,46 @@
+@import '../globals/variables';
+
+blockquote {
+	@include lightTopBorder(5px);
+	@include lightBottomBorder(5px);
+	margin: 1.5em 1em 1.5em 1em;
+	padding: 15px 15px;
+	color: $gray;
+	font-style: italic;
+	font-family: $bodyFont;
+}
+
+code {
+	padding: 0.1em 0.2em;
+	border-radius: 2px;
+	background-color: #F9F9F9;
+	color: $codeColor;
+	white-space: pre-wrap;
+	font-size: 0.85em;
+	font-family: $codeFont;
+}
+
+pre {
+	&[class*="language-"] {
+		& code[class*="language-"] {
+			tab-size: 4;
+		}
+		overflow: auto;
+		padding: 0.5em 0 0.5em 1em;
+	}
+	
+	border-radius: 2px;
+	border-left: 2px solid $codeColor;
+	background-color: #FFF;
+	font-size: 0.95em;
+	font-family: $codeFont;
+	line-height: 1.1em;
+
+	code {
+		padding-left: 0;
+		background-color: #FFF;
+		color: $preCodeColor;
+		white-space: pre;
+		font-weight: 300;
+	}
+}

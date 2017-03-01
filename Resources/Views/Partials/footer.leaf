@@ -1,0 +1,34 @@
+<footer class="site-footer" role="contentinfo">
+	<div class="quote">
+		#(emoji) &nbsp&nbsp&nbsp #(quote)
+	</div>
+	<div class="copyright">
+		<div class="ssl">
+			<script language="JavaScript" type="text/javascript">
+				TrustLogo("#(fullRoot)/images/misc/ssl-logo.png", "CL1", "aaa");
+			</script>
+		</div>
+		&copy;
+		#(year) &nbspRoland Leth &nbsp&mdash;&nbsp
+		<a class="home-footer" href="/" rel="home">Home</a>
+		&nbsp&mdash;&nbsp
+		<a href="/archive">Archive</a>
+	</div>
+	<a href="https://plus.google.com/116830737199229269159?rel=author"></a>
+	<!--Apple's auto affiliate link script-->
+	<script async type="text/javascript">
+		var _merchantSettings = _merchantSettings || []
+		_merchantSettings.push(["AT", "1001l54C"]);
+
+		(function() {
+			var autolink = document.createElement("script")
+			autolink.type  = "text/javascript"
+			autolink.async = true
+			autolink.src   = "https:" === document.location.protocol
+				? "https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js"
+				: "http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js"
+			var s = document.getElementsByTagName("script")[0]
+			s.parentNode.insertBefore(autolink, s)
+		})()
+	</script>
+</footer>

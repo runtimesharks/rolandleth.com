@@ -1,0 +1,29 @@
+#export("head") {
+	<link rel="stylesheet" href="/styles/post.css">
+}
+
+<article class="article">
+	<header class="article-header">
+		<h1>#if(singlePost) {
+				#(post.title)
+			} ##else() {
+				<a class="post-title" href="/#(post.link)" data-post-title="#(post.title)">#(post.title)</a>
+			}</h1>
+		#if(post.date) {
+			<h4>
+				<time datetime="#(post.date)">
+					#(post.date)
+				</time>
+
+				#if(post.readingTime) {
+					#raw() { : <span class="tilde">&nbsp;&#126;</span> } #(post.readingTime)
+				}
+			</h4>
+		}
+	</header>
+	#if(singlePost) {
+		#raw(post.body)
+	} ##else() {
+		#raw(post.truncatedBody)
+	}
+</article>

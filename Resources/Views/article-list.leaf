@@ -1,0 +1,21 @@
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/styles/post.css">
+
+	#if(isSearch || page > 1) {
+		<meta name="robots" content="noindex, noarchive">
+	}
+}
+
+#export("body") {
+	#loop(posts, "post") {
+		#embed("Partials/article")
+	}
+}
+
+#export("after-content") {
+	#if(showPagination) {
+		#embed("Partials/page-navigation")
+	}
+}

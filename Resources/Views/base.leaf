@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<script type="text/javascript"> //<![CDATA[
+			var tlJsHost = ((window.location.protocol === "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+			document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+			//]]>
+		</script>
+	#embed("Partials/head")
+	#import("head")
+</head>
+<body>
+	#embed("Partials/header")
+	#import("before-content")
+	<div class="content">
+		#import("body")
+	</div>
+	#import("after-content")
+	#embed("Partials/footer")
+</body>
+</html>

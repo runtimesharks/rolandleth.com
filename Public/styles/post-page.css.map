@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,YAAa;EACZ,UAAU,EAAE,GAAG",
+"sources": ["post-page.scss"],
+"names": [],
+"file": "post-page.css"
+}
