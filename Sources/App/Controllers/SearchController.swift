@@ -43,7 +43,7 @@ struct SearchController {
 //			case let sql = try Post.query().sorted().filtered(by: query),
 //			case let posts = try sql.paginated(to: page).run(),
 			!posts.isEmpty
-			else { return try NotFoundController.display(with: request) }
+		else { return try NotFoundController.display(with: request) }
 		
 		try posts.enumerated().forEach { i, _ in
 			try posts[i].truncatedBody.addSearchMarkTags(around: query)
@@ -68,20 +68,47 @@ struct SearchController {
 
 fileprivate extension String {
 	
-	mutating func addSearchMarkTags(around string: String) throws {
-		// Wrap the value between a mark of class 'search', to style it
-		let addRegex = try NSRegularExpression(pattern: string,
-		                                       options: .caseInsensitive)
-		// And remove the occurrences of the search marks on that line,
-		// otherwise links and images will break
+	mutating func addSearchMarkTags(around term: String) throws {
 		let markOpen = "<mark class=\"search\">"
 		let markClose = "</mark>"
 		let markPattern = "<([^>]*?)\(markOpen)(.+?)\(markClose)(.*?)>"
+		
+		func wrap(_ string: String) -> String {
+			return "\(markOpen)\(string)\(markClose)"
+		}
+		
+		let wrapLength = wrap(term).length - term.length
+		
+		// Wrap the value between a mark of class 'search', to style it.
+		// Since search queries can contain regex operators, we can't use those.
+		var remainingRange: Range<String.Index> = range(from: nsRange)
+		
+		while true {
+			guard
+				let termRange = range(of: term, options: .caseInsensitive,
+				                      range: remainingRange)
+			else { break }
+			
+			// Save the original occurence.
+			let original = substring(with: termRange)
+			
+			// Use the original occurence, which has the proper case.
+			replaceSubrange(termRange, with: wrap(original))
+			
+			// The new start index will be at the end of our term range,
+			// offset by the difference in length between the term and the tags.
+			let newStartIndex = index(termRange.upperBound, offsetBy: wrapLength)
+			
+			// Be sure the new start index is still within bounds.
+			guard newStartIndex < endIndex else { break }
+			
+			remainingRange = newStartIndex..<endIndex
+		}
+		
+		// And remove the occurrences of the search marks on that line,
+		// otherwise links and images will break
 		let removeRegex = try NSRegularExpression(pattern: markPattern,
 		                                          options: .caseInsensitive)
-		
-		self = addRegex.stringByReplacingMatches(in: self, options: [], range: nsRange,
-			withTemplate: "\(markOpen)$0\(markClose)")
 		
 		removeRegex
 			.matches(in: self, options: [], range: nsRange)

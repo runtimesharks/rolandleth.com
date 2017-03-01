@@ -338,7 +338,7 @@ extension Post {
 			tags.append(tag)
 		}
 		
-		let termination = "&nbsp;&nbsp;[&hellip;]"
+		let termination = "&nbsp;[&hellip;]"
 		
 		// We're assuming valid HTML, so we will iterate
 		// over the open tags, in reverse, and close them in order.
