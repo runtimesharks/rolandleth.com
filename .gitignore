@@ -5,19 +5,25 @@
 #	 git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore all logfiles and tempfiles.
-/log/
-/tmp/
+log/
+tmp/
 .sass-cache/
 .pages
 *.pages
 .bundle
 .DS_STORE
+xcshareddata
+xcuserdata
 
 .idea/
 
 node_modules/
 npm-debug.log
-/*.env
+*.env
 
 lib/dropbox_keys.rb
 .vscode
+
+.build/
+Packages/
+Config/secrets/

@@ -1,0 +1,400 @@
+.ac-wrapper {
+	position: relative;
+	width: 100%;
+	-webkit-perspective: 1000px;
+	-moz-perspective: 1000px;
+	perspective: 1000px;
+	-webkit-perspective-origin: 50% 25%;
+	-moz-perspective-origin: 50% 25%;
+	perspective-origin: 50% 25%;
+}
+
+.ac-wrapper h2 {
+	position: absolute;
+	top: 20%;
+	width: 50%;
+	padding: 0 180px 0 50px;
+	text-align: right;
+	font-size: 4em;
+	font-weight: 300;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	-webkit-transform: translateZ(0px);
+	-moz-transform: translateZ(0px);
+	transform: translateZ(0px);
+}
+
+.ac-wrapper.ac-gridview h2 {
+	pointer-events: none;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	-webkit-transform: translateZ(-350px);
+	-moz-transform: translateZ(-350px);
+	transform: translateZ(-350px);
+}
+
+.ac-wrapper h2 span {
+	display: block;
+	color: #c0c0c0;
+	font-size: 60%;
+}
+
+.ac-device {
+	position: relative;
+	width: 290px;
+	height: 611px;
+	margin: 0 auto;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	background: url('/images/misc/iPhone.png') no-repeat;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.ac-device a {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	width: 246px;
+	height: 433px;
+	margin: 89px 0 0 24px;
+}
+
+.ac-device a img {
+	position: absolute;
+	display: block;
+}
+
+.ac-device h3 {
+	position: absolute;
+	top: 57%;
+	left: 100%;
+	width: 100%;
+	margin-left: 30px;
+	color: #fff;
+	font-size: 2.5em;
+	font-weight: 300;
+}
+
+.ac-grid {
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding-top: 3.6em;
+	text-align: center;
+	pointer-events: none;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.ac-grid a {
+	position: relative;
+	display: inline-block;
+	width: 220px;
+	margin: 10px 5px;
+	cursor: pointer;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	transition-delay: 0s;
+	-webkit-transform: translateZ(-350px);
+	-moz-transform: translateZ(-350px);
+	transform: translateZ(-350px);
+	pointer-events: none;
+	opacity: 0;
+}
+
+.ac-grid a:first-child {
+	-webkit-transform-origin: right center;
+	-moz-transform-origin: right center;
+	transform-origin: right center;
+}
+
+.ac-grid a:last-child {
+	-webkit-transform-origin: left center;
+	-moz-transform-origin: left center;
+	transform-origin: left center;
+}
+
+.ac-grid a img {
+	display: block;
+	width: 100%;
+}
+
+.ac-grid a span {
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 4em 1em 0;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	-webkit-transform: translateY(-5px);
+	-moz-transform: translateY(-5px);
+	transform: translateY(-5px);
+	text-transform: uppercase;
+	opacity: 0;
+	color: #ddd;
+	background: rgba(0,0,0,0.4);
+	font-weight: 700;
+	font-size: 1.5em;
+}
+
+.ac-grid a:hover span {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.ac-wrapper.ac-gridview .ac-device {
+	-webkit-transform: translateZ(-350px);
+	-moz-transform: translateZ(-350px);
+	transform: translateZ(-350px);
+	opacity: .6;
+}
+
+.ac-wrapper.ac-gridview .ac-grid {
+	pointer-events: auto;
+}
+
+.ac-wrapper.ac-gridview .ac-grid a {
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.ac-wrapper.ac-gridview .ac-grid a:first-child {
+	-webkit-transform: rotateY(-20deg) translateZ(0px);
+	-moz-transform: rotateY(-20deg) translateZ(0px);
+	transform: rotateY(-20deg) translateZ(0px);
+}
+
+.ac-wrapper.ac-gridview .ac-grid a:nth-child(2) {
+	-webkit-transition-delay: 50ms;
+	-moz-transition-delay: 50ms;
+	transition-delay: 50ms;
+	-webkit-transform: translateZ(0px);
+	-moz-transform: translateZ(0px);
+	transform: translateZ(0px);
+}
+
+.ac-wrapper.ac-gridview .ac-grid a:nth-child(3) {
+	-webkit-transition-delay: 100ms;
+	-moz-transition-delay: 100ms;
+	transition-delay: 100ms;
+	-webkit-transform: translateZ(0px);
+	-moz-transform: translateZ(0px);
+	transform: translateZ(0px);
+}
+
+.ac-wrapper.ac-gridview .ac-grid a:last-child {
+	-webkit-transition-delay: 150ms;
+	-moz-transition-delay: 150ms;
+	transition-delay: 150ms;
+	-webkit-transform: rotateY(20deg) translateZ(0px);
+	-moz-transform: rotateY(20deg) translateZ(0px);
+	transform: rotateY(20deg) translateZ(0px);
+}
+
+.ac-device nav {
+	position: absolute;
+	padding-top: 3.15em;
+	left: 100%;
+	margin-left: 2em;
+	pointer-events: auto;
+	min-width: 100px;
+}
+
+.ac-wrapper.ac-gridview .ac-device nav {
+	pointer-events: none;
+}
+
+.ac-device nav span {
+	display: block;
+	float: left;
+	width: 36px;
+	margin: 2px;
+	padding: 0 0.08em;
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	background: #7653CC;
+	font-size: 2.8em;
+	font-weight: 300;
+	line-height: 0.9;
+}
+
+@media screen and (max-width: 63.875em) {
+	.ac-wrapper {
+		width: 100%;
+		padding: 0 20px;
+		font-size: 60%;
+	}
+
+	.voice-over {
+		margin: 0;
+		padding-left: 20px;
+		width: 288px;
+	}
+
+	.ac-device nav {
+		margin: 0;
+		padding-top: 5.8em;
+		left: 35.5em;
+	}
+
+	.ac-device nav span {
+		font-size: 3.5em;
+		line-height: 1em;
+	}
+
+	.ac-device {
+		/*width: 100%;*/
+		margin: 0;
+	}
+
+	.ac-device h3 {
+		left: 290px;
+		/*width: 50%;*/
+	}
+
+	.ac-wrapper h2 {
+		left: 308px;
+		margin-left: 30px;
+		padding: 0;
+		text-align: left;
+	}
+}
+
+@media screen and (max-width: 58em) {
+	.ac-grid {
+		left: 5%;
+		width: 90%;
+		margin-left: 0;
+		padding-top: 8em;
+	}
+
+	.ac-grid a {
+		width: 22%;
+	}
+}
+
+@media screen and (max-width: 46.6em) {
+	.codrops-demos {
+		float: left;
+		padding: 0;
+	}
+
+	.codrops-demos {
+		margin-left: -0.8em;
+	}
+
+	.codrops-demos a {
+		margin: 0.1em 1em;
+	}
+
+	.container > header h1 {
+		margin-bottom: 0;
+		margin-right: 0.8em;
+	}
+}
+
+@media screen and (max-width: 38em) {
+	.ac-wrapper {
+		padding: 0 20px 100px;
+	}
+
+	.container > header {
+		margin-bottom: 2em;
+		padding: 0;
+	}
+
+	.voice-over {
+		padding-left: 0;
+		margin: 0 auto;
+	}
+
+	.container > header span {
+		margin: auto;
+		font-size: 0.7em;
+	}
+
+	.container > header h1 {
+		text-align: center;
+		float: none;
+		margin: auto;
+	}
+
+	.inner {
+		text-align: center;
+	}
+
+	.codrops-demos {
+		padding-top: 0;
+		float: none;
+		margin: auto;
+	}
+
+	.codrops-demos a {
+			margin: 0.1em 0.7em;
+	}
+
+	.ac-wrapper h2 {
+		position: relative;
+		top: 0;
+		left: auto;
+		width: 100%;
+		margin: 0 0 1em;
+		text-align: center;
+	}
+
+	.ac-device {
+		width: 288px;
+		margin: 0 auto;
+	}
+
+	.ac-device nav span {
+		width: 0;
+	}
+
+	.ac-device nav {
+		visibility: hidden;
+		min-width: 0;
+		width: 0;
+		overflow: hidden;
+	}
+
+	.ac-device h3 {
+		position: relative;
+		top: 100px;
+		left: auto;
+		display: block;
+		width: 100%;
+		margin: 0;
+		text-align: center;
+	}
+
+	.ac-grid a {
+		width: 40%;
+	}
+
+	.ac-wrapper.ac-gridview .ac-grid a {
+		-webkit-transform: translateZ(0px) !important;
+		-moz-transform: translateZ(0px) !important;
+		transform: translateZ(0px) !important;
+	}
+}
+
+

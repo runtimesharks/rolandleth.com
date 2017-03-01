@@ -1,0 +1,21 @@
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/styles/archive.css">
+	<meta name="robots" content="noarchive">
+}
+
+#export("body") {
+	#loop(posts, "data") {
+		<div class="one-half archive">
+			<h1>
+				#(data.year)
+			</h1>
+			#loop(data.posts, "post") {
+				<h2>
+					<a href="#(post.link)">#(post.title)</a>
+				</h2>
+			}
+		</div>
+	}
+}

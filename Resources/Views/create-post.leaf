@@ -1,0 +1,31 @@
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/styles/create-post.css">
+	<meta name="robots" content="none">
+}
+
+#export("body") {
+	<form method="post" action="/cmd.sync/create-post">
+		<div class="input-wrapper half left">
+			<h1>Title: </h1>&nbsp;&nbsp;<input class="text-field" title="Title" type="text" name="title">
+		</div>
+
+		<div class="input-wrapper half">
+			<h1>Date: </h1>&nbsp;&nbsp;<input class="text-field" title="Date" type="text" name="datetime">
+		</div>
+
+		<div class="input-wrapper">
+			<h1>Body: </h1>
+			<textarea title="Body" rows="20" name="body"></textarea>
+		</div>
+
+		<div class="input-wrapper half left">
+			<input class="button" type="submit">
+		</div>
+
+		<div class="input-wrapper half">
+			<h1>Token: </h1>&nbsp;&nbsp;<input class="text-field" title="Token" type="text" name="token">
+		</div>
+	</form>
+}
