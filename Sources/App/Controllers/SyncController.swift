@@ -30,7 +30,7 @@ struct SyncController {
 		
 		guard
 			possibleErrors.isEmpty
-				|| possibleErrors["success"] as? Bool == true, possibleErrors.count == 1
+				|| (possibleErrors["success"] as? Bool == true && possibleErrors.count == 1)
 		else { return try JSON(possibleErrors) }
 		
 		return Response.rootRedirect
@@ -41,14 +41,22 @@ struct SyncController {
 	}
 	
 	private static func perform(withDelete performDelete: Bool, path: String) throws -> [String: Any] {
-		if drop.environment == .production {
+		if drop.production {
 			return CloudStore.perform(withDelete: performDelete, for: path)
 		}
 		return try LocalStore.perform(withDelete: performDelete, for: path)
 	}
 	
 	private static func createFile(with request: Request) throws -> ResponseRepresentable {
-		let errors = try CloudStore.createFile(from: request.body.bytes)
+		let errors: [String: Any]
+		
+		if drop.production {
+			errors = try CloudStore.createFile(from: request.body.bytes)
+		}
+		else {
+			try LocalStore.createFile(from: request.body.bytes)
+			errors = [:]
+		}
 		
 		guard errors.isEmpty else { return try JSON(errors) }
 		

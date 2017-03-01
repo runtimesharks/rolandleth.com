@@ -45,6 +45,18 @@ struct LocalStore {
 		return errors
 	}
 	
+	static func createFile(from bytes: [UInt8]?) throws {
+		var post = try Post(from: bytes)
+
+		guard
+			FileManager.default.createFile(
+				atPath: postsFolderPath + "/\(post.path)",
+				contents: post.fileData)
+		else { throw "Couldn't create file at \(post.path)" }
+		
+		post.saveOrUpdate()
+	}
+	
 	private static func postsFolder() throws -> [String] {
 		do {
 			let paths = try FileManager.default.contentsOfDirectory(atPath: postsFolderPath)

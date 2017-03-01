@@ -24,6 +24,9 @@ extension Droplet {
 	var port: String {
 		return config["servers", "default", "port"]?.string ?? "8000"
 	}
+	var production: Bool {
+		return environment == .production
+	}
 	
 	func setUp() -> Self {
 		if let leaf = view as? LeafRenderer {

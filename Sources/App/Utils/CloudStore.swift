@@ -127,11 +127,9 @@ struct CloudStore {
 		}
 		
 		let group = DispatchGroup()
-		let fileContents = "\(post.title)\n\n\(post.body)"
-		let data = Data(bytes: fileContents.bytes)
 		var request = url.dropboxAuthenticatedRequest()
 		request.httpMethod = "PUT"
-		request.httpBody = data
+		request.httpBody = post.fileData
 		request.setContentType(to: .plain)
 		
 		group.enter()

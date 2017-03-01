@@ -13,11 +13,11 @@ extension Request {
 	
 	var isSecure: Bool {
 		// Specific to Heroku's SSL handling.
-		return headers["x-forwarded-proto"]?.string == "https" || drop.environment != .production
+		return headers["x-forwarded-proto"]?.string == "https" || !drop.production
 	}
 	
 	var hasWWW: Bool {
-		return uri.host.hasPrefix("www") && drop.environment == .production
+		return uri.host.hasPrefix("www") && drop.production
 	}
 	
 	var hasTrailingSlash: Bool {
@@ -34,11 +34,11 @@ extension Request {
 	}
 	
 	var domain: String {
-		if drop.environment == .development {
-			let port = drop.config["servers", "default", "port"]!
-			return "http://localhost:\(port)"
+		if drop.production {
+			return "https://\(uri.host)"
 		}
-		return "https://\(uri.host)"
+		
+		return "http://localhost:\(drop.port)"
 	}
 	
 }

@@ -15,7 +15,7 @@ struct RedirectMiddleware: Middleware {
 		guard !request.isSecure || request.hasWWW else { return try next.respond(to: request) }
 		
 		let uri = URI(
-			scheme: drop.environment == .production ? "https" : "http",
+			scheme: drop.production ? "https" : "http",
 			userInfo: request.uri.userInfo,
 			host: request.uri.host.replacingOccurrences(of: "www.", with: ""),
 			port: request.uri.port,
