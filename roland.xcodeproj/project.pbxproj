@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3B62A11E66C09E00FE4BF2 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3B62A01E66C09E00FE4BF2 /* LocalStore.swift */; };
+		2A3B62A31E66C97700FE4BF2 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3B62A21E66C97700FE4BF2 /* JSON.swift */; };
 		OBJ_1484 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1485 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1486 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -1662,7 +1664,7 @@
 		OBJ_3885 /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1400 /* Droplet.swift */; };
 		OBJ_3886 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1401 /* Error.swift */; };
 		OBJ_3887 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1402 /* Int.swift */; };
-		OBJ_3888 /* Post+Dropbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1403 /* Post+Dropbox.swift */; };
+		OBJ_3888 /* Post+Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1403 /* Post+Store.swift */; };
 		OBJ_3889 /* Post+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1404 /* Post+Model.swift */; };
 		OBJ_3890 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1405 /* Query.swift */; };
 		OBJ_3891 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1406 /* Request.swift */; };
@@ -1681,7 +1683,7 @@
 		OBJ_3904 /* RedirectMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1421 /* RedirectMiddleware.swift */; };
 		OBJ_3905 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1423 /* ContentType.swift */; };
 		OBJ_3906 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1424 /* Post.swift */; };
-		OBJ_3907 /* Dropbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1426 /* Dropbox.swift */; };
+		OBJ_3907 /* CloudStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1426 /* CloudStore.swift */; };
 		OBJ_3908 /* MarkNoteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* MarkNoteParser.swift */; };
 		OBJ_3909 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1428 /* Queue.swift */; };
 		OBJ_3911 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_1436 /* libc.framework */; };
@@ -5464,6 +5466,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A3B62A01E66C09E00FE4BF2 /* LocalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
+		2A3B62A21E66C97700FE4BF2 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1000 /* FrameSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSerializer.swift; sourceTree = "<group>"; };
@@ -5831,7 +5835,7 @@
 		OBJ_1400 /* Droplet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
 		OBJ_1401 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		OBJ_1402 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
-		OBJ_1403 /* Post+Dropbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Dropbox.swift"; sourceTree = "<group>"; };
+		OBJ_1403 /* Post+Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Store.swift"; sourceTree = "<group>"; };
 		OBJ_1404 /* Post+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Model.swift"; sourceTree = "<group>"; };
 		OBJ_1405 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		OBJ_1406 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -5852,7 +5856,7 @@
 		OBJ_1421 /* RedirectMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectMiddleware.swift; sourceTree = "<group>"; };
 		OBJ_1423 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		OBJ_1424 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		OBJ_1426 /* Dropbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropbox.swift; sourceTree = "<group>"; };
+		OBJ_1426 /* CloudStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStore.swift; sourceTree = "<group>"; };
 		OBJ_1427 /* MarkNoteParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkNoteParser.swift; sourceTree = "<group>"; };
 		OBJ_1428 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		OBJ_143 /* bss_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bss_log.c; sourceTree = "<group>"; };
@@ -8595,7 +8599,8 @@
 				OBJ_1400 /* Droplet.swift */,
 				OBJ_1401 /* Error.swift */,
 				OBJ_1402 /* Int.swift */,
-				OBJ_1403 /* Post+Dropbox.swift */,
+				2A3B62A21E66C97700FE4BF2 /* JSON.swift */,
+				OBJ_1403 /* Post+Store.swift */,
 				OBJ_1404 /* Post+Model.swift */,
 				OBJ_1405 /* Query.swift */,
 				OBJ_1406 /* Request.swift */,
@@ -8642,7 +8647,8 @@
 		OBJ_1425 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_1426 /* Dropbox.swift */,
+				OBJ_1426 /* CloudStore.swift */,
+				2A3B62A01E66C09E00FE4BF2 /* LocalStore.swift */,
 				OBJ_1427 /* MarkNoteParser.swift */,
 				OBJ_1428 /* Queue.swift */,
 			);
@@ -9355,7 +9361,7 @@
 			path = "Packages/CLibreSSL-1.0.0/Sources/CLibreSSL";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -9367,7 +9373,6 @@
 				OBJ_1433 /* Resources */,
 				OBJ_1434 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_657 /* include */ = {
@@ -11548,7 +11553,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1434 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -13084,7 +13089,8 @@
 				OBJ_3885 /* Droplet.swift in Sources */,
 				OBJ_3886 /* Error.swift in Sources */,
 				OBJ_3887 /* Int.swift in Sources */,
-				OBJ_3888 /* Post+Dropbox.swift in Sources */,
+				2A3B62A31E66C97700FE4BF2 /* JSON.swift in Sources */,
+				OBJ_3888 /* Post+Store.swift in Sources */,
 				OBJ_3889 /* Post+Model.swift in Sources */,
 				OBJ_3890 /* Query.swift in Sources */,
 				OBJ_3891 /* Request.swift in Sources */,
@@ -13102,8 +13108,9 @@
 				OBJ_3903 /* HeadersMiddleware.swift in Sources */,
 				OBJ_3904 /* RedirectMiddleware.swift in Sources */,
 				OBJ_3905 /* ContentType.swift in Sources */,
+				2A3B62A11E66C09E00FE4BF2 /* LocalStore.swift in Sources */,
 				OBJ_3906 /* Post.swift in Sources */,
-				OBJ_3907 /* Dropbox.swift in Sources */,
+				OBJ_3907 /* CloudStore.swift in Sources */,
 				OBJ_3908 /* MarkNoteParser.swift in Sources */,
 				OBJ_3909 /* Queue.swift in Sources */,
 			);

@@ -15,16 +15,17 @@ import VaporPostgreSQL
 struct PostController {
 	
 	static func fetch(with request: Request, link: String) throws -> ResponseRepresentable {
-		guard let post = fetchPost(with: link) else { return try JSON(node: ["post": [:]]) }
+		let post = try fetchPost(with: link)
 		return try JSON(node: ["post": post])
 	}
 	
-	private static func fetchPost(with link: String) -> Post? {
+	private static func fetchPost(with link: String) throws -> Post {
+		let query = try Post.query().filter("link", .equals, link)
 		guard
-			let query = try? Post.query().filter("link", .equals, link),
-			let post = try? query.first()
-//			var post = try? query.first()
-		else { return nil }
+			let result = try? query.first(),
+			let post = result
+//			var post = result
+		else { throw "No posts matching \(link)." }
 		
 //		let group = DispatchGroup()
 //		let datetime = "2013-12-04-1831"
@@ -53,16 +54,19 @@ struct PostController {
 	}
 	
 	static func display(with request: Request, link: String) throws -> ResponseRepresentable {
-		guard let post = fetchPost(with: link) else {
+		do {
+			let post = try fetchPost(with: link)
+			
+			let params: [String: NodeRepresentable] = [
+				"title": post.title,
+				"post": post,
+				"singlePost": true]
+			
+			return try drop.view.make("post", with: params, for: request)
+		}
+		catch {
 			return try NotFoundController.display(with: request)
 		}
-		
-		let params: [String: NodeRepresentable] = [
-			"title": post.title,
-			"post": post,
-			"singlePost": true]
-		
-		return try drop.view.make("post", with: params, for: request)
 	}
 
 }

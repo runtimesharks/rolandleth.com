@@ -29,7 +29,8 @@ struct Post {
 	let link: String
 	let date: String
 	var modified: String
-	var path: String { return "/posts/\(datetime)-\(title).md" }
+	var path: String { return "\(datetime)-\(title).md" }
+	var cloudPath: String { return "/posts/\(path)" }
 	
 	private mutating func updateTruncatedBody() {
 		let truncation = Post.truncate(body, to: 600)

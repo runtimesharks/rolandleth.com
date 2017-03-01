@@ -12,6 +12,8 @@ import Foundation
 	typealias NSRegularExpression = RegularExpression
 #endif
 
+extension String: Error { }
+
 extension String {
 	
 	var length: Int { return characters.count }
@@ -75,7 +77,15 @@ extension String {
 	}
 	
 	mutating func dropLast(_ n: Int = 1) {
-		self = self[0..<length - n]
+		self = self.droppingLast(n)
+	}
+	
+	mutating func dropFirst(_ n: Int = 1) {
+		self = self.droppingFirst(n)
+	}
+	
+	func droppingFirst(_ n: Int = 1) -> String {
+		return self[n..<length]
 	}
 	
 	func droppingLast(_ n: Int = 1) -> String {

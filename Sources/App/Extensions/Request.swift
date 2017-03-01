@@ -11,9 +11,9 @@ import HTTP
 
 extension Request {
 	
-	var isInsecure: Bool {
+	var isSecure: Bool {
 		// Specific to Heroku's SSL handling.
-		return headers["x-forwarded-proto"]?.string == "https" && drop.environment == .production
+		return headers["x-forwarded-proto"]?.string == "https" || drop.environment != .production
 	}
 	
 	var hasWWW: Bool {
