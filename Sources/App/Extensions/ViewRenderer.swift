@@ -51,7 +51,8 @@ extension ViewRenderer {
 		let footerParams: [String: NodeRepresentable] = [
 			"quote": quote,
 			"emoji": emoji,
-			"fullRoot": request.domain
+			"fullRoot": request.domain,
+			"year": Calendar.current.component(.year, from: Date())
 		]
 		
 		let metadataParams: [String: NodeRepresentable] = [

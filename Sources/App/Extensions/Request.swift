@@ -34,8 +34,11 @@ extension Request {
 	}
 	
 	var domain: String {
-		let base = "\(uri.scheme)://\(uri.host)"
-		return drop.environment == .development ? base + ":\(drop.port)" : base
+		if drop.environment == .development {
+			let port = drop.config["servers", "default", "port"]!
+			return "http://localhost:\(port)"
+		}
+		return "https://\(uri.host)"
 	}
 	
 }
