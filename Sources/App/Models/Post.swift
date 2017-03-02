@@ -19,6 +19,7 @@ struct Post {
 	var rawBody: String
 	var body: String {
 		didSet {
+			rawBody = body
 			updateTruncatedBody()
 			readingTime = Post.readingTime(for: body)
 		}
@@ -223,8 +224,8 @@ extension Post {
 			
 			switch seconds {
 			case 0..<20: readingTime = ""
-			case 20...30: readingTime = "\(25) sec read"
-			case 30...50: readingTime = "\(45) sec read"
+			case 20...30: readingTime = "25 sec read"
+			case 30...50: readingTime = "45 sec read"
 			default: readingTime = "1 min read"
 			}
 		}
@@ -243,7 +244,6 @@ extension Post {
 		let shouldTruncate = String.httpTagRegex?
 			.stringByReplacingMatches(in: text, options: [], range: text.nsRange, withTemplate: "")
 			.length > Int(Double(size) * 1.2)
-		
 		
 		guard
 			shouldTruncate,
@@ -368,6 +368,10 @@ extension Post {
 			if index == tags.count - 1, !addTerminationBeforeClosing {
 				output += termination
 			}
+		}
+		
+		if tags.isEmpty {
+			output += termination
 		}
 		
 		return (output, true)
