@@ -10,12 +10,10 @@
 		2AE67F191E6867BF008967F3 /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F181E6867BF008967F3 /* PostTests.swift */; };
 		2AE67F1A1E6867D9008967F3 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1454 /* LocalStore.swift */; };
 		2AE67F1B1E6867D9008967F3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1456 /* Queue.swift */; };
-		2AE67F1C1E6867EF008967F3 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1450 /* ContentType.swift */; };
 		2AE67F1D1E6867EF008967F3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1451 /* Post.swift */; };
 		2AE67F1E1E6867FC008967F3 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1423 /* Comparable.swift */; };
 		2AE67F1F1E6867FC008967F3 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1424 /* DateFormatter.swift */; };
 		2AE67F201E6867FC008967F3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1425 /* Dictionary.swift */; };
-		2AE67F211E6867FC008967F3 /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1426 /* Droplet.swift */; };
 		2AE67F221E6867FC008967F3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* Error.swift */; };
 		2AE67F231E6867FC008967F3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1428 /* Int.swift */; };
 		2AE67F241E6867FC008967F3 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1429 /* JSON.swift */; };
@@ -27,15 +25,6 @@
 		2AE67F2A1E6867FC008967F3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1435 /* String.swift */; };
 		2AE67F2B1E6867FC008967F3 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1436 /* URL.swift */; };
 		2AE67F2C1E6867FC008967F3 /* ViewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1437 /* ViewRenderer.swift */; };
-		2AE67F2D1E686A7A008967F3 /* AdditionLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1439 /* AdditionLeafTag.swift */; };
-		2AE67F2E1E686A7A008967F3 /* DictionaryIteratorLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1440 /* DictionaryIteratorLeafTag.swift */; };
-		2AE67F2F1E686A7A008967F3 /* DivisionLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1441 /* DivisionLeafTag.swift */; };
-		2AE67F301E686A7A008967F3 /* GreaterThanLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1442 /* GreaterThanLeafTag.swift */; };
-		2AE67F311E686A7A008967F3 /* LessThanLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1443 /* LessThanLeafTag.swift */; };
-		2AE67F321E686A7A008967F3 /* MultiplicationLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1444 /* MultiplicationLeafTag.swift */; };
-		2AE67F331E686A7A008967F3 /* SubtractionLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1445 /* SubtractionLeafTag.swift */; };
-		2AE67F341E686A7A008967F3 /* HeadersMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1447 /* HeadersMiddleware.swift */; };
-		2AE67F351E686A7A008967F3 /* RedirectMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1448 /* RedirectMiddleware.swift */; };
 		2AE67F361E686A93008967F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1408 /* main.swift */; };
 		2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1410 /* AboutController.swift */; };
 		2AE67F381E686AA2008967F3 /* ArchiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1411 /* ArchiveController.swift */; };
@@ -51,6 +40,18 @@
 		2AE67F421E686AA2008967F3 /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1421 /* SyncController.swift */; };
 		2AE67F431E686AB8008967F3 /* CloudStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1453 /* CloudStore.swift */; };
 		2AE67F441E686AB8008967F3 /* MarkNoteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1455 /* MarkNoteParser.swift */; };
+		2AE67F451E687FB5008967F3 /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1426 /* Droplet.swift */; };
+		2AE67F461E687FB5008967F3 /* AdditionLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1439 /* AdditionLeafTag.swift */; };
+		2AE67F471E687FB5008967F3 /* DictionaryIteratorLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1440 /* DictionaryIteratorLeafTag.swift */; };
+		2AE67F481E687FB5008967F3 /* DivisionLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1441 /* DivisionLeafTag.swift */; };
+		2AE67F491E687FB5008967F3 /* GreaterThanLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1442 /* GreaterThanLeafTag.swift */; };
+		2AE67F4A1E687FB5008967F3 /* LessThanLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1443 /* LessThanLeafTag.swift */; };
+		2AE67F4B1E687FB5008967F3 /* MultiplicationLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1444 /* MultiplicationLeafTag.swift */; };
+		2AE67F4C1E687FB5008967F3 /* SubtractionLeafTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1445 /* SubtractionLeafTag.swift */; };
+		2AE67F4D1E687FB5008967F3 /* HeadersMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1447 /* HeadersMiddleware.swift */; };
+		2AE67F4E1E687FB5008967F3 /* RedirectMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1448 /* RedirectMiddleware.swift */; };
+		2AE67F501E687FC3008967F3 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F4F1E687FC3008967F3 /* DropletTests.swift */; };
+		2AE67F511E688136008967F3 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1450 /* ContentType.swift */; };
 		OBJ_1518 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1519 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1520 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -6248,6 +6249,7 @@
 
 /* Begin PBXFileReference section */
 		2AE67F181E6867BF008967F3 /* PostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
+		2AE67F4F1E687FC3008967F3 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1000 /* FrameSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSerializer.swift; sourceTree = "<group>"; };
@@ -9646,6 +9648,7 @@
 			isa = PBXGroup;
 			children = (
 				2AE67F181E6867BF008967F3 /* PostTests.swift */,
+				2AE67F4F1E687FC3008967F3 /* DropletTests.swift */,
 			);
 			name = AppTests;
 			path = Tests/AppTests;
@@ -14326,48 +14329,49 @@
 			files = (
 				2AE67F191E6867BF008967F3 /* PostTests.swift in Sources */,
 				2AE67F281E6867FC008967F3 /* Request.swift in Sources */,
-				2AE67F321E686A7A008967F3 /* MultiplicationLeafTag.swift in Sources */,
 				2AE67F431E686AB8008967F3 /* CloudStore.swift in Sources */,
 				2AE67F201E6867FC008967F3 /* Dictionary.swift in Sources */,
+				2AE67F4C1E687FB5008967F3 /* SubtractionLeafTag.swift in Sources */,
 				2AE67F291E6867FC008967F3 /* Response.swift in Sources */,
-				2AE67F301E686A7A008967F3 /* GreaterThanLeafTag.swift in Sources */,
-				2AE67F1C1E6867EF008967F3 /* ContentType.swift in Sources */,
 				2AE67F3B1E686AA2008967F3 /* NotFoundController.swift in Sources */,
 				2AE67F411E686AA2008967F3 /* SitemapController.swift in Sources */,
 				2AE67F241E6867FC008967F3 /* JSON.swift in Sources */,
 				2AE67F2B1E6867FC008967F3 /* URL.swift in Sources */,
 				2AE67F1B1E6867D9008967F3 /* Queue.swift in Sources */,
+				2AE67F471E687FB5008967F3 /* DictionaryIteratorLeafTag.swift in Sources */,
 				2AE67F401E686AA2008967F3 /* SearchController.swift in Sources */,
-				2AE67F2E1E686A7A008967F3 /* DictionaryIteratorLeafTag.swift in Sources */,
 				2AE67F3E1E686AA2008967F3 /* PrivacyController.swift in Sources */,
-				2AE67F351E686A7A008967F3 /* RedirectMiddleware.swift in Sources */,
 				2AE67F391E686AA2008967F3 /* DownloadsController.swift in Sources */,
+				2AE67F461E687FB5008967F3 /* AdditionLeafTag.swift in Sources */,
+				2AE67F4A1E687FB5008967F3 /* LessThanLeafTag.swift in Sources */,
+				2AE67F4B1E687FB5008967F3 /* MultiplicationLeafTag.swift in Sources */,
 				2AE67F3A1E686AA2008967F3 /* FeedController.swift in Sources */,
 				2AE67F3D1E686AA2008967F3 /* PostController.swift in Sources */,
 				2AE67F261E6867FC008967F3 /* Post+Store.swift in Sources */,
 				2AE67F1F1E6867FC008967F3 /* DateFormatter.swift in Sources */,
 				2AE67F1E1E6867FC008967F3 /* Comparable.swift in Sources */,
 				2AE67F1A1E6867D9008967F3 /* LocalStore.swift in Sources */,
-				2AE67F311E686A7A008967F3 /* LessThanLeafTag.swift in Sources */,
 				2AE67F3C1E686AA2008967F3 /* PageController.swift in Sources */,
 				2AE67F3F1E686AA2008967F3 /* ProjectsController.swift in Sources */,
-				2AE67F331E686A7A008967F3 /* SubtractionLeafTag.swift in Sources */,
+				2AE67F501E687FC3008967F3 /* DropletTests.swift in Sources */,
 				2AE67F231E6867FC008967F3 /* Int.swift in Sources */,
 				2AE67F441E686AB8008967F3 /* MarkNoteParser.swift in Sources */,
 				2AE67F2A1E6867FC008967F3 /* String.swift in Sources */,
-				2AE67F2F1E686A7A008967F3 /* DivisionLeafTag.swift in Sources */,
 				2AE67F421E686AA2008967F3 /* SyncController.swift in Sources */,
-				2AE67F341E686A7A008967F3 /* HeadersMiddleware.swift in Sources */,
 				2AE67F271E6867FC008967F3 /* Query.swift in Sources */,
 				2AE67F2C1E6867FC008967F3 /* ViewRenderer.swift in Sources */,
 				2AE67F381E686AA2008967F3 /* ArchiveController.swift in Sources */,
-				2AE67F211E6867FC008967F3 /* Droplet.swift in Sources */,
 				2AE67F251E6867FC008967F3 /* Post+Model.swift in Sources */,
+				2AE67F511E688136008967F3 /* ContentType.swift in Sources */,
+				2AE67F4D1E687FB5008967F3 /* HeadersMiddleware.swift in Sources */,
+				2AE67F4E1E687FB5008967F3 /* RedirectMiddleware.swift in Sources */,
 				2AE67F361E686A93008967F3 /* main.swift in Sources */,
 				2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */,
+				2AE67F481E687FB5008967F3 /* DivisionLeafTag.swift in Sources */,
+				2AE67F491E687FB5008967F3 /* GreaterThanLeafTag.swift in Sources */,
 				2AE67F221E6867FC008967F3 /* Error.swift in Sources */,
+				2AE67F451E687FB5008967F3 /* Droplet.swift in Sources */,
 				2AE67F1D1E6867EF008967F3 /* Post.swift in Sources */,
-				2AE67F2D1E686A7A008967F3 /* AdditionLeafTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

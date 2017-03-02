@@ -23,11 +23,14 @@ class PostTests: XCTestCase {
 	private lazy var continueReading: String = "<br/><a class=\"post-continue-reading\" href=\"/\(self.link)\" data-post-title=\"\(self.title)\">Continue reading &rarr;</a>"
 	
 	private var post: Post!
-	
+
 	override func setUp() {
 		post = Post(title: title, body: body, datetime: datetime)
 		super.setUp()
 	}
+	
+	
+	// MARK: - Tests
 	
 	func testTitle() {
 		XCTAssertEqual(title, post.title)
