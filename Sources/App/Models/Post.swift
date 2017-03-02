@@ -30,7 +30,7 @@ struct Post {
 	let date: String
 	var modified: String
 	
-	var fileContents: String { return "\(title)\n\n\(body)" }
+	var fileContents: String { return "\(title)\n\n\(rawBody)" }
 	var fileData: Data { return Data(bytes: fileContents.bytes) }
 	var path: String { return "\(datetime)-\(title).md" }
 	var cloudPath: String { return "/posts/\(path)" }
