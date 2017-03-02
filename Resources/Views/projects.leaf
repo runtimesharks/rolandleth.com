@@ -1,7 +1,7 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/styles/projects.css">
+	<link rel="preload" href="/styles/pages/projects.css" as="style" onload="this.rel='stylesheet'">
 }
 
 #export("body") {

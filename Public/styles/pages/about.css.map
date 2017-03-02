@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,QAAS,CC+BR,aAAa,CAAE,cAAsB,CD7BrC,cAAc,CAAE,KAAK,CAGtB,GAAI,CACH,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,IAAI,CAChB,YAAY,CAAE,GAAG,CAGlB,eAAgB,CACf,UAAU,CAAE,MAAM,CAClB,MAAM,CAAE,cAAc,CC0BtB,oCAAsC,CDtBtC,QAAS,CACR,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,KAAK,CAGjB,GAAI,CACH,SAAS,CAAE,KAAK",
+"sources": ["about.scss","../globals/variables.scss"],
+"names": [],
+"file": "about.css"
+}

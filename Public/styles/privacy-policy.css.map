@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,QAAS;EC+BR,aAAa,EAAE,cAAsB",
-"sources": ["privacy-policy.scss","globals/variables.scss"],
-"names": [],
-"file": "privacy-policy.css"
-}

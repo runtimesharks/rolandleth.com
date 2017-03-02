@@ -1,7 +1,7 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/styles/privacy-policy.css">
+	<link rel="preload" href="/styles/pages/privacy-policy.css" as="style" onload="this.rel='stylesheet'">
 	<meta name="robots" content="none">
 }
 

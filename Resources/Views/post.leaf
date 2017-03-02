@@ -1,8 +1,8 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/styles/post.css">
-	<link rel="stylesheet" href="/styles/post-page.css">
+	<link rel="stylesheet" href="/styles/pages/post.css">
+	<link rel="preload" href="/styles/pages/post-page.css" as="style" onload="this.rel='stylesheet'">
 }
 
 #export("body") {

@@ -1,0 +1,68 @@
+@import '../globals/variables';
+
+h1 {
+	line-height: 1em;
+	vertical-align: top;
+}
+
+.input-wrapper {
+	width: 100%;
+
+	&.half {
+		width: 50%;
+		clear: both;
+	}
+	&.left {
+		float: left;
+	}
+
+	display: inline-block;
+	margin-top: 40px;
+}
+
+.text-field {
+	margin: 0;
+	padding: 1px 0;
+}
+
+.button {
+	color: $linkColor;
+	font-family: $headerFont;
+	font-size: 2em;
+	border: 0;
+	background-color: transparent;
+	margin-top: -7px;
+	text-align: center;
+}
+
+textarea {
+	padding: 5px;
+	margin-top: 20px;
+	font-family: $bodyFont;
+	font-size: 0.8em;
+	width: 96%;
+	border: 1px solid $lightGray;
+
+	&:focus {
+		outline: transparent none;
+		border: 1px solid $linkColor;
+	}
+}
+
+@include responsiveWidth($phoneMedia) {
+	h1 {
+		font-size: 1.2em;
+	}
+
+	.submit {
+		font-size: 1.5em;
+	}
+
+	.input-wrapper {
+		margin-top: 20px;
+	}
+
+	textarea {
+		margin-top: 10px;
+	}
+}

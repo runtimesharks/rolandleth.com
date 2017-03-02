@@ -1,0 +1,146 @@
+@import '../globals/variables';
+@import '../globals/reset.min.css';
+
+html {
+	//border-left: 4px solid $link-color;
+}
+
+body {
+	padding: 0 14px;
+	color: $textColor;
+	background: #fff;
+	font-family: $bodyFont;
+
+	max-width: $maxWidth;
+	margin: 0 auto;
+}
+
+.content {
+	padding: 6em 0 0.5em 2px;
+	line-height: 1.4em;
+}
+
+li {
+	list-style: disc inside;
+
+	> ul > li {
+		padding-left: 1.5em;
+		list-style-type: circle;
+	}
+}
+
+.article {
+	font-size: 1em;
+	line-height: 1.5em;
+	@include lightBottomBorder(1px);
+	padding-bottom: 1.5em;
+	margin-bottom: 3em;
+}
+
+h1 {
+	font-size: 1.85em;
+	font-weight: normal;
+	display: inline-block;
+	font-family: $headerFont;
+	line-height: 1.2em;
+	color: $textColor;
+}
+
+h4 {
+	font-family: $headerFont;
+	padding-left: 2px;
+	margin-bottom: 20px;
+	color: $gray;
+	font-weight: 500;
+	font-style: italic;
+	font-size: 0.75em;
+
+	.tilde {
+		font-family: $bodyFont;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: $linkColor;
+	border-bottom: 1px solid transparent;
+	padding-bottom: 2px;
+
+	@include transition(border, 0.4s);
+
+	&:hover {
+		border-bottom-color: $linkColor;
+	}
+
+	.article-header &, .site-header & {
+		color: $textColor;
+		border-bottom: none;
+
+		&:hover {
+			color: $linkColor;
+		}
+
+		@include transition(color, 0.3s);
+	}
+}
+
+p {
+	margin: 0.5em 0;
+
+	&.no-margin {
+		margin: 0;
+	}
+}
+
+em {
+	font-style: italic;
+}
+
+img {
+	border-radius: 2px;
+	-webkit-box-shadow: #777777 0 0 3px 1px;
+	-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
+	box-shadow: #777777 0 0 7px 0; /* inset is optional */
+
+	&:not([class]) {
+		display: table;
+		margin: 10px auto;
+	}
+
+	.centered & {
+		display: inline;
+		margin: 10px;
+	}
+
+	.centered-image-wrapper & {
+		margin: 0 auto;
+	}
+}
+
+mark.search {
+	border-radius: 2px;
+	font-style: normal;
+	padding: 0 0.1em 0 0.1em;
+	background-color: $linkColor;
+	color: $backgroundColor;
+}
+
+strong {
+	font-weight: 600;
+}
+
+@include responsiveWidth(430px) {
+	.project-screenshot {
+		display: none;
+	}
+}
+
+@include  responsiveWidth($phoneMedia) {
+	.content {
+		padding-top: 4em;
+		padding-bottom: 0;
+	}
+}
+
+@import "../components/header";
+@import "../components/syntax";

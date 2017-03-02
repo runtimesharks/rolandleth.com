@@ -1,25 +1,2 @@
-nav.pagination {
-  text-align: center;
-  margin: 0 auto;
-  font-size: 1.1em; }
-  nav.pagination a {
-    padding: 2px 6px;
-    margin-right: 0.2em; }
-  nav.pagination span {
-    padding: 2px 6px;
-    margin-right: 0.2em; }
-  nav.pagination span.gap {
-    padding: 2px;
-    color: #aaa; }
-  nav.pagination span.disabled {
-    color: #aaa; }
-  @media all and (max-width: 575px) {
-    nav.pagination {
-      margin: 1em auto; }
-      nav.pagination a, nav.pagination span.gap {
-        margin: 0;
-        display: none; }
-      nav.pagination a.previous, nav.pagination a.next, nav.pagination a.home-footer {
-        display: inline; } }
-
+nav.pagination{text-align:center;margin:0 auto;font-size:1.1em}nav.pagination a{padding:2px 6px;margin-right:0.2em}nav.pagination span{padding:2px 6px;margin-right:0.2em}nav.pagination span.gap{padding:2px;color:#aaa}nav.pagination span.disabled{color:#aaa}@media all and (max-width: 575px){nav.pagination{margin:1em auto}nav.pagination a,nav.pagination span.gap{margin:0;display:none}nav.pagination a.previous,nav.pagination a.next,nav.pagination a.home-footer{display:inline}}
 /*# sourceMappingURL=pagination.css.map */

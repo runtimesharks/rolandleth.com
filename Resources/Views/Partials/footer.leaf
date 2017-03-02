@@ -4,9 +4,7 @@
 	</div>
 	<div class="copyright">
 		<div class="ssl">
-			<script language="JavaScript" type="text/javascript">
-				TrustLogo("#(fullRoot)/images/misc/ssl-logo.png", "CL1", "aaa");
-			</script>
+			<script async>TrustLogo("https://rolandleth.com/images/misc/ssl-logo.png", "CL1", "none");</script>
 		</div>
 		&copy;
 		#(year) &nbspRoland Leth &nbsp&mdash;&nbsp
@@ -16,7 +14,7 @@
 	</div>
 	<a href="https://plus.google.com/116830737199229269159?rel=author"></a>
 	<!--Apple's auto affiliate link script-->
-	<script async type="text/javascript">
+	<script async>
 		var _merchantSettings = _merchantSettings || []
 		_merchantSettings.push(["AT", "1001l54C"]);
 
@@ -32,3 +30,4 @@
 		})()
 	</script>
 </footer>
+<link rel="preload" href="/styles/components/footer.css" as="style" onload="this.rel='stylesheet'">
