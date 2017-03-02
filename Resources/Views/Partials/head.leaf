@@ -29,6 +29,5 @@
 	ga.l =+ new Date
 	ga("create", "#(trackingId)", "auto")
 </script>
-<!--<script async src="https://www.google-analytics.com/analytics.js"></script>-->
-<script src=#if(production) { "/js/analytics.js" }##else() { "/js/analytics_debug.js" }></script>
-<script src="/js/tracking.min.js"></script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+<script async src="/js/tracking.min.js"></script>
