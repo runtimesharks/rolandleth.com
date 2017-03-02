@@ -1,12 +1,12 @@
 @import 'globals/variables';
-@import 'globals/reset.css';
+@import 'globals/reset.min.css';
 
 html {
 	//border-left: 4px solid $link-color;
 }
 
 body {
-	padding: 0 15px;
+	padding: 0 14px;
 	color: $textColor;
 	background: #fff;
 	font-family: $bodyFont;

@@ -11,7 +11,7 @@
 <meta name="description" content="<%= metadata %>">
 <meta name="author" content="Roland Leth">
 <!--Stylesheets-->
-<link rel="stylesheet" href="/styles/globals/prism.css">
+<link rel="stylesheet" href="/styles/globals/prism.min.css">
 <link rel="stylesheet" href="/styles/application.css">
 <link rel="stylesheet" href="/styles/font-awesome/css/font-awesome.min.css">
 <!--Mobile settings-->
@@ -22,12 +22,13 @@
 <script src="/js/prism.min.js"></script>
 <script src="/js/jquery.min.js">
 </script>
-<script src="/js/base.js"></script>
+<script src="/js/base.min.js"></script>
 <!--Tracking-->
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
 	ga.l =+ new Date
-	ga('create', '#(process.env.ENV_TYPE === "development" ? "UA-40255117-5" : "UA-40255117-4")', 'auto')
+	ga("create", "#(trackingId)", "auto")
 </script>
-<script async src="/js/analytics.js"></script>
-<script async src="/js/tracking.js"></script>
+<!--<script async src="https://www.google-analytics.com/analytics.js"></script>-->
+<script src=#if(production) { "/js/analytics.js" }##else() { "/js/analytics_debug.js" }></script>
+<script src="/js/tracking.min.js"></script>

@@ -1,8 +1,8 @@
 $(document).ready(function() {
-	
+
 	$(window).on('load', resizeImages)
 	$(window).on('resize', resizeImages)
-	
+
 	setupSearchField()
 })
 
@@ -38,7 +38,7 @@ function setupSearchField() {
 	// Smaller search fields for iPhones, since it doesn't fit at > 13
 	var winWidth = $(window).width()
 	var size = 17
-	
+
 	switch (true) {
 		case winWidth < 280: size = 10; break
 		case winWidth <= 300: size = 13; break
@@ -47,6 +47,6 @@ function setupSearchField() {
 		case winWidth < 335: size = 19; break
 		default: size = 20; break
 	}
-	
+
 	searchField.attr('size', size)
 }
