@@ -24,7 +24,7 @@ extension Post {
 		}
 	}
 	
-	init(from bytes: [UInt8]?) throws {
+	init(from bytes: [UInt8]?, testKey: String? = nil) throws {
 		guard let bytes = bytes else { throw "Can't convert body to bytes." }
 		guard
 			case let data = Data(bytes: bytes),
@@ -35,7 +35,7 @@ extension Post {
 		
 		func value(for key: String) -> String? {
 			guard
-				let pair = split.filter({ $0.contains(key) }).first,
+				let pair = split.filter({ $0.contains("\(key)=") }).first,
 				case let split = pair.components(separatedBy: "="),
 				split.count == 2,
 				let value = split[1]
@@ -52,7 +52,7 @@ extension Post {
 			let body = value(for: "body"),
 			let datetime = value(for: "datetime"),
 			let token = value(for: "token"),
-			token == drop.syncKey
+			token == testKey ?? drop.syncKey
 		else { throw "Malformed body: \(bodyString)." }
 		
 		self.init(title: title, body: body, datetime: datetime)
