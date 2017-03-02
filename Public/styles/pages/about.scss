@@ -1,4 +1,4 @@
-@import 'globals/variables';
+@import '../globals/variables';
 
 .content {
 	@include lightBottomBorder(1px);
@@ -21,7 +21,7 @@ img {
 		padding-top: 4em;
 		font-size: 0.9em;
 	}
-	
+
 	img {
 		max-width: 125px;
 	}

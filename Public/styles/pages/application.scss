@@ -1,5 +1,5 @@
-@import 'globals/variables';
-@import 'globals/reset.min.css';
+@import '../globals/variables';
+@import '../globals/reset.min.css';
 
 html {
 	//border-left: 4px solid $link-color;
@@ -142,8 +142,5 @@ strong {
 	}
 }
 
-@import "components/footer";
-@import "components/header";
-@import "components/syntax";
-@import "components/pygments";
-@import "components/pagination";
+@import "../components/header";
+@import "../components/syntax";

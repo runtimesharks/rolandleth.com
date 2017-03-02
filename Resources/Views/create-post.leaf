@@ -1,7 +1,7 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/styles/create-post.css">
+	<link rel="preload" href="/styles/pages/create-post.css" as="style" onload="this.rel='stylesheet'">
 	<meta name="robots" content="none">
 }
 

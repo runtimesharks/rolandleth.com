@@ -32,6 +32,7 @@ function setupSearchField() {
 			.split("query=")[1]
 			.replace(/[\+]/g, " ")
 
+		searchField.attr("placeholder", "")
 		searchField.val(query)
 	}
 

@@ -8,21 +8,24 @@
 <!--Metadata-->
 <link rel="author" type="text/plain" href="/humans.txt">
 <link href="#(fullRoot)" rel="alternate" title="Roland Leth" type="application/atom+xml">
-<meta name="description" content="<%= metadata %>">
+<meta name="description" content="#(metadata)">
 <meta name="author" content="Roland Leth">
 <!--Stylesheets-->
+<link rel="stylesheet" href="/styles/pages/application.css">
+<link rel="preload" href="/styles/components/pygments.css" as="style" onload="this.rel='stylesheet'">
 <link rel="stylesheet" href="/styles/globals/prism.min.css">
-<link rel="stylesheet" href="/styles/application.css">
-<link rel="stylesheet" href="/styles/font-awesome/css/font-awesome.min.css">
+<link rel="preload" href="/styles/font-awesome/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'">
 <!--Mobile settings-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="HandheldFriendly" content="true">
 <meta name="MobileOptimized" content="375">
 <!--Scripts-->
+<script src="/js/loadCSS/loadCSS.min.js"></script>
+<script async src="/js/loadCSS/cssrelpreload.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 <script src="/js/prism.min.js"></script>
-<script src="/js/jquery.min.js">
-</script>
 <script src="/js/base.min.js"></script>
+<script src="/js/trustlogo.min.js"></script>
 <!--Tracking-->
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
