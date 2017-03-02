@@ -6,6 +6,7 @@
 //
 //
 
+import GzipMiddleware
 import HTTP
 import Vapor
 import VaporPostgreSQL
@@ -40,10 +41,9 @@ extension Droplet {
 		}
 		
 		preparations += Post.self
-		middleware += [
-			RedirectMiddleware(),
-			HeadersMiddleware()
-		] as [Middleware]
+		middleware.insert(GzipMiddleware(), at: 0) // Then we gzip the whole thing.
+		middleware.insert(HeadersMiddleware(), at: 0) // Then we add required headers.
+		middleware.insert(RedirectMiddleware(), at: 0) // First we redirect, if needed.
 		try? addProvider(VaporPostgreSQL.Provider.self)
 		
 		return self

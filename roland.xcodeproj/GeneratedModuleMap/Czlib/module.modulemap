@@ -1,0 +1,5 @@
+module Czlib {
+    umbrella "/Users/roland/_Work/Personal/rolandleth/Packages/zlib-0.4.0/Sources/Czlib/include"
+    link "Czlib"
+    export *
+}
