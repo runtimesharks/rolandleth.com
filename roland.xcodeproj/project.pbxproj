@@ -14,7 +14,7 @@
 		2AE67F1E1E6867FC008967F3 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1423 /* Comparable.swift */; };
 		2AE67F1F1E6867FC008967F3 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1424 /* DateFormatter.swift */; };
 		2AE67F201E6867FC008967F3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1425 /* Dictionary.swift */; };
-		2AE67F221E6867FC008967F3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* Error.swift */; };
+		2AE67F221E6867FC008967F3 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* DatabaseError.swift */; };
 		2AE67F231E6867FC008967F3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1428 /* Int.swift */; };
 		2AE67F241E6867FC008967F3 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1429 /* JSON.swift */; };
 		2AE67F251E6867FC008967F3 /* Post+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1430 /* Post+Model.swift */; };
@@ -1769,7 +1769,7 @@
 		OBJ_4038 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1424 /* DateFormatter.swift */; };
 		OBJ_4039 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1425 /* Dictionary.swift */; };
 		OBJ_4040 /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1426 /* Droplet.swift */; };
-		OBJ_4041 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* Error.swift */; };
+		OBJ_4041 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* DatabaseError.swift */; };
 		OBJ_4042 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1428 /* Int.swift */; };
 		OBJ_4043 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1429 /* JSON.swift */; };
 		OBJ_4044 /* Post+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1430 /* Post+Model.swift */; };
@@ -6647,7 +6647,7 @@
 		OBJ_1424 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		OBJ_1425 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		OBJ_1426 /* Droplet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
-		OBJ_1427 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		OBJ_1427 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		OBJ_1428 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		OBJ_1429 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		OBJ_143 /* bss_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bss_log.c; sourceTree = "<group>"; };
@@ -9586,7 +9586,7 @@
 				OBJ_1424 /* DateFormatter.swift */,
 				OBJ_1425 /* Dictionary.swift */,
 				OBJ_1426 /* Droplet.swift */,
-				OBJ_1427 /* Error.swift */,
+				OBJ_1427 /* DatabaseError.swift */,
 				OBJ_1428 /* Int.swift */,
 				OBJ_1429 /* JSON.swift */,
 				OBJ_1430 /* Post+Model.swift */,
@@ -14305,7 +14305,7 @@
 				OBJ_4038 /* DateFormatter.swift in Sources */,
 				OBJ_4039 /* Dictionary.swift in Sources */,
 				OBJ_4040 /* Droplet.swift in Sources */,
-				OBJ_4041 /* Error.swift in Sources */,
+				OBJ_4041 /* DatabaseError.swift in Sources */,
 				OBJ_4042 /* Int.swift in Sources */,
 				OBJ_4043 /* JSON.swift in Sources */,
 				OBJ_4044 /* Post+Model.swift in Sources */,
@@ -14383,8 +14383,8 @@
 				2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */,
 				2AE67F481E687FB5008967F3 /* DivisionLeafTag.swift in Sources */,
 				2AE67F491E687FB5008967F3 /* GreaterThanLeafTag.swift in Sources */,
-				2AE67F221E6867FC008967F3 /* Error.swift in Sources */,
 				2AE67F601E6977D8008967F3 /* StringTests.swift in Sources */,
+				2AE67F221E6867FC008967F3 /* DatabaseError.swift in Sources */,
 				2AE67F451E687FB5008967F3 /* Droplet.swift in Sources */,
 				2AE67F1D1E6867EF008967F3 /* Post.swift in Sources */,
 			);

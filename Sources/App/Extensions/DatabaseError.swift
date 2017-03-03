@@ -1,5 +1,5 @@
 //
-//  Error.swift
+//  DatabaseError.swift
 //  roland
 //
 //  Created by Roland Leth on 22.02.2017.
