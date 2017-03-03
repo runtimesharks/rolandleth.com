@@ -53,6 +53,7 @@
 		2AE67F501E687FC3008967F3 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F4F1E687FC3008967F3 /* DropletTests.swift */; };
 		2AE67F511E688136008967F3 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1450 /* ContentType.swift */; };
 		2AE67F551E68BCB0008967F3 /* LeafTagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */; };
+		2AE67F621E697B2C008967F3 /* ComparableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F611E697B2C008967F3 /* ComparableTests.swift */; };
 		OBJ_1518 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1519 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1520 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -6252,6 +6253,7 @@
 		2AE67F181E6867BF008967F3 /* PostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		2AE67F4F1E687FC3008967F3 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafTagTests.swift; sourceTree = "<group>"; };
+		2AE67F611E697B2C008967F3 /* ComparableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1000 /* FrameSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSerializer.swift; sourceTree = "<group>"; };
@@ -9652,6 +9654,7 @@
 				2AE67F4F1E687FC3008967F3 /* DropletTests.swift */,
 				2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */,
 				2AE67F181E6867BF008967F3 /* PostTests.swift */,
+				2AE67F611E697B2C008967F3 /* ComparableTests.swift */,
 			);
 			name = AppTests;
 			path = Tests/AppTests;
@@ -14368,6 +14371,7 @@
 				2AE67F511E688136008967F3 /* ContentType.swift in Sources */,
 				2AE67F4D1E687FB5008967F3 /* HeadersMiddleware.swift in Sources */,
 				2AE67F4E1E687FB5008967F3 /* RedirectMiddleware.swift in Sources */,
+				2AE67F621E697B2C008967F3 /* ComparableTests.swift in Sources */,
 				2AE67F361E686A93008967F3 /* main.swift in Sources */,
 				2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */,
 				2AE67F481E687FB5008967F3 /* DivisionLeafTag.swift in Sources */,
