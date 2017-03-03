@@ -14,7 +14,7 @@
 		2AE67F1E1E6867FC008967F3 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1423 /* Comparable.swift */; };
 		2AE67F1F1E6867FC008967F3 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1424 /* DateFormatter.swift */; };
 		2AE67F201E6867FC008967F3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1425 /* Dictionary.swift */; };
-		2AE67F221E6867FC008967F3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* Error.swift */; };
+		2AE67F221E6867FC008967F3 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* DatabaseError.swift */; };
 		2AE67F231E6867FC008967F3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1428 /* Int.swift */; };
 		2AE67F241E6867FC008967F3 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1429 /* JSON.swift */; };
 		2AE67F251E6867FC008967F3 /* Post+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1430 /* Post+Model.swift */; };
@@ -23,7 +23,6 @@
 		2AE67F281E6867FC008967F3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1433 /* Request.swift */; };
 		2AE67F291E6867FC008967F3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1434 /* Response.swift */; };
 		2AE67F2A1E6867FC008967F3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1435 /* String.swift */; };
-		2AE67F2B1E6867FC008967F3 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1436 /* URL.swift */; };
 		2AE67F2C1E6867FC008967F3 /* ViewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1437 /* ViewRenderer.swift */; };
 		2AE67F361E686A93008967F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1408 /* main.swift */; };
 		2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1410 /* AboutController.swift */; };
@@ -52,6 +51,12 @@
 		2AE67F4E1E687FB5008967F3 /* RedirectMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1448 /* RedirectMiddleware.swift */; };
 		2AE67F501E687FC3008967F3 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F4F1E687FC3008967F3 /* DropletTests.swift */; };
 		2AE67F511E688136008967F3 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1450 /* ContentType.swift */; };
+		2AE67F551E68BCB0008967F3 /* LeafTagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */; };
+		2AE67F581E68C206008967F3 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1436 /* URL.swift */; };
+		2AE67F5A1E69713C008967F3 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F591E69713C008967F3 /* ExtensionTests.swift */; };
+		2AE67F5C1E697433008967F3 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F5B1E697433008967F3 /* RequestTests.swift */; };
+		2AE67F601E6977D8008967F3 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F5F1E6977D8008967F3 /* StringTests.swift */; };
+		2AE67F621E697B2C008967F3 /* ComparableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F611E697B2C008967F3 /* ComparableTests.swift */; };
 		OBJ_1518 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1519 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1520 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -1765,7 +1770,7 @@
 		OBJ_4038 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1424 /* DateFormatter.swift */; };
 		OBJ_4039 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1425 /* Dictionary.swift */; };
 		OBJ_4040 /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1426 /* Droplet.swift */; };
-		OBJ_4041 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* Error.swift */; };
+		OBJ_4041 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1427 /* DatabaseError.swift */; };
 		OBJ_4042 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1428 /* Int.swift */; };
 		OBJ_4043 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1429 /* JSON.swift */; };
 		OBJ_4044 /* Post+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1430 /* Post+Model.swift */; };
@@ -6250,6 +6255,11 @@
 /* Begin PBXFileReference section */
 		2AE67F181E6867BF008967F3 /* PostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		2AE67F4F1E687FC3008967F3 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
+		2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafTagTests.swift; sourceTree = "<group>"; };
+		2AE67F591E69713C008967F3 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
+		2AE67F5B1E697433008967F3 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
+		2AE67F5F1E6977D8008967F3 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		2AE67F611E697B2C008967F3 /* ComparableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1000 /* FrameSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSerializer.swift; sourceTree = "<group>"; };
@@ -6639,7 +6649,7 @@
 		OBJ_1424 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		OBJ_1425 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		OBJ_1426 /* Droplet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
-		OBJ_1427 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		OBJ_1427 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		OBJ_1428 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		OBJ_1429 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		OBJ_143 /* bss_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bss_log.c; sourceTree = "<group>"; };
@@ -9578,7 +9588,7 @@
 				OBJ_1424 /* DateFormatter.swift */,
 				OBJ_1425 /* Dictionary.swift */,
 				OBJ_1426 /* Droplet.swift */,
-				OBJ_1427 /* Error.swift */,
+				OBJ_1427 /* DatabaseError.swift */,
 				OBJ_1428 /* Int.swift */,
 				OBJ_1429 /* JSON.swift */,
 				OBJ_1430 /* Post+Model.swift */,
@@ -9647,8 +9657,13 @@
 		OBJ_1458 /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				2AE67F181E6867BF008967F3 /* PostTests.swift */,
+				2AE67F611E697B2C008967F3 /* ComparableTests.swift */,
 				2AE67F4F1E687FC3008967F3 /* DropletTests.swift */,
+				2AE67F591E69713C008967F3 /* ExtensionTests.swift */,
+				2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */,
+				2AE67F181E6867BF008967F3 /* PostTests.swift */,
+				2AE67F5B1E697433008967F3 /* RequestTests.swift */,
+				2AE67F5F1E6977D8008967F3 /* StringTests.swift */,
 			);
 			name = AppTests;
 			path = Tests/AppTests;
@@ -10357,7 +10372,7 @@
 			path = "Packages/CLibreSSL-1.0.0/Sources/CLibreSSL";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -10369,7 +10384,6 @@
 				OBJ_1463 /* Resources */,
 				OBJ_1464 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_657 /* include */ = {
@@ -12708,7 +12722,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1464 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -14294,7 +14308,7 @@
 				OBJ_4038 /* DateFormatter.swift in Sources */,
 				OBJ_4039 /* Dictionary.swift in Sources */,
 				OBJ_4040 /* Droplet.swift in Sources */,
-				OBJ_4041 /* Error.swift in Sources */,
+				OBJ_4041 /* DatabaseError.swift in Sources */,
 				OBJ_4042 /* Int.swift in Sources */,
 				OBJ_4043 /* JSON.swift in Sources */,
 				OBJ_4044 /* Post+Model.swift in Sources */,
@@ -14336,7 +14350,7 @@
 				2AE67F3B1E686AA2008967F3 /* NotFoundController.swift in Sources */,
 				2AE67F411E686AA2008967F3 /* SitemapController.swift in Sources */,
 				2AE67F241E6867FC008967F3 /* JSON.swift in Sources */,
-				2AE67F2B1E6867FC008967F3 /* URL.swift in Sources */,
+				2AE67F5C1E697433008967F3 /* RequestTests.swift in Sources */,
 				2AE67F1B1E6867D9008967F3 /* Queue.swift in Sources */,
 				2AE67F471E687FB5008967F3 /* DictionaryIteratorLeafTag.swift in Sources */,
 				2AE67F401E686AA2008967F3 /* SearchController.swift in Sources */,
@@ -14347,6 +14361,7 @@
 				2AE67F4B1E687FB5008967F3 /* MultiplicationLeafTag.swift in Sources */,
 				2AE67F3A1E686AA2008967F3 /* FeedController.swift in Sources */,
 				2AE67F3D1E686AA2008967F3 /* PostController.swift in Sources */,
+				2AE67F551E68BCB0008967F3 /* LeafTagTests.swift in Sources */,
 				2AE67F261E6867FC008967F3 /* Post+Store.swift in Sources */,
 				2AE67F1F1E6867FC008967F3 /* DateFormatter.swift in Sources */,
 				2AE67F1E1E6867FC008967F3 /* Comparable.swift in Sources */,
@@ -14355,21 +14370,25 @@
 				2AE67F3F1E686AA2008967F3 /* ProjectsController.swift in Sources */,
 				2AE67F501E687FC3008967F3 /* DropletTests.swift in Sources */,
 				2AE67F231E6867FC008967F3 /* Int.swift in Sources */,
+				2AE67F5A1E69713C008967F3 /* ExtensionTests.swift in Sources */,
 				2AE67F441E686AB8008967F3 /* MarkNoteParser.swift in Sources */,
 				2AE67F2A1E6867FC008967F3 /* String.swift in Sources */,
 				2AE67F421E686AA2008967F3 /* SyncController.swift in Sources */,
 				2AE67F271E6867FC008967F3 /* Query.swift in Sources */,
 				2AE67F2C1E6867FC008967F3 /* ViewRenderer.swift in Sources */,
+				2AE67F581E68C206008967F3 /* URL.swift in Sources */,
 				2AE67F381E686AA2008967F3 /* ArchiveController.swift in Sources */,
 				2AE67F251E6867FC008967F3 /* Post+Model.swift in Sources */,
 				2AE67F511E688136008967F3 /* ContentType.swift in Sources */,
 				2AE67F4D1E687FB5008967F3 /* HeadersMiddleware.swift in Sources */,
 				2AE67F4E1E687FB5008967F3 /* RedirectMiddleware.swift in Sources */,
+				2AE67F621E697B2C008967F3 /* ComparableTests.swift in Sources */,
 				2AE67F361E686A93008967F3 /* main.swift in Sources */,
 				2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */,
 				2AE67F481E687FB5008967F3 /* DivisionLeafTag.swift in Sources */,
 				2AE67F491E687FB5008967F3 /* GreaterThanLeafTag.swift in Sources */,
-				2AE67F221E6867FC008967F3 /* Error.swift in Sources */,
+				2AE67F601E6977D8008967F3 /* StringTests.swift in Sources */,
+				2AE67F221E6867FC008967F3 /* DatabaseError.swift in Sources */,
 				2AE67F451E687FB5008967F3 /* Droplet.swift in Sources */,
 				2AE67F1D1E6867EF008967F3 /* Post.swift in Sources */,
 			);
