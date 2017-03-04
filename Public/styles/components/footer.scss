@@ -21,17 +21,17 @@
 
 .ssl {
 	display: inline-block;
-	
+
 	a:hover {
 		border-bottom: 1px solid transparent;
 	}
-	
+
 	img {
 		border-radius: 0;
 		-webkit-box-shadow: none;
 		-moz-box-shadow: none;
 		box-shadow: none;
-		display: inline;
+		display: inline-block;
 		margin: 0 0 -6px;
 		height: 30px;
 	}

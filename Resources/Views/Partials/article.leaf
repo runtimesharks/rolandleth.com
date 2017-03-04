@@ -1,5 +1,5 @@
 #export("head") {
-	<link rel="stylesheet" href="/styles/post.css">
+	<link rel="stylesheet" href="/styles/components/article.css">
 }
 
 <article class="article">

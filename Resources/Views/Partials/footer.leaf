@@ -30,4 +30,3 @@
 		})()
 	</script>
 </footer>
-<link rel="preload" href="/styles/components/footer.css" as="style" onload="this.rel='stylesheet'">

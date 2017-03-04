@@ -1,9 +1,5 @@
 #extend("base")
 
-#export("head") {
-	<link rel="preload" href="/styles/pages/about.css" as="style" onload="this.rel='stylesheet'">
-}
-
 #export("body") {
 	<div><img class="about" src="/images/misc/MyPic.jpg" alt="My Picture" /></div>
 	<p>
@@ -17,7 +13,7 @@
 		I’m mostly writing about iOS, JS and Ruby development: snippets, walkthroughs, tips and tricks, stuff that I struggled with and links to interesting stuff I find around the web. From time to time I will find an interesting or helpful app and I will write about that, as well.
 	</p>
 	<p>
-		The blog is now created with <a href="http://www.nodejs.org/">Node.js</a> (previously with <a href="http://www.sinatrarb.com/">Sinatra</a>) and it's hosted on <a
+		The blog is now created with <a href="https://swift.org">Swift</a> & <a href="https://vapor.codes">Vapor</a> (previously with <a href="http://www.nodejs.org/">Node.js</a> and <a href="http://www.sinatrarb.com/">Sinatra</a>) and it's hosted on <a
 			href="http://heroku
 				.com">Heroku</a>. It’s written using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, with the help of <a href="http://lightpaper.42squares.in">LightPaper</a> and <a href="http://omz-software.com/editorial/">Editorial</a>.
 	</p>
@@ -27,4 +23,8 @@
 	<div class="privacy-footer" role="extra contentinfo">
 		<a href="/privacy-policy">Privacy Policy</a></p>
 	</div>
+}
+
+#export("end-stylesheets") {
+	<link rel="stylesheet" href="/styles/pages/about.css">
 }
