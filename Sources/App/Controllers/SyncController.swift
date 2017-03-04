@@ -37,30 +37,39 @@ struct SyncController {
 	}
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
-		return try createFile(with: request)
+		let file = try createFile(with: request)
+		try createPost(with: file)
+		return Response.rootRedirect
 	}
 	
+	/// Performs the sync on the local or cloud store. 
+	///
+	/// - Note: It returns an array of dictionaries, because if a file throws an error, we don't want to stop the whole process, but we do want to know which one failed and why.
+	///
+	/// - Parameters:
+	///   - performDelete: A flag which determines whether posts that exist in the database, but on as a file should be deleted or not.
+	///   - path: The path of an individual post to be synced.
+	/// - Returns: A dictionary of errors, if any occurred.
+	/// - Throws: Any errors its underlying methods will throw.
 	private static func perform(withDelete performDelete: Bool, path: String) throws -> [String: Any] {
 		if drop.production {
-			return CloudStore.perform(withDelete: performDelete, for: path)
+			return try CloudStore.perform(withDelete: performDelete, for: path)
 		}
 		return try LocalStore.perform(withDelete: performDelete, for: path)
 	}
 	
-	private static func createFile(with request: Request) throws -> ResponseRepresentable {
-		let errors: [String: Any]
-		
+	private static func createFile(with request: Request) throws -> File {
 		if drop.production {
-			errors = try CloudStore.createFile(from: request.body.bytes)
+			return try CloudStore.createFile(from: request.body.bytes)
 		}
 		else {
-			try LocalStore.createFile(from: request.body.bytes)
-			errors = [:]
+			return try LocalStore.createFile(from: request.body.bytes)
 		}
-		
-		guard errors.isEmpty else { return try JSON(errors) }
-		
-		return Response.rootRedirect
+	}
+	
+	private static func createPost(with file: File) throws {
+		var post = Post(from: file)
+		post.saveOrUpdate()
 	}
 	
 }

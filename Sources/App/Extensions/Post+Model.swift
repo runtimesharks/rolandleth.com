@@ -24,6 +24,19 @@ extension Post: Model {
 		date = try node.extract("date")
 	}
 	
+	static func deleteFromDatabase(checking files: [Post]) {
+		guard !files.isEmpty, let posts = try? Post.all() else { return }
+		
+		for post in posts {
+			let exists = files.contains {
+				post.link == $0.link && post.datetime == $0.datetime
+			}
+			guard !exists else { continue }
+			
+			try? post.delete()
+		}
+	}
+	
 	static func prepare(_ database: Database) throws {
 		try database.create("posts") { posts in
 			posts.id()

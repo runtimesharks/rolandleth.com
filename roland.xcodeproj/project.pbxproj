@@ -57,6 +57,8 @@
 		2AE67F5C1E697433008967F3 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F5B1E697433008967F3 /* RequestTests.swift */; };
 		2AE67F601E6977D8008967F3 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F5F1E6977D8008967F3 /* StringTests.swift */; };
 		2AE67F621E697B2C008967F3 /* ComparableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F611E697B2C008967F3 /* ComparableTests.swift */; };
+		2AFB76921E6B36EF002308DA /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB76911E6B36EF002308DA /* File.swift */; };
+		2AFB76931E6B36EF002308DA /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB76911E6B36EF002308DA /* File.swift */; };
 		OBJ_1518 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1519 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1520 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -6260,6 +6262,7 @@
 		2AE67F5B1E697433008967F3 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		2AE67F5F1E6977D8008967F3 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		2AE67F611E697B2C008967F3 /* ComparableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableTests.swift; sourceTree = "<group>"; };
+		2AFB76911E6B36EF002308DA /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1000 /* FrameSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSerializer.swift; sourceTree = "<group>"; };
@@ -9630,6 +9633,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_1450 /* ContentType.swift */,
+				2AFB76911E6B36EF002308DA /* File.swift */,
 				OBJ_1451 /* Post.swift */,
 			);
 			path = Models;
@@ -14300,6 +14304,7 @@
 				OBJ_4030 /* PageController.swift in Sources */,
 				OBJ_4031 /* PostController.swift in Sources */,
 				OBJ_4032 /* PrivacyController.swift in Sources */,
+				2AFB76921E6B36EF002308DA /* File.swift in Sources */,
 				OBJ_4033 /* ProjectsController.swift in Sources */,
 				OBJ_4034 /* SearchController.swift in Sources */,
 				OBJ_4035 /* SitemapController.swift in Sources */,
@@ -14369,6 +14374,7 @@
 				2AE67F3C1E686AA2008967F3 /* PageController.swift in Sources */,
 				2AE67F3F1E686AA2008967F3 /* ProjectsController.swift in Sources */,
 				2AE67F501E687FC3008967F3 /* DropletTests.swift in Sources */,
+				2AFB76931E6B36EF002308DA /* File.swift in Sources */,
 				2AE67F231E6867FC008967F3 /* Int.swift in Sources */,
 				2AE67F5A1E69713C008967F3 /* ExtensionTests.swift in Sources */,
 				2AE67F441E686AB8008967F3 /* MarkNoteParser.swift in Sources */,
