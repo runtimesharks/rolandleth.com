@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A7C737A1E6D9B03003F0F69 /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7C73791E6D9B03003F0F69 /* DateFormatterTests.swift */; };
 		2AE67F191E6867BF008967F3 /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE67F181E6867BF008967F3 /* PostTests.swift */; };
 		2AE67F1A1E6867D9008967F3 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1454 /* LocalStore.swift */; };
 		2AE67F1B1E6867D9008967F3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1456 /* Queue.swift */; };
@@ -6256,6 +6257,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A7C73791E6D9B03003F0F69 /* DateFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
 		2AE67F181E6867BF008967F3 /* PostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		2AE67F4F1E687FC3008967F3 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		2AE67F541E68BCB0008967F3 /* LeafTagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafTagTests.swift; sourceTree = "<group>"; };
@@ -9664,6 +9666,7 @@
 			isa = PBXGroup;
 			children = (
 				2AE67F611E697B2C008967F3 /* ComparableTests.swift */,
+				2A7C73791E6D9B03003F0F69 /* DateFormatterTests.swift */,
 				2AE67F4F1E687FC3008967F3 /* DropletTests.swift */,
 				2AE67F591E69713C008967F3 /* ExtensionTests.swift */,
 				2AFB76941E6B58D3002308DA /* FileTests.swift */,
@@ -14393,6 +14396,7 @@
 				2AE67F4D1E687FB5008967F3 /* HeadersMiddleware.swift in Sources */,
 				2AE67F4E1E687FB5008967F3 /* RedirectMiddleware.swift in Sources */,
 				2AE67F621E697B2C008967F3 /* ComparableTests.swift in Sources */,
+				2A7C737A1E6D9B03003F0F69 /* DateFormatterTests.swift in Sources */,
 				2AE67F361E686A93008967F3 /* main.swift in Sources */,
 				2AE67F371E686AA2008967F3 /* AboutController.swift in Sources */,
 				2AE67F481E687FB5008967F3 /* DivisionLeafTag.swift in Sources */,

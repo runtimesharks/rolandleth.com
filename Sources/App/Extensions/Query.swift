@@ -33,7 +33,7 @@ extension Query {
 	}
 	
 	func filteredPast() throws -> Query<T> {
-		return try filter("datetime", .lessThanOrEquals, Post.datetime(from: Date()) ?? "")
+		return try filter("datetime", .lessThanOrEquals, Post.datetime(from: Date()))
 	}
 	
 }

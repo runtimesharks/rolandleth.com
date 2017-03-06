@@ -37,7 +37,7 @@ struct FeedController {
 		xml += "<rights>Copyright (c) 2017, Roland Leth</rights>\n"
 		
 		func fullDate(from datetime: String) -> String? {
-			df.dateFormat = "yyyy-MM-dd-HHmm"
+			df.setDatetimeFormat()
 			guard let date = df.date(from: datetime) else { return nil }
 			df.dateFormat = fullFormat
 			

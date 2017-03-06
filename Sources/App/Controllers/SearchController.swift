@@ -30,7 +30,7 @@ struct SearchController {
 			!query.trim().isEmpty,
 			// Fluent doesn't support case insensitive queries, yet :(
 			let driver = drop.database?.driver as? PostgreSQLDriver,
-			let datetime = Post.datetime(from: Date()),
+			case let datetime = Post.datetime(from: Date()),
 			case var sql = "SELECT * FROM posts WHERE ",
 			case _ = sql += "(title ILIKE '%\(query)%' OR rawbody ILIKE '%\(query)%') AND ",
 			case _ = sql += "datetime <= '\(datetime)' ",
