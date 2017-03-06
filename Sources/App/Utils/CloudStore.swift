@@ -97,9 +97,8 @@ struct CloudStore {
 					case let rawModified = fullModified[5..<22],
 					case let df = DateFormatter.shared,
 					case _ = df.dateFormat = "d MMM yyyy HH:mm",
-					let modifiedDate = df.date(from: rawModified),
-					let modified = Post.datetime(from: modifiedDate) {
-					post.modified = modified
+					let modifiedDate = df.date(from: rawModified) {
+					post.modified = Post.datetime(from: modifiedDate)
 				}
 				
 				if performDelete {

@@ -69,9 +69,9 @@ class DropletTests: XCTestCase {
 			"* GET /projects/:w0",
 			"* GET /archive",
 			"* GET /privacy-policy"
-		]
+		].sorted()
 		
-		XCTAssertEqual(expected, localDrop.router.routes)
+		XCTAssertEqual(expected, localDrop.router.routes.sorted())
 	}
 	
 }

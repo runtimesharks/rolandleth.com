@@ -101,31 +101,14 @@ extension Post {
 	
 	static func shortDate(from datetime: String) -> String {
 		guard let d = Post.date(from: datetime) else { return "" }
-		return DateFormatter.shared.string(from: d)
+		return DateFormatter.shared.setShortFormat().string(from: d)
 	}
 	
 	/// Converts the `datetime` field into a `Date`.
 	///
 	/// - Returns: A `Date` corresponding to the post's `datetime`, or `nil` if invalid.
 	static func date(from datetime: String) -> Date? {
-		let calendar = Calendar.current
-		
-		guard
-			case let matches = datetime.components(separatedBy: "-"),
-			matches.count == 4,
-			let year = Int(matches[0]),
-			let month = Int(matches[1]),
-			let day = Int(matches[2]),
-			case let time = matches[3],
-			time.length == 4,
-			let hour = Int(time[0..<2]),
-			let minute = Int(time[2..<4])
-			else { return nil }
-		
-		let components = DateComponents(year: year, month: month, day: day,
-		                                hour: hour, minute: minute)
-		
-		return calendar.date(from: components)
+		return DateFormatter.shared.date(from: datetime)
 	}
 	
 	/// Returns the variation for a link. --X means it's a post with a duplicate title. Rarely happens.
@@ -177,18 +160,8 @@ extension Post {
 	///
 	/// - Parameter date: The `Date` to be converted.
 	/// - Returns: A string of yyyy-MM-dd format.
-	static func datetime(from date: Date) -> String? {
-		let c = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
-		                                        from: date)
-		guard
-			let year = c.year,
-			let month = c.month?.doubleDigitString,
-			let day = c.day?.doubleDigitString,
-			let hour = c.hour?.doubleDigitString,
-			let minute = c.minute?.doubleDigitString
-		else { return nil }
-		
-		return "\(year)-\(month)-\(day)-\(hour)\(minute)"
+	static func datetime(from date: Date) -> String {
+		return DateFormatter.shared.string(from: date)
 	}
 	
 	/// Creates a friendly reading time text.

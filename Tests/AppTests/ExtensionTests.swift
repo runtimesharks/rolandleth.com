@@ -11,12 +11,6 @@ import XCTest
 
 class ExtensionTests: XCTestCase {
 	
-	func testDateFormatter() {
-		let df = DateFormatter.shared
-		
-		XCTAssertEqual("MMM dd, yyyy", df.dateFormat)
-	}
-	
 	func testDictionaryOperators() {
 		var dic1 = ["1": "2"]
 		let dic2 = ["3": "4"]

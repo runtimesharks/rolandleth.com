@@ -11,7 +11,7 @@ import Fluent
 
 extension Query {
 	
-	func sorted(future: Bool = false) throws -> Query<T> {
+	func sorted(future: Bool = false) throws -> Query {
 		let q = try self
 			.sort("datetime", .descending)
 			.sort("title", .ascending)
@@ -28,12 +28,12 @@ extension Query {
 //		}
 //	}
 	
-	func paginated(to page: Int) throws -> Query<T> {
+	func paginated(to page: Int) throws -> Query {
 		return try limit(drop.postsPerPage, withOffset: drop.postsPerPage * (page - 1))
 	}
 	
-	func filteredPast() throws -> Query<T> {
-		return try filter("datetime", .lessThanOrEquals, Post.datetime(from: Date()) ?? "")
+	func filteredPast() throws -> Query {
+		return try filter("datetime", .lessThanOrEquals, Post.datetime(from: Date()))
 	}
 	
 }

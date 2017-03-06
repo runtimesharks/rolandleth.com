@@ -29,16 +29,15 @@ extension Request {
 	}
 	
 	var pathWithoutTrailingSlash: String {
-		if hasTrailingSlash { return uri.path.droppingLast() }
-		return uri.path
+		guard hasTrailingSlash else { return uri.path }
+		
+		return uri.path.droppingLast()
 	}
 	
 	var domain: String {
-		if drop.production {
-			return "https://\(uri.host)"
-		}
+		guard drop.production else { return "http://localhost:\(drop.port)" }
 		
-		return "http://localhost:\(drop.port)"
+		return "https://\(uri.host)"
 	}
 	
 }

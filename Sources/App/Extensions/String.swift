@@ -38,6 +38,7 @@ extension String {
 	
 	subscript(range: NSRange) -> String {
 		let end = range.location + range.length
+		
 		return self[Range(uncheckedBounds: (lower: range.location, upper: end))]
 	}
 	
@@ -49,21 +50,19 @@ extension String {
 	}
 	
 	func substring(begin: Int, end: Int) -> String {
-		let range = NSRange(location: begin, length: end - begin + 1 )
+		let range = NSRange(location: begin, length: end - begin + 1)
+		
 		return self[range]
 	}
 	
 	func trim() -> String{
 		return self.trimmingCharacters(in: .whitespaces)
-		
 	}
 	
 	func indexOf(_ toFind: String) -> Int {
-		if let range = range(of: toFind){
-			return distance(from: startIndex, to: range.lowerBound)
-		} else {
-			return -1
-		}
+		guard let range = range(of: toFind) else { return -1 }
+		
+		return distance(from: startIndex, to: range.lowerBound)
 	}
 	
 	func contains3PlusandOnlyChars(char: String) -> Bool {

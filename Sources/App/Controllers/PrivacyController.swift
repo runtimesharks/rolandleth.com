@@ -15,6 +15,7 @@ struct PrivacyController {
 			"title": "Privacy Policy",
 			"metadata": "Roland Leth's privacy policy"
 		]
+		
 		return try drop.view.make("privacy-policy", with: params, for: request)
 	}
 	
