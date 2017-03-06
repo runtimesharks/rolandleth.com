@@ -16,6 +16,7 @@ struct AboutController {
 			"title": "About",
 			"metadata": "Some information about the blog. Details, résumé and contact information about Roland Leth."
 		]
+		
 		return try drop.view.make("about", with: params, for: request)
 	}
 	

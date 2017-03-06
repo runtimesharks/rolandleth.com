@@ -13,6 +13,7 @@ extension URL {
 	func dropboxAuthenticatedRequest() -> URLRequest {
 		var request = URLRequest(url: self)
 		request.setValue("Bearer \(drop.dropboxKey)", forHTTPHeaderField: "Authorization")
+		
 		return request
 	}
 	

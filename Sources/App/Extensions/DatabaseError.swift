@@ -9,15 +9,17 @@
 import Foundation
 
 enum DatabaseError {
+	
 	case generic
 	case alreadyExists
 	
 	init(_ error: Error) {
-		if "\(error)".contains("already exists") {
-			self = .alreadyExists
+		guard "\(error)".contains("already exists") else {
+			self = .generic
 			return
 		}
 		
-		self = .generic
+		self = .alreadyExists
 	}
+	
 }

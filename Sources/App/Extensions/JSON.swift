@@ -14,6 +14,7 @@ extension Vapor.JSON {
 	init(_ dictionary: [String: Any]) throws {
 		let jay = Jay(formatting: .prettified, parsing: .none)
 		let bytes = try jay.dataFromJson(anyDictionary: dictionary)
+		
 		try self.init(bytes: bytes)
 	}
 	

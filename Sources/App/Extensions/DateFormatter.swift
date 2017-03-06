@@ -16,12 +16,14 @@ extension DateFormatter {
 	@discardableResult
 	func setShortFormat() -> DateFormatter {
 		dateFormat = DateFormatter.shortFormat
+		
 		return self
 	}
 	
 	@discardableResult
 	func setDatetimeFormat() -> DateFormatter {
 		dateFormat = DateFormatter.datetimeFormat
+		
 		return self
 	}
 	

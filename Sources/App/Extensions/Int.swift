@@ -11,14 +11,16 @@ import Foundation
 extension Int {
 	
 	var doubleDigitString: String {
-		if self < 10 { return "0\(self)" }
-		return "\(self)"
+		guard self < 10 else { return "\(self)" }
+		
+		return "0\(self)"
 	}
 	
 	var tripleDigitString: String {
-		if self < 10 { return "00\(self)" }
-		if self < 100 { return "0\(self)" }
-		return "\(self)"
+		guard self < 100 else { return "\(self)" }
+		guard self < 10 else { return "0\(self)" }
+		
+		return "00\(self)"
 	}
 	
 }
