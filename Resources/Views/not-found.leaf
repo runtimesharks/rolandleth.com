@@ -1,10 +1,10 @@
 #extend("base")
 
-#export("head") {
-	<link rel="preload" href="/styles/sections/404.css" as="style" onload="this.rel='stylesheet'">
-}
-
 #export("body") {
 	<h1 class="the-404"><span class="the-404">404</span></h1>
 	<p class="error-message">This isn't the page you are looking for.</p>
+}
+
+#export("end-stylesheets") {
+	<link rel="stylesheet" href="/styles/pages/404.css">
 }

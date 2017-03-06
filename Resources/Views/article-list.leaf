@@ -1,7 +1,7 @@
 #extend("base")
 
 #export("head") {
-	<link rel="stylesheet" href="/styles/pages/post.css">
+	<link rel="stylesheet" href="/styles/components/article.css">
 
 	#if(isSearch || page > 1) {
 		<meta name="robots" content="noindex, noarchive">
@@ -17,5 +17,11 @@
 #export("after-content") {
 	#if(showPagination) {
 		#embed("Partials/page-navigation")
+	}
+}
+
+#export("end-stylesheets") {
+	#if(isSearch) {
+		<link rel="stylesheet" href="/styles/components/search.css">
 	}
 }

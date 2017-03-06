@@ -12,5 +12,9 @@
 	</div>
 	#import("after-content")
 	#embed("Partials/footer")
+
+	#import("end-stylesheets")
+	#embed("Partials/stylesheets")
+	#embed("Partials/scripts")
 </body>
 </html>

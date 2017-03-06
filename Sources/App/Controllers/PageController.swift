@@ -37,6 +37,10 @@ struct PageController {
 			return try display(page: page, with: request)
 		}
 		else if let id = try? params.extract("id") as String {
+			guard request.uri.query?.isEmpty != false else {
+				return Response(headers: request.headers, redirect: "/\(id)")
+			}
+			
 			return try PostController.display(with: request, link: id)
 		}
 		else if request.uri.path == "/" {

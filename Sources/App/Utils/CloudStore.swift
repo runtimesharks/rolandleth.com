@@ -19,14 +19,21 @@ struct CloudStore {
 	}()
 	private static let apiRoot = "https://api.dropbox.com/1"
 	private static let apiContentRoot = "https://api-content.dropbox.com/1"
+	private static let path = "/posts"
 	
 	/// Reads all files in Dropbox, or the one that matches the `path` passed, and saves them to the database.
+	///
+	/// - Note: It returns an array of dictionaries, because if a file throws an error, we don't want to stop the whole process, but we do want to know which one failed and why.
 	///
 	/// - Parameters:
 	///   - performDelete: A flag which determines whether posts that exist in the database, but on as a file should be deleted or not.
 	///   - path: The path of an individual post to be synced.
-	/// - Returns: Returns a dictionary of errors, if any occured.
-	static func perform(withDelete performDelete: Bool = false, for path: String) -> [String: Any] {
+	/// - Returns: A dictionary of errors, if any occured.
+	/// - Throws: Any errors its underlying methods will throw.
+	static func perform(withDelete performDelete: Bool = false, for path: String) throws -> [String: Any] {
+		// Dash, so all paths contain it, in case we don't want
+		// to perform for a specific post - the one we just created, for example.
+		// (I'm using Hazel and a script for auto-syncing)
 		let uriPath = path.isEmpty ? "-" : "\(path)"
 		let group = DispatchGroup()
 		var response: [String: Any] = ["success": false]
@@ -35,7 +42,7 @@ struct CloudStore {
 		
 		var contents: [[String: Any]] = []
 		
-		getPostsFolder { folder in
+		try getPostsFolder { folder in
 			defer { group.leave() }
 			guard
 				let folderContents = folder["contents"] as? [[String: Any]],
@@ -117,63 +124,65 @@ struct CloudStore {
 	/// Creates a file in Dropbox, by parsing the `POST` request.
 	///
 	/// - Parameter request: The request to parse.
-	/// - Returns: A dictionary of errors, if any occurred.
-	/// - Throws: Throws any errors its underlying methods will throw.
-	static func createFile(from bytes: [UInt8]?) throws -> [String: Any] {
-		var post = try Post(from: bytes)
+	/// - Returns: The file, if it was created.
+	/// - Throws: Any error related to the file creation.
+	static func createFile(from bytes: [UInt8]?) throws -> File {
+		let file = try File(from: bytes)
 		
-		guard let url = URL(string: "\(apiContentRoot)/files_put/auto\(post.cloudPath)?overwrite") else {
-			throw "Couldn't create url from \(post.cloudPath)."
+		guard let url = URL(string: "\(apiContentRoot)/files_put/auto\(path)\(file.safePath)?overwrite") else {
+			throw "Couldn't create url from \(file.path)."
 		}
 		
+		var error = ""
 		let group = DispatchGroup()
 		var request = url.dropboxAuthenticatedRequest()
 		request.httpMethod = "PUT"
-		request.httpBody = post.fileData
+		request.httpBody = file.contentsData
 		request.setContentType(to: .plain)
 		
 		group.enter()
 		
-		var failureResponse: [String: Any] = [:]
-		
 		session.dataTask(with: request) { (data, response, err) in
+			defer { group.leave() }
 			guard
 				let data = data,
 				let rawJSON = try? JSONSerialization.jsonObject(
 					with: data,
 					options: .allowFragments),
-				let JSON = rawJSON as? [String: Any]
-			else { return failureResponse = ["error": "Could not decode data."] }
+				let json = rawJSON as? [String: Any]
+			else { return error = "Could not serialize response for creating file." }
 			
-			if let _ = JSON["error"] as? String {
-				return failureResponse = JSON
+			if let remoteError = json["error"] as? String {
+				return error = remoteError
 			}
 			
-			guard
-				JSON["error"] == nil,
-				let dbPath = JSON["path"] as? String,
-				dbPath == post.cloudPath
-				else { return failureResponse = JSON }
+			guard let dbPath = json["path"] as? String else {
+				return error = "Response doesn't containt path key for \(file.path)."
+			}
 			
-			post.saveOrUpdate()
-			group.leave()
+			guard dbPath == "\(path)\(file.path)" else {
+				return error = "Response path doesn't match file path for \(file.path)."
+			}
 		}.resume()
 		
 		_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
 		
-		if let singleError = failureResponse["error"] as? String, failureResponse.count == 1 {
-			throw singleError
-		}
+		guard error.isEmpty else { throw error }
 		
-		return failureResponse
+		return file
 	}
 
-	private static func getPostsFolder(completion: @escaping ([String: Any]) -> Void) {
-		guard let url = URL(string: "\(apiRoot)/metadata/auto/posts/") else { return }
+	private static func getPostsFolder(completion: @escaping ([String: Any]) -> Void) throws {
+		guard let url = URL(string: "\(apiRoot)/metadata/auto\(path)/") else { return }
 		
+		var error = ""
+		let group = DispatchGroup()
 		let request = url.dropboxAuthenticatedRequest()
 		
-		session.dataTask(with: request) { (responseData, response, error) in
+		group.enter()
+		
+		session.dataTask(with: request) { (responseData, response, err) in
+			defer { group.leave() }
 			guard
 				let data = responseData,
 				let rawJSON = try? JSONSerialization.jsonObject(
@@ -181,18 +190,18 @@ struct CloudStore {
 					options: .allowFragments
 				),
 				let json = rawJSON as? [String: Any]
-			else {
-				guard
-					let d = responseData,
-					case let jay = Jay(),
-					let object = try? jay.anyJsonFromData(d.array)
-				else { return completion(["error": "Empty response."]) }
-
-				return completion(["error": object])
+			else { return error = "Could not serialize response for fetching posts folder." }
+			
+			if let remoteError = json["error"] as? String {
+				return error = "Fetching posts folder returned \"\(remoteError)\"."
 			}
 			
 			completion(json)
 		}.resume()
+		
+		_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
+		
+		throw error
 	}
 	
 	private static func fetchFile(at path: String, completion: @escaping (String?) -> Void) {

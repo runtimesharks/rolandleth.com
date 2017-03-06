@@ -1,14 +1,14 @@
 @import '../globals/variables';
 
-.content {
-	@include lightBottomBorder(1px);
-	padding-bottom: 1.5em;
-}
-
 img {
 	float: left;
 	margin-top: 14px;
 	margin-right: 1em;
+}
+
+.content {
+	@include lightBottomBorder(1px);
+	padding-bottom: 1.5em;
 }
 
 .privacy-footer {
@@ -17,12 +17,12 @@ img {
 }
 
 @include responsiveWidth($smallMedia) {
+	img {
+		max-width: 125px;
+	}
+
 	.content {
 		padding-top: 4em;
 		font-size: 0.9em;
-	}
-
-	img {
-		max-width: 125px;
 	}
 }

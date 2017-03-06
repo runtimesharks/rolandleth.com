@@ -1,7 +1,6 @@
 #extend("base")
 
 #export("head") {
-	<link rel="preload" href="/styles/pages/archive.css" as="style" onload="this.rel='stylesheet'">
 	<meta name="robots" content="noarchive">
 }
 
@@ -18,4 +17,8 @@
 			}
 		</div>
 	}
+}
+
+#export("end-stylesheets") {
+	<link rel="stylesheet" href="/styles/pages/archive.css">
 }

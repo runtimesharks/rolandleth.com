@@ -1,7 +1,6 @@
 #extend("base")
 
 #export("head") {
-	<link rel="preload" href="/styles/pages/privacy-policy.css" as="style" onload="this.rel='stylesheet'">
 	<meta name="robots" content="none">
 }
 
@@ -28,4 +27,8 @@
 	<br>
 	<h1>Contact</h1>
 	<p>If you have any questions or concerns about my privacy policy, please <a href="mailto:roland@rolandleth.com">contact me</a>. If, by any chance, you'd like do download this document, you can do so <a class="download-privacy-policy" href="/downloads/privacy-policy.md">here</a>; it's in Markdown format.</p>
+}
+
+#export("end-stylesheets") {
+	<link rel="stylesheet" href="/styles/pages/privacy-policy.css">
 }

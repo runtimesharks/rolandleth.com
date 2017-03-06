@@ -1,7 +1,6 @@
 #extend("base")
 
 #export("head") {
-	<link rel="preload" href="/styles/pages/create-post.css" as="style" onload="this.rel='stylesheet'">
 	<meta name="robots" content="none">
 }
 
@@ -28,4 +27,8 @@
 			<h1>Token: </h1>&nbsp;&nbsp;<input class="text-field" title="Token" type="text" name="token">
 		</div>
 	</form>
+}
+
+#export("end-stylesheets") {
+	<link rel="stylesheet" href="/styles/pages/create-post.css">
 }

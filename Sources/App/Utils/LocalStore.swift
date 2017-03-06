@@ -14,14 +14,16 @@ struct LocalStore {
 	
 	/// Reads all local files, or the one that matches the `path` passed, and saves them to the database.
 	///
+	/// - Note: It returns an array of dictionaries, because if a file throws an error, we don't want to stop the whole process, but we do want to know which one failed and why.
+	///
 	/// - Parameters:
 	///   - performDelete: A flag which determines whether posts that exist in the database, but on as a file should be deleted or not.
 	///   - path: The path of an individual post to be synced.
-	/// - Returns: Returns a dictionary of errors, if any occurred.
-	/// - Throws: Throws any errors its underlying methods will throw.
+	/// - Returns: A dictionary of errors, if any occurred.
+	/// - Throws: Any errors its underlying methods will throw.
 	static func perform(withDelete performDelete: Bool, for path: String) throws -> [String: String] {
 		// Dash, so all paths contain it, in case we don't want
-		// to perform for a specific post, usually the one we just created.
+		// to perform for a specific post - the one we just created, for example.
 		// (I'm using Hazel and a script for auto-syncing)
 		let path = path.isEmpty ? "-" : path.droppingFirst()
 		var errors: [String: String] = [:]
@@ -45,16 +47,16 @@ struct LocalStore {
 		return errors
 	}
 	
-	static func createFile(from bytes: [UInt8]?) throws {
-		var post = try Post(from: bytes)
-
+	static func createFile(from bytes: [UInt8]?) throws -> File {
+		let file = try File(from: bytes)
+		
 		guard
 			FileManager.default.createFile(
-				atPath: postsFolderPath + "/\(post.path)",
-				contents: post.fileData)
-		else { throw "Couldn't create file at \(post.path)" }
+				atPath: postsFolderPath + "\(file.path)",
+				contents: file.contentsData)
+		else { throw "Couldn't create file at \(file.path)" }
 		
-		post.saveOrUpdate()
+		return file
 	}
 	
 	private static func postsFolder() throws -> [String] {

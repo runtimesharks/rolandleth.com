@@ -52,7 +52,7 @@ h1 {
 	text-align: center;
 }
 
-@media screen and (max-width: 647px) {
+@include responsiveWidth(647px) {
 	span.the-404-search:before {
 		left: 8%;
 		max-width: 320px;
@@ -67,13 +67,12 @@ h1 {
 		}
 	}
 
-
 	p.error-message {
 		font-size: 1.2em;
 	}
 }
 
-@media screen and (max-width: 450px) {
+@include responsiveWidth(450px) {
 	span.the-404-search:before {
 		left: 6.5%;
 		max-width: 250px;
@@ -89,7 +88,7 @@ h1 {
 	}
 }
 
-@media screen and (max-width: 350px) {
+@include responsiveWidth(350px) {
 	span.the-404-search:before {
 		left: 3%;
 	}

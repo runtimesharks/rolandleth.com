@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,WAAY,CACX,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,eAAe,CACxB,gBAAgB,CCFL,OAAO,CDGlB,KAAK,CCIY,OAAO",
+"sources": ["search.scss","../globals/variables.scss"],
+"names": [],
+"file": "search.css"
+}

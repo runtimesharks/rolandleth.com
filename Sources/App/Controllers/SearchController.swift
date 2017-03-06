@@ -55,7 +55,8 @@ struct SearchController {
 			"metadata": "Search results.",
 			"query": "?query=\(query.addingPercentEncoding(withAllowedCharacters: .letters)!)",
 			"root": "/search/",
-			"page": page
+			"page": page,
+			"isSearch": true
 		]
 		
 		return try drop.view.showResults(with: params,

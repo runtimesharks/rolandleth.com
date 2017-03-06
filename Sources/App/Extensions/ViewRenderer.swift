@@ -64,7 +64,7 @@ extension ViewRenderer {
 		
 		let params = footerParams + metadataParams + params
 		
-		return try make(path, params)
+		return try make(path, params, for: request)
 	}
 	
 }

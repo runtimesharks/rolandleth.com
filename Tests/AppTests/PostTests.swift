@@ -11,71 +11,50 @@ import XCTest
 
 class PostTests: XCTestCase {
 	
-	private let title = "Test title"
-	private let link = "test-title"
-	private let body = "*Italic*" + String(repeating: "a", count: 1000)
-	private lazy var htmlBody: String = self.body.replacingOccurrences(of: "*Italic*",
-	                                                                   with: "<p><em>Italic</em>")
-	private let datetime = "2017-03-02-1649"
-	private lazy var path: String = "\(self.datetime)-\(self.title).md"
-	private lazy var fileContents: String = "\(self.title)\n\n\(self.body)"
-	private let termination = "&nbsp;[&hellip;]"
-	private lazy var continueReading: String = "<br/><a class=\"post-continue-reading\" href=\"/\(self.link)\" data-post-title=\"\(self.title)\">Continue reading &rarr;</a>"
-	
-	private var post: Post!
-
-	override func setUp() {
-		post = Post(title: title, body: body, datetime: datetime)
-		super.setUp()
+	private enum E {
+		static let title = "Test title"
+		static let link = "test-title"
+		static let body = "*Italic*" + String(repeating: "a", count: 1000)
+		static let htmlBody: String = E.body
+			.replacingOccurrences(of: "*Italic*", with: "<p><em>Italic</em>")
+		static let datetime = "2017-03-02-1649"
+		static let termination = "&nbsp;[&hellip;]"
+		static let continueReading: String = "<br/><a class=\"post-continue-reading\" href=\"/\(E.link)\" data-post-title=\"\(E.title)\">Continue reading &rarr;</a>"
 	}
+	
+	private var post = Post(title: E.title, body: E.body, datetime: E.datetime)
 	
 	
 	// MARK: - Tests
 	
 	func testTitle() {
-		XCTAssertEqual(title, post.title)
+		XCTAssertEqual(E.title, post.title)
 	}
 	
 	func testRawBody() {
-		XCTAssertEqual(body, post.rawBody)
+		XCTAssertEqual(E.body, post.rawBody)
 	}
 	
 	func testBody() {
-		XCTAssertEqual(htmlBody + "</p>\n", post.body)
+		XCTAssertEqual(E.htmlBody + "</p>\n", post.body)
 	}
 	
 	func testTruncatedBody() {
 		// 600 + 12 characters for the tags.
-		let truncatedBody = htmlBody[0..<612] + termination + "</p>" + continueReading
+		let truncatedBody = E.htmlBody[0..<612] + E.termination + "</p>" + E.continueReading
 		XCTAssertEqual(truncatedBody, post.truncatedBody)
 	}
 	
 	func testDateTime() {
-		XCTAssertEqual(datetime, post.datetime)
+		XCTAssertEqual(E.datetime, post.datetime)
 	}
 	
 	func testLink() {
-		XCTAssertEqual(link, post.link)
-	}
-	
-	func testPath() {
-		XCTAssertEqual(path, post.path)
-	}
-	
-	func testCloudPath() {
-		XCTAssertEqual("/posts/\(path)", post.cloudPath)
+		XCTAssertEqual(E.link, post.link)
 	}
 	
 	func testReadingTime() {
 		XCTAssertEqual("", post.readingTime)
-	}
-	
-	func testFileContents() {
-		XCTAssertEqual(fileContents, post.fileContents)
-	}
-	
-	func testFileContentsData() {
-		XCTAssertEqual(Data(fileContents.bytes), post.fileData)
 	}
 	
 	func testDate() {
@@ -100,7 +79,7 @@ class PostTests: XCTestCase {
 	func testTruncateBodyWithOpenParagraphAtEndAddsTerminationBeforeClosingTag() {
 		let repeated = String(repeating: "word ", count: 119)
 		let body = repeated + "<p><em>Trimmed</p><em>" + repeated
-		let expected = repeated + "<p><em>Trimm</em>" + termination + "</p>" + continueReading
+		let expected = repeated + "<p><em>Trimm</em>" + E.termination + "</p>" + E.continueReading
 		post.body = body
 		
 		XCTAssertEqual(expected, post.truncatedBody)
@@ -109,7 +88,7 @@ class PostTests: XCTestCase {
 	func testTruncateBodyWithOpenBoldAtEndAddsTerminationAfterClosingTag() {
 		let repeated = String(repeating: "word ", count: 119)
 		let body = repeated + "<em><strong>Trimmed<em></strong>" + repeated
-		let expected = repeated + "<em><strong>Trimm</strong></em>" + termination + continueReading
+		let expected = repeated + "<em><strong>Trimm</strong></em>" + E.termination + E.continueReading
 		post.body = body
 		
 		XCTAssertEqual(expected, post.truncatedBody)
@@ -136,12 +115,12 @@ class PostTests: XCTestCase {
 		XCTAssertEqual(body, post.rawBody)
 		XCTAssertEqual(body, post.body)
 		// The last space is removed, since one is added via &nbsp;
-		XCTAssertEqual(body[0..<599] + termination + continueReading, post.truncatedBody)
+		XCTAssertEqual(body[0..<599] + E.termination + E.continueReading, post.truncatedBody)
 		XCTAssertEqual("45 sec read", post.readingTime)
 	}
 	
 	func testDateMethod() {
-		guard let date = Post.date(from: datetime) else { return XCTFail("Couldn't create date.") }
+		guard let date = Post.date(from: E.datetime) else { return XCTFail("Couldn't create date.") }
 		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
 		                                                 from: date)
 		
@@ -166,21 +145,19 @@ class PostTests: XCTestCase {
 		XCTAssertEqual("\(y)-\(M)-\(d)-\(h)\(m)", datetime)
 	}
 	
-	func testInitFromBody() {
-		let bytes = "title=Test+title&body=Test+body&datetime=2017-03-02-1814&token=r".bytes
-		guard let post = try? Post(from: bytes, testKey: "r") else { return XCTFail("Couldn't create from bytes.") }
+	func testInitFromFile() {
+		let file = File(title: "Test title", body: "Test body", datetime: "2017-03-04-2232")
+		let post = Post(from: file)
 		
-		XCTAssertEqual("Test title", post.title)
-		XCTAssertEqual("<p>Test body</p>\n", post.body)
-		XCTAssertEqual("2017-03-02-1814", post.datetime)
-	}
-	
-	func testInitFromInvalidBodyThrows() {
-		let httpBody = "titl=Test+title&body=Test+body&datetime=2017-03-02-1814&token=r"
-		let bytes = httpBody.bytes
-		XCTAssertThrowsError(try Post(from: bytes, testKey: "r")) { error in
-			XCTAssertEqual("\(error)", "Malformed body: \(httpBody).")
-		}
+		XCTAssertEqual(file.title, post.title)
+		XCTAssertEqual(file.body, post.rawBody)
+		XCTAssertEqual("<p>\(file.body)</p>\n", post.body)
+		XCTAssertEqual("", post.readingTime)
+		XCTAssertEqual("test-title", post.link)
+		XCTAssertEqual("Mar 04, 2017", post.date)
+		XCTAssertEqual(file.datetime, post.datetime)
+		XCTAssertEqual(file.path, "/\(post.datetime)-\(post.title).md")
+		XCTAssertEqual(file.contents, "\(post.title)\n\n\(post.rawBody)")
 	}
 	
 }

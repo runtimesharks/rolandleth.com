@@ -1,4 +1,4 @@
-@import '../globals/variables';
+@import 'variables';
 
 blockquote {
 	@include lightTopBorder(5px);
@@ -28,7 +28,7 @@ pre {
 		overflow: auto;
 		padding: 0.5em 0 0.5em 1em;
 	}
-	
+
 	border-radius: 2px;
 	border-left: 2px solid $codeColor;
 	background-color: #FFF;

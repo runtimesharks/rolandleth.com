@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="/styles/globals/prism.min.css">
+<link rel="stylesheet" href="/styles/globals/syntax.css">
+<link rel="stylesheet" href="/styles/components/pagination.css">
+<link rel="stylesheet" href="/styles/components/footer.css">
+<link rel="preload" href="/styles/font-awesome/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'">

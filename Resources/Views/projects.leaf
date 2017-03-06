@@ -1,9 +1,5 @@
 #extend("base")
 
-#export("head") {
-	<link rel="preload" href="/styles/pages/projects.css" as="style" onload="this.rel='stylesheet'">
-}
-
 #export("body") {
 	<div class="article">
 		<h1>Apps</h1>
@@ -64,4 +60,8 @@
 			<a href="https://github.com/rolandleth/lines-of-code.rb">Lines-Of-Code.rb.</a> Count the lines of code in your Xcode project (or in any folder, actually).
 		</p>
 	</div>
+}
+
+#export("end-stylesheets") {
+	<link rel="stylesheet" href="/styles/pages/projects.css">
 }

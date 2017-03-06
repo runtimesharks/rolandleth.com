@@ -64,4 +64,3 @@
 		<span class="disabled">Next &rarr;</span>
 	}
 </nav>
-<link rel="preload" href="/styles/components/pagination.css" as="style" onload="this.rel='stylesheet'">

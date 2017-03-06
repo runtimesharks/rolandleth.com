@@ -5,6 +5,20 @@ h1 {
 	vertical-align: top;
 }
 
+textarea {
+	padding: 5px;
+	margin-top: 20px;
+	font-family: $bodyFont;
+	font-size: 0.8em;
+	width: 96%;
+	border: 1px solid $lightGray;
+
+	&:focus {
+		outline: transparent none;
+		border: 1px solid $linkColor;
+	}
+}
+
 .input-wrapper {
 	width: 100%;
 
@@ -35,23 +49,13 @@ h1 {
 	text-align: center;
 }
 
-textarea {
-	padding: 5px;
-	margin-top: 20px;
-	font-family: $bodyFont;
-	font-size: 0.8em;
-	width: 96%;
-	border: 1px solid $lightGray;
-
-	&:focus {
-		outline: transparent none;
-		border: 1px solid $linkColor;
-	}
-}
-
 @include responsiveWidth($phoneMedia) {
 	h1 {
 		font-size: 1.2em;
+	}
+
+	textarea {
+		margin-top: 10px;
 	}
 
 	.submit {
@@ -60,9 +64,5 @@ textarea {
 
 	.input-wrapper {
 		margin-top: 20px;
-	}
-
-	textarea {
-		margin-top: 10px;
 	}
 }

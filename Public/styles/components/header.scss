@@ -4,17 +4,9 @@
 	max-width: $maxWidth;
 	margin: 2.5em auto 0 auto;
 	font-family: $headerFont;
-	
+
 	a {
 		line-height: 1.25em;
-	}
-	
-	@include responsiveWidth(330px) {
-		font-size: 0.9em;
-	}
-	
-	@include responsiveWidth(356px) {
-		font-size: 1em;
 	}
 }
 
@@ -30,7 +22,6 @@
 
 .search-form {
 	background-color: rgba(0, 0, 0, 0);
-	display: inline-block;
 	margin-top: 17px;
 	float: right;
 }
@@ -43,10 +34,10 @@
 	border-bottom: none;
 	outline: none;
 	border-radius: 0;
-	
+
 	font-family: $lightFont;
 	font-size: 1em;
-	
+
 	&::-webkit-input-placeholder {
 		color: $gray;
 	}
@@ -56,7 +47,7 @@
 	&:-moz-placeholder {
 		color: $gray;
 	}
-	
+
 	&:focus {
 		&::-webkit-input-placeholder {
 			color: $linkColor;
@@ -83,10 +74,6 @@
 
 		display: inline-block;
 		font-size: 1.4em;
-
-		@include responsiveWidth(570px) {
-			margin-left: 12px;
-		}
 	}
 
 	a:first-child .fa {
@@ -97,30 +84,46 @@
 @include responsiveWidth($phoneMedia) {
 	.banner {
 		text-align: center;
+		width: 100%;
+		text-align: center;
 	}
-	
+
 	.text-field {
 		@include lightBottomBorder(1px);
 		font-size: 0.9em;
 		text-align: left;
-		
+
 		&:focus {
 			border-bottom: 1px solid $linkColor;
 		}
 	}
-	
+
 	.search-form {
 		float: left;
 		margin-top: 6px;
 	}
 
-	.banner {
-		width: 100%;
-		text-align: center;
-	}
-	
 	.navigation {
 		margin-left: auto;
 		max-width: 150px;
 	}
 }
+
+@include responsiveWidth(570px) {
+	.navigation .fa {
+		margin-left: 12px;
+	}
+}
+
+@include responsiveWidth(356px) {
+	.site-header {
+		font-size: 1em;
+	}
+}
+
+@include responsiveWidth(330px) {
+	.site-header {
+		font-size: 0.9em;
+	}
+}
+
