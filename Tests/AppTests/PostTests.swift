@@ -22,7 +22,12 @@ class PostTests: XCTestCase {
 		static let continueReading: String = "<br/><a class=\"post-continue-reading\" href=\"/\(E.link)\" data-post-title=\"\(E.title)\">Continue reading &rarr;</a>"
 	}
 	
-	private var post = Post(title: E.title, body: E.body, datetime: E.datetime)
+	private let calendar: Calendar = {
+		var c = Calendar.current
+		c.timeZone = DateFormatter.shared.timeZone
+		return c
+	}()
+	private var post = Post(title: E.title, rawBody: E.body, datetime: E.datetime)
 	
 	
 	// MARK: - Tests
@@ -63,7 +68,7 @@ class PostTests: XCTestCase {
 	
 	func testTruncatedShortBodyEqualsBody() {
 		let body = "Short body."
-		let post = Post(title: "", body: body, datetime: "")
+		let post = Post(title: "", rawBody: body, datetime: "")
 		
 		XCTAssertEqual("<p>\(body)</p>\n", post.truncatedBody)
 	}
@@ -71,16 +76,17 @@ class PostTests: XCTestCase {
 	func testBodyBetweenMinMaxLimitsDoesNotTruncate() {
 		let repeated = String(repeating: "word ", count: 130)
 		let body = repeated + "<p><em>Trimmed</p><em>"
-		post.body = body
+		let expected = "<p>" + body + "</p>\n"
+		post.rawBody = body
 		
-		XCTAssertEqual(body, post.truncatedBody)
+		XCTAssertEqual(expected, post.truncatedBody)
 	}
 	
 	func testTruncateBodyWithOpenParagraphAtEndAddsTerminationBeforeClosingTag() {
 		let repeated = String(repeating: "word ", count: 119)
 		let body = repeated + "<p><em>Trimmed</p><em>" + repeated
-		let expected = repeated + "<p><em>Trimm</em>" + E.termination + "</p>" + E.continueReading
-		post.body = body
+		let expected = "<p>" + repeated + "<p><em>Trimm</em></p>" + E.termination + "</p>" + E.continueReading
+		post.rawBody = body
 		
 		XCTAssertEqual(expected, post.truncatedBody)
 	}
@@ -88,41 +94,41 @@ class PostTests: XCTestCase {
 	func testTruncateBodyWithOpenBoldAtEndAddsTerminationAfterClosingTag() {
 		let repeated = String(repeating: "word ", count: 119)
 		let body = repeated + "<em><strong>Trimmed<em></strong>" + repeated
-		let expected = repeated + "<em><strong>Trimm</strong></em>" + E.termination + E.continueReading
-		post.body = body
+		let expected = "<p>" + repeated + "<em><strong>Trimm</strong></em>" + E.termination + "</p>" + E.continueReading
+		post.rawBody = body
 		
 		XCTAssertEqual(expected, post.truncatedBody)
 	}
 	
 	func testActualReadingTime() {
 		let body = String(repeating: "word ", count: 675)
-		let post = Post(title: "", body: body, datetime: "")
+		let post = Post(title: "", rawBody: body, datetime: "")
 		
 		XCTAssertEqual("3 min read", post.readingTime)
 	}
 	
 	func testShortReadingTime() {
 		let body = String(repeating: "word ", count: 175)
-		let post = Post(title: "", body: body, datetime: "")
+		let post = Post(title: "", rawBody: body, datetime: "")
 		
 		XCTAssertEqual("45 sec read", post.readingTime)
 	}
 	
 	func testBodyDidSet() {
 		let body = String(repeating: "word ", count: 175)
-		post.body = body
+		let htmlBody = "<p>\(body.droppingLast())</p>"
+		post.rawBody = body
 		
 		XCTAssertEqual(body, post.rawBody)
-		XCTAssertEqual(body, post.body)
-		// The last space is removed, since one is added via &nbsp;
-		XCTAssertEqual(body[0..<599] + E.termination + E.continueReading, post.truncatedBody)
+		XCTAssertEqual(htmlBody + "\n", post.body)
+		XCTAssertEqual(htmlBody[0..<602] + E.termination + "</p>" + E.continueReading, post.truncatedBody)
 		XCTAssertEqual("45 sec read", post.readingTime)
 	}
 	
 	func testDateMethod() {
 		guard let date = Post.date(from: E.datetime) else { return XCTFail("Couldn't create date.") }
-		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
-		                                                 from: date)
+		let components = calendar.dateComponents([.year, .month, .day, .hour, .minute],
+		                                         from: date)
 		
 		XCTAssertEqual(2017, components.year)
 		XCTAssertEqual(3, components.month)
@@ -134,8 +140,9 @@ class PostTests: XCTestCase {
 	func testDateTimeMethod() {
 		let date = Date()
 		let datetime = Post.datetime(from: date)
-		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],
-		                                                 from: date)
+		let components = calendar.dateComponents([.year, .month, .day, .hour, .minute],
+		                                         from: date)
+		
 		let y = components.year!
 		let M = components.month!.doubleDigitString
 		let d = components.day!.doubleDigitString

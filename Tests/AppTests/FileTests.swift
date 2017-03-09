@@ -58,7 +58,7 @@ class FileTests: XCTestCase {
 	}
 	
 	func testInitFromPost() {
-		let post = Post(title: "Test title", body: "Test body", datetime: "2017-03-04-2225")
+		let post = Post(title: "Test title", rawBody: "Test body", datetime: "2017-03-04-2225")
 		let file = File(from: post)
 		
 		XCTAssertEqual(post.title, file.title)

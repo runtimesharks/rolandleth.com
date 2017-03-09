@@ -67,7 +67,7 @@ struct SearchController {
 	
 }
 
-fileprivate extension String {
+private extension String {
 	
 	mutating func addSearchMarkTags(around term: String) throws {
 		let markOpen = "<mark class=\"search\">"
