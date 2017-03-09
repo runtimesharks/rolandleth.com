@@ -11,7 +11,7 @@ import Foundation
 extension Post {
 	
 	init(from file: File) {
-		self.init(title: file.title, body: file.body, datetime: file.datetime)
+		self.init(title: file.title, rawBody: file.body, datetime: file.datetime)
 	}
 	
 }

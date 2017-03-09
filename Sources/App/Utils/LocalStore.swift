@@ -88,7 +88,7 @@ struct LocalStore {
 		
 		let datetime = "\(nameSplit[0])-\(nameSplit[1])-\(nameSplit[2])-\(nameSplit[3])"
 		
-		return Post(title: title, body: body, datetime: datetime)
+		return Post(title: title, rawBody: body, datetime: datetime)
 	}
 	
 }

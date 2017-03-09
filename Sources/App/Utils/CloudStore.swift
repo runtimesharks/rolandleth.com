@@ -90,7 +90,7 @@ struct CloudStore {
 					return group.leave()
 				}
 				
-				var post = Post(title: title, body: body, datetime: datetime)
+				var post = Post(title: title, rawBody: body, datetime: datetime)
 				
 				if let fullModified = fileMetadata["modified"] as? String,
 					fullModified.length > 21,
