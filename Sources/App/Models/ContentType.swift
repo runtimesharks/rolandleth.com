@@ -10,7 +10,7 @@ enum ContentType: String {
 	case json = "application/json"
 	case pdf = "application/pdf"
 	case html = "text/html"
-	case xml = "text/xml"
+	case xml = "application/xml"
 	case plain = "text/plain"
 	case octetStream = "application/octet-stream"
 }
