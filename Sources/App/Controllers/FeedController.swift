@@ -20,12 +20,14 @@ struct FeedController {
 		
 		request.setContentType(to: .xml)
 		
-		let fullFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+		let year = Calendar.current.component(.year, from: Date())
+		let fullFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 		let df = DateFormatter.shared
 		df.dateFormat = fullFormat
 		let updated = df.string(from: Date())
 		
-		var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+		var xml = ""
+		xml += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 		xml += "<feed xmlns=\"http://www.w3.org/2005/Atom\">\n"
 		xml += "<title type=\"text\">Roland Leth</title>\n"
 		xml += "<subtitle type=\"text\">Development thoughts by Roland Leth</subtitle>\n"
@@ -34,7 +36,8 @@ struct FeedController {
 		xml += "<link rel=\"self\" type=\"application/atom+xml\" href=\"\(request.domain)/feed\"/>\n"
 		xml += "<link rel=\"alternate\" type=\"text/html\" hreflang=\"en\" href=\"\(request.domain)\"/>\n"
 		xml += "<id>\(request.domain)/feed</id>\n"
-		xml += "<rights>Copyright (c) 2017, Roland Leth</rights>\n"
+		xml += "<icon>\(request.domain)/images/favicons/192x192.png</icon>\n"
+		xml += "<rights>Copyright (c) \(year), Roland Leth</rights>\n"
 		
 		func fullDate(from datetime: String) -> String? {
 			df.setDatetimeFormat()
@@ -48,6 +51,7 @@ struct FeedController {
 			let url = "\(request.domain)/\($0.link)"
 			
 			xml += "<entry>\n"
+			xml += "\t<id>\(url)</id>\n"
 			xml += "\t<title>\($0.title)</title>\n"
 			xml += "\t<link rel=\"related\" type=\"text/html\" href=\"\(url)\"/>\n"
 			xml += "\t<link rel=\"alternate\" type=\"text/html\" href=\"\(url)\"/>\n"
@@ -64,7 +68,11 @@ struct FeedController {
 			xml += "\t\t<uri>\(request.domain)</uri>\n"
 			xml += "\t</author>\n"
 			xml += "\t<content type=\"html\" xml:lang=\"en\"><![CDATA[\n"
-			xml += $0.body + "\n"
+			xml += $0.body
+				.replacingOccurrences(of: "<mark>", with: "")
+				.replacingOccurrences(of: "</mark>", with: "") + "\n"
+			// Atom complains about the mark tag, and
+			// this takes like 5-10ms for the whole loop ...
 			xml += "]]></content>\n"
 			xml += "</entry>\n"
 		}

@@ -138,11 +138,7 @@ public class MarkNoteParser: NSObject {
 					isCurrentLineNeedBr = false
 					continue
 				}else {
-					output += line
-						.replaceAll("&", toStr:"&amp;")
-						.replaceAll("\"", toStr:"&quot;")
-						.replaceAll("<", toStr:"&lt;")
-						.replaceAll(">", toStr:"&gt;")
+					output += line.htmlEscaped
 					
 					output += "\n"
 				}
@@ -539,7 +535,9 @@ public class MarkNoteParser: NSObject {
 	func  scanClosedChar(_ ch:String, inStr:String,tag:String) -> Int {
 		let pos = inStr.indexOf(ch)
 		if pos > 0 {
-			output += "<\(tag)>" + inStr.substring(to: inStr.index(inStr.startIndex, offsetBy: pos)) + "</\(tag)>"
+			output += "<\(tag)>"
+				+ inStr.substring(to: inStr.index(inStr.startIndex, offsetBy: pos)).htmlEscaped
+				+ "</\(tag)>"
 		} else {
 			output += ch
 		}
