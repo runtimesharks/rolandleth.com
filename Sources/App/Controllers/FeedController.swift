@@ -72,7 +72,7 @@ struct FeedController {
 				.replacingOccurrences(of: "<mark>", with: "")
 				.replacingOccurrences(of: "</mark>", with: "") + "\n"
 			// Atom complains about the mark tag, and
-			// this takes like 5-10ms for the whole loop ... 
+			// this takes like 5-10ms for the whole loop ...
 			xml += "]]></content>\n"
 			xml += "</entry>\n"
 		}
