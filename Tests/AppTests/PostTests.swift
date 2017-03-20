@@ -153,8 +153,14 @@ class PostTests: XCTestCase {
 	}
 	
 	func testInitFromFile() {
-		let file = File(title: "Test title", body: "Test body", datetime: "2017-03-04-2232")
-		let post = Post(from: file)
+		let file: File! = try? File(path: "/2017-03-04-2232-Test title.md",
+		                            contents: "Test title\n\nTest body")
+		
+		XCTAssertNotNil(file)
+		
+		let post: Post! = try? Post(from: file)
+		
+		XCTAssertNotNil(post)
 		
 		XCTAssertEqual(file.title, post.title)
 		XCTAssertEqual(file.body, post.rawBody)
@@ -163,7 +169,7 @@ class PostTests: XCTestCase {
 		XCTAssertEqual("test-title", post.link)
 		XCTAssertEqual("Mar 04, 2017", post.date)
 		XCTAssertEqual(file.datetime, post.datetime)
-		XCTAssertEqual(file.path, "/\(post.datetime)-\(post.title).md")
+		XCTAssertEqual(file.path, "\(post.datetime)-\(post.title).md")
 		XCTAssertEqual(file.contents, "\(post.title)\n\n\(post.rawBody)")
 	}
 	

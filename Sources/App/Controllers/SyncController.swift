@@ -38,7 +38,7 @@ struct SyncController {
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
 		let file = try createFile(with: request)
-		try createPost(with: file)
+		try Post.save(from: file)
 		
 		return Response.rootRedirect
 	}
@@ -66,11 +66,6 @@ struct SyncController {
 		}
 		
 		return try CloudStore.createFile(from: request.body.bytes)
-	}
-	
-	private static func createPost(with file: File) throws {
-		var post = Post(from: file)
-		post.saveOrUpdate()
 	}
 	
 }

@@ -11,12 +11,13 @@ import VaporPostgreSQL
 
 extension Post: Model {
 	
-	static func deleteFromDatabase(checking files: [Post]) {
+	static func deleteFromDatabase(checking files: [File]) {
 		guard !files.isEmpty, let posts = try? Post.all() else { return }
 		
 		for post in posts {
 			let exists = files.contains {
-				post.link == $0.link && post.datetime == $0.datetime
+				post.link == Post.link(from: $0.title, with: $0.datetime)
+					&& post.datetime == $0.datetime
 			}
 			guard !exists else { continue }
 			

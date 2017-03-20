@@ -149,7 +149,7 @@ extension Post {
 	///   - title: The post's title.
 	///   - datetime: The post's datetime.
 	/// - Returns: A safe link.
-	fileprivate static func link(from title: String, with datetime: String) -> String {
+	static func link(from title: String, with datetime: String) -> String {
 		let regex = try! NSRegularExpression(pattern: "([#,;!:'\"\\$\\?\\(\\)\\[\\]\\{\\}\\/\\\\]+)",
 		                                     options: .caseInsensitive)
 		let link = regex

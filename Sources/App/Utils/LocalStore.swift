@@ -10,7 +10,7 @@ import Foundation
 
 struct LocalStore {
 	
-	private static let postsFolderPath = "/Users/roland/Desktop/blog/posts"
+	private static let folderPath = "/Users/roland/Desktop/blog/posts/"
 	
 	/// Reads all local files, or the one that matches the `path` passed, and saves them to the database.
 	///
@@ -27,22 +27,25 @@ struct LocalStore {
 		// (I'm using Hazel and a script for auto-syncing)
 		let path = path.isEmpty ? "-" : path.droppingFirst()
 		var errors: [String: String] = [:]
-		var files: [Post] = []
+		var files: [File] = []
 		
 		try postsFolder().filter { $0.contains(path) }.forEach {
 			do {
-				var post = try self.post(from: $0)
-				post.saveOrUpdate()
-				files.append(post)
+				let file = try self.file(from: $0)
+				files.append(file)
 			}
 			catch {
 				errors[$0] = "\(error)"
 			}
 		}
 		
+		// First delete the ones that don't exist, then create new ones,
+		// because if a rename happened, it will first create a duplicate --X variation.
 		if performDelete {
 			Post.deleteFromDatabase(checking: files)
 		}
+		
+		try files.forEach(Post.save)
 		
 		return errors
 	}
@@ -52,7 +55,7 @@ struct LocalStore {
 		
 		guard
 			FileManager.default.createFile(
-				atPath: postsFolderPath + "\(file.path)",
+				atPath: folderPath + "\(file.path)",
 				contents: file.contentsData)
 		else { throw "Couldn't create file at \(file.path)" }
 		
@@ -61,7 +64,7 @@ struct LocalStore {
 	
 	private static func postsFolder() throws -> [String] {
 		do {
-			let paths = try FileManager.default.contentsOfDirectory(atPath: postsFolderPath)
+			let paths = try FileManager.default.contentsOfDirectory(atPath: folderPath)
 			return paths.filter { $0.hasSuffix(".md") }
 		}
 		catch let error as NSError {
@@ -69,26 +72,13 @@ struct LocalStore {
 		}
 	}
 	
-	private static func post(from path: String) throws -> Post {
+	private static func file(from path: String) throws -> File {
 		guard
-			let data = FileManager.default.contents(atPath: "\(postsFolderPath)/\(path)"),
+			let data = FileManager.default.contents(atPath: "\(folderPath)\(path)"),
 			let contents = String(data: data, encoding: .utf8)
 		else { throw "Can't read contents." }
 		
-		let contentSplit = contents.components(separatedBy: "\n\n")
-		
-		guard contentSplit.count > 1 else { throw "Malformed content, probably no title." }
-		
-		let title = contentSplit[0]
-		let body = contentSplit.dropFirst().joined(separator: "\n\n")
-		let name = FileManager.default.displayName(atPath: path)
-		let nameSplit = name.components(separatedBy: "-")
-		
-		guard nameSplit.count > 4 else { throw "Malformed file name." }
-		
-		let datetime = "\(nameSplit[0])-\(nameSplit[1])-\(nameSplit[2])-\(nameSplit[3])"
-		
-		return Post(title: title, rawBody: body, datetime: datetime)
+		return try File(path: path, contents: contents)
 	}
 	
 }

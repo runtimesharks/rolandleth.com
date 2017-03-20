@@ -13,6 +13,7 @@ struct File {
 	let title: String
 	let body: String
 	let datetime: String
+	var modified: String
 	let path: String
 	var safePath: String { return path.replacingOccurrences(of: " ", with: "%20") }
 	let contents: String
@@ -49,20 +50,46 @@ struct File {
 			token == testKey ?? drop.syncKey
 		else { throw "Malformed body: \(bodyString)." }
 		
-		self.init(title: title, body: body, datetime: datetime)
+		try self.init(title: title, body: body, datetime: datetime)
 	}
 	
-	init(title: String, body: String, datetime: String) {
+	private init(title: String, body: String, datetime: String, modified: String? = nil) throws {
+		let contents = "\(title)\n\n\(body)"
+		let path = "/\(datetime)-\(title).md"
+		try self.init(path: path, contents: contents)
+	}
+	
+	init(path: String, contents: String) throws {
+		let path: String = {
+			if path.hasPrefix(CloudStore.folderPath) {
+				return path.replacingOccurrences(of: CloudStore.folderPath, with: "")
+			}
+			if path.hasPrefix("/") { return path.droppingFirst() }
+			return path
+		}()
+		let contentSplit = contents.components(separatedBy: "\n\n")
+		
+		guard contentSplit.count > 1 else { throw "Malformed content, probably no title." }
+		
+		let title = contentSplit[0]
+		let body = contentSplit.dropFirst().joined(separator: "\n\n")
+		let nameSplit = path.components(separatedBy: "-")
+		
+		guard nameSplit.count >= 4 else { throw "Malformed file name." }
+		
+		let datetime = "\(nameSplit[0])-\(nameSplit[1])-\(nameSplit[2])-\(nameSplit[3])"
+		
 		self.title = title
 		self.body = body
 		self.datetime = datetime
-		path = "/\(datetime)-\(title).md"
-		contents = "\(title)\n\n\(body)"
+		modified = datetime
+		self.path = path
+		self.contents = contents
 		contentsData = Data(bytes: contents.bytes)
 	}
 	
-	init(from post: Post) {
-		self.init(title: post.title, body: post.rawBody, datetime: post.datetime)
+	init(from post: Post) throws {
+		try self.init(title: post.title, body: post.rawBody, datetime: post.datetime)
 	}
 	
 }

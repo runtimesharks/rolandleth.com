@@ -10,8 +10,16 @@ import XCTest
 
 class FileTests: XCTestCase {
 	
-	let file = File(title: "Test title", body: "Test body", datetime: "2017-03-04-2222")
+	// It doesn't have a slash at start on purpose. 
+	// We test that variant in PostTests, indirectly.
+	let file: File! = try? File(path: "2017-03-04-2222-Test title.md",
+	                            contents: "Test title\n\nTest body")
 	
+	override func setUp() {
+		super.setUp()
+		
+		XCTAssertNotNil(file)
+	}
 	
 	// MARK: - Tests
 
@@ -28,7 +36,7 @@ class FileTests: XCTestCase {
 	}
 	
 	func testPath() {
-		XCTAssertEqual("/2017-03-04-2222-Test title.md", file.path)
+		XCTAssertEqual("2017-03-04-2222-Test title.md", file.path)
 	}
 	
 	func testContents() {
@@ -59,12 +67,14 @@ class FileTests: XCTestCase {
 	
 	func testInitFromPost() {
 		let post = Post(title: "Test title", rawBody: "Test body", datetime: "2017-03-04-2225")
-		let file = File(from: post)
+		let file: File! = try? File(from: post)
+		
+		XCTAssertNotNil(file)
 		
 		XCTAssertEqual(post.title, file.title)
 		XCTAssertEqual(post.rawBody, file.body)
 		XCTAssertEqual(post.datetime, file.datetime)
-		XCTAssertEqual("/\(post.datetime)-\(post.title).md", file.path)
+		XCTAssertEqual("\(post.datetime)-\(post.title).md", file.path)
 		XCTAssertEqual("\(post.title)\n\n\(post.rawBody)", file.contents)
 	}
 	

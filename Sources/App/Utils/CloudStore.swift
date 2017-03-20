@@ -19,7 +19,7 @@ struct CloudStore {
 	}()
 	private static let apiRoot = "https://api.dropbox.com/1"
 	private static let apiContentRoot = "https://api-content.dropbox.com/1"
-	private static let path = "/posts"
+	static let folderPath = "/posts/"
 	
 	/// Reads all files in Dropbox, or the one that matches the `path` passed, and saves them to the database.
 	///
@@ -58,16 +58,10 @@ struct CloudStore {
 			return response
 		}
 		
-		var dbPosts: [Post] = []
+		var dbFiles: [File] = []
 		
 		for (i, fileMetadata) in contents.enumerated() {
-			guard
-				let path = fileMetadata["path"] as? String,
-				let fileName = path.components(separatedBy: "/").last,
-				case let fileSplit = fileName.components(separatedBy: "-"),
-				fileSplit.count > 4,
-				case let datetime = "\(fileSplit[0])-\(fileSplit[1])-\(fileSplit[2])-\(fileSplit[3])"
-			else {
+			guard let path = fileMetadata["path"] as? String else {
 				response["metadata-\(i)"] = fileMetadata
 				group.leave()
 				continue
@@ -78,43 +72,44 @@ struct CloudStore {
 			group.enter()
 			
 			self.fetchFile(at: path) { file in
-				guard
-					let fileContents = file,
-					!fileContents.isEmpty,
-					case let fileContentsSplit = fileContents.components(separatedBy: "\n\n"),
-					fileContentsSplit.count > 1,
-					let title = fileContentsSplit.first,
-					case let body = fileContentsSplit.dropFirst().joined(separator: "\n\n")
-				else {
+				guard let fileContents = file else {
 					response["contents-\(path)"] = file
 					return group.leave()
 				}
 				
-				var post = Post(title: title, rawBody: body, datetime: datetime)
-				
-				if let fullModified = fileMetadata["modified"] as? String,
-					fullModified.length > 21,
-					case let rawModified = fullModified[5..<22],
-					case let df = DateFormatter.shared,
-					case _ = df.dateFormat = "d MMM yyyy HH:mm",
-					let modifiedDate = df.date(from: rawModified) {
-					post.modified = Post.datetime(from: modifiedDate)
+				do {
+					var file = try File(path: path, contents: fileContents)
+					
+					if let fullModified = fileMetadata["modified"] as? String,
+						fullModified.length > 21,
+						case let rawModified = fullModified[5..<22],
+						case let df = DateFormatter.shared,
+						case _ = df.dateFormat = "d MMM yyyy HH:mm",
+						let modifiedDate = df.date(from: rawModified) {
+						file.modified = Post.datetime(from: modifiedDate)
+					}
+					
+					dbFiles.append(file)
+					
+					if !performDelete {
+						try Post.save(from: file)
+					}
+					
+					response["success"] = true
+					group.leave()
 				}
-				
-				if performDelete {
-					dbPosts.append(post)
+				catch {
+					response["contents-\(path)"] = file
+					group.leave()
 				}
-				
-				post.saveOrUpdate()
-				response["success"] = true
-				group.leave()
 			}
 			
 			_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
 		}
 		
 		if performDelete {
-			Post.deleteFromDatabase(checking: dbPosts)
+			Post.deleteFromDatabase(checking: dbFiles)
+			try dbFiles.forEach(Post.save)
 		}
 		
 		return response
@@ -128,7 +123,7 @@ struct CloudStore {
 	static func createFile(from bytes: [UInt8]?) throws -> File {
 		let file = try File(from: bytes)
 		
-		guard let url = URL(string: "\(apiContentRoot)/files_put/auto\(path)\(file.safePath)?overwrite") else {
+		guard let url = URL(string: "\(apiContentRoot)/files_put/auto\(folderPath)\(file.safePath)?overwrite") else {
 			throw "Couldn't create url from \(file.path)."
 		}
 		
@@ -159,7 +154,7 @@ struct CloudStore {
 				return error = "Response doesn't containt path key for \(file.path)."
 			}
 			
-			guard dbPath == "\(path)\(file.path)" else {
+			guard dbPath == "\(folderPath)\(file.path)" else {
 				return error = "Response path doesn't match file path for \(file.path)."
 			}
 		}.resume()
@@ -172,7 +167,9 @@ struct CloudStore {
 	}
 
 	private static func getPostsFolder(completion: @escaping ([String: Any]) -> Void) throws {
-		guard let url = URL(string: "\(apiRoot)/metadata/auto\(path)/") else { return }
+		guard let url = URL(string: "\(apiRoot)/metadata/auto\(folderPath)") else {
+			throw "Can't create URL for posts' folder"
+		}
 		
 		var error = ""
 		let group = DispatchGroup()
@@ -199,6 +196,8 @@ struct CloudStore {
 		}.resume()
 		
 		_ = group.wait(timeout: DispatchTime(secondsFromNow: 20))
+		
+		guard !error.isEmpty else { return }
 		
 		throw error
 	}

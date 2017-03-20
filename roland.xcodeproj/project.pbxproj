@@ -17557,6 +17557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Core;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
 				TARGET_NAME = Core;
 			};
 			name = Debug;
@@ -17577,6 +17578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Core;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
 				TARGET_NAME = Core;
 			};
 			name = Release;
