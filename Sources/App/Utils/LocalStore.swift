@@ -10,7 +10,7 @@ import Foundation
 
 struct LocalStore {
 	
-	private static let folderPath = "/Users/roland/Desktop/blog/posts/"
+	private static let folderPath = "/Users/roland/Documents/blog/posts/"
 	
 	/// Reads all local files, or the one that matches the `path` passed, and saves them to the database.
 	///
