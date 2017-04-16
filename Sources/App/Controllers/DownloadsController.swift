@@ -7,6 +7,7 @@
 //
 
 import HTTP
+import Vapor
 
 struct DownloadsController {
 	
@@ -25,7 +26,7 @@ struct DownloadsController {
 			}
 		}()
 		
-		guard !asset.isEmpty else { return try NotFoundController.display(with: request) }
+		guard !asset.isEmpty else { throw Abort.notFound }
 		
 		return Response(redirect: "/files/\(asset)")
 	}

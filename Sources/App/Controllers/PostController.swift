@@ -25,7 +25,7 @@ struct PostController {
 			let result = try? query.first(),
 			let post = result
 //			var post = result
-		else { throw "No posts matching \(link)." }
+		else { throw Abort.notFound }
 		
 //		let group = DispatchGroup()
 //		let datetime = "2013-12-04-1831"
@@ -54,19 +54,14 @@ struct PostController {
 	}
 	
 	static func display(with request: Request, link: String) throws -> ResponseRepresentable {
-		do {
-			let post = try fetchPost(with: link)
-			
-			let params: [String: NodeRepresentable] = [
-				"title": post.title,
-				"post": post,
-				"singlePost": true]
-			
-			return try drop.view.make("post", with: params, for: request)
-		}
-		catch {
-			return try NotFoundController.display(with: request)
-		}
+		let post = try fetchPost(with: link)
+		
+		let params: [String: NodeRepresentable] = [
+			"title": post.title,
+			"post": post,
+			"singlePost": true]
+		
+		return try drop.view.make("post", with: params, for: request)
 	}
 
 }

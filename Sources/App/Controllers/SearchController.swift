@@ -43,7 +43,7 @@ struct SearchController {
 //			case let sql = try Post.query().sorted().filtered(by: query),
 //			case let posts = try sql.paginated(to: page).run(),
 			!posts.isEmpty
-		else { return try NotFoundController.display(with: request) }
+		else { throw Abort.notFound }
 		
 		try posts.enumerated().forEach { i, _ in
 			try posts[i].truncatedBody.addSearchMarkTags(around: query)

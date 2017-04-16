@@ -40,11 +40,23 @@ extension Droplet {
 			leaf.stem.register(DictionaryIteratorLeafTag())
 		}
 		
+		
 		preparations += Post.self
-		middleware.insert(GzipMiddleware(), at: 0) // Then we gzip the whole thing.
-		middleware.insert(HeadersMiddleware(), at: 0) // Then we add required headers.
 		middleware.insert(RedirectMiddleware(), at: 0) // First we redirect, if needed.
+		middleware.append(HeadersMiddleware())
+		middleware.append(GzipMiddleware())
 		try? addProvider(VaporPostgreSQL.Provider.self)
+		
+		// This way an invalid URL is first checked by the file middleware,
+		// before showing the 404 page, or letting the internal AbortMiddleware handle errors.
+		if let fileMiddlewareIndex = middleware.index(where: { $0 is FileMiddleware }) {
+			middleware.insert(ErrorMiddleware(), at: fileMiddlewareIndex)
+		}
+		else if let abortMiddlewareIndex = middleware.index(where: { $0 is AbortMiddleware }) {
+			// We are guaranteed index + 1 exists, since we added
+			// three middleware ourselves above.
+			middleware.insert(ErrorMiddleware(), at: abortMiddlewareIndex + 1)
+		}
 		
 		return self
 	}

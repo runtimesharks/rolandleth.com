@@ -51,12 +51,12 @@ struct PageController {
 			return try display(page: 1, with: request)
 		}
 		
-		return try NotFoundController.display(with: request)
+		throw Abort.notFound
 	}
 	
 	private static func display(page: Int, with request: Request) throws -> ResponseRepresentable {
 		guard case let posts = fetchPosts(for: page, with: request), !posts.isEmpty else {
-			return try NotFoundController.display(with: request)
+			throw Abort.notFound
 		}
 		
 		let totalPosts = try Post.query().count()

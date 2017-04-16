@@ -51,6 +51,8 @@
 		2A4D75691E6DBE1000BE88EB /* HeadersMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1450 /* HeadersMiddleware.swift */; };
 		2A4D756A1E6DBE1000BE88EB /* RedirectMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1451 /* RedirectMiddleware.swift */; };
 		2A4D756B1E6DBE3A00BE88EB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1411 /* main.swift */; };
+		2A4E6C881EA36E2F003774D3 /* ErrorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E6C861EA36D7C003774D3 /* ErrorMiddleware.swift */; };
+		2A4E6C891EA36E30003774D3 /* ErrorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E6C861EA36D7C003774D3 /* ErrorMiddleware.swift */; };
 		OBJ_1530 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array.swift */; };
 		OBJ_1531 /* Bool+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bool+String.swift */; };
 		OBJ_1532 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Box.swift */; };
@@ -6260,6 +6262,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A4E6C861EA36D7C003774D3 /* ErrorMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMiddleware.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Bool+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+String.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* bio_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_lib.c; sourceTree = "<group>"; };
 		OBJ_1001 /* FrameDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameDeserializer.swift; sourceTree = "<group>"; };
@@ -9646,6 +9649,7 @@
 			children = (
 				OBJ_1450 /* HeadersMiddleware.swift */,
 				OBJ_1451 /* RedirectMiddleware.swift */,
+				2A4E6C861EA36D7C003774D3 /* ErrorMiddleware.swift */,
 			);
 			path = Middleware;
 			sourceTree = "<group>";
@@ -14352,6 +14356,7 @@
 				OBJ_4075 /* RedirectMiddleware.swift in Sources */,
 				OBJ_4076 /* ContentType.swift in Sources */,
 				OBJ_4077 /* File.swift in Sources */,
+				2A4E6C881EA36E2F003774D3 /* ErrorMiddleware.swift in Sources */,
 				OBJ_4078 /* Post.swift in Sources */,
 				OBJ_4079 /* CloudStore.swift in Sources */,
 				OBJ_4080 /* LocalStore.swift in Sources */,
@@ -14412,6 +14417,7 @@
 				2A4D75441E6DBDF700BE88EB /* DownloadsController.swift in Sources */,
 				OBJ_4187 /* StringTests.swift in Sources */,
 				2A4D75421E6DBDF700BE88EB /* AboutController.swift in Sources */,
+				2A4E6C891EA36E30003774D3 /* ErrorMiddleware.swift in Sources */,
 				2A4D755D1E6DBE0200BE88EB /* DivisionLeafTag.swift in Sources */,
 				2A4D75651E6DBE0600BE88EB /* Queue.swift in Sources */,
 				2A4D75691E6DBE1000BE88EB /* HeadersMiddleware.swift in Sources */,
