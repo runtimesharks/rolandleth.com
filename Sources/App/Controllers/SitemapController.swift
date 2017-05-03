@@ -35,14 +35,28 @@ struct SitemapController {
 		let posts = try Post.query().sorted(future: true).run()
 		let urls = noPriority + lowPriority + highPriority
 		let root = "https://rolandleth.com/"
-		var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">"
+		var xml = ""
+		
+		xml += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+		xml += "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">"
+		
+		func priority(for url: String) -> Float {
+			if highPriority.contains(url) {
+				return 0.9
+			}
+			
+			if lowPriority.contains(url) {
+				return 0.3
+			}
+			
+			return 0.1
+		}
 		
 		urls.forEach {
-			let priority = highPriority.contains($0) ? 0.9 : (lowPriority.contains($0) ? 0.3 : 0.1)
 			xml += "<url>"
 			xml += "<loc>\(root)\($0)</loc>"
 			xml += "<changefreq>yearly</changefreq>"
-			xml += "<priority>\(priority)</priority>"
+			xml += "<priority>\(priority(for: $0))</priority>"
 			xml += "</url>"
 		}
 		

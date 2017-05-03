@@ -25,8 +25,8 @@ struct FeedController {
 		let df = DateFormatter.shared
 		df.dateFormat = fullFormat
 		let updated = df.string(from: Date())
-		
 		var xml = ""
+		
 		xml += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 		xml += "<feed xmlns=\"http://www.w3.org/2005/Atom\">\n"
 		xml += "<title type=\"text\">Roland Leth</title>\n"
