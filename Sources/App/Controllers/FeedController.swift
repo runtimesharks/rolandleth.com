@@ -69,8 +69,8 @@ struct FeedController {
 			xml += "\t</author>\n"
 			xml += "\t<content type=\"html\" xml:lang=\"en\"><![CDATA[\n"
 			xml += $0.body
-				.replacingOccurrences(of: "<mark>", with: "")
-				.replacingOccurrences(of: "</mark>", with: "") + "\n"
+//				.replacingOccurrences(of: "<mark>", with: "")
+//				.replacingOccurrences(of: "</mark>", with: "") + "\n"
 			// Atom complains about the mark tag, and
 			// this takes like 5-10ms for the whole loop ...
 			xml += "]]></content>\n"

@@ -116,8 +116,9 @@ private extension String {
 			.map { $0.range }
 			.reversed()
 			.forEach {
-				self = replacingOccurrences(of: markOpen, with: "", range: range(from: $0))
+				// We're already removing in reverse, but we also need to remove the closing tags first.
 				self = replacingOccurrences(of: markClose, with: "", range: range(from: $0))
+				self = replacingOccurrences(of: markOpen, with: "", range: range(from: $0))
 		}
 	}
 	

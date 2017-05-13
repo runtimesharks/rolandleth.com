@@ -8,6 +8,7 @@
 
 import Foundation
 import Vapor
+import SwiftMarkdown
 
 struct Post {
 	
@@ -140,7 +141,9 @@ extension Post {
 	}
 	
 	fileprivate static func html(from body: String) -> String {
-		return MarkNoteParser.toHtml(body)
+		// No problem if we force unwrap, since we convert locally anyway;
+		// we'll just catch the culprit while syncing.
+		return try! markdownToHTML(body, options: [])
 	}
 	
 	/// Creates a link out of a title.
@@ -284,7 +287,7 @@ private extension String {
 			if trimExtraCharacters {
 				// Remove the last character if it's a whitespace,
 				// since we're adding one along with the termination character.
-				if !printedString.isEmpty, printedString.last == " " {
+				while !printedString.isEmpty, printedString.last == " " || printedString.last == "\n" {
 					printedString.dropLast()
 				}
 				
@@ -348,7 +351,27 @@ private extension String {
 		}
 		
 		if tags.isEmpty {
-			output += termination
+			// If the post is truncated exactly after the closing of a tag,
+			// check if it's <p> or <pre>, and add the termination before it.
+			
+			// What are the odds? Well, I found one case...
+			if output.last == ">" {
+				var i = output.length - 2
+				var endingTag = ">"
+				
+				while output[i] != "<" {
+					endingTag = output[i] + endingTag
+					i -= 1
+				}
+				endingTag = "<" + endingTag
+				
+				if endingTag == "</pre>" || endingTag == "</p>" {
+					output = output[0..<output.length - endingTag.length] + termination + endingTag
+				}
+			}
+			else {
+				output += termination
+			}
 		}
 		
 		return (output, true)

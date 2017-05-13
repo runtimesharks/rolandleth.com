@@ -116,6 +116,12 @@
       "version": "1.2.7"
     },
     {
+      "package": "SwiftMarkdown",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor-community/markdown.git",
+      "version": "0.3.0"
+    },
+    {
       "package": "TLS",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/tls.git",
@@ -138,6 +144,12 @@
       "reason": null,
       "repositoryURL": "https://github.com/vapor/postgresql-provider",
       "version": "1.1.1"
+    },
+    {
+      "package": "cmark",
+      "reason": null,
+      "repositoryURL": "https://github.com/brokenhandsio/cmark-gfm.git",
+      "version": "1.0.0"
     },
     {
       "package": "zlib",

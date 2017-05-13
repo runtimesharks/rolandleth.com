@@ -99,8 +99,10 @@ extension String {
 	}
 	
 	func range(from nsRange: NSRange) -> Range<String.Index> {
-		return Range(uncheckedBounds: (lower: index(startIndex, offsetBy: nsRange.location),
-		                               upper: index(startIndex, offsetBy: nsRange.location + nsRange.length)))
+		let lower = index(startIndex, offsetBy: nsRange.location)
+		let upper = index(lower, offsetBy: nsRange.length, limitedBy: endIndex) ?? endIndex
+		
+		return Range(uncheckedBounds: (lower: lower, upper: upper))
 	}
 	
 	func range(from range: Range<Int>) -> Range<String.Index> {
