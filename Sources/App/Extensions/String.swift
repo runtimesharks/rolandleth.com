@@ -8,10 +8,6 @@
 
 import Foundation
 
-#if os(Linux)
-	typealias NSRegularExpression = RegularExpression
-#endif
-
 extension String: Error { }
 
 extension String {
@@ -21,11 +17,11 @@ extension String {
 	var last: String { return self[length - 1..<length] }
 	var nsRange: NSRange { return NSRange(location: 0, length: length) }
 	var htmlEscaped: String {
-		return replaceAll("&", toStr:"&amp;")
-			.replaceAll("\"", toStr:"&quot;")
-			.replaceAll("'", toStr:"&#39;")
-			.replaceAll("<", toStr:"&lt;")
-			.replaceAll(">", toStr:"&gt;")
+		return replacingOccurrences(of: "&", with:"&amp;")
+			.replacingOccurrences(of: "\"", with:"&quot;")
+			.replacingOccurrences(of: "'", with:"&#39;")
+			.replacingOccurrences(of: "<", with:"&lt;")
+			.replacingOccurrences(of: ">", with:"&gt;")
 	}
 	
 	subscript(i: Int) -> Character {
@@ -54,32 +50,6 @@ extension String {
 		             options: .literal,
 		             range: Range(uncheckedBounds: (lower: startIndex, upper: endIndex)),
 		             locale: NSLocale.current)
-	}
-	
-	func substring(begin: Int, end: Int) -> String {
-		let range = NSRange(location: begin, length: end - begin + 1)
-		
-		return self[range]
-	}
-	
-	func trim() -> String{
-		return self.trimmingCharacters(in: .whitespaces)
-	}
-	
-	func indexOf(_ toFind: String) -> Int {
-		guard let range = range(of: toFind) else { return -1 }
-		
-		return distance(from: startIndex, to: range.lowerBound)
-	}
-	
-	func contains3PlusandOnlyChars(char: String) -> Bool {
-		return length >= 3
-			&& indexOf(char) == 0
-			&& replacingOccurrences(of: char, with: "").length == 0
-	}
-	
-	func replaceAll(_ target: String, toStr: String) -> String {
-		return replacingOccurrences(of: target, with: toStr)
 	}
 	
 	mutating func dropLast(_ n: Int = 1) {

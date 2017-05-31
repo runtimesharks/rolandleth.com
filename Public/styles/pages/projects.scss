@@ -12,7 +12,7 @@ img {
 	}
 
 	&.project-screenshot {
-		margin: 0.15em 0;
+		margin: 0.15em 0 0 0.3em;
 		border-radius: 0;
 	}
 }
@@ -26,10 +26,11 @@ a.image:hover {
 	text-align: center;
 	font-weight: 500;
 	font-size: 0.75em;
+	margin-top: 0.5em;
 
 	span {
 		display: inline-block;
-		margin: 0.25em 0.5em 0;
+		margin: 0.75em 0.75em 1em;
 
 		&.icon-title {
 			display: block;
@@ -65,8 +66,19 @@ a.image:hover {
 }
 
 .with-header {
-	display: inline-block;
+	// display: inline-block;
+	float: left;
 	margin: 0 0.5em 1em 0;
+}
+
+.project-description {
+	// display: inline-block;
+	text-align: left;
+	width: 45%;
+	height: 150px;
+	margin-left: 350px;
+	font-size: 0.9em;
+	line-height: 1.5em;
 }
 
 .centered-image-wrapper {
@@ -94,10 +106,17 @@ a.image:hover {
 	.content {
 		padding-top: 3em;
 	}
-}
 
-@include responsiveWidth(430px) {
 	img.project-screenshot {
 		display: none;
+	}
+}
+
+@include responsiveWidth(674px) {
+	.project-description {
+		display: none;
+	}
+	.with-header {
+		float: none;
 	}
 }

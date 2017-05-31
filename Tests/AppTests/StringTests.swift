@@ -51,29 +51,8 @@ class StringTests: XCTestCase {
 		XCTAssertEqual(start..<end, string["bcd"])
 	}
 	
-	func testSubstring() {
-		XCTAssertEqual("bcd", string.substring(begin: 2, end: 4))
-	}
-	
 	func testTrim() {
 		XCTAssertEqual("abcdef gh ijll", string.trim())
-	}
-	
-	func testIndexOf() {
-		XCTAssertEqual(4, string.indexOf("d"))
-	}
-	
-	func testContains3PlusandOnlyChars() {
-		let s1 = "eee"
-		let s2 = "eeef"
-		
-		XCTAssertTrue(s1.contains3PlusandOnlyChars(char: "e"))
-		XCTAssertFalse(s1.contains3PlusandOnlyChars(char: "f"))
-		XCTAssertFalse(s2.contains3PlusandOnlyChars(char: "e"))
-	}
-	
-	func testReplaceAll() {
-		XCTAssertEqual(" abcdef gh ijvv ", string.replaceAll("l", toStr: "v"))
 	}
 	
 	func testDropLast() {

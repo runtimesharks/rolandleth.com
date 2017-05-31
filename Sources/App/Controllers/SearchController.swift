@@ -111,14 +111,15 @@ private extension String {
 		let removeRegex = try NSRegularExpression(pattern: markPattern,
 		                                          options: .caseInsensitive)
 		
-		removeRegex
+		let matchRanges = removeRegex
 			.matches(in: self, options: [], range: nsRange)
 			.map { $0.range }
 			.reversed()
-			.forEach {
+			
+		for match in matchRanges {
 				// We're already removing in reverse, but we also need to remove the closing tags first.
-				self = replacingOccurrences(of: markClose, with: "", range: range(from: $0))
-				self = replacingOccurrences(of: markOpen, with: "", range: range(from: $0))
+				self = replacingOccurrences(of: markClose, with: "", range: range(from: match))
+				self = replacingOccurrences(of: markOpen, with: "", range: range(from: match))
 		}
 	}
 	
