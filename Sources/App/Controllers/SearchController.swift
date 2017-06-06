@@ -8,8 +8,6 @@
 
 import Foundation
 import Vapor
-import HTTP
-import VaporPostgreSQL
 
 struct SearchController {
 	
@@ -23,25 +21,18 @@ struct SearchController {
 	}
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
-		let page = (try? request.parameters.extract("page") as Int) ?? 1
+		let page = request.parameters["page"]?.int ?? 1
 		
 		guard
 			let query = request.query?.object?["query"]?.string,
 			!query.trim().isEmpty,
-			// Fluent doesn't support case insensitive queries, yet :(
-			let driver = drop.database?.driver as? PostgreSQLDriver,
-			case let datetime = Post.datetime(from: Date()),
-			case var sql = "SELECT * FROM posts WHERE ",
-			case _ = sql += "(title ILIKE '%\(query)%' OR rawbody ILIKE '%\(query)%') AND ",
-			case _ = sql += "datetime <= '\(datetime)' ",
-			case _ = sql += "ORDER BY datetime DESC, title ASC ",
-			case let limitedSql = "\(sql) LIMIT \(drop.postsPerPage) OFFSET \(drop.postsPerPage * (page - 1))",
-			let allResults = try? driver.raw(sql),
-			let totalPosts = allResults.array?.count,
-			let results = try? driver.raw(limitedSql),
-			var posts = results.nodeArray?.flatMap({ try? Post(node: $0) }),
-//			case let sql = try Post.query().sorted().filtered(by: query),
-//			case let posts = try sql.paginated(to: page).run(),
+			case let sql = try Post.makeQuery()
+				.sorted()
+				.filtered(by: query)
+				.filteredPast(),
+			case let posts = try sql
+				.paginated(to: page)
+				.all(),
 			!posts.isEmpty
 		else { throw Abort.notFound }
 		
@@ -49,8 +40,8 @@ struct SearchController {
 			try posts[i].truncatedBody.addSearchMarkTags(around: query)
 		}
 		
-//		let totalPosts = try sql.count()
-		let params: [String: NodeRepresentable] = [
+		let totalPosts = try sql.count()
+		let params: [String: Any] = [
 			"title": "Searching: \(query)",
 			"metadata": "Search results.",
 			"query": "?query=\(query.addingPercentEncoding(withAllowedCharacters: .letters)!)",

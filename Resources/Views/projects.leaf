@@ -39,7 +39,7 @@
 				<span class="icon-title">Carminder</span>
 			</span>
 			<span>
-				<a class="image" href="/projects/bouncyb"><img class="icon" src="/images/bouncyb/icon.png" alt="Bouncy B icon"></a>
+				<a class="image" href="/projects/bouncy-b"><img class="icon" src="/images/bouncyb/icon.png" alt="Bouncy B icon"></a>
 				<span class="icon-title">Bouncy B</span>
 			</span>
 			<span>
@@ -47,7 +47,7 @@
 				<span class="icon-title">iWordJuggle</span>
 			</span>
 			<span>
-				<a class="image" href="/projects/sosmorse"><img class="icon" src="/images/sos-morse/icon.png" alt="Sos & Morse icon"></a><br>
+				<a class="image" href="/projects/sos-morse"><img class="icon" src="/images/sos-morse/icon.png" alt="Sos & Morse icon"></a><br>
 				<span class="icon-title">Sos & Morse</span>
 			</span>
 		</div>

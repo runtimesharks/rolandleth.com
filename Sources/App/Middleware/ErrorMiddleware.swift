@@ -6,16 +6,15 @@
 //
 //
 
-import HTTP
 import Vapor
 
-struct ErrorMiddleware: Middleware {
+struct AppErrorMiddleware: Middleware {
 	
 	func respond(to request: Request, chainingTo next: Responder) throws -> Response {
 		do {
 			return try next.respond(to: request)
 		}
-		catch Abort.notFound {
+		catch let error as AbortError where error.status == .notFound {
 			let notFound = try NotFoundController.display(with: request)
 			return try notFound.makeResponse()
 		}

@@ -10,7 +10,7 @@ import Foundation
 
 extension Post {
 	
-	init(from file: File) throws {
+	convenience init(from file: File) throws {
 		guard
 			case let fileContentsSplit = file.contents
 				.components(separatedBy: "\n\n"),
@@ -23,7 +23,7 @@ extension Post {
 	}
 	
 	static func save(from file: File) throws {
-		var post = try Post(from: file)
+		let post = try Post(from: file)
 		post.saveOrUpdate()
 	}
 	

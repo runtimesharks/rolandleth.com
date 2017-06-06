@@ -11,9 +11,8 @@ import Vapor
 
 struct DownloadsController {
 	
-	static func process(with request: Request, path: String) throws -> ResponseRepresentable {
-//		headers["Content-Type"] = "application/pdf; filename=\(fileName)"
-//		headers["Content-Disposition"] = "inline; filename=\(fileName)"
+	static func process(with request: Request) throws -> ResponseRepresentable {
+		let path = try request.parameters.next(String.self)
 		
 		let asset: String = {
 			switch path {

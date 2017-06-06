@@ -7,19 +7,18 @@
 //
 
 import Vapor
-import HTTP
-import VaporPostgreSQL
 
 struct PageController {
 	
-	static func fetch(with request: Request, page: Int) throws -> ResponseRepresentable {
-		let posts = try fetchPosts(for: page, with: request).makeNode()
+	static func fetch(with request: Request) throws -> ResponseRepresentable {
+		let page = try request.parameters.next(Int.self)
+		let posts = fetchPosts(for: page, with: request)
 		
-		return try JSON(node: ["posts": posts])
+		return try JSON(["posts": posts])
 	}
 	
 	private static func fetchPosts(for page: Int, with request: Request) -> [Post] {
-		let posts = try? Post.query().sorted().paginated(to: page).run()
+		let posts = try? Post.makeQuery().sorted().paginated(to: page).all()
 		
 		return posts ?? []
 	}
@@ -28,7 +27,7 @@ struct PageController {
 	static func display(with request: Request) throws -> ResponseRepresentable {
 		let params = request.parameters
 		
-		if let page = try? params.extract("id") as Int {
+		if let page = params["id"]?.int {
 			guard page > 1 else { return request.rootRedirect }
 			guard request.uri.query?.isEmpty != false else {
 				return Response(headers: request.headers, redirect: "/\(page)")
@@ -36,7 +35,7 @@ struct PageController {
 			
 			return try display(page: page, with: request)
 		}
-		else if let id = try? params.extract("id") as String {
+		else if let id = params["id"]?.string {
 			guard request.uri.query?.isEmpty != false else {
 				return Response(headers: request.headers, redirect: "/\(id)")
 			}
@@ -59,7 +58,7 @@ struct PageController {
 			throw Abort.notFound
 		}
 		
-		let totalPosts = try Post.query().count()
+		let totalPosts = try Post.makeQuery().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
 			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth.",

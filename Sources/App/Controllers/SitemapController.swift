@@ -8,8 +8,6 @@
 
 import Foundation
 import Vapor
-import HTTP
-import VaporPostgreSQL
 
 struct SitemapController {
 
@@ -32,7 +30,7 @@ struct SitemapController {
 			"projects/expenses-planner"
 		]
 
-		let posts = try Post.query().sorted(future: true).run()
+		let posts = try Post.makeQuery().sorted(future: true).all()
 		let urls = noPriority + lowPriority + highPriority
 		let root = "https://rolandleth.com/"
 		var xml = ""

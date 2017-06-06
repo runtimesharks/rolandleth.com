@@ -5,17 +5,16 @@
     "log": "console",
     "hash": "crypto",
     "cipher": "crypto",
-    "middleware": {
-        "server": [
-            "file",
-            "abort",
-            "validation",
-            "type-safe",
-            "date",
-            "sessions"
-        ],
-        "client": [
-        
-        ]
-    }
+    "view": "leaf",
+    "middleware": [
+        "redirect",
+        "error",
+		  "app-error",
+        "date",
+        "app-file",
+        "headers"
+    ],
+    "commands": [
+        "prepare"
+    ]
 }

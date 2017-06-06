@@ -17,11 +17,10 @@ struct RedirectMiddleware: Middleware {
 		let uri = URI(
 			scheme: drop.production ? "https" : "http",
 			userInfo: request.uri.userInfo,
-			host: request.uri.host.replacingOccurrences(of: "www.", with: ""),
+			hostname: request.uri.hostname.replacingOccurrences(of: "www.", with: ""),
 			port: request.uri.port,
 			path: request.pathWithoutTrailingSlash,
 			query: request.uri.query,
-			rawQuery: request.uri.rawQuery,
 			fragment: request.uri.fragment
 		)
 		

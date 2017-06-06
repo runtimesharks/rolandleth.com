@@ -1,0 +1,4 @@
+module CHTTP {
+    umbrella "/Users/roland/_Work/Personal/rolandleth/.build/checkouts/engine.git-3311994267206676365/Sources/CHTTP/include"
+    export *
+}

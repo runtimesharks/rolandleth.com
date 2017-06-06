@@ -8,12 +8,15 @@
 
 import Foundation
 import Vapor
-import HTTP
 
 struct SyncController {
 	
-	static func perform(with request: Request, key: String, command: String = "") throws -> ResponseRepresentable {
+	static func perform(with request: Request) throws -> ResponseRepresentable {
+		let key = try request.parameters.next(String.self)
+		
 		guard key == drop.syncKey else { return Response.rootRedirect }
+		
+		let command = (try? request.parameters.next(String.self)) ?? ""
 		
 		let delete: Bool
 		switch command {

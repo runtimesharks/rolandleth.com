@@ -11,12 +11,13 @@ import Leaf
 struct DictionaryIteratorLeafTag: BasicTag {
 	let name = "forDictionary"
 	
-	func run(arguments: [Argument]) throws -> Node? {
+	func run(arguments: ArgumentList) throws -> Node? {
 		guard
 			arguments.count == 2,
-			let lhs = arguments[0].value?.nodeObject,
-			let rhs = arguments[1].value?.string
-			else { return nil }
+			let lhs = arguments[0]?.object,
+			let rhs = arguments[1]?.string
+		else { return nil }
+		
 		return lhs[rhs]
 	}
 	

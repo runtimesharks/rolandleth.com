@@ -8,13 +8,11 @@
 
 import Foundation
 import Vapor
-import HTTP
-import VaporPostgreSQL
 
 struct FeedController {
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
-		let posts = try Post.query().sorted().run()
+		let posts = try Post.makeQuery().sorted().all()
 		
 		guard !posts.isEmpty else { return Response.rootRedirect }
 		
