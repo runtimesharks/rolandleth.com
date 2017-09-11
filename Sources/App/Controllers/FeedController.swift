@@ -8,13 +8,11 @@
 
 import Foundation
 import Vapor
-import HTTP
-import VaporPostgreSQL
 
 struct FeedController {
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
-		let posts = try Post.query().sorted().run()
+		let posts = try Post.makeQuery().sorted().all()
 		
 		guard !posts.isEmpty else { return Response.rootRedirect }
 		
@@ -25,8 +23,8 @@ struct FeedController {
 		let df = DateFormatter.shared
 		df.dateFormat = fullFormat
 		let updated = df.string(from: Date())
-		
 		var xml = ""
+		
 		xml += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 		xml += "<feed xmlns=\"http://www.w3.org/2005/Atom\">\n"
 		xml += "<title type=\"text\">Roland Leth</title>\n"
@@ -69,8 +67,8 @@ struct FeedController {
 			xml += "\t</author>\n"
 			xml += "\t<content type=\"html\" xml:lang=\"en\"><![CDATA[\n"
 			xml += $0.body
-				.replacingOccurrences(of: "<mark>", with: "")
-				.replacingOccurrences(of: "</mark>", with: "") + "\n"
+//				.replacingOccurrences(of: "<mark>", with: "")
+//				.replacingOccurrences(of: "</mark>", with: "") + "\n"
 			// Atom complains about the mark tag, and
 			// this takes like 5-10ms for the whole loop ...
 			xml += "]]></content>\n"

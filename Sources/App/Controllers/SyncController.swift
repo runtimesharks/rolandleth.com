@@ -8,12 +8,15 @@
 
 import Foundation
 import Vapor
-import HTTP
 
 struct SyncController {
 	
-	static func perform(with request: Request, key: String, command: String = "") throws -> ResponseRepresentable {
+	static func perform(with request: Request) throws -> ResponseRepresentable {
+		let key = try request.parameters.next(String.self)
+		
 		guard key == drop.syncKey else { return Response.rootRedirect }
+		
+		let command = (try? request.parameters.next(String.self)) ?? ""
 		
 		let delete: Bool
 		switch command {
@@ -38,7 +41,7 @@ struct SyncController {
 	
 	static func create(with request: Request) throws -> ResponseRepresentable {
 		let file = try createFile(with: request)
-		try createPost(with: file)
+		try Post.save(from: file)
 		
 		return Response.rootRedirect
 	}
@@ -66,11 +69,6 @@ struct SyncController {
 		}
 		
 		return try CloudStore.createFile(from: request.body.bytes)
-	}
-	
-	private static func createPost(with file: File) throws {
-		var post = Post(from: file)
-		post.saveOrUpdate()
 	}
 	
 }

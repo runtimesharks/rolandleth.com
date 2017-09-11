@@ -29,10 +29,10 @@ struct ArchiveController {
 //			"12": "December"
 //		]
 		
-		var groupedPosts: [Node] = []
+		var groupedPosts: [[String: Any]] = []
 		var gp: [String: [Post]] = [:]
 		
-		let allPosts = try Post.query().filteredPast().run()
+		let allPosts = try Post.makeQuery().filteredPast().all()
 		
 		allPosts.forEach {
 			guard let year = $0.datetime.components(separatedBy: "-").first else { return }
@@ -46,17 +46,15 @@ struct ArchiveController {
 		}
 		
 		for (k, v) in gp.sorted(by: { $0.0 >= $1.0 }) {
-			let posts = try v
-				.sorted(by: { $0.datetime >= $1.datetime })
-				.makeNode()
-			groupedPosts.append(["year": Node(k),
+			let posts = v.sorted(by: { $0.datetime >= $1.datetime })
+			groupedPosts.append(["year": k,
 			                     "posts": posts])
 		}
 		
 		let params: [String: NodeRepresentable] = [
 			"title": "Archive",
 			"metadata": "Roland Leth's archive.",
-			"posts": try groupedPosts.makeNode()
+			"posts": groupedPosts
 		]
 		
 		return try drop.view.make("archive", with: params, for: request)

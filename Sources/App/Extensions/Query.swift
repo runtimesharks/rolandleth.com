@@ -21,15 +21,15 @@ extension Query {
 		return try q.filteredPast()
 	}
 	
-//	func filtered(by query: String) throws -> Query<T> {
-//		return try or {
-//			try $0.filter("title", .contains(sensitive: false), query)
-//			try $0.filter("body", .contains(sensitive: false), query)
-//		}
-//	}
+	func filtered(by query: String) throws -> Query {
+		return try self.or {
+			try $0.filter(raw: "title ILIKE '%\(query)%'")
+			try $0.filter(raw: "rawbody ILIKE '%\(query)%'")
+		}
+	}
 	
 	func paginated(to page: Int) throws -> Query {
-		return try limit(drop.postsPerPage, withOffset: drop.postsPerPage * (page - 1))
+		return try limit(drop.postsPerPage, offset: drop.postsPerPage * (page - 1))
 	}
 	
 	func filteredPast() throws -> Query {

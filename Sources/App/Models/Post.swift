@@ -8,11 +8,13 @@
 
 import Foundation
 import Vapor
+import SwiftMarkdown
+import FluentProvider
 
-struct Post {
+final class Post: NodeInitializable {
 	
 	// Model.
-	var id: Node?
+	let storage = Storage()
 	var exists = false
 	
 	let title: String
@@ -31,7 +33,7 @@ struct Post {
 	let date: String
 	var modified: String
 	
-	private mutating func updateTruncatedBody() {
+	private func updateTruncatedBody() {
 		let truncation = body.truncated(to: 600)
 		let truncationSuffix: String
 		
@@ -46,7 +48,6 @@ struct Post {
 	}
 	
 	init(title: String, rawBody: String, datetime: String) {
-		self.id = nil
 		self.title = title
 		self.datetime = datetime
 		self.rawBody = rawBody
@@ -62,30 +63,36 @@ struct Post {
 		// Either way, the less loading time, the happier the user.
 	}
 	
-}
-
-extension Post: NodeInitializable {
+	required init(row: Row) throws {
+		title = try row.get("title")
+		body = try row.get("body")
+		rawBody = try row.get("rawbody")
+		truncatedBody = try row.get("truncatedbody")
+		datetime = try row.get("datetime")
+		date = try row.get("date")
+		modified = try row.get("modified")
+		link = try row.get("link")
+		readingTime = try row.get("readingtime")
+	}
 	
-	init(node: Node, in context: Context) throws {
-		id = try node.extract("id")
-		title = try node.extract("title")
-		body = try node.extract("body")
-		rawBody = try node.extract("rawbody")
-		datetime = try node.extract("datetime")
-		modified = try node.extract("modified")
-		link = try node.extract("link")
-		truncatedBody = try node.extract("truncatedbody")
-		readingTime = try node.extract("readingtime")
-		date = try node.extract("date")
+	init(node: Node) throws {
+		title = try node.get("title")
+		body = try node.get("body")
+		rawBody = try node.get("rawbody")
+		datetime = try node.get("datetime")
+		modified = try node.get("modified")
+		link = try node.get("link")
+		truncatedBody = try node.get("truncatedbody")
+		readingTime = try node.get("readingtime")
+		date = try node.get("date")
 	}
 	
 }
 
 extension Post: NodeRepresentable {
 	
-	func makeNode(context: Context) throws -> Node {
+	func makeNode(in context: Context?) throws -> Node {
 		return try Node(node: [
-			"id": id,
 			"title": title,
 			"body": body,
 			"rawBody": rawBody,
@@ -140,7 +147,9 @@ extension Post {
 	}
 	
 	fileprivate static func html(from body: String) -> String {
-		return MarkNoteParser.toHtml(body)
+		// No problem if we force unwrap, since we convert locally anyway;
+		// we'll just catch the culprit while syncing.
+		return try! markdownToHTML(body, options: [])
 	}
 	
 	/// Creates a link out of a title.
@@ -149,7 +158,7 @@ extension Post {
 	///   - title: The post's title.
 	///   - datetime: The post's datetime.
 	/// - Returns: A safe link.
-	fileprivate static func link(from title: String, with datetime: String) -> String {
+	static func link(from title: String, with datetime: String) -> String {
 		let regex = try! NSRegularExpression(pattern: "([#,;!:'\"\\$\\?\\(\\)\\[\\]\\{\\}\\/\\\\]+)",
 		                                     options: .caseInsensitive)
 		let link = regex
@@ -160,7 +169,7 @@ extension Post {
 			.lowercased()
 		
 		guard
-			let posts = try? query().filter("link", .equals, link).run()
+			let posts = try? makeQuery().filter("link", .equals, link).all()
 				// Just in the rare case where we have post-title
 				// and not only post-title--XX exists, but also post-title-extra.
 				.filter({ $0.link == link || $0.link.contains("\(link)--") })
@@ -284,7 +293,7 @@ private extension String {
 			if trimExtraCharacters {
 				// Remove the last character if it's a whitespace,
 				// since we're adding one along with the termination character.
-				if !printedString.isEmpty, printedString.last == " " {
+				while !printedString.isEmpty, printedString.last == " " || printedString.last == "\n" {
 					printedString.dropLast()
 				}
 				
@@ -348,7 +357,27 @@ private extension String {
 		}
 		
 		if tags.isEmpty {
-			output += termination
+			// If the post is truncated exactly after the closing of a tag,
+			// check if it's <p> or <pre>, and add the termination before it.
+			
+			// What are the odds? Well, I found one case...
+			if output.last == ">" {
+				var i = output.length - 2
+				var endingTag = ">"
+				
+				while output[i] != "<" {
+					endingTag = output[i] + endingTag
+					i -= 1
+				}
+				endingTag = "<" + endingTag
+				
+				if endingTag == "</pre>" || endingTag == "</p>" {
+					output = output[0..<output.length - endingTag.length] + termination + endingTag
+				}
+			}
+			else {
+				output += termination
+			}
 		}
 		
 		return (output, true)

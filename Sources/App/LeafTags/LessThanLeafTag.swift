@@ -11,16 +11,17 @@ import Leaf
 struct LessThanLeafTag: BasicTag {
 	let name = "lessThan"
 	
-	func run(arguments: [Argument]) throws -> Node? {
+	func run(arguments: ArgumentList) throws -> Node? {
 		guard
 			arguments.count == 2,
-			let lhs = arguments[0].value?.int,
-			let rhs = arguments[1].value?.int
-			else { return nil }
+			let lhs = arguments[0]?.int,
+			let rhs = arguments[1]?.int
+		else { return nil }
+		
 		return Node(lhs < rhs)
 	}
 	
-	func shouldRender(stem: Stem, context: Context, tagTemplate: TagTemplate, arguments: [Argument], value: Node?) -> Bool {
+	func shouldRender(tagTemplate: TagTemplate, arguments: ArgumentList, value: Node?) -> Bool {
 		return value?.bool == true
 	}
 	

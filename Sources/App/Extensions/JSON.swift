@@ -18,8 +18,4 @@ extension Vapor.JSON {
 		try self.init(bytes: bytes)
 	}
 	
-	init(_ string: String) {
-		self.init(string.makeNode())
-	}
-	
 }

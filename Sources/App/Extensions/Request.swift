@@ -17,7 +17,7 @@ extension Request {
 	}
 	
 	var hasWWW: Bool {
-		return uri.host.hasPrefix("www") && drop.production
+		return uri.hostname.hasPrefix("www") && drop.production
 	}
 	
 	var hasTrailingSlash: Bool {
@@ -37,7 +37,7 @@ extension Request {
 	var domain: String {
 		guard drop.production else { return "http://localhost:\(drop.port)" }
 		
-		return "https://\(uri.host)"
+		return "https://\(uri.hostname)"
 	}
 	
 }
