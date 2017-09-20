@@ -82,7 +82,11 @@ private extension String {
 			else { break }
 			
 			// Save the original occurence.
-			let original = substring(with: termRange)
+			#if os(Linux)
+				let original = String(self[termRange])!
+			#else
+				let original = String(self[termRange])
+			#endif
 			
 			// Use the original occurence, which has the proper case.
 			replaceSubrange(termRange, with: wrap(original))

@@ -33,10 +33,9 @@ extension String {
 	}
 	
 	subscript(r: Range<Int>) -> String {
-		return substring(with: Range(uncheckedBounds: (lower: index(startIndex, offsetBy: r.lowerBound),
-		                                               upper: index(startIndex, offsetBy: r.upperBound))
-			)
-		)
+		return String(self[Range(uncheckedBounds: (lower: index(startIndex, offsetBy: r.lowerBound),
+		                                    upper: index(startIndex, offsetBy: r.upperBound)))
+		])
 	}
 	
 	subscript(range: NSRange) -> String {

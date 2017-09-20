@@ -258,12 +258,20 @@ private extension String {
 				tagRange.length = 0
 			}
 			
-			// The string of the tag.
-			let tag = substring(with: range(from: tagRange))
 			// The range of the string up to the tag, starting with the last saved position.
 			let printedRange = range(from: position..<tagRange.location)
-			// The string up to the tag.
-			var printedString = substring(with: printedRange)
+			
+			#if os(Linux)
+				// The string of the tag.
+				let tag = String(self[range(from: tagRange)])!
+				// The string up to the tag.
+				var printedString = String(self[printedRange])!
+			#else
+				// The string of the tag.
+				let tag = String(self[range(from: tagRange)])
+				// The string up to the tag.
+				var printedString = String(self[printedRange])
+			#endif
 			
 			// Update the length of the visible string.
 			printedSize += printedString.length
