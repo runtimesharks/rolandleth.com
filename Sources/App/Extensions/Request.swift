@@ -25,7 +25,7 @@ extension Request {
 	}
 	
 	var rootRedirect: Response {
-		return Response(headers: headers, redirect: "/", permanently: false)
+		return Response(headers: headers, redirect: "/", .normal)
 	}
 	
 	var pathWithoutTrailingSlash: String {
