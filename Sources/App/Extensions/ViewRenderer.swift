@@ -60,10 +60,15 @@ extension ViewRenderer {
 		
 		let metadataParams: [String: Any] = [
 			"path": request.pathWithoutTrailingSlash,
-			"metadata": params["title"] as? String ?? "" // Will be overwritten if it exists in the next step
+			"metadata": params["metadata"] as? String ?? "iOS, Node and Ruby development thoughts by Roland Leth."
 		]
 		
-		let params = footerParams + metadataParams + params
+		var params = footerParams + metadataParams + params
+		let title = params["title"] as? String ?? "Roland Leth"
+		
+		if title != "Roland Leth" {
+			params["title"] = "Roland Leth: " + title
+		}
 		
 		return try make(path, params, for: request)
 	}

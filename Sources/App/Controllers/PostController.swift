@@ -57,6 +57,7 @@ struct PostController {
 		
 		let params: [String: Any] = [
 			"title": post.title,
+			"metadata": post.title,
 			"post": post,
 			"singlePost": true]
 		

@@ -23,7 +23,7 @@ struct ProjectsController {
 		
 		let params = [
 			"title": "Projects",
-			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth."
+			"metadata": "iOS, Node and Ruby projects by Roland Leth."
 		]
 		
 		return try drop.view.make("projects", with: params, for: request)

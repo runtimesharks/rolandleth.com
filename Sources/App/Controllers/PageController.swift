@@ -61,7 +61,6 @@ struct PageController {
 		let totalPosts = try Post.makeQuery().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
-			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth.",
 			"root": "/",
 			"page": page
 		]

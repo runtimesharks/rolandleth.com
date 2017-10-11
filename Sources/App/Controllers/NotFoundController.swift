@@ -12,8 +12,7 @@ struct NotFoundController {
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
 		let params = [
-			"title": "404",
-			"metadata": "Development thoughts by Roland Leth"
+			"title": "404"
 		]
 		
 		if request.uri.path == "/search" {
