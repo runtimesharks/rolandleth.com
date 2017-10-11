@@ -59,7 +59,8 @@ struct PostController {
 			"title": post.title,
 			"metadata": post.title,
 			"post": post,
-			"singlePost": true]
+			"singlePost": true
+		]
 		
 		return try drop.view.make("post", with: params, for: request)
 	}

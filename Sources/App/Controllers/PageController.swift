@@ -58,7 +58,7 @@ struct PageController {
 			throw Abort.notFound
 		}
 		
-		let totalPosts = try Post.makeQuery().count()
+		let totalPosts = try Post.makeQuery().filteredPast().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
 			"root": "/",

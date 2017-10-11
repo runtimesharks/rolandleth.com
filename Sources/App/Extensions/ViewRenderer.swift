@@ -40,8 +40,11 @@ extension ViewRenderer {
 			"posts": posts,
 			"pages": Int((Double(totalPosts) / Double(drop.postsPerPage)).rounded(.up)),
 			"showPagination": totalPosts > drop.postsPerPage,
-			"total": posts.count
+			"totalPosts": totalPosts,
+			"singlePost": posts.count == 1
 		]
+		// If the current page has only one post, then it's also the last,
+		// so we might as well consider this page a single post.
 		
 		let params = params + baseParams
 		
