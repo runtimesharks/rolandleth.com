@@ -42,7 +42,7 @@ struct SearchController {
 		
 		let totalPosts = try sql.count()
 		let params: [String: Any] = [
-			"title": "Searching: \(query)",
+			"title": "Searching \(query)",
 			"metadata": "Search results.",
 			"query": "?query=\(query.addingPercentEncoding(withAllowedCharacters: .letters)!)",
 			"root": "/search/",

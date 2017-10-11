@@ -4,6 +4,11 @@
 	</div>
 	<form class="search-form" action="/search" method="get">
 		<input class="text-field" type="text" name="query" size="20" maxlength="30" placeholder="Search..."/>
+		#if(isSearch) {
+			#greaterThan(total, "1") {
+				<div class="search-results">(#(total))</div>
+			}
+		}
 	</form>
 	<div class="banner-border"></div>
 	<div role="navigation" class="navigation">

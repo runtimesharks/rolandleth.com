@@ -61,6 +61,14 @@
 	}
 }
 
+.search-results {
+	display: inline-block;
+	color: $linkColor;
+	font-family: $lightFont;
+	font-size: 0.8em;
+	margin-left: 2px;
+}
+
 .navigation {
 	// Because FA icons take a bit to load, and there's a height difference,
 	// and all the content moves down after they load.

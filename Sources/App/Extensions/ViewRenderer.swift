@@ -39,7 +39,8 @@ extension ViewRenderer {
 			"doubleGap": 4,
 			"posts": posts,
 			"pages": Int((Double(totalPosts) / Double(drop.postsPerPage)).rounded(.up)),
-			"showPagination": totalPosts > drop.postsPerPage
+			"showPagination": totalPosts > drop.postsPerPage,
+			"total": posts.count
 		]
 		
 		let params = params + baseParams
