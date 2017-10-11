@@ -21,7 +21,6 @@
 <script src="/js/loadCSS/loadCSS.min.js"></script>
 <script async src="/js/loadCSS/cssrelpreload.min.js"></script>
 <script src="/js/jquery.min.js"></script>
-<script src="/js/trustlogo.min.js"></script>
 <!--Tracking-->
 <script>
 	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }

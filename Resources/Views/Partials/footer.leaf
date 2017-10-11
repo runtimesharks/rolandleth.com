@@ -3,9 +3,6 @@
 		#(emoji) &nbsp&nbsp&nbsp #(quote)
 	</div>
 	<div class="copyright">
-		<div class="ssl">
-			<script async>TrustLogo("https://rolandleth.com/images/misc/ssl-logo.png", "CL1", "none");</script>
-		</div>
 		&copy;
 		#(year) &nbspRoland Leth &nbsp&mdash;&nbsp
 		<a class="home-footer" href="/" rel="home">Home</a>
