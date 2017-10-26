@@ -14,17 +14,17 @@ struct PostController {
 	
 	static func fetch(with request: Request) throws -> ResponseRepresentable {
 		let link = try request.parameters.next(String.self)
-		let post = try fetchPost(with: link)
+		let post = try fetchPost(with: link, and: request)
 		return try JSON(node: ["post": post])
 	}
 	
-	private static func fetchPost(with link: String) throws -> Post {
+	private static func fetchPost(with link: String, and request: Request) throws -> Post {
 		let query = try Post.makeQuery().filter("link", .equals, link)
 		guard
 			let result = try? query.first(),
 			let post = result
 //			var post = result
-		else { throw Abort.notFound }
+		else { throw RouterError.missingRoute(for: request) }
 		
 //		let group = DispatchGroup()
 //		let datetime = "2013-12-04-1831"
@@ -53,7 +53,7 @@ struct PostController {
 	}
 	
 	static func display(with request: Request, link: String) throws -> ResponseRepresentable {
-		let post = try fetchPost(with: link)
+		let post = try fetchPost(with: link, and: request)
 		
 		let params: [String: Any] = [
 			"title": post.title,

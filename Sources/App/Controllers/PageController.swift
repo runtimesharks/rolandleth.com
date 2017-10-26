@@ -50,7 +50,7 @@ struct PageController {
 			return try display(page: 1, with: request)
 		}
 		
-		throw Abort.notFound
+		throw RouterError.missingRoute(for: request)
 	}
 	
 	private static func display(page: Int, with request: Request) throws -> ResponseRepresentable {

@@ -41,7 +41,7 @@ public final class AppFileMiddleware: Middleware {
 			}
 			let filePath = publicDir + path
 			let ifNoneMatch = request.headers["If-None-Match"]
-			return try Response(filePath1: filePath, ifNoneMatch: ifNoneMatch, chunkSize: chunkSize)
+			return try Response(filePath1: filePath, ifNoneMatch: ifNoneMatch, chunkSize: chunkSize, request: request)
 		}
 	}
 	
@@ -49,8 +49,8 @@ public final class AppFileMiddleware: Middleware {
 
 public extension Response {
 	
-	public convenience init(filePath1: String, ifNoneMatch: String? = nil, chunkSize: Int = 2048) throws {
-		guard let filePath = filePath1.removingPercentEncoding else { throw Abort.notFound }
+	public convenience init(filePath1: String, ifNoneMatch: String? = nil, chunkSize: Int = 2048, request: Request) throws {
+		guard let filePath = filePath1.removingPercentEncoding else { throw RouterError.missingRoute(for: request) }
 		
 		try self.init(filePath: filePath, ifNoneMatch: ifNoneMatch, chunkSize: chunkSize)
 	}
