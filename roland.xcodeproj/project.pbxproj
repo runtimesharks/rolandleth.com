@@ -4877,7 +4877,6 @@
 		OBJ_736 /* NSDate+SMTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+SMTP.swift"; sourceTree = "<group>"; };
 		OBJ_737 /* NSUUID+SMTPMessageID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUUID+SMTPMessageID.swift"; sourceTree = "<group>"; };
 		OBJ_738 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/roland/Documents/Work/Personal/rolandleth/.build/checkouts/engine.git-3311994267206676365/Package.swift"; sourceTree = "<group>"; };
-		OBJ_74 /* Localization */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Localization; sourceTree = SOURCE_ROOT; };
 		OBJ_741 /* Certificates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificates.swift; sourceTree = "<group>"; };
 		OBJ_742 /* ClientSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSocket.swift; sourceTree = "<group>"; };
 		OBJ_743 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
@@ -6857,7 +6856,7 @@
 			path = ".build/checkouts/vapor.git-5492988889259800272/Sources/Testing";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -6866,11 +6865,9 @@
 				OBJ_71 /* Config */,
 				OBJ_72 /* Resources */,
 				OBJ_73 /* Public */,
-				OBJ_74 /* Localization */,
 				OBJ_75 /* Dependencies */,
 				OBJ_942 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_505 /* Routing 2.1.0 */ = {
@@ -9751,7 +9748,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_942 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
