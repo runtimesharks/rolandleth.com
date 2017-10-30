@@ -1,6 +1,6 @@
 {
 	"port": "$PORT:8000",
-	"hostname": "localhost",
+	"hostname": "0.0.0.0",
 	"securityLayer": "none",
 	"postsPerPage": "$PAGE_SIZE",
 	"syncKey": "$MY_SYNC_KEY:r",
