@@ -1,5 +1,8 @@
 {
-	"port": "8000",
+	"port": "$PORT:8000",
 	"hostname": "localhost",
-	"securityLayer": "none"
+	"securityLayer": "none",
+	"postsPerPage": "$PAGE_SIZE",
+	"syncKey": "$MY_SYNC_KEY:r",
+	"dropboxKey": "$DB_ACCESS_TOKEN"
 }

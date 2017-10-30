@@ -1,5 +1,5 @@
 import Vapor
 
-let drop = try Droplet.setUp().addRoutes()
+let drop = try Droplet.setup().addRoutes()
 
 try drop.run()

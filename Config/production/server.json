@@ -1,7 +1,0 @@
-{
-	"hostname": "0.0.0.0",
-	"port": "$PORT",
-	"syncKey": "$MY_SYNC_KEY",
-	"dropboxKey": "$DB_ACCESS_TOKEN",
-	"postsPerPage": "$PAGE_SIZE"
-}

@@ -29,7 +29,7 @@ extension Droplet {
 		return config.environment == .production
 	}
 	
-	static func setUp() throws -> Droplet {
+	static func setup() throws -> Droplet {
 		let config = try Config()
 		try config.addProvider(LeafProvider.Provider.self)
 		try config.addProvider(PostgreSQLProvider.Provider.self)
@@ -42,7 +42,7 @@ extension Droplet {
 		
 		config.preparations.append(Post.self)
 		
-		let drop = try Droplet(config: config)
+		let drop = try Droplet(config)
 		
 		if let leaf = drop.view as? LeafRenderer {
 			leaf.stem.register(GreaterThanLeafTag())
