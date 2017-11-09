@@ -276,7 +276,7 @@ private extension String {
 			var trimExtraCharacters = extra >= 0
 			
 			trimmingExtraCharacters: if trimExtraCharacters {
-				let punctuation = " ?!.".characters.map { String($0) }
+				let punctuation = " ?!.".map { String($0) }
 				var l: Int { return printedString.length }
 				var c: String { return printedString.last }
 				
