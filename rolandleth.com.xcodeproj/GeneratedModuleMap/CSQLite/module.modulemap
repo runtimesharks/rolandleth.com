@@ -1,4 +1,4 @@
 module CSQLite {
-    umbrella "/Users/roland/_Work/Personal/rolandleth.com/.build/checkouts/sqlite.git--8232814251736334455/Sources/CSQLite/include"
+    umbrella "/Users/roland/_Work/Personal/GitHub/rolandleth.com/.build/checkouts/sqlite.git--8232814251736334455/Sources/CSQLite/include"
     export *
 }

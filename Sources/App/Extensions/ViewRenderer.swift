@@ -23,10 +23,11 @@ private let quotes = [
 	"Dream big, if you dare to dream.",
 	"Your time is limited, so don't waste it living someone else's life.",
 	"Be yourself, everyone else is taken.",
+	"Whether you think you can or can not, you are right.",
 	"[...] avoid the trap of thinking you have something to lose.",
 	"A lot can happen between now and \"never\"."
 ]
-private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
+private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶", "🦄"]
 
 extension ViewRenderer {
 	
