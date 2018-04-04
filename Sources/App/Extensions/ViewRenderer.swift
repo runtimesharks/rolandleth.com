@@ -25,9 +25,10 @@ private let quotes = [
 	"Be yourself, everyone else is taken.",
 	"Whether you think you can or can not, you are right.",
 	"[...] avoid the trap of thinking you have something to lose.",
-	"A lot can happen between now and \"never\"."
+	"A lot can happen between now and \"never\".",
+	"Don’t wish it was easier, wish you were better"
 ]
-private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶", "🦄"]
+private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶", "🦄", "🏇🏻"]
 
 extension ViewRenderer {
 	
