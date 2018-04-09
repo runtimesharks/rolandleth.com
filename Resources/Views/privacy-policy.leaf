@@ -6,27 +6,32 @@
 
 #export("body") {
 	<h1>Collected information</h1>
-	<p>My systems use technologies like cookies (small files stored by your browser), web beacons, but no unique device identifiers. My systems does also log information like your browser, operating system and device type.</p>
+	<p>I do not use technologies like cookies (small files stored by your browser), web beacons, or unique device identifiers. My systems do log information like your browser, operating system and device type.</p>
+	<p></p>
 	<p>I do not collect personally identifiable information about you. In other words, I do not collect information such as your name, address, phone number or email address.</p>
+	<p></p>
 	<p>I do not knowingly contact or collect personal information from children under 13. If you believe I have inadvertently collected such information, please contact me so I can promptly obtain parental consent or remove the information.</p>
+	<p></p>
 	<p>I may use, but not store your precise geographic location.</p>
-	<br>
+	<p></p>
 	<h1>Sharing</h1>
-	<p>Since I do not collect personally identifiable information (such as name, address, email or phone), I have nothing to share with other companies.</p>
+	<p>Since I do not collect personally identifiable information (such as name, address, email or phone), I never share them with other companies.</p>
+	<p></p>
 	<p>In order to serve you, I may share your anonymous information with other companies, excluding vendors and contractors. Their use of information is limited to these purposes, and subject to agreements that require them to keep the information confidential. They provide assurance that they take reasonable steps to safeguard the data they hold on my behalf, although data security cannot be guaranteed.</p>
-	<br>
+	<p></p>
 	<h1>Analytics</h1>
-	<p>Analytics companies may get access to anonymous data (such as your IP address or device ID) to help me understand how my services are used. They use this data solely on my behalf. They do not share it except in aggregate form; no data is shared as to any individual user. Company privacy policies that govern their use of data: <a href="https://www.google
-			.com/policies/privacy/">Google Analytics</a></p>
-	<br>
+	<p>Analytics companies may get access to anonymous data to help me understand how my services are used. They use this data solely on my behalf. They do not share it except in aggregate form; no data is shared as to any individual user. Company privacy policies that govern their use of data: <a href="https://www.google.com/policies/privacy/">Google Analytics</a>.</p>
+	<p></p>
+	<p>Following their documentation, Google Analytics is configured to anonymize your IP, not use local storage and not use cookies.</p>
+	<p></p>
 	<h1>Third parties</h1>
 	<p>To operate the service, I also may make identifiable and anonymous information available to third parties in these limited circumstances: (1) with your express consent, (2) when I have a good faith belief it is required by law, (3) when I have a good faith belief it is necessary to protect my rights or property, or (4) to any successor or purchaser in a merger, acquisition, liquidation, dissolution or sale of assets. Your consent will not be required for disclosure in these cases, but I will attempt to notify you, to the extent permitted by law to do so.</p>
-	<br>
+	<p></p>
 	<h1>Last update</h1>
-	<p>This privacy policy was last updated on Jul 25, 2013. My privacy policy may change from time to time. If I make any material changes to my policies, I will place a prominent notice on my website or application. If the change materially affects registered users, I will send a notice to you by email, push notification or text.</p>
-	<br>
+	<p>This privacy policy was last updated on Apr 09, 2018. My privacy policy may change from time to time, be sure to consult the last update date.</p>
+	<p></p>
 	<h1>Contact</h1>
-	<p>If you have any questions or concerns about my privacy policy, please <a href="mailto:roland@rolandleth.com">contact me</a>. If, by any chance, you'd like do download this document, you can do so <a class="download-privacy-policy" href="/downloads/privacy-policy.md">here</a>; it's in Markdown format.</p>
+	<p>If you have any questions or concerns about my privacy policy, please <a href="mailto:roland@leth.ro">contact me</a>.</p>
 }
 
 #export("end-stylesheets") {
