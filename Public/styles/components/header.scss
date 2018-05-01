@@ -78,7 +78,7 @@
 
 	.fa {
 		margin-top: 8px;
-		margin-left: 20px; // 40
+		margin-left: 14px;
 
 		display: inline-block;
 		font-size: 1.4em;
@@ -86,6 +86,21 @@
 
 	a:first-child .fa {
 		margin-left: 0;
+	}
+
+	.runtime-navigation {
+		margin-left: 20px;
+		font-family: "Titillium Web";
+		font-weight: 700;
+		font-size: 1.5em;
+
+		.first-half {
+			color: #00356A;
+		}
+
+		.second-half {
+			color: #0371B8;
+		}
 	}
 }
 
@@ -113,12 +128,20 @@
 
 	.navigation {
 		margin-left: auto;
-		max-width: 150px;
+		max-width: 165px;
 	}
 }
 
 @include responsiveWidth(570px) {
 	.navigation .fa {
+		margin-left: 8px;
+
+		&.fa-user {
+			margin-right: 1px;
+		}
+	}
+
+	.navigation .runtime-navigation {
 		margin-left: 12px;
 	}
 }
