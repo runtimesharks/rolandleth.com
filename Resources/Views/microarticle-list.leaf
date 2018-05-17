@@ -1,0 +1,21 @@
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/styles/components/article.css">
+
+	#if(page > 1) {
+		<meta name="robots" content="noindex, noarchive">
+	}
+}
+
+#export("body") {
+	#loop(posts, "post") {
+		#embed("Partials/microarticle")
+	}
+}
+
+#export("after-content") {
+	#if(showPagination) {
+		#embed("Partials/page-navigation")
+	}
+}

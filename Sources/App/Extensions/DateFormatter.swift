@@ -10,8 +10,16 @@ import Foundation
 
 extension DateFormatter {
 	
-	static let shortFormat = "MMM dd, yyyy"
+	static let shortFormat = "MMM dd, yyyy '•' HH:mm"
+	static let shortDateFormat = "MMM dd, yyyy"
 	static let datetimeFormat = "yyyy-MM-dd-HHmm"
+	
+	@discardableResult
+	func setShortDateFormat() -> DateFormatter {
+		dateFormat = DateFormatter.shortDateFormat
+		
+		return self
+	}
 	
 	@discardableResult
 	func setShortFormat() -> DateFormatter {

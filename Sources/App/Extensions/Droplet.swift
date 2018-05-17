@@ -41,6 +41,7 @@ extension Droplet {
 //		config.addConfigurable(middleware: GzipMiddleware(), name: "gzip")
 		
 		config.preparations.append(Post.self)
+		config.preparations.append(Micropost.self)
 		
 		let drop = try Droplet(config)
 		
@@ -54,15 +55,13 @@ extension Droplet {
 			leaf.stem.register(DictionaryIteratorLeafTag())
 		}
 		
-		FeedController.logger = drop.console
-		
 		return drop
 	}
 	
 	func addRoutes() -> Droplet {
 		get("/feed", handler: FeedController.feed)
 		get("/microfeed", handler: FeedController.microfeed)
-		post("/micropub", handler: FeedController.micropub)
+		post("/micropub", handler: MicropubController.micropub)
 		get("/sitemap.xml", handler: SitemapController.create)
 		get("/about", handler: AboutController.display)
 		get("/archive", handler: ArchiveController.display)
@@ -77,6 +76,8 @@ extension Droplet {
 		get("/search", ":page", handler: SearchController.display)
 		get("/", ":id", handler: PageController.display)
 		get("/", handler: PageController.display)
+		get("/microblog", handler: MicropageController.display)
+		get("/microblog", ":id", handler: MicropageController.display)
 		
 		get("/api/v1.0/about", handler: AboutController.create)
 		get("/api/v1.0/archive", handler: ArchiveController.create)

@@ -41,6 +41,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2A58742520AD61FF001EA47A /* Micropost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742420AD61FF001EA47A /* Micropost.swift */; };
+		2A58742720AD699C001EA47A /* MicropubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742620AD699C001EA47A /* MicropubController.swift */; };
+		2A58742920AD6AEA001EA47A /* MicropageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742820AD6AEA001EA47A /* MicropageController.swift */; };
+		2A58742B20AD6DAB001EA47A /* MicropostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742A20AD6DAB001EA47A /* MicropostController.swift */; };
 		OBJ_1000 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* PostController.swift */; };
 		OBJ_1001 /* PrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* PrivacyController.swift */; };
 		OBJ_1002 /* ProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* ProjectsController.swift */; };
@@ -4299,6 +4303,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A58742420AD61FF001EA47A /* Micropost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Micropost.swift; sourceTree = "<group>"; };
+		2A58742620AD699C001EA47A /* MicropubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropubController.swift; sourceTree = "<group>"; };
+		2A58742820AD6AEA001EA47A /* MicropageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropageController.swift; sourceTree = "<group>"; };
+		2A58742A20AD6DAB001EA47A /* MicropostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropostController.swift; sourceTree = "<group>"; };
 		"BCrypt::BCrypt::Product" /* BCrypt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BCrypt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bits::Bits::Product" /* Bits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6856,7 +6864,7 @@
 			path = Env;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -6869,7 +6877,6 @@
 				OBJ_75 /* Dependencies */,
 				OBJ_945 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_504 /* Cache */ = {
@@ -6909,6 +6916,7 @@
 				OBJ_52 /* ContentType.swift */,
 				OBJ_53 /* File.swift */,
 				OBJ_54 /* Post.swift */,
+				2A58742420AD61FF001EA47A /* Micropost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -8121,6 +8129,9 @@
 				OBJ_11 /* ArchiveController.swift */,
 				OBJ_12 /* DownloadsController.swift */,
 				OBJ_13 /* FeedController.swift */,
+				2A58742820AD6AEA001EA47A /* MicropageController.swift */,
+				2A58742A20AD6DAB001EA47A /* MicropostController.swift */,
+				2A58742620AD699C001EA47A /* MicropubController.swift */,
 				OBJ_14 /* NotFoundController.swift */,
 				OBJ_15 /* PageController.swift */,
 				OBJ_16 /* PostController.swift */,
@@ -9760,7 +9771,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_945 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -11026,6 +11037,7 @@
 				OBJ_998 /* NotFoundController.swift in Sources */,
 				OBJ_999 /* PageController.swift in Sources */,
 				OBJ_1000 /* PostController.swift in Sources */,
+				2A58742720AD699C001EA47A /* MicropubController.swift in Sources */,
 				OBJ_1001 /* PrivacyController.swift in Sources */,
 				OBJ_1002 /* ProjectsController.swift in Sources */,
 				OBJ_1003 /* SearchController.swift in Sources */,
@@ -11033,6 +11045,7 @@
 				OBJ_1005 /* SyncController.swift in Sources */,
 				OBJ_1006 /* Comparable.swift in Sources */,
 				OBJ_1007 /* DatabaseError.swift in Sources */,
+				2A58742520AD61FF001EA47A /* Micropost.swift in Sources */,
 				OBJ_1008 /* DateFormatter.swift in Sources */,
 				OBJ_1009 /* Dictionary.swift in Sources */,
 				OBJ_1010 /* Droplet.swift in Sources */,
@@ -11043,6 +11056,7 @@
 				OBJ_1015 /* Query.swift in Sources */,
 				OBJ_1016 /* Request.swift in Sources */,
 				OBJ_1017 /* Response.swift in Sources */,
+				2A58742B20AD6DAB001EA47A /* MicropostController.swift in Sources */,
 				OBJ_1018 /* String.swift in Sources */,
 				OBJ_1019 /* URL.swift in Sources */,
 				OBJ_1020 /* ViewRenderer.swift in Sources */,
@@ -11064,6 +11078,7 @@
 				OBJ_1036 /* LocalStore.swift in Sources */,
 				OBJ_1037 /* Queue.swift in Sources */,
 				OBJ_1038 /* main.swift in Sources */,
+				2A58742920AD6AEA001EA47A /* MicropageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

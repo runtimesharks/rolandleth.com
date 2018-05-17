@@ -22,5 +22,6 @@
 		<a href="/about"><i class="fa fa-user fa-fw"></i></a>
 		<a href="https://twitter.com/rolandleth"><i class="fa fa-twitter fa-fw"></i></a>
 		<a href="/feed"><i class="fa fa-rss fa-fw"></i></a>
+		<a href="/microfeed"><i class="fa fa-rss-square fa-fw"></i></a>
 	</div>
 </nav>

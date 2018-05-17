@@ -29,6 +29,12 @@ h1 {
 	color: $textColor;
 }
 
+.microarticle {
+	& h1 {
+		font-size: 1.5em;
+	}
+}
+
 h4 {
 	font-family: $headerFont;
 	padding-left: 2px;

@@ -4,8 +4,10 @@
 	</div>
 	<div class="copyright">
 		&copy;
-		#(year) &nbspRoland Leth &nbsp&mdash;&nbsp
-		<a class="home-footer" href="/" rel="home">Home</a>
+		2013&ndash;#(year) &nbsp
+		<a class="home-footer" href="/" rel="home">Roland Leth</a>
+		&nbsp&mdash;&nbsp
+		<a href="/microblog">Microblog</a>
 		&nbsp&mdash;&nbsp
 		<a href="/archive">Archive</a>
 	</div>

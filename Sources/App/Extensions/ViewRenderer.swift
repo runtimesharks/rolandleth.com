@@ -35,6 +35,24 @@ extension ViewRenderer {
 	var quote: String { return quotes[qi] }
 	var emoji: String { return emojis[qi] }
 	
+	func showMicroResults(with params: [String: Any], for request: Request, posts: [Micropost], totalPosts: Int) throws -> ResponseRepresentable {
+		let baseParams: [String: NodeRepresentable] = [
+			"gap": 2,
+			"doubleGap": 4,
+			"posts": posts,
+			"pages": Int((Double(totalPosts) / Double(drop.postsPerPage)).rounded(.up)),
+			"showPagination": totalPosts > drop.postsPerPage,
+			"totalPosts": totalPosts,
+			"singlePost": posts.count == 1
+		]
+		// If the current page has only one post, then it's also the last,
+		// so we might as well consider this page a single post.
+		
+		let params = params + baseParams
+		
+		return try make("microarticle-list", with: params, for: request)
+	}
+	
 	func showResults(with params: [String: Any], for request: Request, posts: [Post], totalPosts: Int) throws -> ResponseRepresentable {
 		let baseParams: [String: NodeRepresentable] = [
 			"gap": 2,
