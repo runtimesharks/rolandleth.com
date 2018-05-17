@@ -8,10 +8,14 @@
 
 import Foundation
 import Vapor
+import Console
+import HTTP
 
 struct FeedController {
 	
-	static func create(with request: Request) throws -> ResponseRepresentable {
+	static var logger: ConsoleProtocol!
+	
+	private static func feed(micro: Bool, from request: Request) throws -> ResponseRepresentable {
 		let posts = try Post.makeQuery().sorted().all()
 		
 		guard !posts.isEmpty else { return Response.rootRedirect }
@@ -67,8 +71,8 @@ struct FeedController {
 			xml += "\t</author>\n"
 			xml += "\t<content type=\"html\" xml:lang=\"en\"><![CDATA[\n"
 			xml += $0.body
-//				.replacingOccurrences(of: "<mark>", with: "")
-//				.replacingOccurrences(of: "</mark>", with: "") + "\n"
+			//				.replacingOccurrences(of: "<mark>", with: "")
+			//				.replacingOccurrences(of: "</mark>", with: "") + "\n"
 			// Atom complains about the mark tag, and
 			// this takes like 5-10ms for the whole loop ...
 			xml += "]]></content>\n"
@@ -78,6 +82,27 @@ struct FeedController {
 		xml += "</feed>"
 		
 		return xml
+	}
+	
+	static func micropub(with request: Request) throws -> ResponseRepresentable {
+		if let bytes = request.body.bytes {
+			let data = Data(bytes: bytes)
+			let body = String(data: data, encoding: .utf8)
+			
+			logger.error(body ?? "no body", newLine: true)
+		}
+		
+		return Response(status: .ok)
+		//		return try create(micro: true, from: request)
+	}
+	
+	static func microfeed(with request: Request) throws -> ResponseRepresentable {
+		return Response(status: .ok)
+//		return try create(micro: true, from: request)
+	}
+	
+	static func feed(with request: Request) throws -> ResponseRepresentable {
+		return try feed(micro: false, from: request)
 	}
 	
 }

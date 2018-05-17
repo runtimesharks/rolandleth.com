@@ -54,11 +54,15 @@ extension Droplet {
 			leaf.stem.register(DictionaryIteratorLeafTag())
 		}
 		
+		FeedController.logger = drop.console
+		
 		return drop
 	}
 	
 	func addRoutes() -> Droplet {
-		get("/feed", handler: FeedController.create)
+		get("/feed", handler: FeedController.feed)
+		get("/microfeed", handler: FeedController.microfeed)
+		post("/micropub", handler: FeedController.micropub)
 		get("/sitemap.xml", handler: SitemapController.create)
 		get("/about", handler: AboutController.display)
 		get("/archive", handler: ArchiveController.display)

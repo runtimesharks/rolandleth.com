@@ -1,13 +1,22 @@
 <meta charset="UTF-8">
 <title>#(title)</title>
 <link rel="canonical" href="#(fullRoot)#(path)">
-<!-- Icons -->
+<!--Icons-->
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/192x192.png"><!-- Android -->
 <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/images/favicons/180x180.png">
-<!--Metadata-->
+<!--Links-->
 <link rel="author" type="text/plain" href="/humans.txt">
 <link href="#(fullRoot)" rel="alternate" title="Roland Leth" type="application/atom+xml">
+<link rel="micropub" href="https://rolandleth.com/micropub">
+<!--Me Links-->
+<link href="https://micro.blog/rolandleth" rel="me" />
+<link href="https://twitter.com/rolandleth" rel="me">
+<link href="https://github.com/rolandleth" rel="me">
+<!--IndieAuth-->
+<link rel="authorization_endpoint" href="https://indieauth.com/auth">
+<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+<!--Metadata-->
 <meta name="description" content="#(metadata)">
 <meta name="author" content="Roland Leth">
 <!--Stylesheets-->
