@@ -23,21 +23,21 @@ struct MicropageController {
 		if let page = params["id"]?.int {
 			guard page > 1 else { return request.rootRedirect }
 			guard request.uri.query?.isEmpty != false else {
-				return Response(headers: request.headers, redirect: "/microfeed/\(page)")
+				return Response(headers: request.headers, redirect: "/\(Micropost.blogPath)/\(page)")
 			}
 			
 			return try display(page: page, with: request)
 		}
 		else if let id = params["id"]?.string {
 			guard request.uri.query?.isEmpty != false else {
-				return Response(headers: request.headers, redirect: "/microfeed/\(id)")
+				return Response(headers: request.headers, redirect: "/\(Micropost.blogPath)/\(id)")
 			}
 			
 			return try MicropostController.display(with: request, datetime: id)
 		}
-		else if request.uri.path == "/microfeed" {
+		else if request.uri.path == "/\(Micropost.blogPath)" {
 			if request.uri.query?.isEmpty == false {
-				return Response(headers: request.headers, redirect: "/microfeed", .normal)
+				return Response(headers: request.headers, redirect: "/\(Micropost.blogPath)", .normal)
 			}
 			
 			return try display(page: 1, with: request)
@@ -54,7 +54,7 @@ struct MicropageController {
 		let totalPosts = try Micropost.makeQuery().filteredPast().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
-			"root": "/microfeed",
+			"root": "/\(Micropost.blogPath)",
 			"page": page
 		]
 		

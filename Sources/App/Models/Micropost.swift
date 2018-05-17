@@ -10,15 +10,16 @@ import FluentProvider
 
 final class Micropost: NodeInitializable {
 	
+	static let blogPath = "microblog"
 	let storage = Storage()
 	var exists = false
 
 	var link: String {
-		return "microfeed/" + datetime
+		return Micropost.blogPath + "/" + datetime
 	}
 	let datetime: String
 	let content: String
-	var date: String {
+	var title: String {
 		guard let d = Post.date(from: datetime) else { return "" }
 		
 		return DateFormatter.shared.setShortFormat().string(from: d)
@@ -79,9 +80,9 @@ extension Micropost: NodeRepresentable {
 	
 	func makeNode(in context: Context?) throws -> Node {
 		return try Node(node: [
+			"title": title,
 			"content": content,
 			"datetime": datetime,
-			"date": date,
 			"link": link]
 		)
 	}

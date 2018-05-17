@@ -61,23 +61,29 @@ extension Droplet {
 	func addRoutes() -> Droplet {
 		get("/feed", handler: FeedController.feed)
 		get("/microfeed", handler: FeedController.microfeed)
+		
 		post("/micropub", handler: MicropubController.micropub)
 		get("/sitemap.xml", handler: SitemapController.create)
+		
 		get("/about", handler: AboutController.display)
 		get("/archive", handler: ArchiveController.display)
 		get("/privacy-policy", handler: PrivacyController.display)
+		get("/downloads", String.parameter, handler: DownloadsController.process)
 		get("/projects", handler: ProjectsController.display)
 		get("/projects", String.parameter, handler: ProjectsController.display)
-		get("/downloads", String.parameter, handler: DownloadsController.process)
+		
 		get("/cmd.sync", String.parameter, handler: SyncController.perform)
 		get("/cmd.sync", String.parameter, String.parameter, handler: SyncController.perform)
 		post("/cmd.sync/create-post", handler: SyncController.create)
+		
 		get("/search", handler: SearchController.display)
 		get("/search", ":page", handler: SearchController.display)
+		
 		get("/", ":id", handler: PageController.display)
 		get("/", handler: PageController.display)
-		get("/microblog", handler: MicropageController.display)
-		get("/microblog", ":id", handler: MicropageController.display)
+		
+		get("/\(Micropost.blogPath)", handler: MicropageController.display)
+		get("/\(Micropost.blogPath)", ":id", handler: MicropageController.display)
 		
 		get("/api/v1.0/about", handler: AboutController.create)
 		get("/api/v1.0/archive", handler: ArchiveController.create)

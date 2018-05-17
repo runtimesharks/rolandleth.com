@@ -4,11 +4,9 @@
 
 <article class="article microarticle">
 	<header class="article-header">
-		<h1>#if(singlePost) {
-				#(post.date)
-			} ##else() {
-				<a class="post-title" href="/#(post.link)" data-post-title="#(post.date)">#(post.date)</a>
-			}</h1>
+		<h1>
+			<a class="post-title" href="/#(post.link)" data-post-title="#(post.title)">#(post.title)</a>
+		</h1>
 	</header>
 
 	#raw(post.content)

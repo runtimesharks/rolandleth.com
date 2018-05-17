@@ -29,7 +29,7 @@ struct MicropostController {
 		let post = try fetchPost(with: datetime, and: request)
 		
 		let params: [String: Any] = [
-			"metadata": post.date,
+			"metadata": "Microposted on \(post.title)",
 			"post": post,
 			"singlePost": true
 		]
