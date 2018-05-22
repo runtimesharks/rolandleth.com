@@ -3,12 +3,11 @@
 		#(emoji) &nbsp&nbsp&nbsp #(quote)
 	</div>
 	<div class="copyright">
-		<div class="ssl">
-			<script async>TrustLogo("https://rolandleth.com/images/misc/ssl-logo.png", "CL1", "none");</script>
-		</div>
 		&copy;
-		#(year) &nbspRoland Leth &nbsp&mdash;&nbsp
-		<a class="home-footer" href="/" rel="home">Home</a>
+		2013&ndash;#(year) &nbsp
+		<a class="home-footer" href="/" rel="home">Roland Leth</a>
+		&nbsp&mdash;&nbsp
+		<a href="/microblog">Microblog</a>
 		&nbsp&mdash;&nbsp
 		<a href="/archive">Archive</a>
 	</div>

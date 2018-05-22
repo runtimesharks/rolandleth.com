@@ -1,7 +1,9 @@
 {
-"version": 3,
-"mappings": "AAAA,YAAa,CACZ,UAAU,CAAE,GAAG",
-"sources": ["post-page.scss"],
-"names": [],
-"file": "post-page.css"
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,AAAC,CACZ,UAAU,CAAE,GAAG,CACf",
+    "sources": [
+        "post-page.scss"
+    ],
+    "names": [],
+    "file": "post-page.css"
 }

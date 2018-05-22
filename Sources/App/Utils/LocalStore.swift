@@ -10,7 +10,18 @@ import Foundation
 
 struct LocalStore {
 	
-	private static let folderPath = "/Users/roland/Documents/blog/posts/"
+	private static var folderPath: String {
+		let path: String
+		
+		if let postsPath = drop.config["server", "postsPath"]?.string {
+			path = postsPath
+		}
+		else {
+			path = "/Users/roland/Documents/"
+		}
+		
+		return path + "blog/posts/"
+	}
 	
 	/// Reads all local files, or the one that matches the `path` passed, and saves them to the database.
 	///

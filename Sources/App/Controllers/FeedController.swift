@@ -8,16 +8,30 @@
 
 import Foundation
 import Vapor
+import Console
+import HTTP
 
 struct FeedController {
 	
-	static func create(with request: Request) throws -> ResponseRepresentable {
-		let posts = try Post.makeQuery().sorted().all()
+	private static func feed(micro: Bool, from request: Request) throws -> ResponseRepresentable {
+		let posts: [Content]
+		
+		if micro {
+			posts = try Micropost.makeQuery()
+				.sort("datetime", .descending)
+				.filteredPast()
+				.all()
+				.map(Content.init)
+		}
+		else {
+			posts = try Post.makeQuery().sorted().all().map(Content.init)
+		}
 		
 		guard !posts.isEmpty else { return Response.rootRedirect }
 		
 		request.setContentType(to: .xml)
 		
+		let feed = micro ? "microfeed" : "feed"
 		let year = Calendar.current.component(.year, from: Date())
 		let fullFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 		let df = DateFormatter.shared
@@ -31,11 +45,11 @@ struct FeedController {
 		xml += "<subtitle type=\"text\">Development thoughts by Roland Leth</subtitle>\n"
 		xml += "<updated>\(updated)</updated>\n"
 		xml += "<author>\n\t<name>Roland Leth</name>\n</author>\n"
-		xml += "<link rel=\"self\" type=\"application/atom+xml\" href=\"\(request.domain)/feed\"/>\n"
+		xml += "<link rel=\"self\" type=\"application/atom+xml\" href=\"\(request.domain)/\(feed)\"/>\n"
 		xml += "<link rel=\"alternate\" type=\"text/html\" hreflang=\"en\" href=\"\(request.domain)\"/>\n"
 		xml += "<id>\(request.domain)/feed</id>\n"
 		xml += "<icon>\(request.domain)/images/favicons/192x192.png</icon>\n"
-		xml += "<rights>Copyright (c) \(year), Roland Leth</rights>\n"
+		xml += "<rights>Copyright (c) 2013–\(year), Roland Leth</rights>\n"
 		
 		func fullDate(from datetime: String) -> String? {
 			df.setDatetimeFormat()
@@ -50,25 +64,36 @@ struct FeedController {
 			
 			xml += "<entry>\n"
 			xml += "\t<id>\(url)</id>\n"
-			xml += "\t<title>\($0.title)</title>\n"
+			
+			if let title = $0.title {
+				xml += "\t<title>\(title)</title>\n"
+			}
+			
 			xml += "\t<link rel=\"related\" type=\"text/html\" href=\"\(url)\"/>\n"
 			xml += "\t<link rel=\"alternate\" type=\"text/html\" href=\"\(url)\"/>\n"
 			
 			if let date = fullDate(from: $0.datetime) {
 				xml += "\t<published>\(date)</published>\n"
 			}
-			if let date = fullDate(from: $0.modified) {
+			if let modified = $0.modified, let date = fullDate(from: modified) {
 				xml += "\t<updated>\(date)</updated>\n"
 			}
 			
 			xml += "\t<author>\n"
 			xml += "\t\t<name>Roland Leth</name>\n"
-			xml += "\t\t<uri>\(request.domain)</uri>\n"
+			
+			if micro {
+				xml += "\t\t<uri>https://micro.blog/rolandleth</uri>\n"
+			}
+			else {
+				xml += "\t\t<uri>\(request.domain)</uri>\n"
+			}
+			
 			xml += "\t</author>\n"
 			xml += "\t<content type=\"html\" xml:lang=\"en\"><![CDATA[\n"
 			xml += $0.body
-//				.replacingOccurrences(of: "<mark>", with: "")
-//				.replacingOccurrences(of: "</mark>", with: "") + "\n"
+			//				.replacingOccurrences(of: "<mark>", with: "")
+			//				.replacingOccurrences(of: "</mark>", with: "") + "\n"
 			// Atom complains about the mark tag, and
 			// this takes like 5-10ms for the whole loop ...
 			xml += "]]></content>\n"
@@ -78,6 +103,47 @@ struct FeedController {
 		xml += "</feed>"
 		
 		return xml
+	}
+	
+	static func microfeed(with request: Request) throws -> ResponseRepresentable {
+		return try feed(micro: true, from: request)
+	}
+	
+	static func feed(with request: Request) throws -> ResponseRepresentable {
+		return try feed(micro: false, from: request)
+	}
+	
+}
+
+private extension FeedController {
+	
+	struct Content {
+		
+		let title: String?
+		let link: String
+		let datetime: String
+		let modified: String?
+		let body: String
+		
+		
+		// MARK: - Init
+
+		init(from post: Post) {
+			title = post.title
+			link = post.link
+			datetime = post.datetime
+			modified = post.modified
+			body = post.body
+		}
+		
+		init(from micropost: Micropost) {
+			title = nil
+			link = micropost.link
+			datetime = micropost.datetime
+			modified = nil
+			body = micropost.content
+		}
+		
 	}
 	
 }

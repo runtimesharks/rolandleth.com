@@ -1,0 +1,10 @@
+#extend("base")
+
+#export("head") {
+	<link rel="stylesheet" href="/styles/components/article.css">
+	<link rel="preload" href="/styles/pages/post-page.css" as="style" onload="this.rel='stylesheet'">
+}
+
+#export("body") {
+	#embed("Partials/microarticle")
+}

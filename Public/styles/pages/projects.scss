@@ -1,5 +1,5 @@
 @import '../globals/variables';
-@import '../components/article';
+@import url('../components/article');
 
 h1 {
 	margin-bottom: 1em;
@@ -13,6 +13,7 @@ img {
 
 	&.project-screenshot {
 		margin: 0.15em 0 0 0.3em;
+		max-width: 200px;
 		border-radius: 0;
 	}
 }
@@ -75,7 +76,7 @@ a.image:hover {
 	// display: inline-block;
 	text-align: left;
 	width: 45%;
-	height: 150px;
+	height: 160px;
 	margin-left: 350px;
 	font-size: 0.9em;
 	line-height: 1.5em;

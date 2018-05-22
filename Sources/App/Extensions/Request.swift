@@ -21,11 +21,11 @@ extension Request {
 	}
 	
 	var hasTrailingSlash: Bool {
-		return uri.path.characters.last == "/" && uri.path.characters.count > 1
+		return uri.path.last == "/" && uri.path.count > 1
 	}
 	
 	var rootRedirect: Response {
-		return Response(headers: headers, redirect: "/", permanently: false)
+		return Response(headers: headers, redirect: "/", .normal)
 	}
 	
 	var pathWithoutTrailingSlash: String {

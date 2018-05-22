@@ -23,15 +23,35 @@ private let quotes = [
 	"Dream big, if you dare to dream.",
 	"Your time is limited, so don't waste it living someone else's life.",
 	"Be yourself, everyone else is taken.",
+	"Whether you think you can or can not, you are right.",
 	"[...] avoid the trap of thinking you have something to lose.",
-	"A lot can happen between now and \"never\"."
+	"A lot can happen between now and \"never\".",
+	"Don’t wish it was easier, wish you were better"
 ]
-private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶"]
+private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶", "🦄", "🏇🏻"]
 
 extension ViewRenderer {
 	
 	var quote: String { return quotes[qi] }
 	var emoji: String { return emojis[qi] }
+	
+	func showMicroResults(with params: [String: Any], for request: Request, posts: [Micropost], totalPosts: Int) throws -> ResponseRepresentable {
+		let baseParams: [String: NodeRepresentable] = [
+			"gap": 2,
+			"doubleGap": 4,
+			"posts": posts,
+			"pages": Int((Double(totalPosts) / Double(drop.postsPerPage)).rounded(.up)),
+			"showPagination": totalPosts > drop.postsPerPage,
+			"totalPosts": totalPosts,
+			"singlePost": posts.count == 1
+		]
+		// If the current page has only one post, then it's also the last,
+		// so we might as well consider this page a single post.
+		
+		let params = params + baseParams
+		
+		return try make("microarticle-list", with: params, for: request)
+	}
 	
 	func showResults(with params: [String: Any], for request: Request, posts: [Post], totalPosts: Int) throws -> ResponseRepresentable {
 		let baseParams: [String: NodeRepresentable] = [
@@ -39,8 +59,12 @@ extension ViewRenderer {
 			"doubleGap": 4,
 			"posts": posts,
 			"pages": Int((Double(totalPosts) / Double(drop.postsPerPage)).rounded(.up)),
-			"showPagination": totalPosts > drop.postsPerPage
+			"showPagination": totalPosts > drop.postsPerPage,
+			"totalPosts": totalPosts,
+			"singlePost": posts.count == 1
 		]
+		// If the current page has only one post, then it's also the last,
+		// so we might as well consider this page a single post.
 		
 		let params = params + baseParams
 		
@@ -59,10 +83,15 @@ extension ViewRenderer {
 		
 		let metadataParams: [String: Any] = [
 			"path": request.pathWithoutTrailingSlash,
-			"metadata": params["title"] as? String ?? "" // Will be overwritten if it exists in the next step
+			"metadata": params["metadata"] as? String ?? "iOS, Node and Ruby development thoughts by Roland Leth."
 		]
 		
-		let params = footerParams + metadataParams + params
+		var params = footerParams + metadataParams + params
+		let title = params["title"] as? String ?? "Roland Leth"
+		
+		if title != "Roland Leth" {
+			params["title"] = "Roland Leth: " + title
+		}
 		
 		return try make(path, params, for: request)
 	}

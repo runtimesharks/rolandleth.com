@@ -115,7 +115,7 @@ extension Post {
 	/// - Returns: A string of "Jan 27, 2017" format, if a `Date` can be created from the `datetime` passed, or an empty string otherwise.
 	fileprivate static func shortDate(from datetime: String) -> String {
 		guard let d = date(from: datetime) else { return "" }
-		return DateFormatter.shared.setShortFormat().string(from: d)
+		return DateFormatter.shared.setShortDateFormat().string(from: d)
 	}
 	
 	/// Converts the `datetime` field into a `Date`.
@@ -258,12 +258,12 @@ private extension String {
 				tagRange.length = 0
 			}
 			
-			// The string of the tag.
-			let tag = substring(with: range(from: tagRange))
 			// The range of the string up to the tag, starting with the last saved position.
 			let printedRange = range(from: position..<tagRange.location)
+			// The string of the tag.
+			let tag = String(self[range(from: tagRange)])
 			// The string up to the tag.
-			var printedString = substring(with: printedRange)
+			var printedString = String(self[printedRange])
 			
 			// Update the length of the visible string.
 			printedSize += printedString.length
@@ -276,7 +276,7 @@ private extension String {
 			var trimExtraCharacters = extra >= 0
 			
 			trimmingExtraCharacters: if trimExtraCharacters {
-				let punctuation = " ?!.".characters.map { String($0) }
+				let punctuation = " ?!.".map { String($0) }
 				var l: Int { return printedString.length }
 				var c: String { return printedString.last }
 				

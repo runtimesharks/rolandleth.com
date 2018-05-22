@@ -50,7 +50,7 @@ struct PageController {
 			return try display(page: 1, with: request)
 		}
 		
-		throw Abort.notFound
+		throw RouterError.missingRoute(for: request)
 	}
 	
 	private static func display(page: Int, with request: Request) throws -> ResponseRepresentable {
@@ -58,10 +58,9 @@ struct PageController {
 			throw Abort.notFound
 		}
 		
-		let totalPosts = try Post.makeQuery().count()
+		let totalPosts = try Post.makeQuery().filteredPast().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
-			"metadata": "iOS, Ruby, Node and JS projects by Roland Leth.",
 			"root": "/",
 			"page": page
 		]

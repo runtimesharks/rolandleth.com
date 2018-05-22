@@ -12,7 +12,7 @@ extension String: Error { }
 
 extension String {
 	
-	var length: Int { return characters.count }
+	var length: Int { return count }
 	var first: String { return self[0..<1] }
 	var last: String { return self[length - 1..<length] }
 	var nsRange: NSRange { return NSRange(location: 0, length: length) }
@@ -33,10 +33,9 @@ extension String {
 	}
 	
 	subscript(r: Range<Int>) -> String {
-		return substring(with: Range(uncheckedBounds: (lower: index(startIndex, offsetBy: r.lowerBound),
-		                                               upper: index(startIndex, offsetBy: r.upperBound))
-			)
-		)
+		return String(self[Range(uncheckedBounds: (lower: index(startIndex, offsetBy: r.lowerBound),
+		                                    upper: index(startIndex, offsetBy: r.upperBound)))
+		])
 	}
 	
 	subscript(range: NSRange) -> String {

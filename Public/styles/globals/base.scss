@@ -1,5 +1,5 @@
 @import '../globals/variables';
-@import '../globals/reset.min.css';
+@import url('../globals/reset.min.css');
 
 body {
 	padding: 0 14px;
@@ -27,6 +27,12 @@ h1 {
 	font-family: $headerFont;
 	line-height: 1.2em;
 	color: $textColor;
+}
+
+.microarticle {
+	& h1 {
+		font-size: 1.5em;
+	}
 }
 
 h4 {
@@ -64,7 +70,7 @@ a {
 }
 
 p {
-	margin: 0.5em 0;
+	margin: 0.75em 0;
 
 	&.no-margin {
 		margin: 0;

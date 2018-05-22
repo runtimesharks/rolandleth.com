@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../globals/variables';
 
 blockquote {
 	@include lightTopBorder(5px);

@@ -42,7 +42,7 @@ struct SearchController {
 		
 		let totalPosts = try sql.count()
 		let params: [String: Any] = [
-			"title": "Searching: \(query)",
+			"title": "Searching \(query)",
 			"metadata": "Search results.",
 			"query": "?query=\(query.addingPercentEncoding(withAllowedCharacters: .letters)!)",
 			"root": "/search/",
@@ -82,7 +82,7 @@ private extension String {
 			else { break }
 			
 			// Save the original occurence.
-			let original = substring(with: termRange)
+			let original = String(self[termRange])
 			
 			// Use the original occurence, which has the proper case.
 			replaceSubrange(termRange, with: wrap(original))

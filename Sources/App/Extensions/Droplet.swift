@@ -8,6 +8,7 @@
 
 //import GzipMiddleware
 import Vapor
+import Foundation
 import PostgreSQLProvider
 import LeafProvider
 
@@ -29,7 +30,7 @@ extension Droplet {
 		return config.environment == .production
 	}
 	
-	static func setUp() throws -> Droplet {
+	static func setup() throws -> Droplet {
 		let config = try Config()
 		try config.addProvider(LeafProvider.Provider.self)
 		try config.addProvider(PostgreSQLProvider.Provider.self)
@@ -41,8 +42,18 @@ extension Droplet {
 //		config.addConfigurable(middleware: GzipMiddleware(), name: "gzip")
 		
 		config.preparations.append(Post.self)
+		config.preparations.append(Micropost.self)
 		
-		let drop = try Droplet(config: config)
+		let logger = Logger(workDir: config.workDir)
+		
+		let drop: Droplet
+
+		if ProcessInfo.processInfo.environment["customLogger"] == "true" {
+			drop = try Droplet(config: config, log: logger)
+		}
+		else {
+			drop = try Droplet(config)
+		}
 		
 		if let leaf = drop.view as? LeafRenderer {
 			leaf.stem.register(GreaterThanLeafTag())
@@ -58,21 +69,31 @@ extension Droplet {
 	}
 	
 	func addRoutes() -> Droplet {
-		get("/feed", handler: FeedController.create)
+		get("/feed", handler: FeedController.feed)
+		get("/microfeed", handler: FeedController.microfeed)
+		
+		post("/micropub", handler: MicropubController.micropub)
 		get("/sitemap.xml", handler: SitemapController.create)
+		
 		get("/about", handler: AboutController.display)
 		get("/archive", handler: ArchiveController.display)
 		get("/privacy-policy", handler: PrivacyController.display)
+		get("/downloads", String.parameter, handler: DownloadsController.process)
 		get("/projects", handler: ProjectsController.display)
 		get("/projects", String.parameter, handler: ProjectsController.display)
-		get("/downloads", String.parameter, handler: DownloadsController.process)
+		
 		get("/cmd.sync", String.parameter, handler: SyncController.perform)
 		get("/cmd.sync", String.parameter, String.parameter, handler: SyncController.perform)
 		post("/cmd.sync/create-post", handler: SyncController.create)
+		
 		get("/search", handler: SearchController.display)
 		get("/search", ":page", handler: SearchController.display)
+		
 		get("/", ":id", handler: PageController.display)
 		get("/", handler: PageController.display)
+		
+		get("/\(Micropost.blogPath)", handler: MicropageController.display)
+		get("/\(Micropost.blogPath)", ":id", handler: MicropageController.display)
 		
 		get("/api/v1.0/about", handler: AboutController.create)
 		get("/api/v1.0/archive", handler: ArchiveController.create)

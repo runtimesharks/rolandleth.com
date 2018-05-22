@@ -56,19 +56,19 @@ struct SyncController {
 	/// - Returns: A dictionary of errors, if any occurred.
 	/// - Throws: Any errors its underlying methods will throw.
 	private static func perform(withDelete performDelete: Bool, path: String) throws -> [String: Any] {
-		guard drop.production else {
+//		guard drop.production else {
 			return try LocalStore.perform(withDelete: performDelete, for: path)
-		}
-		
-		return try CloudStore.perform(withDelete: performDelete, for: path)
+//		}
+//
+//		return try CloudStore.perform(withDelete: performDelete, for: path)
 	}
 	
 	private static func createFile(with request: Request) throws -> File {
-		guard drop.production else {
+//		guard drop.production else {
 			return try LocalStore.createFile(from: request.body.bytes)
-		}
-		
-		return try CloudStore.createFile(from: request.body.bytes)
+//		}
+//
+//		return try CloudStore.createFile(from: request.body.bytes)
 	}
 	
 }
