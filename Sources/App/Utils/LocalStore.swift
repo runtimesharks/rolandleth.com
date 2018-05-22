@@ -13,8 +13,8 @@ struct LocalStore {
 	private static var folderPath: String {
 		let path: String
 		
-		if drop.production {
-			path = "../../../../"
+		if let postsPath = drop.config["server", "postsPath"]?.string {
+			path = postsPath
 		}
 		else {
 			path = "/Users/roland/Documents/"
