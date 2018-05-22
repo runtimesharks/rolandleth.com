@@ -45,6 +45,7 @@
 		2A58742720AD699C001EA47A /* MicropubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742620AD699C001EA47A /* MicropubController.swift */; };
 		2A58742920AD6AEA001EA47A /* MicropageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742820AD6AEA001EA47A /* MicropageController.swift */; };
 		2A58742B20AD6DAB001EA47A /* MicropostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58742A20AD6DAB001EA47A /* MicropostController.swift */; };
+		2A9766F720B3DB66009623C5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9766F620B3DB65009623C5 /* Logger.swift */; };
 		OBJ_1000 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* PostController.swift */; };
 		OBJ_1001 /* PrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* PrivacyController.swift */; };
 		OBJ_1002 /* ProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* ProjectsController.swift */; };
@@ -4307,6 +4308,7 @@
 		2A58742620AD699C001EA47A /* MicropubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropubController.swift; sourceTree = "<group>"; };
 		2A58742820AD6AEA001EA47A /* MicropageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropageController.swift; sourceTree = "<group>"; };
 		2A58742A20AD6DAB001EA47A /* MicropostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropostController.swift; sourceTree = "<group>"; };
+		2A9766F620B3DB65009623C5 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		"BCrypt::BCrypt::Product" /* BCrypt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BCrypt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bits::Bits::Product" /* Bits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -7816,6 +7818,7 @@
 				OBJ_51 /* Models */,
 				OBJ_55 /* Utils */,
 				OBJ_59 /* main.swift */,
+				2A9766F620B3DB65009623C5 /* Logger.swift */,
 			);
 			name = App;
 			path = Sources/App;
@@ -11075,6 +11078,7 @@
 				OBJ_1033 /* File.swift in Sources */,
 				OBJ_1034 /* Post.swift in Sources */,
 				OBJ_1035 /* CloudStore.swift in Sources */,
+				2A9766F720B3DB66009623C5 /* Logger.swift in Sources */,
 				OBJ_1036 /* LocalStore.swift in Sources */,
 				OBJ_1037 /* Queue.swift in Sources */,
 				OBJ_1038 /* main.swift in Sources */,

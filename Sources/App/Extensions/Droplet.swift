@@ -8,6 +8,7 @@
 
 //import GzipMiddleware
 import Vapor
+import Foundation
 import PostgreSQLProvider
 import LeafProvider
 
@@ -43,7 +44,16 @@ extension Droplet {
 		config.preparations.append(Post.self)
 		config.preparations.append(Micropost.self)
 		
-		let drop = try Droplet(config)
+		let logger = Logger(workDir: config.workDir)
+		
+		let drop: Droplet
+
+		if ProcessInfo.processInfo.environment["customLogger"] == "true" {
+			drop = try Droplet(config: config, log: logger)
+		}
+		else {
+			drop = try Droplet(config)
+		}
 		
 		if let leaf = drop.view as? LeafRenderer {
 			leaf.stem.register(GreaterThanLeafTag())
