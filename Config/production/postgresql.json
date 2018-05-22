@@ -1,3 +1,7 @@
 {
-	"url": "$DATABASE_URL"
+	"hostname": "localhost",
+	"user": "postgres",
+	"password": "",
+	"database": "roland",
+	"port": 5433
 }
