@@ -31,10 +31,10 @@ private let quotes = [
 private let emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶", "🦄", "🏇🏻"]
 
 extension ViewRenderer {
-	
+
 	var quote: String { return quotes[qi] }
 	var emoji: String { return emojis[qi] }
-	
+
 	func showMicroResults(with params: [String: Any], for request: Request, posts: [Micropost], totalPosts: Int) throws -> ResponseRepresentable {
 		let baseParams: [String: NodeRepresentable] = [
 			"gap": 2,
@@ -47,12 +47,12 @@ extension ViewRenderer {
 		]
 		// If the current page has only one post, then it's also the last,
 		// so we might as well consider this page a single post.
-		
+
 		let params = params + baseParams
-		
+
 		return try make("microarticle-list", with: params, for: request)
 	}
-	
+
 	func showResults(with params: [String: Any], for request: Request, posts: [Post], totalPosts: Int) throws -> ResponseRepresentable {
 		let baseParams: [String: NodeRepresentable] = [
 			"gap": 2,
@@ -65,35 +65,34 @@ extension ViewRenderer {
 		]
 		// If the current page has only one post, then it's also the last,
 		// so we might as well consider this page a single post.
-		
+
 		let params = params + baseParams
-		
+
 		return try make("article-list", with: params, for: request)
 	}
-	
+
 	func make(_ path: String, with params: [String: Any], for request: Request) throws -> View {
 		let footerParams: [String: Any] = [
 			"quote": quote,
 			"emoji": emoji,
 			"fullRoot": request.domain,
-			"trackingId": drop.production ? "UA-40255117-4" : "UA-40255117-5",
 			"production": drop.production,
 			"year": Calendar.current.component(.year, from: Date())
 		]
-		
+
 		let metadataParams: [String: Any] = [
 			"path": request.pathWithoutTrailingSlash,
 			"metadata": params["metadata"] as? String ?? "iOS, Node and Ruby development thoughts by Roland Leth."
 		]
-		
+
 		var params = footerParams + metadataParams + params
 		let title = params["title"] as? String ?? "Roland Leth"
-		
+
 		if title != "Roland Leth" {
 			params["title"] = "Roland Leth: " + title
 		}
-		
+
 		return try make(path, params, for: request)
 	}
-	
+
 }
