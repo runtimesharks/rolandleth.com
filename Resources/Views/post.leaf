@@ -2,7 +2,7 @@
 
 #export("head") {
 	<link rel="stylesheet" href="/styles/components/article.css">
-	<link rel="preload" href="/styles/pages/post-page.css" as="style" onload="this.rel='stylesheet'">
+	<link rel="stylesheet" href="/styles/pages/post-page.css">
 }
 
 #export("body") {
