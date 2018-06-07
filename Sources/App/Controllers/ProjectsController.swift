@@ -11,7 +11,7 @@ import Vapor
 struct ProjectsController {
 	
 	private static var standaloneProjects = [
-		"iwordjuggle", "bouncyb", "sos-morse", "carminder", "expenses-planner"
+		"iwordjuggle", "bouncy-b", "sos-morse", "carminder", "expenses-planner"
 	]
 	
 	static func display(with request: Request) throws -> ResponseRepresentable {
