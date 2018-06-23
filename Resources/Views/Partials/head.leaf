@@ -8,9 +8,9 @@
 <!--Links-->
 <link rel="author" type="text/plain" href="/humans.txt">
 <link href="#(fullRoot)" rel="alternate" title="Roland Leth" type="application/atom+xml">
-<link rel="micropub" href="https://rolandleth.com/micropub">
+<link rel="micropub" href="#(fullRoot)/micropub">
 <!--Me Links-->
-<link href="https://micro.blog/rolandleth" rel="me" />
+<link href="https://micro.blog/rolandleth" rel="me">
 <link href="https://twitter.com/rolandleth" rel="me">
 <link href="https://github.com/rolandleth" rel="me">
 <!--IndieAuth-->

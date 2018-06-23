@@ -75,7 +75,7 @@ extension ViewRenderer {
 		let footerParams: [String: Any] = [
 			"quote": quote,
 			"emoji": emoji,
-			"fullRoot": "https://rolandleth.com",
+			"fullRoot": request.domain,
 			"production": drop.production,
 			"year": Calendar.current.component(.year, from: Date())
 		]
