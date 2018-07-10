@@ -11,6 +11,7 @@ struct MicropageController {
 		let posts = try? Micropost.makeQuery()
 			.sort("datetime", .descending)
 			.filteredPast()
+			.paginated(to: page)
 			.all()
 		
 		return posts ?? []
@@ -54,7 +55,7 @@ struct MicropageController {
 		let totalPosts = try Micropost.makeQuery().filteredPast().count()
 		let params: [String: NodeRepresentable] = [
 			"title": "Roland Leth",
-			"root": "/\(Micropost.blogPath)",
+			"root": "/\(Micropost.blogPath)/",
 			"page": page
 		]
 		

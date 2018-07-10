@@ -32,7 +32,7 @@ struct SitemapController {
 
 		let posts = try Post.makeQuery().sorted(future: true).all()
 		let urls = noPriority + lowPriority + highPriority
-		let root = "https://rolandleth.com/"
+		let root = request.domain
 		var xml = ""
 		
 		xml += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"

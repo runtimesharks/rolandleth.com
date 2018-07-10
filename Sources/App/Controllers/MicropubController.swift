@@ -11,13 +11,13 @@ struct MicropubController {
 	static func micropub(with request: Request) throws -> ResponseRepresentable {
 		try Micropost(from: request).save()
 		
-		updateMicroBlog()
+		updateMicroBlog(with: request)
 		
 		return Response(status: .ok)
 	}
 	
-	private static func updateMicroBlog() {
-		let microFeed = "https://rolandleth.com/microfeed".urlQueryPercentEncoded
+	private static func updateMicroBlog(with request: Request) {
+		let microFeed = "\(request.domain)microfeed".urlQueryPercentEncoded
 		
 		_ = try? drop.client.post("https://micro.blog/ping?url=\(microFeed)")
 	}

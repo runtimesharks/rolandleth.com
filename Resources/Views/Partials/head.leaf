@@ -8,9 +8,9 @@
 <!--Links-->
 <link rel="author" type="text/plain" href="/humans.txt">
 <link href="#(fullRoot)" rel="alternate" title="Roland Leth" type="application/atom+xml">
-<link rel="micropub" href="https://rolandleth.com/micropub">
+<link rel="micropub" href="#(fullRoot)/micropub">
 <!--Me Links-->
-<link href="https://micro.blog/rolandleth" rel="me" />
+<link href="https://micro.blog/rolandleth" rel="me">
 <link href="https://twitter.com/rolandleth" rel="me">
 <link href="https://github.com/rolandleth" rel="me">
 <!--IndieAuth-->
@@ -29,12 +29,3 @@
 <meta name="MobileOptimized" content="375">
 <!--Scripts-->
 <script src="/js/jquery.min.js"></script>
-<!--Tracking-->
-<script>
-	window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }
-	ga.l =+ new Date
-	ga('create', '#(trackingId)', { 'storage': 'none', 'storeGac': false })
-	ga('set', 'anonymizeIp', true);
-</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
-<script async src="/js/tracking.min.js"></script>
