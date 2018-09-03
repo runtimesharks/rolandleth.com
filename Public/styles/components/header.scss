@@ -7,6 +7,16 @@
 
 	a {
 		line-height: 1.25em;
+
+		&.codementor {
+			position: relative;
+			top: 2px;
+		}
+	}
+
+	& > .navigation > a.runtime-navigation {
+		position: relative;
+		bottom: 2px;
 	}
 }
 
@@ -109,6 +119,22 @@
 		text-align: center;
 		width: 100%;
 		text-align: center;
+	}
+
+	.site-header  {
+		a.codementor {
+			top: 6px;
+		}
+
+		img.codementor {
+			height: 25px;
+		}
+
+		& > .navigation > a.home-navigation > i.fa.fa-home {
+			position: relative;
+			right: 4.5px;
+			margin-left: 16px;
+		}
 	}
 
 	.text-field {
