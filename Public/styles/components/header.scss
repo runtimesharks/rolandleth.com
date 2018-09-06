@@ -127,7 +127,8 @@
 		}
 
 		img.codementor {
-			height: 25px;
+			max-width: 150px;
+			max-height: 25px;
 		}
 
 		& > .navigation > a.home-navigation > i.fa.fa-home {
