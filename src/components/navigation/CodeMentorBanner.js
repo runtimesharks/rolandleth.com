@@ -4,7 +4,7 @@ import Theme from "../theme/Theme"
 
 const CodeMentorBanner = () => (
 	<Link href="https://www.codementor.io/rolandleth">
-		<Img
+		<Image
 			className="codementor"
 			src="https://cdn.codementor.io/badges/book_session_github.svg"
 			alt="Contact me on Codementor"
@@ -20,7 +20,7 @@ const Link = styled.a`
 		top: 6px;
 	}
 `
-const Img = styled.img`
+const Image = styled.img`
 	border-radius: none;
 	box-shadow: none;
 

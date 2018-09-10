@@ -15,7 +15,6 @@ class SearchForm extends React.Component {
 	componentDidMount() {
 		window.addEventListener("resize", () => {
 			this.setState({
-				...this.state,
 				formSize: formSize()
 			})
 		})
