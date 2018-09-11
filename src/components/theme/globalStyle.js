@@ -9,6 +9,8 @@ injectGlobal`
 		color: ${Theme.textColor};
 		background: #fff;
 		font-family: ${Theme.bodyFont};
+		font-size: 17px;
+		line-height: 1.5;
 
 		max-width: ${Theme.maxWidth};
 		margin: 0 auto;
@@ -56,8 +58,6 @@ injectGlobal`
 	}
 
 	p {
-		margin: 0.75em 0;
-
 		&.no-margin {
 			margin: 0;
 		}
@@ -89,22 +89,12 @@ injectGlobal`
 	}
 
 	strong {
-		font-weight: 600;
+		font-weight: bold;
 	}
 
 	.mark {
 		background-color: yellow;
 		color: black;
-	}
-
-	.content {
-		padding: 6em 0 0.5em 2px;
-		line-height: 1.4em;
-
-		/* @include  responsiveWidth($phoneMedia) {
-			padding-top: 4em;
-			padding-bottom: 0;
-		} */
 	}
 
 	.centered {

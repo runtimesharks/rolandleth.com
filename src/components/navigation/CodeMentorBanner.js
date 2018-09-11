@@ -16,7 +16,7 @@ const Link = styled.a`
 	position: relative;
 	top: 2px;
 
-	@media screen and (max-width: ${Theme.phoneMedia}) {
+	@media screen and (max-width: 486px) {
 		top: 6px;
 	}
 `
@@ -25,8 +25,7 @@ const Image = styled.img`
 	box-shadow: none;
 
 	@media screen and (max-width: ${Theme.phoneMedia}) {
-		max-width: 150px;
-		max-height: 25px;
+		max-height: 20px;
 	}
 `
 

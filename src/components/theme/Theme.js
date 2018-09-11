@@ -13,11 +13,11 @@ class Theme {
 	static textColor = "#3b3b3b"
 
 	static headerFont = "'American Typewriter', 'Georgia', serif"
-	static lightFont = "'Avenir Next', 'Verdana', sans-serif"
 	// body_font: "'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-	static bodyFont = "'Verdana', 'Arial', sans-serif"
+	static bodyFont = "'-apple-system', 'Verdana', 'Arial', sans-serif"
 	static codeFont = "'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace"
 
+	static navTreshold = "550px"
 	static phoneMedia = "482px"
 	static smallMedia = "374px"
 	static smallQuery = '"all and (max-width: 575px)"'
