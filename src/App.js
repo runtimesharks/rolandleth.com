@@ -4,6 +4,7 @@ import styled from "styled-components"
 import "./components/theme/globalStyle"
 import SiteHeader from "./components/navigation/SiteHeader"
 import About from "./components/About"
+import Theme from "./components/theme/Theme"
 
 class App extends React.Component {
 	render() {
@@ -25,7 +26,11 @@ class App extends React.Component {
 
 const Content = styled.div`
 	margin: 6em 0 0.5em 2px;
-	line-height: 1.4em;
+
+	@media screen and (max-width: ${Theme.phoneMedia}) {
+		padding-top: 4em;
+		padding-bottom: 0;
+	}
 `
 
 export default App

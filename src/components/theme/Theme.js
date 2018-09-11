@@ -30,13 +30,6 @@ class Theme {
 			transition: ${prop} ${duration} ease-in-out;
 		`
 
-	static responsiveWidth = (width, content) =>
-		css`
-			@media screen and (max-width: ${width}) {
-				${content};
-			}
-		`
-
 	static lightTopBorder = (size) =>
 		css`
 			border-top: ${size} solid ${this.lightGray};
