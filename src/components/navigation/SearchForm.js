@@ -75,8 +75,16 @@ function formSize() {
 
 const Form = styled.form`
 	background-color: rgba(0, 0, 0, 0);
-	margin-top: 17px;
-	float: right;
+	margin-bottom: 11px;
+	align-self: end;
+
+	@media screen and (max-width: ${Theme.navTreshold}) {
+		grid-row: 3;
+		grid-column: 1;
+		justify-self: start;
+		align-self: start;
+		margin-top: 4px;
+	}
 `
 
 const TextField = styled.input`
@@ -87,6 +95,8 @@ const TextField = styled.input`
 	border-bottom: none;
 	outline: none;
 	border-radius: 0;
+
+	${Theme.transition("0.6s")};
 
 	font-family: ${Theme.lightFont};
 	font-size: 1em;
@@ -113,7 +123,7 @@ const TextField = styled.input`
 		}
 	}
 
-	@media screen and (max-width: ${Theme.phoneMedia}) {
+	@media screen and (max-width: ${Theme.navTreshold}) {
 		${Theme.lightBottomBorder};
 
 		font-size: 0.9em;

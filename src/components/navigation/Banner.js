@@ -10,12 +10,10 @@ const Banner = () => (
 
 const Container = styled.div`
 	font-size: 2.5em;
-	display: inline-block;
 
-	@media screen and (max-width: ${Theme.phoneMedia}) {
+	@media screen and (max-width: ${Theme.navTreshold}) {
 		text-align: center;
-		width: 100%;
-		text-align: center;
+		grid-column: 1/4;
 	}
 `
 

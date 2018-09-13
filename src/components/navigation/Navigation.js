@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import "../font-awesome/css/font-awesome.min.css"
 import CodeMentorBanner from "./CodeMentorBanner"
+import Theme from "../theme/Theme"
 
 const Navigation = () => (
 	<Container role="navigation">
@@ -37,8 +38,9 @@ const Container = styled.nav`
 	// Because FA icons take a bit to load, and there's a height difference,
 	// and all the content moves down after they load.
 	min-height: 32px;
-	text-align: right;
-	margin-top: 1px;
+	grid-column: 1/4;
+	grid-row: 3;
+	justify-self: end;
 
 	.fa {
 		margin-top: 8px;
@@ -51,6 +53,12 @@ const Container = styled.nav`
 	a:first-child .fa {
 		margin-left: 0;
 	}
+
+	@media screen and (max-width: ${Theme.navTreshold}) {
+		grid-row: 3;
+		grid-column: 2/4;
+		text-align: right;
+	}
 `
 
 const RuntimeLink = styled.a`
@@ -60,6 +68,18 @@ const RuntimeLink = styled.a`
 	font-size: 1.5em;
 	position: relative;
 	bottom: 2px;
+
+	@media screen and (max-width: 486px) {
+		margin-left: 40px;
+	}
+
+	@media screen and (max-width: 464px) {
+		margin-left: 20px;
+	}
+
+	@media screen and (max-width: 450px) {
+		margin-left: 10px;
+	}
 `
 
 const HomeLink = styled.a`

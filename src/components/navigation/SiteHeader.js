@@ -14,10 +14,12 @@ const SiteHeader = (props) => (
 	</Container>
 )
 
-const Container = styled.div`
+const Container = styled.header`
 	max-width: ${Theme.maxWidth};
 	margin: 2.5em auto 0 auto;
 	font-family: ${Theme.headerFont};
+	display: grid;
+	grid-template-columns: 2fr;
 
 	a {
 		line-height: 1.25em;
@@ -31,11 +33,19 @@ const Container = styled.div`
 			border-bottom: none;
 		}
 	}
+
+	@media screen and (max-width: ${Theme.navTreshold}) {
+		grid-template-columns: 2fr 1fr 2fr;
+	}
 `
 
 const BannerBorder = styled.div`
-	width: 100%;
+	grid-column: 1/4;
 	border-bottom: 2px solid ${Theme.textColor};
+
+	@media screen and (max-width: ${Theme.navTreshold}) {
+		grid-row: 2;
+	}
 `
 
 export default SiteHeader
