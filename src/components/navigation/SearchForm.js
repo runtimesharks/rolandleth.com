@@ -13,15 +13,15 @@ class SearchForm extends React.Component {
 	}
 
 	componentDidMount() {
-		window.addEventListener("resize", () => {
-			this.setState({
-				formSize: formSize()
-			})
-		})
+		window.addEventListener("resize", this.updateFormSize)
+	}
+
+	updateFormSize = () => {
+		this.setState({ formSize: formSize() })
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("resize")
+		window.removeEventListener("resize", this.updateFormSize)
 	}
 
 	render() {
@@ -65,10 +65,10 @@ function formSize() {
 	// prettier-ignore
 	switch (true) {
 		case winWidth < 280: return 10
-		case winWidth <= 300: return 13
-		case winWidth < 310: return 16
-		case winWidth < 325: return 18
-		case winWidth < 335: return 19
+		case winWidth <= 385: return 14
+		case winWidth < 400: return 16
+		case winWidth < 415: return 18
+		case winWidth < 425: return 19
 		default: return 20
 	}
 }

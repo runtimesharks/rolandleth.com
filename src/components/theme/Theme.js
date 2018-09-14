@@ -32,12 +32,12 @@ class Theme {
 
 	static lightTopBorder = (size) =>
 		css`
-			border-top: ${size} solid ${this.lightGray};
+			border-top: ${size} solid ${Theme.lightGray};
 		`
 
 	static lightBottomBorder = (size) =>
 		css`
-			border-bottom: ${size} solid ${this.lightGray};
+			border-bottom: ${size} solid ${Theme.lightGray};
 		`
 }
 
