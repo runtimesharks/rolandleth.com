@@ -17,7 +17,7 @@ const Link = styled.a`
 	top: 2px;
 
 	@media screen and (max-width: 486px) {
-		top: 6px;
+		top: 8px;
 	}
 `
 const Image = styled.img`

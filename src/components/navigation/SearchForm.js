@@ -75,8 +75,7 @@ function formSize() {
 
 const Form = styled.form`
 	background-color: rgba(0, 0, 0, 0);
-	margin-bottom: 11px;
-	align-self: end;
+	margin-top: 17px;
 
 	@media screen and (max-width: ${Theme.navTreshold}) {
 		grid-row: 3;
@@ -124,7 +123,7 @@ const TextField = styled.input`
 	}
 
 	@media screen and (max-width: ${Theme.navTreshold}) {
-		${Theme.lightBottomBorder};
+		${Theme.lightBottomBorder()};
 
 		font-size: 0.9em;
 		text-align: left;

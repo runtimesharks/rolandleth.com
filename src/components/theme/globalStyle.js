@@ -25,6 +25,10 @@ injectGlobal`
 		}
 	}
 
+	header {
+		font-family: ${Theme.headerFont};
+	}
+
 	h1 {
 		font-size: 1.85em;
 		font-weight: normal;

@@ -10,6 +10,9 @@ const Banner = () => (
 
 const Container = styled.div`
 	font-size: 2.5em;
+	font-weight: 600;
+	line-height: 1em;
+	letter-spacing: 1px;
 
 	@media screen and (max-width: ${Theme.navTreshold}) {
 		text-align: center;

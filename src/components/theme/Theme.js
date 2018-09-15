@@ -12,7 +12,8 @@ class Theme {
 	static backgroundColor = "#f7f7f7"
 	static textColor = "#3b3b3b"
 
-	static headerFont = "'American Typewriter', 'Georgia', serif"
+	static headerFont =
+		"Copperplate, 'Copperplate', 'Copperplate Gothic', 'Georgia', serif"
 	// body_font: "'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
 	static bodyFont = "'-apple-system', 'Verdana', 'Arial', sans-serif"
 	static codeFont = "'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace"
@@ -35,7 +36,7 @@ class Theme {
 			border-top: ${size} solid ${Theme.lightGray};
 		`
 
-	static lightBottomBorder = (size) =>
+	static lightBottomBorder = (size = "1px") =>
 		css`
 			border-bottom: ${size} solid ${Theme.lightGray};
 		`
