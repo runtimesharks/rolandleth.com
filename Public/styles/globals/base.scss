@@ -70,7 +70,7 @@ a {
 }
 
 p {
-	margin: 0.75em 0;
+	margin: revert;
 
 	&.no-margin {
 		margin: 0;
@@ -118,7 +118,7 @@ strong {
 	line-height: 1.4em;
 
 	@include responsiveWidth($phoneMedia) {
-		padding-top: 4em;
+		padding-top: 5em;
 		padding-bottom: 0;
 	}
 }

@@ -1,7 +1,7 @@
 @import "../globals/variables";
 
 h1 {
-	margin-bottom: 12px;
+	margin-bottom: 10px;
 }
 
 .tilde {
@@ -45,7 +45,6 @@ h1 {
 	h1 {
 		line-height: 1.2em;
 		font-size: 1.5em;
-		margin-bottom: 0;
 	}
 
 	h4 {
@@ -65,5 +64,9 @@ h1 {
 
 	nav.pagination {
 		margin-top: 0;
+	}
+
+	.article header {
+		margin-bottom: 1.5em;
 	}
 }
