@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,QAAQ,AAAC,CC+BR,aAAa,CD9Bc,GAAG,CC8BT,KAAK,CAxBf,IAAI,CDLf",
+    "mappings": "AAEA,AAAA,QAAQ,AAAC,CCgCR,aAAa,CD/Bc,GAAG,CC+BT,KAAK,CAzBf,IAAI,CDLf",
     "sources": [
         "privacy-policy.scss",
         "../globals/variables.scss"

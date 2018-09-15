@@ -2,9 +2,9 @@
 $maxWidth: 700px;
 
 // Colors
-$linkColor: #12A8DA;
+$linkColor: #12a8da;
 $highlighColor: #fffeca;
-$codeColor: #703DAA;
+$codeColor: #703daa;
 $preCodeColor: #444;
 
 $lightGray: #eee;
@@ -13,11 +13,12 @@ $backgroundColor: #f7f7f7;
 $textColor: #3b3b3b;
 $redColor: #f6291d;
 
-$headerFont: 'American Typewriter', 'Georgia', serif;
-$lightFont: 'Avenir Next', 'Verdana', sans-serif;
+$headerFont: "Copperplate", "Copperplate Gothic", copperplate,
+	"American Typewriter", "Georgia", serif;
+$lightFont: -apple-sytem, "Avenir Next", "Verdana", sans-serif;
 //$body_font: 'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$bodyFont: 'Verdana', 'Arial', sans-serif;
-$codeFont: 'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace;
+$bodyFont: -apple-sytem, "Verdana", "Arial", sans-serif;
+$codeFont: "SF Mono", "Menlo", "Monaco", "Courier", monospace;
 
 $phoneMedia: 482px;
 $smallMedia: 374px;
@@ -39,7 +40,9 @@ $retinaQuery: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only scree
 }
 
 @mixin responsiveWidth($width) {
-	@media screen and (max-width: $width) { @content; }
+	@media screen and (max-width: $width) {
+		@content;
+	}
 }
 
 @mixin transition($prop, $duration) {

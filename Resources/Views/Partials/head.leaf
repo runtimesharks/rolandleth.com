@@ -22,7 +22,6 @@
 <!--Stylesheets-->
 <link rel="stylesheet" href="/styles/globals/base.css">
 <link rel="stylesheet" href="/styles/components/header.css">
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web:700" rel="stylesheet">
 <!--Mobile settings-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="HandheldFriendly" content="true">
