@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
 					name="query"
 					size={this.state.formSize}
 					defaultValue={this.state.query}
-					maxlength="30"
+					maxLength="30"
 					placeholder="Search..."
 				/>
 

@@ -1,5 +1,5 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import React from "../../Library/Caches/typescript/2.9/node_modules/@types/react/index"
+import ReactDOM from "../../Library/Caches/typescript/2.9/node_modules/@types/react-dom/index"
 import Base from "./App"
 
 it("renders without crashing", () => {

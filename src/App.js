@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import styled from "styled-components"
-import "./components/theme/globalStyle"
+import { GlobalStyle } from "./components/theme/globalStyle"
 import SiteHeader from "./components/navigation/SiteHeader"
 import About from "./components/About"
 import Theme from "./components/theme/Theme"
@@ -19,6 +19,7 @@ class App extends React.Component {
 						</Switch>
 					</BrowserRouter>
 				</Content>
+				<GlobalStyle />
 			</React.Fragment>
 		)
 	}

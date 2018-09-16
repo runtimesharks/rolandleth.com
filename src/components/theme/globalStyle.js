@@ -1,7 +1,7 @@
-import { injectGlobal } from "styled-components"
+import { createGlobalStyle } from "styled-components"
 import Theme from "./Theme"
 
-injectGlobal`
+export const GlobalStyle = createGlobalStyle`
 	@import url('https://fonts.googleapis.com/css?family=Titillium+Web:700"');
 
 	body {
@@ -72,10 +72,12 @@ injectGlobal`
 	}
 
 	img {
-		border-radius: 2px;
-		-webkit-box-shadow: #777777 0 0 3px 1px;
-		-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
-		box-shadow: #777777 0 0 7px 0; /* inset is optional */
+		&:not(.codementor):not(.patreon) {
+			border-radius: 2px;
+			-webkit-box-shadow: #777777 0 0 3px 1px;
+			-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
+			box-shadow: #777777 0 0 7px 0; /* inset is optional */
+		}
 
 		&:not([class]) {
 			display: table;
