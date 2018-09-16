@@ -14,9 +14,21 @@
 		}
 	}
 
-	& > .navigation > a.runtime {
-		position: relative;
-		bottom: 2.5px;
+	& > .navigation {
+		& > a.runtime {
+			position: relative;
+			bottom: 3px;
+		}
+
+		& > a.coffee {
+			position: relative;
+			bottom: -2.5px;
+		}
+
+		& > a.github {
+			position: relative;
+			top: 0.25px;
+		}
 	}
 }
 
@@ -88,13 +100,18 @@
 	text-align: right;
 	margin-top: 1px;
 
-	.fa {
+	.icon {
 		width: 26px;
 		text-align: center;
 		margin-top: 8px;
 
 		display: inline-block;
 		font-size: 1.4em;
+	}
+
+	.icon.user {
+		margin-left: -2px;
+		margin-right: 1px;
 	}
 
 	a:first-child .fa {
@@ -117,7 +134,7 @@
 	}
 
 	.projects {
-		margin: 0 3px;
+		margin: 0 3px 0 0;
 	}
 }
 
@@ -168,12 +185,8 @@
 }
 
 @include responsiveWidth(570px) {
-	.navigation .fa {
+	.navigation .icon {
 		margin-left: 8px;
-
-		&.fa-user {
-			margin-right: 1px;
-		}
 	}
 
 	.navigation .runtime {
