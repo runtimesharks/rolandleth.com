@@ -14,7 +14,7 @@
 		}
 	}
 
-	& > .navigation > a.runtime-navigation {
+	& > .navigation > a.runtime {
 		position: relative;
 		bottom: 2.5px;
 	}
@@ -89,8 +89,9 @@
 	margin-top: 1px;
 
 	.fa {
+		width: 26px;
+		text-align: center;
 		margin-top: 8px;
-		margin-left: 14px;
 
 		display: inline-block;
 		font-size: 1.4em;
@@ -100,7 +101,7 @@
 		margin-left: 0;
 	}
 
-	.runtime-navigation {
+	.runtime {
 		margin-left: 15px;
 		font-family: $headerFont;
 		font-weight: 700;
@@ -113,6 +114,10 @@
 		.second-half {
 			color: #0371b8;
 		}
+	}
+
+	.projects {
+		margin: 0 3px;
 	}
 }
 
@@ -171,7 +176,7 @@
 		}
 	}
 
-	.navigation .runtime-navigation {
+	.navigation .runtime {
 		margin-left: 12px;
 	}
 }
