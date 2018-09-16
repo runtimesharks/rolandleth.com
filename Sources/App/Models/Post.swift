@@ -194,7 +194,8 @@ private extension String {
 		let words = components(separatedBy: spaces)
 			.filter { !$0.isEmpty }
 		
-		let time = Double(words.count * 100 / 225) / 100
+		let hasCode = contains("```")
+		let time = (Double(words.count * 100 / 180) / 100) * (hasCode ? 2 : 1)
 		let minutes = Int(time)
 		
 		let readingTime: String

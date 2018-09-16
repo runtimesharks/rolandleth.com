@@ -4,10 +4,6 @@
 
 <article class="article">
 	<header class="article-header">
-		<h1>
-			<a class="post-title" href="/#(post.link)" data-post-title="#(post.title)">#(post.title)</a>
-		</h1>
-
 		#if(post.date) {
 			<h4>
 				<time datetime="#(post.date)">
@@ -19,6 +15,9 @@
 				}
 			</h4>
 		}
+		<h1>
+			<a class="post-title" href="/#(post.link)" data-post-title="#(post.title)">#(post.title)</a>
+		</h1>
 	</header>
 	#if(singlePost) {
 		#raw(post.body)

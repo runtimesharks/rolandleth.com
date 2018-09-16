@@ -13,7 +13,7 @@ struct RedirectMiddleware: Middleware {
 	
 	func respond(to request: Request, chainingTo next: Responder) throws -> Response {
 //		guard !request.isSecure || request.hasWWW else { return try next.respond(to: request) }
-		guard request.hasWWW else { return try next.respond(to: request) }
+		guard request.hasWWW || request.hasTrailingSlash else { return try next.respond(to: request) }
 		
 		let uri = URI(
 			scheme: drop.production ? "https" : "http",

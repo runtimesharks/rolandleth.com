@@ -1,4 +1,4 @@
-@import '../globals/variables';
+@import "../globals/variables";
 
 .site-header {
 	max-width: $maxWidth;
@@ -6,12 +6,24 @@
 	font-family: $headerFont;
 
 	a {
-		line-height: 1.25em;
+		line-height: 1em;
+
+		&.codementor {
+			position: relative;
+			top: 2px;
+		}
+	}
+
+	& > .navigation > a.runtime {
+		position: relative;
+		bottom: 2.5px;
 	}
 }
 
 .banner {
 	font-size: 2.5em;
+	font-weight: 600;
+	letter-spacing: 1px;
 	display: inline-block;
 }
 
@@ -22,7 +34,7 @@
 
 .search-form {
 	background-color: rgba(0, 0, 0, 0);
-	margin-top: 17px;
+	margin-top: 9px;
 	float: right;
 }
 
@@ -77,8 +89,9 @@
 	margin-top: 1px;
 
 	.fa {
+		width: 26px;
+		text-align: center;
 		margin-top: 8px;
-		margin-left: 14px;
 
 		display: inline-block;
 		font-size: 1.4em;
@@ -88,27 +101,49 @@
 		margin-left: 0;
 	}
 
-	.runtime-navigation {
-		margin-left: 20px;
-		font-family: "Titillium Web";
+	.runtime {
+		margin-left: 15px;
+		font-family: $headerFont;
 		font-weight: 700;
 		font-size: 1.5em;
 
 		.first-half {
-			color: #00356A;
+			color: #00356a;
 		}
 
 		.second-half {
-			color: #0371B8;
+			color: #0371b8;
 		}
+	}
+
+	.projects {
+		margin: 0 3px;
 	}
 }
 
-@include responsiveWidth($phoneMedia) {
+@include responsiveWidth(506px) {
 	.banner {
 		text-align: center;
 		width: 100%;
 		text-align: center;
+	}
+
+	.site-header {
+		a.codementor {
+			top: 6px;
+			line-height: 1.75em;
+		}
+
+		img.codementor {
+			max-width: 150px;
+			max-height: 25px;
+		}
+
+		& > .navigation > a.home-navigation > i.fa.fa-home {
+			position: relative;
+			right: 4.5px;
+			margin-left: 16px;
+		}
 	}
 
 	.text-field {
@@ -141,7 +176,7 @@
 		}
 	}
 
-	.navigation .runtime-navigation {
+	.navigation .runtime {
 		margin-left: 12px;
 	}
 }
@@ -157,4 +192,3 @@
 		font-size: 0.9em;
 	}
 }
-
