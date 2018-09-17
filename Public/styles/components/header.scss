@@ -107,11 +107,17 @@
 
 		display: inline-block;
 		font-size: 1.4em;
-	}
 
-	.icon.user {
-		margin-left: -2px;
-		margin-right: 1px;
+		&.user {
+			margin-left: -2px;
+			margin-right: 1px;
+		}
+
+		&.patreon > img {
+			height: 19px;
+			position: relative;
+			bottom: -1.5px;
+		}
 	}
 
 	a:first-child .fa {

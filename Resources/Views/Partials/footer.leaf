@@ -1,17 +1,18 @@
 <footer class="site-footer" role="contentinfo">
 	<div class="quote">
-		#(emoji) &nbsp&nbsp&nbsp #(quote)
+		#(emoji) &nbsp;&nbsp;&nbsp; #(quote)
 	</div>
 	<div class="copyright">
 		&copy;
-		2013&ndash;#(year) &nbsp
+		2013&ndash;#(year) &nbsp;
 		<a class="home-footer" href="/" rel="home">Roland Leth</a>
-		&nbsp&mdash;&nbsp
+		&nbsp;&mdash;&nbsp;
 		<a href="/microblog">Microblog</a>
-		&nbsp&mdash;&nbsp
+		&nbsp;&mdash;&nbsp;
 		<a href="/archive">Archive</a>
-		&nbsp&mdash;&nbsp
+		&nbsp;&mdash;&nbsp;
 		<a href="https://buymeacoff.ee/rolandleth">☕</a>
+		<a class="icon patreon" href="https://patreon/rolandleth">&nbsp;<img class="patreon" src="/images/misc/patreon.png" /></a>
 	</div>
 	<a href="https://plus.google.com/116830737199229269159?rel=author"></a>
 </footer>

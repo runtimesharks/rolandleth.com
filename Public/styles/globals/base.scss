@@ -82,7 +82,7 @@ em {
 }
 
 img {
-	&:not(.codementor) {
+	&:not(.codementor):not(.patreon) {
 		border-radius: 2px;
 		-webkit-box-shadow: #777777 0 0 3px 1px;
 		-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */

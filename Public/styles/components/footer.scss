@@ -1,4 +1,4 @@
-@import '../globals/variables';
+@import "../globals/variables";
 
 .site-footer {
 	max-width: $maxWidth;
@@ -6,6 +6,10 @@
 	text-align: center;
 	color: $gray;
 	line-height: 1.5em;
+
+	.patreon > img {
+		height: 13px;
+	}
 }
 
 .copyright {

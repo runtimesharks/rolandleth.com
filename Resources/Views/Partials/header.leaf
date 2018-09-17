@@ -23,6 +23,6 @@
 		<a class="icon" href="https://twitter.com/rolandleth"><i class="fa fa-twitter fa-fw"></i></a>
 		<a class="icon" href="/feed"><i class="fa fa-rss fa-fw"></i></a>
 		<a class="icon user" href="/about"><i class="fa fa-user fa-fw"></i></a>
-		<a class="icon coffee" href="https://buymeacoff.ee/rolandleth">☕️</a>
+		<a class="icon patreon" href="https://patreon.com/rolandleth"><img class="patreon" src="/images/misc/patreon.png" /></a>
 	</div>
 </nav>
