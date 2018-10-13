@@ -19,6 +19,17 @@
 <!--Metadata-->
 <meta name="description" content="#(metadata)">
 <meta name="author" content="Roland Leth">
+<!--OG-->
+<meta property="og:title" content="#(title)">
+<meta property="og:description" content="#(metadata)">
+<meta property="og:url" content="#(fullRoot)#(path)">
+<meta property="og:website" content="#(fullRoot)">
+#if(post) {
+	<meta property="og:article:author" content="Roland Leth">
+	<meta property="og:article:published_time" content="#(isoDate)">
+} ##else() {
+	<meta property="og:type" content="blog">
+}
 <!--Stylesheets-->
 <link rel="stylesheet" href="/styles/globals/base.css">
 <link rel="stylesheet" href="/styles/components/header.css">

@@ -82,7 +82,7 @@ extension ViewRenderer {
 
 		let metadataParams: [String: Any] = [
 			"path": request.pathWithoutTrailingSlash,
-			"metadata": params["metadata"] as? String ?? "iOS, Node and Ruby development thoughts by Roland Leth."
+			"metadata": params["metadata"] as? String ?? "iOS, JS and Ruby development thoughts by Roland Leth."
 		]
 
 		var params = footerParams + metadataParams + params

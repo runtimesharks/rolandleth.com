@@ -22,7 +22,7 @@ final class Micropost: NodeInitializable {
 	var title: String {
 		guard let d = Post.date(from: datetime) else { return "" }
 		
-		return DateFormatter.shared.setShortFormat().string(from: d)
+		return DateFormatter.shared.withShortFormat().string(from: d)
 	}
 	
 	

@@ -115,7 +115,7 @@ extension Post {
 	/// - Returns: A string of "Jan 27, 2017" format, if a `Date` can be created from the `datetime` passed, or an empty string otherwise.
 	fileprivate static func shortDate(from datetime: String) -> String {
 		guard let d = date(from: datetime) else { return "" }
-		return DateFormatter.shared.setShortDateFormat().string(from: d)
+		return DateFormatter.shared.withShortDateFormat().string(from: d)
 	}
 	
 	/// Converts the `datetime` field into a `Date`.
@@ -228,7 +228,6 @@ private extension String {
 	func truncated(to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
 		let regex = try? NSRegularExpression(pattern: "</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;",
 		                                     options: .caseInsensitive)
-		
 		guard let tagRegex = regex else { return (self, false) }
 		
 		let shouldTruncate = tagRegex

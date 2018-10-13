@@ -33,9 +33,7 @@ struct FeedController {
 		
 		let feed = micro ? "microfeed" : "feed"
 		let year = Calendar.current.component(.year, from: Date())
-		let fullFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-		let df = DateFormatter.shared
-		df.dateFormat = fullFormat
+		let df = DateFormatter.shared.withIso8601Format()
 		let updated = df.string(from: Date())
 		var xml = ""
 		
@@ -52,9 +50,9 @@ struct FeedController {
 		xml += "<rights>Copyright (c) 2013–\(year), Roland Leth</rights>\n"
 		
 		func fullDate(from datetime: String) -> String? {
-			df.setDatetimeFormat()
+			df.withDatetimeFormat()
 			guard let date = df.date(from: datetime) else { return nil }
-			df.dateFormat = fullFormat
+			df.withIso8601Format()
 			
 			return df.string(from: date)
 		}
