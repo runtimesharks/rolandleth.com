@@ -22,12 +22,15 @@ final class Post: NodeInitializable {
 		didSet {
 			body = Post.html(from: rawBody)
 			updateTruncatedBody()
+			updateFirstParagraph()
 			readingTime = rawBody.readingTime
 		}
 	}
 	fileprivate(set) var body: String
 	var truncatedBody = ""
+	var firstParagraph = ""
 	fileprivate(set) var readingTime: String
+	let isoDate: String
 	let datetime: String
 	let link: String
 	let date: String
@@ -47,16 +50,39 @@ final class Post: NodeInitializable {
 		truncatedBody = truncation.text + truncationSuffix
 	}
 	
+	private func updateFirstParagraph() {
+		let firstParagraphRange = try! NSRegularExpression(pattern: "<p>.+?</p>",
+																			options: [.caseInsensitive,
+																						 .dotMatchesLineSeparators])
+			.matches(in: truncatedBody,
+						options: [],
+						range: truncatedBody.nsRange)
+			.first!
+			.range
+		let range = truncatedBody.range(from: firstParagraphRange)
+		let metadata = String(truncatedBody[range])
+		firstParagraph = Post.htmlRegex
+			.stringByReplacingMatches(in: metadata, options: [],
+											  range: metadata.nsRange, withTemplate: "")
+	}
+	
 	init(title: String, rawBody: String, datetime: String) {
 		self.title = title
 		self.datetime = datetime
 		self.rawBody = rawBody
 		body = Post.html(from: rawBody)
 		link = Post.link(from: title, with: datetime)
-		date = Post.shortDate(from: datetime)
+		self.date = Post.shortDate(from: datetime)
 		modified = datetime
 		readingTime = rawBody.readingTime
+		
+		let date = Post.date(from: datetime)!
+		let df = DateFormatter.shared.withIso8601Format()
+		
+		isoDate = df.string(from: date)
+		
 		updateTruncatedBody()
+		updateFirstParagraph()
 		
 		// Not saving much by saving the data instead of always computing it,
 		// and it's just 30ms on average, but sometimes it's up to 70-80ms.
@@ -68,7 +94,9 @@ final class Post: NodeInitializable {
 		body = try row.get("body")
 		rawBody = try row.get("rawbody")
 		truncatedBody = try row.get("truncatedbody")
+		firstParagraph = try row.get("firstparagraph")
 		datetime = try row.get("datetime")
+		isoDate = try row.get("isodate")
 		date = try row.get("date")
 		modified = try row.get("modified")
 		link = try row.get("link")
@@ -83,8 +111,10 @@ final class Post: NodeInitializable {
 		modified = try node.get("modified")
 		link = try node.get("link")
 		truncatedBody = try node.get("truncatedbody")
+		firstParagraph = try node.get("firstparagraph")
 		readingTime = try node.get("readingtime")
 		date = try node.get("date")
+		isoDate = try node.get("isodate")
 	}
 	
 }
@@ -97,7 +127,9 @@ extension Post: NodeRepresentable {
 			"body": body,
 			"rawBody": rawBody,
 			"truncatedBody": truncatedBody,
+			"firstParagraph": firstParagraph,
 			"datetime": datetime,
+			"isoDate": isoDate,
 			"link": link,
 			"readingTime": readingTime,
 			"date": date,

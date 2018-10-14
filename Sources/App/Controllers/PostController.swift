@@ -54,27 +54,11 @@ struct PostController {
 
 	static func display(with request: Request, link: String) throws -> ResponseRepresentable {
 		let post = try fetchPost(with: link, and: request)
-		let date = Post.date(from: post.datetime)!
-		let df = DateFormatter.shared.withIso8601Format()
-
-		let firstParagraphRange = try! NSRegularExpression(pattern: "<p>.+?</p>",
-		                                     					options: .caseInsensitive)
-				.matches(in: post.truncatedBody,
-							options: [],
-							range: post.truncatedBody.nsRange)
-				.first!
-				.range
-		let range = post.truncatedBody.range(from: firstParagraphRange)
-		let metadata = String(post.truncatedBody[range])
-		let strippedMetadata = Post.htmlRegex
-			.stringByReplacingMatches(in: metadata, options: [],
-											  range: metadata.nsRange, withTemplate: "")
 		
 		let params: [String: Any] = [
 			"title": post.title,
-			"metadata": strippedMetadata + "...",
+			"metadata": post.firstParagraph + "...",
 			"post": post,
-			"isoDate": df.string(from: date),
 			"singlePost": true
 		]
 

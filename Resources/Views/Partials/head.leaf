@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Roland Leth's blog" />
 #if(post) {
 	<meta property="og:type" content="article" />
-	<meta property="article:published_time" content="#(isoDate)" />
+	<meta property="article:published_time" content="#(post.isoDate)" />
 } ##else() {
 	<meta property="og:type" content="blog" />
 }
