@@ -64,6 +64,10 @@ final class Post: NodeInitializable {
 		firstParagraph = Post.htmlRegex
 			.stringByReplacingMatches(in: metadata, options: [],
 											  range: metadata.nsRange, withTemplate: "")
+		
+		guard firstParagraph.length > 300 else { return }
+		
+		firstParagraph = firstParagraph[0..<300]
 	}
 	
 	init(title: String, rawBody: String, datetime: String) {
