@@ -66,11 +66,10 @@ struct PostController {
 				.range
 		let range = post.truncatedBody.range(from: firstParagraphRange)
 		let metadata = String(post.truncatedBody[range])
-		let strippedMetadata = try! NSRegularExpression(pattern: "</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;",
-																		options: .caseInsensitive)
+		let strippedMetadata = Post.htmlRegex
 			.stringByReplacingMatches(in: metadata, options: [],
 											  range: metadata.nsRange, withTemplate: "")
-
+		
 		let params: [String: Any] = [
 			"title": post.title,
 			"metadata": strippedMetadata + "...",

@@ -110,6 +110,11 @@ extension Post: NodeRepresentable {
 // MARK: - Static methods
 extension Post {
 	
+	static var htmlRegex: NSRegularExpression {
+		return try! NSRegularExpression(pattern: "</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;",
+												  options: .caseInsensitive)
+	}
+	
 	/// Converts the `datetime` field into a string of "Jan 27, 2017" format.
 	///
 	/// - Returns: A string of "Jan 27, 2017" format, if a `Date` can be created from the `datetime` passed, or an empty string otherwise.
@@ -226,10 +231,7 @@ private extension String {
 	///   - wordWrap: A flag which determines if the truncation should stop at a word boundary.
 	/// - Returns: The truncated text, and a Bool which indicates if truncation happened.
 	func truncated(to size: Int, wordWrap: Bool = false) -> (text: String, performed: Bool) {
-		let regex = try? NSRegularExpression(pattern: "</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;",
-		                                     options: .caseInsensitive)
-		guard let tagRegex = regex else { return (self, false) }
-		
+		let tagRegex = Post.htmlRegex
 		let shouldTruncate = tagRegex
 			.stringByReplacingMatches(in: self, options: [], range: self.nsRange, withTemplate: "")
 			.length > Int(Double(size) * 1.2)
