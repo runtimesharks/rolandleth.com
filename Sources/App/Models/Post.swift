@@ -37,17 +37,7 @@ final class Post: NodeInitializable {
 	var modified: String
 	
 	private func updateTruncatedBody() {
-		let truncation = body.truncated(to: 600)
-		let truncationSuffix: String
-		
-		if truncation.performed {
-			truncationSuffix = "<br/><a class=\"post-continue-reading\" href=\"/" + link + "\" data-post-title=\"" + title + "\">Continue reading &rarr;</a>"
-		}
-		else {
-			truncationSuffix = ""
-		}
-		
-		truncatedBody = truncation.text + truncationSuffix
+		truncatedBody = body.truncated(to: 600).text
 	}
 	
 	private func updateFirstParagraph() {
@@ -371,15 +361,6 @@ private extension String {
 		// over the open tags, in reverse, and close them in order.
 		for (index, tag) in tags.reversed().enumerated() {
 			let isHref = tag.contains("<a href")
-			let isPre = tag == "<pre>"
-			let isP = tag == "<p>"
-			let addTerminationBeforeClosing = isPre || isP
-			
-			// Display the termination character after closing the tag,
-			// unless it's a paragraph or pre block.
-			if index == tags.count - 1, addTerminationBeforeClosing {
-				output += termination
-			}
 			
 			// Close the tag.
 			if isHref {
@@ -388,34 +369,31 @@ private extension String {
 			else {
 				output += "</\(tag[1..<tag.length - 1])>"
 			}
-			
-			if index == tags.count - 1, !addTerminationBeforeClosing {
-				output += termination
-			}
 		}
 		
-		if tags.isEmpty {
-			// If the post is truncated exactly after the closing of a tag,
-			// check if it's <p> or <pre>, and add the termination before it.
+		// If the post is truncated exactly after the closing of a tag,
+		// check if it's <p> or <pre>, and add the termination before it.
+		
+		// What are the odds? Well, I found one case...
+		if output.last == ">" {
+			var i = output.length - 2
+			var endingTag = ">"
 			
-			// What are the odds? Well, I found one case...
-			if output.last == ">" {
-				var i = output.length - 2
-				var endingTag = ">"
-				
-				while output[i] != "<" {
-					endingTag = output[i] + endingTag
-					i -= 1
-				}
-				endingTag = "<" + endingTag
-				
-				if endingTag == "</pre>" || endingTag == "</p>" {
-					output = output[0..<output.length - endingTag.length] + termination + endingTag
-				}
+			while output[i] != "<" {
+				endingTag = output[i] + endingTag
+				i -= 1
 			}
-			else {
-				output += termination
+			endingTag = "<" + endingTag
+			
+			if endingTag == "</pre>" || endingTag == "</p>" {
+				output = output[0..<output.length - endingTag.length] + termination + endingTag
 			}
+			else if endingTag == "</ul>" || endingTag == "</ol>" {
+				output = output[0..<output.length - 10] + termination + "</li>" + endingTag
+			}
+		}
+		else {
+			output += termination
 		}
 		
 		return (output, true)
