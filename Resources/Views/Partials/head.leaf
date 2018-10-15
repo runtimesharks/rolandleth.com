@@ -21,7 +21,7 @@
 <meta name="author" content="Roland Leth" />
 <!--OG-->
 <meta property="og:title" content="#(title)" />
-<meta property="og:image" content="#(fullRoot)/images/favicons/192x192.png" />
+<meta property="og:image" content="#(fullRoot)/images/favicons/200x200.png" />
 <meta property="og:description" content="#(metadata)" />
 <meta property="og:url" content="#(fullRoot)#(path)" />
 <meta property="og:site_name" content="Roland Leth's blog" />
