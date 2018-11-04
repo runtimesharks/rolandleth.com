@@ -56,6 +56,7 @@ struct File {
 	private init(title: String, body: String, datetime: String, modified: String? = nil) throws {
 		let contents = "\(title)\n\n\(body)"
 		let path = "/\(datetime)-\(title).md"
+		
 		try self.init(path: path, contents: contents)
 	}
 	

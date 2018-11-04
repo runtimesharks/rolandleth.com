@@ -33,7 +33,10 @@ extension Query {
 	}
 	
 	func filteredPast() throws -> Query {
-		return try filter("datetime", .lessThanOrEquals, Post.datetime(from: Date()))
+		return try self.and {
+			try $0.filter("datetime", .lessThanOrEquals, Post.datetime(from: Date()))
+			try $0.filter("accessibleonlybylink", false)
+		}
 	}
 	
 }

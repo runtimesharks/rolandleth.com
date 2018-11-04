@@ -25,6 +25,7 @@ extension Post: Model {
 		try row.set("modified", modified)
 		try row.set("link", link)
 		try row.set("readingtime", readingTime)
+		try row.set("accessibleonlybylink", accessibleOnlyByLink)
 		
 		return row
 	}
@@ -80,6 +81,7 @@ extension Post: Preparation {
 			posts.string("modified", length: 15, optional: false, unique: false, default: nil)
 			posts.string("link", length: 100, optional: false, unique: true, default: nil)
 			posts.string("readingtime", length: 15, optional: false, unique: false, default: nil)
+			posts.bool("accessibleonlybylink", optional: false, unique: false, default: false)
 		}
 	}
 	

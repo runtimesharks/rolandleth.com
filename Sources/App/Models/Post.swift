@@ -35,6 +35,7 @@ final class Post: NodeInitializable {
 	let link: String
 	let date: String
 	var modified: String
+	let accessibleOnlyByLink: Bool
 	
 	private func updateTruncatedBody() {
 		truncatedBody = body.truncated(to: 600).text
@@ -60,7 +61,7 @@ final class Post: NodeInitializable {
 		firstParagraph = firstParagraph[0..<300]
 	}
 	
-	init(title: String, rawBody: String, datetime: String) {
+	init(title: String, rawBody: String, datetime: String, accessibleOnlyByLink: Bool = false) {
 		self.title = title
 		self.datetime = datetime
 		self.rawBody = rawBody
@@ -69,6 +70,7 @@ final class Post: NodeInitializable {
 		self.date = Post.shortDate(from: datetime)
 		modified = datetime
 		readingTime = rawBody.readingTime
+		self.accessibleOnlyByLink = accessibleOnlyByLink
 		
 		let date = Post.date(from: datetime)!
 		let df = DateFormatter.shared.withIso8601Format()
@@ -95,6 +97,7 @@ final class Post: NodeInitializable {
 		modified = try row.get("modified")
 		link = try row.get("link")
 		readingTime = try row.get("readingtime")
+		accessibleOnlyByLink = try row.get("accessibleonlybylink")
 	}
 	
 	init(node: Node) throws {
@@ -109,6 +112,7 @@ final class Post: NodeInitializable {
 		readingTime = try node.get("readingtime")
 		date = try node.get("date")
 		isoDate = try node.get("isodate")
+		accessibleOnlyByLink = try node.get("accessibleonlybylink")
 	}
 	
 }
@@ -127,7 +131,8 @@ extension Post: NodeRepresentable {
 			"link": link,
 			"readingTime": readingTime,
 			"date": date,
-			"modified": modified]
+			"modified": modified,
+			"accessibleOnlyByLink": accessibleOnlyByLink]
 		)
 	}
 	
@@ -194,10 +199,14 @@ extension Post {
 		                                     options: .caseInsensitive)
 		let link = regex
 			.stringByReplacingMatches(in: title, options: [], range: title.nsRange, withTemplate: "")
+			.lowercased()
 			.replacingOccurrences(of: "&", with: "and")
 			.replacingOccurrences(of: " ", with: "-")
 			.replacingOccurrences(of: ".", with: "-")
-			.lowercased()
+			.replacingOccurrences(of: "ă", with: "a")
+			.replacingOccurrences(of: "â", with: "a")
+			.replacingOccurrences(of: "î", with: "i")
+			.replacingOccurrences(of: "ș", with: "s")
 		
 		guard
 			let posts = try? makeQuery().filter("link", .equals, link).all()
