@@ -2,4 +2,4 @@
 <link rel="stylesheet" href="/styles/globals/syntax.css">
 <link rel="stylesheet" href="/styles/components/pagination.css">
 <link rel="stylesheet" href="/styles/components/footer.css">
-<link rel="stylesheet" href="/styles/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="/styles/font-awesome/css/font-awesome.min.css">
