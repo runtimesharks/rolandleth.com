@@ -1,25 +1,60 @@
 import React from "react"
 import styled from "styled-components"
-import Banner from "./Banner"
-import SearchForm from "./SearchForm"
 import Navigation from "./Navigation"
+import NavigationIcons from "./NavigationIcons"
 import Theme from "../theme/Theme"
+import SearchForm from "../navigation/SearchForm"
 
-const SiteHeader = (props) => (
-	<Container>
-		<Banner />
-		<SearchForm props={props} />
-		<BannerBorder />
-		<Navigation />
-	</Container>
-)
+class SiteHeader extends React.PureComponent {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			isSearchFieldVisible: this.query() !== "",
+			query: this.query()
+		}
+	}
+
+	query = () => {
+		let query = ""
+		let { location } = window
+		let q = "query="
+
+		if (location.search.includes(q)) {
+			query = decodeURIComponent(location.search)
+				.split(q)[1]
+				.replace(/[+]/g, " ")
+		}
+
+		return query
+	}
+
+	handleSearchClick = () => {
+		this.setState({ isSearchFieldVisible: !this.state.isSearchFieldVisible })
+	}
+
+	render() {
+		return (
+			<Container>
+				<Navigation />
+				<BannerBorder />
+				<SearchForm
+					props={this.props}
+					query={this.state.query}
+					isSearchFieldVisible={this.state.isSearchFieldVisible}
+				/>
+				<NavigationIcons onSearchClick={this.handleSearchClick} />
+			</Container>
+		)
+	}
+}
 
 const Container = styled.header`
 	max-width: ${Theme.maxWidth};
 	margin: 2.5em auto 0 auto;
 	font-family: ${Theme.headerFont};
 	display: grid;
-	grid-template-columns: 2fr;
+	grid-template-columns: 2fr 1fr;
 
 	a {
 		line-height: 1.25em;
@@ -35,7 +70,7 @@ const Container = styled.header`
 	}
 
 	@media screen and (max-width: ${Theme.navTreshold}) {
-		grid-template-columns: 2fr 1fr 2fr;
+		grid-template-columns: 1fr 2fr;
 	}
 `
 

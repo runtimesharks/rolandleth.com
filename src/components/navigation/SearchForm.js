@@ -2,13 +2,12 @@ import React from "react"
 import styled from "styled-components"
 import Theme from "../theme/Theme"
 
-class SearchForm extends React.Component {
+class SearchForm extends React.PureComponent {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			formSize: formSize(),
-			query: query()
+			formSize: this.formSize()
 		}
 	}
 
@@ -17,7 +16,21 @@ class SearchForm extends React.Component {
 	}
 
 	updateFormSize = () => {
-		this.setState({ formSize: formSize() })
+		this.setState({ formSize: this.formSize() })
+	}
+
+	formSize = () => {
+		// Smaller search fields for iPhones, since it doesn't fit at > 13
+		const winWidth = window.innerWidth
+
+		// prettier-ignore
+		switch (true) {
+			case winWidth <= 385: return 10
+			case winWidth < 400: return 16
+			case winWidth < 415: return 18
+			case winWidth < 425: return 19
+			default: return 15
+		}
 	}
 
 	componentWillUnmount() {
@@ -26,12 +39,15 @@ class SearchForm extends React.Component {
 
 	render() {
 		return (
-			<Form action="/search" method="get">
+			<Form
+				action="/search"
+				method="get"
+				isVisible={this.props.isSearchFieldVisible}>
 				<TextField
 					type="text"
 					name="query"
 					size={this.state.formSize}
-					defaultValue={this.state.query}
+					defaultValue={this.props.query}
 					maxLength="30"
 					placeholder="Search..."
 				/>
@@ -45,56 +61,37 @@ class SearchForm extends React.Component {
 	}
 }
 
-function query() {
-	let query = ""
-	let { location } = window
-
-	if (location.search.length) {
-		query = decodeURIComponent(location.search)
-			.split("query=")[1]
-			.replace(/[+]/g, " ")
-	}
-
-	return query
-}
-
-function formSize() {
-	// Smaller search fields for iPhones, since it doesn't fit at > 13
-	const winWidth = window.innerWidth
-
-	// prettier-ignore
-	switch (true) {
-		case winWidth < 280: return 10
-		case winWidth <= 385: return 14
-		case winWidth < 400: return 16
-		case winWidth < 415: return 18
-		case winWidth < 425: return 19
-		default: return 20
-	}
-}
-
 const Form = styled.form`
 	background-color: rgba(0, 0, 0, 0);
-	margin-top: 17px;
+	font-size: 0.9em;
+	justify-self: end;
+	align-self: center;
+	grid-column: 1/2;
+	padding: 3px 10px 0 0;
+	display: inline-block;
 
-	@media screen and (max-width: ${Theme.navTreshold}) {
-		grid-row: 3;
-		grid-column: 1;
-		justify-self: start;
-		align-self: start;
-		margin-top: 4px;
-	}
+	${Theme.transition("0.3s")};
+
+	z-index: ${(props) => (props.isVisible ? "0" : "-1")};
+	opacity: ${(props) => (props.isVisible ? "1" : "0")};
+	transform: translateX(${(props) => (props.isVisible ? "0" : "30px")});
 `
 
 const TextField = styled.input`
-	padding: 4px 0;
 	color: ${Theme.linkColor};
 	border: 0;
-	text-align: right;
 	border-bottom: none;
 	outline: none;
 	border-radius: 0;
 
+	font-size: 0.9em;
+	text-align: left;
+
+	&:focus {
+		border-bottom: 1px solid ${Theme.linkColor};
+	}
+
+	${Theme.lightBottomBorder()};
 	${Theme.transition("0.6s")};
 
 	font-family: ${Theme.lightFont};
@@ -119,17 +116,6 @@ const TextField = styled.input`
 		}
 		&:-moz-placeholder {
 			color: ${Theme.linkColor};
-		}
-	}
-
-	@media screen and (max-width: ${Theme.navTreshold}) {
-		${Theme.lightBottomBorder()};
-
-		font-size: 0.9em;
-		text-align: left;
-
-		&:focus {
-			border-bottom: 1px solid ${Theme.linkColor};
 		}
 	}
 `
