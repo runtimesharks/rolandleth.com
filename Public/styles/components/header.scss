@@ -7,22 +7,12 @@
 
 	a {
 		line-height: 1em;
-
-		&.codementor {
-			position: relative;
-			top: 2px;
-		}
 	}
 
 	& > .navigation {
 		& > a.runtime {
 			position: relative;
 			bottom: 3px;
-		}
-
-		& > a.coffee {
-			position: relative;
-			bottom: -2.5px;
 		}
 
 		& > a.github {
@@ -112,12 +102,6 @@
 			margin-left: -2px;
 			margin-right: 1px;
 		}
-
-		&.patreon > img {
-			height: 19px;
-			position: relative;
-			bottom: -1.5px;
-		}
 	}
 
 	a:first-child .fa {
@@ -125,7 +109,6 @@
 	}
 
 	.runtime {
-		margin-left: 15px;
 		font-family: $headerFont;
 		font-weight: 700;
 		font-size: 1.5em;
@@ -152,16 +135,6 @@
 	}
 
 	.site-header {
-		a.codementor {
-			top: 6px;
-			line-height: 1.75em;
-		}
-
-		img.codementor {
-			max-width: 150px;
-			max-height: 25px;
-		}
-
 		& > .navigation > a.home-navigation > i.fa.fa-home {
 			position: relative;
 			right: 4.5px;

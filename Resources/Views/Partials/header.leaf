@@ -12,9 +12,6 @@
 	</form>
 	<div class="banner-border"></div>
 	<div role="navigation" class="navigation">
-		<a class="codementor" href="https://www.codementor.io/rolandleth">
-			<img class="codementor" src="https://cdn.codementor.io/badges/book_session_github.svg" alt="Contact me on Codementor"/>
-		</a>
 		<a class="runtime" href="https://runtimesharks.com">
 			<span class="first-half">{r</span><span class="second-half">s}</span>
 		</a>
@@ -23,6 +20,5 @@
 		<a class="icon" href="https://twitter.com/rolandleth"><i class="fa fa-twitter fa-fw"></i></a>
 		<a class="icon" href="/feed"><i class="fa fa-rss fa-fw"></i></a>
 		<a class="icon user" href="/about"><i class="fa fa-user fa-fw"></i></a>
-		<a class="icon patreon" href="https://patreon.com/rolandleth"><img class="patreon" src="/images/misc/patreon.png" /></a>
 	</div>
 </nav>

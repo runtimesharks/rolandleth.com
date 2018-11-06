@@ -82,9 +82,12 @@ em {
 }
 
 img {
-	&:not(.codementor):not(.patreon) {
+	&:not(.codementor) {
 		&:not(.icon) {
 			border-radius: 2px;
+		}
+
+		&.no-shadow {
 			margin: 40px auto;
 		}
 

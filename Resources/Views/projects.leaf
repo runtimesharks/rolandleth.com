@@ -1,5 +1,9 @@
 #extend("base")
 
+#export("head") {
+	<link rel="stylesheet" href="/styles/components/article.css">
+}
+
 #export("body") {
 	<div class="article">
 		<h1>Apps</h1>
