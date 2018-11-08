@@ -7,7 +7,7 @@ import About from "./components/About"
 import Theme from "./components/theme/Theme"
 import Intro from "./components/Intro"
 
-class App extends React.Component {
+class App extends React.PureComponent {
 	render() {
 		return (
 			<React.Fragment>
