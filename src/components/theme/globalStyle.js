@@ -5,12 +5,12 @@ export const GlobalStyle = createGlobalStyle`
 	@import url('https://fonts.googleapis.com/css?family=Titillium+Web:700"');
 
 	body {
-		padding: 0 14px;
+		padding: 0 32px;
 		color: ${Theme.textColor};
 		background: #fff;
 		font-family: ${Theme.bodyFont};
 		font-size: 17px;
-		line-height: 1.5;
+		line-height: 1.65;
 
 		max-width: ${Theme.maxWidth};
 		margin: 0 auto;
@@ -51,17 +51,20 @@ export const GlobalStyle = createGlobalStyle`
 	a {
 		text-decoration: none;
 		color: ${Theme.linkColor};
-		border-bottom: 1px solid transparent;
-		padding-bottom: 2px;
+		border-bottom: 1px dotted transparent;
 
 		${Theme.transition("border", "0.4s")};
 
 		&:hover {
-			border-bottom-color: ${Theme.linkColor};
+			border-bottom: 1px solid ${Theme.linkColor};
 		}
 	}
 
 	p {
+		& > a {
+			border-bottom: 1px dotted ${Theme.linkColor};
+		}
+
 		&.no-margin {
 			margin: 0;
 		}
@@ -96,6 +99,10 @@ export const GlobalStyle = createGlobalStyle`
 
 	strong {
 		font-weight: bold;
+	}
+
+	em {
+		font-style: italic;
 	}
 
 	.mark {

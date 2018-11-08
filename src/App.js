@@ -5,6 +5,7 @@ import { GlobalStyle } from "./components/theme/globalStyle"
 import SiteHeader from "./components/navigation/SiteHeader"
 import About from "./components/About"
 import Theme from "./components/theme/Theme"
+import Intro from "./components/Intro"
 
 class App extends React.Component {
 	render() {
@@ -14,7 +15,7 @@ class App extends React.Component {
 				<Content>
 					<BrowserRouter>
 						<Switch>
-							<Route exact path="/" />
+							<Route exact path="/" component={Intro} />
 							<Route path="/about" component={About} />
 						</Switch>
 					</BrowserRouter>

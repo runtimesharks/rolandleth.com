@@ -26,10 +26,10 @@ class SearchForm extends React.PureComponent {
 		// prettier-ignore
 		switch (true) {
 			case winWidth <= 385: return 10
-			case winWidth < 400: return 16
-			case winWidth < 415: return 18
-			case winWidth < 425: return 19
-			default: return 15
+			case winWidth < 400: return 14
+			case winWidth < 415: return 17
+			case winWidth < 425: return 18
+			default: return 19
 		}
 	}
 
@@ -42,7 +42,8 @@ class SearchForm extends React.PureComponent {
 			<Form
 				action="/search"
 				method="get"
-				isVisible={this.props.isSearchFieldVisible}>
+				isVisible={this.props.isSearchFieldVisible}
+			>
 				<TextField
 					type="text"
 					name="query"
@@ -52,10 +53,9 @@ class SearchForm extends React.PureComponent {
 					placeholder="Search..."
 				/>
 
-				{this.props.isSearch &&
-					this.props.totalPosts > 1 && (
-						<SearchResults>({this.props.totalPosts})</SearchResults>
-					)}
+				{this.props.totalPosts > 1 && (
+					<SearchResults>({this.props.totalPosts})</SearchResults>
+				)}
 			</Form>
 		)
 	}
@@ -64,17 +64,16 @@ class SearchForm extends React.PureComponent {
 const Form = styled.form`
 	background-color: rgba(0, 0, 0, 0);
 	font-size: 0.9em;
-	justify-self: end;
 	align-self: center;
 	grid-column: 1/2;
-	padding: 3px 10px 0 0;
-	display: inline-block;
+	padding: 3px 0 0 0;
+	position: absolute;
 
 	${Theme.transition("0.3s")};
 
 	z-index: ${(props) => (props.isVisible ? "0" : "-1")};
 	opacity: ${(props) => (props.isVisible ? "1" : "0")};
-	transform: translateX(${(props) => (props.isVisible ? "0" : "30px")});
+	transform: translateY(${(props) => (props.isVisible ? "-25px" : "-70px")});
 `
 
 const TextField = styled.input`

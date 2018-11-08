@@ -31,30 +31,48 @@ class SiteHeader extends React.PureComponent {
 
 	handleSearchClick = () => {
 		this.setState({ isSearchFieldVisible: !this.state.isSearchFieldVisible })
+
+		const input = document.getElementsByTagName("input")[0]
+
+		if (this.state.isSearchFieldVisible) {
+			input.blur()
+		} else {
+			input.focus()
+		}
 	}
 
 	render() {
 		return (
-			<Container>
-				<Navigation />
-				<BannerBorder />
+			<React.Fragment>
 				<SearchForm
 					props={this.props}
 					query={this.state.query}
 					isSearchFieldVisible={this.state.isSearchFieldVisible}
 				/>
-				<NavigationIcons onSearchClick={this.handleSearchClick} />
-			</Container>
+				<Container>
+					<NavigationIcons onSearchClick={this.handleSearchClick} />
+					<BannerBorder />
+					<Navigation />
+				</Container>
+			</React.Fragment>
 		)
 	}
 }
 
 const Container = styled.header`
 	max-width: ${Theme.maxWidth};
-	margin: 2.5em auto 0 auto;
+	margin: 2em auto 0 auto;
 	font-family: ${Theme.headerFont};
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
+
+	@media screen and (max-width: ${Theme.navTreshold1}) {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	}
+
+	@media screen and (max-width: ${Theme.navTreshold2}) {
+		grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+	}
 
 	a {
 		line-height: 1.25em;
@@ -68,19 +86,11 @@ const Container = styled.header`
 			border-bottom: none;
 		}
 	}
-
-	@media screen and (max-width: ${Theme.navTreshold}) {
-		grid-template-columns: 1fr 2fr;
-	}
 `
 
 const BannerBorder = styled.div`
-	grid-column: 1/4;
-	border-bottom: 2px solid ${Theme.textColor};
-
-	@media screen and (max-width: ${Theme.navTreshold}) {
-		grid-row: 2;
-	}
+	grid-column: 1/6;
+	border-bottom: 1px solid ${Theme.textColor};
 `
 
 export default SiteHeader

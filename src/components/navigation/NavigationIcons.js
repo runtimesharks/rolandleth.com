@@ -1,28 +1,55 @@
 import React from "react"
 import styled from "styled-components"
+import Theme from "../theme/Theme"
 import "../font-awesome/css/font-awesome.min.css"
 import NavigationIcon from "./NavigationIcon"
-import Theme from "../theme/Theme"
+import Button from "../Button"
 
 const NavigationIcons = (props) => {
 	return (
 		<Container>
-			<Button onClick={props.onSearchClick}>
+			<IconButton
+				onClick={props.onSearchClick}
+				title="Search Roland's posts"
+			>
 				<i className="fa fa-search fa-fw" />
-			</Button>
-			<NavigationIcon href="/projects">
+			</IconButton>
+			<NavigationIcon
+				href="/"
+				title="Roland's Leth's homepage"
+				isHidden={window.location.pathname === "/"}
+			>
+				<i className="fa fa-home fa-fw" />
+			</NavigationIcon>
+			<NavigationIcon
+				href="/projects"
+				title="Roland's projects"
+				isHidden={window.location.pathname.startsWith("/life")}
+			>
 				<i className="fa fa-laptop fa-fw" />
 			</NavigationIcon>
-			<NavigationIcon className="github" href="http://github.com/rolandleth">
+			<NavigationIcon
+				className="github"
+				href="http://github.com/rolandleth"
+				title="Roland's GitHub"
+				isHidden={window.location.pathname !== "/tech"}
+			>
 				<i className="fa fa-github fa-fw" />
 			</NavigationIcon>
-			<NavigationIcon href="https://twitter.com/rolandleth">
+			<NavigationIcon
+				href="https://twitter.com/rolandleth"
+				title="Roland's Twitter"
+			>
 				<i className="fa fa-twitter fa-fw" />
 			</NavigationIcon>
-			<NavigationIcon href="/feed">
+			<NavigationIcon
+				href="/feed"
+				title="Subscribe to Roland's feed"
+				isHidden={window.location.pathname === "/"}
+			>
 				<i className="fa fa-rss fa-fw" />
 			</NavigationIcon>
-			<RuntimeLink href="https://runtimesharks.com">
+			<RuntimeLink href="https://runtimesharks.com" title="Runtime Sharks">
 				<div>
 					<FirstHalf>{"{r"}</FirstHalf>
 					<SecondHalf>s}</SecondHalf>
@@ -34,20 +61,28 @@ const NavigationIcons = (props) => {
 
 const Container = styled.nav`
 	min-height: 32px;
-	grid-column: 2/3;
+	grid-column: 3/4;
 	font-size: 1.1em;
 	display: flex;
-	padding-top: 4px;
+	padding-right: 4%; // Adjusts for the weird RS alignment
+
+	@media screen and (max-width: ${Theme.navTreshold1}) {
+		grid-column: 2/5;
+	}
+
+	@media screen and (max-width: ${Theme.navTreshold2}) {
+		grid-column: 1/6;
+	}
 `
 
 const RuntimeLink = styled.a`
 	font-family: ${Theme.headerFont};
 	font-weight: 700;
+	font-size: 1.2em;
 	text-align: center;
-	display: inline-grid;
-	align-items: center;
+	display: block;
+	flex: 1;
 	padding-bottom: 4px;
-	width: 42px;
 `
 
 const FirstHalf = styled.span`
@@ -58,18 +93,13 @@ const SecondHalf = styled.span`
 	color: #0371b8;
 `
 
-const Button = styled.button`
-	font-size: inherit;
-	color: inherit;
+const IconButton = styled(Button)`
 	padding: 0 0 2px;
-	cursor: pointer;
-	border: none;
-	background: none;
 	height: 21px;
 	flex: 1;
 	height: 100%;
 
-	display: inline-grid;
+	display: ${(props) => (props.isHidden ? "none" : "inline-grid")};
 
 	& > i {
 		font-size: 0.85em;

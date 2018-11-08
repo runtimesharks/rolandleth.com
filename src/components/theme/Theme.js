@@ -15,10 +15,11 @@ class Theme {
 	static headerFont =
 		"Copperplate, 'Copperplate', 'Copperplate Gothic', 'Georgia', serif"
 	// body_font: "'Avenir Next', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-	static bodyFont = "'-apple-system', 'Verdana', 'Arial', sans-serif"
+	static bodyFont = "'Avenir', '-apple-system', 'Verdana', 'Arial', sans-serif"
 	static codeFont = "'SF Mono', 'Menlo', 'Monaco', 'Courier', monospace"
 
-	static navTreshold = "550px"
+	static navTreshold1 = "700px"
+	static navTreshold2 = "450px"
 	static phoneMedia = "482px"
 	static smallMedia = "374px"
 	static smallQuery = '"all and (max-width: 575px)"'
