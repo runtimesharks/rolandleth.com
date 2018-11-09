@@ -73,19 +73,6 @@ const Container = styled.header`
 	@media screen and (max-width: ${Theme.navTreshold2}) {
 		grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
 	}
-
-	a {
-		line-height: 1.25em;
-		color: ${Theme.textColor};
-		border-bottom: none;
-
-		${Theme.transition("color", "0.4s")};
-
-		&:hover {
-			color: ${Theme.linkColor};
-			border-bottom: none;
-		}
-	}
 `
 
 const BannerBorder = styled.div`

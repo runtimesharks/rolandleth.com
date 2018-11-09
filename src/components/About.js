@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Theme from "./theme/Theme"
-import Link from "./Link"
+import Link from "./links/Link"
 
 const About = () => (
 	<Container>

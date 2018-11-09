@@ -1,17 +1,24 @@
 import React from "react"
 import styled from "styled-components"
+import HoverableLink from "../links/HoverableLink"
+import Theme from "../theme/Theme"
 
 const NavigationIcon = (props) => {
 	return (
-		<Link href={props.href} title={props.title} isHidden={props.isHidden}>
+		<StyledLink
+			href={props.href}
+			title={props.title}
+			isHidden={props.isHidden}
+		>
 			{props.children}
-		</Link>
+		</StyledLink>
 	)
 }
 
-const Link = styled.a`
+const StyledLink = styled(HoverableLink)`
 	text-align: center;
 	flex: 1;
+	color: ${Theme.textColor};
 
 	display: ${(props) => (props.isHidden ? "none" : "inline-grid")};
 

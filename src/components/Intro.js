@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Link from "../components/Link"
+import Link from "./links/Link"
 import Theme from "./theme/Theme"
 
 const Intro = () => (
@@ -52,7 +52,7 @@ const Intro = () => (
 			the reasons I started this section: to give confidence to other people
 			that this kind of change <strong>is</strong> possible by everyone.
 		</p>
-		<p>
+		<LastParagraph>
 			If I can be of help or you just want to say hi, you can drop me an
 			email at{" "}
 			<Link
@@ -68,7 +68,7 @@ const Intro = () => (
 			/>
 			. You can find out more about me on{" "}
 			<Link href="/about" title="About Roland Leth" text="my about page" />.
-		</p>
+		</LastParagraph>
 	</Container>
 )
 
@@ -130,6 +130,10 @@ const ListItem = styled.div`
 		grid-template-columns: auto;
 		grid-gap: 0;
 	}
+`
+
+const LastParagraph = styled.p`
+	padding-top: 20px;
 `
 
 export default Intro

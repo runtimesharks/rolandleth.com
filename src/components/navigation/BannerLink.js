@@ -1,15 +1,16 @@
 import React from "react"
 import styled from "styled-components"
+import HoverableLink from "../links/HoverableLink"
 
 const BannerLink = (props) => {
 	return (
-		<Link href={props.href} title={props.title}>
+		<StyledLink {...props}>
 			<span>{props.title}</span>
-		</Link>
+		</StyledLink>
 	)
 }
 
-const Link = styled.a`
+const StyledLink = styled(HoverableLink)`
 	flex: 1;
 	text-align: center;
 `

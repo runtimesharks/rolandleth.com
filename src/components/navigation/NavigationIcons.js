@@ -24,7 +24,7 @@ const NavigationIcons = (props) => {
 			<NavigationIcon
 				href="/projects"
 				title="Roland's projects"
-				isHidden={window.location.pathname.startsWith("/life")}
+				isHidden={window.location.pathname.startsWith("/life") === false}
 			>
 				<i className="fa fa-laptop fa-fw" />
 			</NavigationIcon>
