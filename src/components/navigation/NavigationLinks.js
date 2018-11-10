@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 import Theme from "../theme/Theme"
-import BannerLink from "../navigation/BannerLink"
+import NavigationLink from "./NavigationLink"
 
-const Banner = () => (
+const NavigationLinks = () => (
 	<Container>
-		<BannerLink href="/life" title="Life" />
-		<BannerLink href="/tech" title="Tech" />
+		<NavigationLink href="/life" title="Life" />
+		<NavigationLink href="/tech" title="Tech" />
 	</Container>
 )
 
@@ -29,4 +29,4 @@ const Container = styled.div`
 	}
 `
 
-export default Banner
+export default NavigationLinks

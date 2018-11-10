@@ -124,8 +124,4 @@ const ListItem = styled.div`
 	}
 `
 
-const LastParagraph = styled.p`
-	padding-top: 20px;
-`
-
 export default Intro

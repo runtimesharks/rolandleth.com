@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Navigation from "./Navigation"
 import NavigationIcons from "./NavigationIcons"
+import NavigationLinks from "./NavigationLinks"
 import Theme from "../theme/Theme"
 import SearchForm from "../navigation/SearchForm"
 
@@ -51,8 +51,8 @@ class SiteHeader extends React.PureComponent {
 				/>
 				<Container>
 					<NavigationIcons onSearchClick={this.handleSearchClick} />
-					<BannerBorder />
-					<Navigation />
+					<Border />
+					<NavigationLinks />
 				</Container>
 			</React.Fragment>
 		)
@@ -75,7 +75,7 @@ const Container = styled.header`
 	}
 `
 
-const BannerBorder = styled.div`
+const Border = styled.div`
 	grid-column: 1/6;
 	border-bottom: 1px solid ${Theme.textColor};
 `

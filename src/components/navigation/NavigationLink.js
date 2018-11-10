@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import HoverableLink from "../link/HoverableLink"
 
-const BannerLink = (props) => {
+const NavigationLink = (props) => {
 	return (
 		<StyledLink {...props}>
 			<span>{props.title}</span>
@@ -15,4 +15,4 @@ const StyledLink = styled(HoverableLink)`
 	text-align: center;
 `
 
-export default BannerLink
+export default NavigationLink
