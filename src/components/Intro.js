@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Link from "./links/Link"
+import Link from "./link/Link"
 import Theme from "./theme/Theme"
 
 const Intro = () => (

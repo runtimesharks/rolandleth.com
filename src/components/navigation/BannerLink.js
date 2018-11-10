@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import HoverableLink from "../links/HoverableLink"
+import HoverableLink from "../link/HoverableLink"
 
 const BannerLink = (props) => {
 	return (

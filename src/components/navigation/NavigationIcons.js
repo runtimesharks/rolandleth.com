@@ -4,7 +4,7 @@ import Theme from "../theme/Theme"
 import "../font-awesome/css/font-awesome.min.css"
 import NavigationIcon from "./NavigationIcon"
 import Button from "./Button"
-import HoverableLink from "../links/HoverableLink"
+import HoverableLink from "../link/HoverableLink"
 
 const NavigationIcons = (props) => {
 	return (
