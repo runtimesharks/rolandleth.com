@@ -45,14 +45,6 @@ const Intro = () => (
 			</ListItem>
 		</List>
 		<p>
-			Most of the motivational videos or articles you can find online are by
-			or about successful people. If, at times, you've thought that "of
-			course, they're rich/successful, it's easy for them", then you're not
-			alone; I have as well. I'm not wealthy, nor famous and this is one of
-			the reasons I started this section: to give confidence to other people
-			that this kind of change <strong>is</strong> possible by everyone.
-		</p>
-		<LastParagraph>
 			If I can be of help or you just want to say hi, you can drop me an
 			email at{" "}
 			<Link
@@ -68,7 +60,7 @@ const Intro = () => (
 			/>
 			. You can find out more about me on{" "}
 			<Link href="/about" title="About Roland Leth" text="my about page" />.
-		</LastParagraph>
+		</p>
 	</Container>
 )
 
