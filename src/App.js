@@ -96,6 +96,7 @@ static let header    = Font.baseFont(family: .proximaNova, size: 18, weight: .de
 					</BrowserRouter>
 				</Content>
 				<GlobalStyle />
+				<GlobalSyntaxStyle />
 			</React.Fragment>
 		)
 	}
