@@ -1,35 +1,34 @@
 import React from "react"
 import styled from "styled-components"
 import ContinueReading from "./ContinueReading"
-import HoverableLink from "../links/HoverableLink"
+import ArticleHeader from "./ArticleHeader"
+import Helmet from "../Helmet"
 
-const Article = ({ post }) => {
-	return (
-		<Container>
-			<Date>{post.date}</Date>
-			<Title>
-				<HoverableLink
-					href={post.link}
+class Article extends React.PureComponent {
+	componentDidMount() {
+		const postBody = document.getElementsByClassName("post-body")[0]
+		postBody.innerHTML = this.props.post.body
+	}
+
+	render() {
+		const { post } = this.props
+
+		return (
+			<Container>
+				<Helmet
 					title={post.title}
-					text={post.title}
+					description={post.firstParagraph}
+					isoDate={post.isoDate}
 				/>
-			</Title>
-			<Body>{post.body}</Body>
-			<ContinueReading post={post} />
-		</Container>
-	)
+				<ArticleHeader {...this.props} />
+				<Body className="post-body" />
+				<ContinueReading {...this.props} />
+			</Container>
+		)
+	}
 }
 
 const Container = styled.div``
-
-const Date = styled.h4`
-	margin-bottom: 0;
-	color: #aaa;
-`
-
-const Title = styled.h1`
-	margin-top: 0;
-`
 
 const Body = styled.div`
 	margin-top: 0;

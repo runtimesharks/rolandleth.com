@@ -2,16 +2,19 @@ import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import styled from "styled-components"
 import { GlobalStyle } from "./components/theme/globalStyle"
+import { GlobalSyntaxStyle } from "./components/theme/globalSyntax"
 import SiteHeader from "./components/navigation/SiteHeader"
 import About from "./components/About"
 import Theme from "./components/theme/Theme"
 import Intro from "./components/Intro"
 import Article from "./components/article/Article"
+import Helmet from "./components/Helmet"
 
 class App extends React.PureComponent {
 	render() {
 		return (
 			<React.Fragment>
+				<Helmet />
 				<SiteHeader />
 				<Content>
 					<BrowserRouter>
@@ -57,30 +60,30 @@ This might not seem much, or maybe I’m just lazy, but I find it easier to writ
 								[1]:	/improving-uifont-workflow "Improving UIFont workflow"',
 										body:
 											'<p>Usually an app has fonts with well defined purposes. So why not let <code>enums</code> make our lives easier, a little bit? First, a couple of them, to define our font families and weights:</p>\
-<pre><code class="language-swift">struct Font {\
-  private enum Family: String {\
-    case avenirNext\
-    case proximaNova\
-  }\
-\
-  private enum Weight: String {\
-    case regular\
-    case medium\
-    case demiBold\
-    case bold\
-  }\
-}\
+<pre><code class="language-swift">struct Font {\n\
+  private enum Family: String {\n\
+    case avenirNext\n\
+    case proximaNova\n\
+  }\n\
+\n\
+  private enum Weight: String {\n\
+    case regular\n\
+    case medium\n\
+    case demiBold\n\
+    case bold\n\
+  }\n\
+}\n\
 </code></pre>\
 <p>Then a method to easily create fonts:</p>\
-<pre><code class="language-swift">private static func baseFont(family: Family, size: CGFloat, weight: Weight = .regular, italic: Bool = false) -&gt; UIFont {\
-  let font = family.rawValue\
-  let modifier = weight.rawValue + (italic ? &quot;Italic&quot; : &quot;&quot;)\
-  return UIFont(name: &quot;(font)-(modifier)&quot;, size: size)!\
-}\
-</code></pre>\
-<p>Finally, the properties:</p>\
-<pre><code class="language-swift">static let barButton = Font.baseFont(family: .avenirNext, size: 16, weight: .medium)\
-static let header    = Font.baseFont(family: .proximaNova, size: 18, weight: .demiBold)\
+<pre><code class="language-swift">private static func baseFont(family: Family, size: CGFloat, weight: Weight = .regular, italic: Bool = false) -&gt; UIFont {\n\
+  let font = family.rawValue\n\
+  let modifier = weight.rawValue + (italic ? &quot;Italic&quot; : &quot;&quot;)\n\
+  return UIFont(name: &quot;(font)-(modifier)&quot;, size: size)!\n\
+}\n\
+</code></pre>\n\
+<p>Finally, the properties:</p>\n\
+<pre><code class="language-swift">static let barButton = Font.baseFont(family: .avenirNext, size: 16, weight: .medium)\n\
+static let header    = Font.baseFont(family: .proximaNova, size: 18, weight: .demiBold)\n\
 </code></pre>\
 <p>If the app has only one font family, everything becomes even simpler, by removing <code>Family</code> and the related params.</p>\
 ',

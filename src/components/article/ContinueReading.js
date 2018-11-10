@@ -9,7 +9,7 @@ const ContinueReading = ({ post }) => {
 	) : (
 		<Container>
 			<StyledLink
-				href={`/${post.link}`}
+				href={post.link}
 				title={`Continue Reading ${post.title}`}
 				text="Continue reading &rarr;"
 			/>

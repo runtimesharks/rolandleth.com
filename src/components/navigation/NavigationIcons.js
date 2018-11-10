@@ -3,7 +3,8 @@ import styled from "styled-components"
 import Theme from "../theme/Theme"
 import "../font-awesome/css/font-awesome.min.css"
 import NavigationIcon from "./NavigationIcon"
-import Button from "../Button"
+import Button from "./Button"
+import HoverableLink from "../links/HoverableLink"
 
 const NavigationIcons = (props) => {
 	return (
@@ -49,12 +50,15 @@ const NavigationIcons = (props) => {
 			>
 				<i className="fa fa-rss fa-fw" />
 			</NavigationIcon>
-			<RuntimeLink href="https://runtimesharks.com" title="Runtime Sharks">
+			<StyledRuntimeLink
+				href="https://runtimesharks.com"
+				title="Runtime Sharks"
+			>
 				<div>
 					<FirstHalf>{"{r"}</FirstHalf>
 					<SecondHalf>s}</SecondHalf>
 				</div>
-			</RuntimeLink>
+			</StyledRuntimeLink>
 		</Container>
 	)
 }
@@ -75,7 +79,7 @@ const Container = styled.nav`
 	}
 `
 
-const RuntimeLink = styled.a`
+const StyledRuntimeLink = styled(HoverableLink)`
 	font-family: ${Theme.headerFont};
 	font-weight: 700;
 	font-size: 1.2em;
@@ -98,13 +102,13 @@ const IconButton = styled(Button)`
 	height: 21px;
 	flex: 1;
 	height: 100%;
+	align-self: center;
 
 	display: ${(props) => (props.isHidden ? "none" : "inline-grid")};
 
 	& > i {
 		font-size: 0.85em;
-		justify-self: center;
-		align-self: center;
+		margin: auto;
 	}
 
 	${Theme.transition("0.6s")};
