@@ -4,6 +4,10 @@
 	margin-top: 20px;
 	font-family: $bodyFont;
 
+	#mce-success-response {
+		display: none;
+	}
+
 	label {
 		display: block;
 		margin-bottom: 6px;
@@ -58,6 +62,11 @@
 		font-size: 1.3em;
 		border-radius: 6px;
 	}
+}
+
+#mce-something-something {
+	position: absolute;
+	left: -5000px;
 }
 
 #mc-embedded-subscribe-form input[type="checkbox"] {
