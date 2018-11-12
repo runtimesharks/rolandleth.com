@@ -1,5 +1,27 @@
-@import '../globals/variables';
+@import "../globals/variables";
 
 .content {
 	@include lightBottomBorder(1px);
+
+	& p {
+		margin: 10px 0;
+	}
+
+	& h1 {
+		line-height: 1.25em;
+		font-weight: 600;
+		padding-top: 0.6em;
+	}
+
+	& h2 {
+		font-size: 1.25em;
+		line-height: 1.15em;
+		font-weight: 600;
+		padding-top: 0.5em;
+	}
+
+	line-height: 1.5em;
+	max-width: $maxWidth;
+	margin: auto;
+	padding-top: 2.5em;
 }
