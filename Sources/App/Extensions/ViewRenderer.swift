@@ -77,6 +77,7 @@ extension ViewRenderer {
 			"emoji": emoji,
 			"fullRoot": request.domain,
 			"production": drop.production,
+			"trackingId": drop.production ? "UA-40255117-4" : "UA-40255117-5",
 			"year": Calendar.current.component(.year, from: Date())
 		]
 
