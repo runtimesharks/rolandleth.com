@@ -71,6 +71,7 @@ extension Droplet {
 	func addRoutes() -> Droplet {
 		get("/feed", handler: FeedController.feed)
 		get("/microfeed", handler: FeedController.microfeed)
+		get("/life", handler: LifeController.display)
 		
 		post("/micropub", handler: MicropubController.micropub)
 		get("/sitemap.xml", handler: SitemapController.create)
