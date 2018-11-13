@@ -5,10 +5,9 @@ import "../font-awesome/css/font-awesome.min.css"
 import NavigationIcon from "./NavigationIcon"
 import Button from "./Button"
 import HoverableLink from "../link/HoverableLink"
+import { Route, Switch } from "react-router-dom"
 
 const NavigationIcons = (props) => {
-	const isTechSection = window.location.pathname.startsWith("/tech")
-
 	return (
 		<Container>
 			<IconButton
@@ -17,41 +16,47 @@ const NavigationIcons = (props) => {
 			>
 				<i className="fa fa-search fa-fw" />
 			</IconButton>
-			<NavigationIcon
-				href="/"
-				title="Roland's Leth's homepage"
-				isHidden={window.location.pathname === "/"}
-			>
-				<i className="fa fa-home fa-fw" />
-			</NavigationIcon>
-			<NavigationIcon
-				href="/projects"
-				title="Roland's projects"
-				isHidden={isTechSection === false}
-			>
-				<i className="fa fa-laptop fa-fw" />
-			</NavigationIcon>
-			<NavigationIcon
-				className="github"
-				href="http://github.com/rolandleth"
-				title="Roland's GitHub"
-				isHidden={isTechSection === false}
-			>
-				<i className="fa fa-github fa-fw" />
-			</NavigationIcon>
+			<Switch>
+				<Route path="/:anything">
+					<NavigationIcon href="/" title="Roland's Leth's homepage">
+						<i className="fa fa-home fa-fw" />
+					</NavigationIcon>
+				</Route>
+			</Switch>
+			<Switch>
+				<Route path="/tech">
+					<NavigationIcon href="/tech/projects" title="Roland's projects">
+						<i className="fa fa-laptop fa-fw" />
+					</NavigationIcon>
+				</Route>
+			</Switch>
+			<Switch>
+				<Route path="/tech">
+					<NavigationIcon
+						className="github"
+						href="http://github.com/rolandleth"
+						title="Roland's GitHub"
+					>
+						<i className="fa fa-github fa-fw" />
+					</NavigationIcon>
+				</Route>
+			</Switch>
 			<NavigationIcon
 				href="https://twitter.com/rolandleth"
 				title="Roland's Twitter"
 			>
 				<i className="fa fa-twitter fa-fw" />
 			</NavigationIcon>
-			<NavigationIcon
-				href="/feed"
-				title="Subscribe to Roland's feed"
-				isHidden={window.location.pathname === "/"}
-			>
-				<i className="fa fa-rss fa-fw" />
-			</NavigationIcon>
+			<Switch>
+				<Route path="/:anything">
+					<NavigationIcon
+						href="/tech/feed"
+						title="Subscribe to Roland's feed"
+					>
+						<i className="fa fa-rss fa-fw" />
+					</NavigationIcon>
+				</Route>
+			</Switch>
 			<StyledRuntimeLink
 				href="https://runtimesharks.com"
 				title="Runtime Sharks"
@@ -105,8 +110,7 @@ const IconButton = styled(Button)`
 	flex: 1;
 	height: 100%;
 	align-self: center;
-
-	display: ${(props) => (props.isHidden ? "none" : "inline-grid")};
+	display: inline-grid;
 
 	& > i {
 		font-size: 0.85em;

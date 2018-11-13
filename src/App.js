@@ -7,12 +7,11 @@ import Router from "./components/Router"
 class App extends React.PureComponent {
 	render() {
 		return (
-			<React.Fragment>
+			<Router>
 				<Helmet />
-				<Router />
 				<GlobalStyle />
 				<GlobalSyntaxStyle />
-			</React.Fragment>
+			</Router>
 		)
 	}
 }
