@@ -1,19 +1,32 @@
 import React from "react"
 import styled from "styled-components"
+import { Link as RouterLink } from "react-router-dom"
 
-const Link = (props) => {
-	return (
-		<Anchor
-			href={props.href}
-			className={props.className || "OI"}
-			title={
+class Link extends React.Component {
+	content = () => {
+		const { props } = this
+
+		const newProps = {
+			className: props.className || "blank",
+			title:
 				props.title ||
 				props.text.charAt(0).toUpperCase() + props.text.slice(1)
-			}
-		>
-			{props.children || props.text}
-		</Anchor>
-	)
+		}
+
+		return props.href.startsWith("http") ? (
+			<Anchor href={props.href} {...newProps}>
+				{props.children || props.text}
+			</Anchor>
+		) : (
+			<RouterLink to={props.href} {...newProps}>
+				{props.children || props.text}
+			</RouterLink>
+		)
+	}
+
+	render() {
+		return this.content()
+	}
 }
 
 const Anchor = styled.a``

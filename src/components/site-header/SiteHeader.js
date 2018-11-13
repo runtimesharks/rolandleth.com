@@ -3,9 +3,9 @@ import styled from "styled-components"
 import NavigationIcons from "./NavigationIcons"
 import NavigationLinks from "./NavigationLinks"
 import Theme from "../theme/Theme"
-import SearchForm from "../navigation/SearchForm"
+import SearchForm from "../site-header/SearchForm"
 
-class SiteHeader extends React.PureComponent {
+class SiteHeader extends React.Component {
 	constructor(props) {
 		super(props)
 

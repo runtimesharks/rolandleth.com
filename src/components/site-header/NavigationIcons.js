@@ -7,6 +7,8 @@ import Button from "./Button"
 import HoverableLink from "../link/HoverableLink"
 
 const NavigationIcons = (props) => {
+	const isTechSection = window.location.pathname.startsWith("/tech")
+
 	return (
 		<Container>
 			<IconButton
@@ -25,7 +27,7 @@ const NavigationIcons = (props) => {
 			<NavigationIcon
 				href="/projects"
 				title="Roland's projects"
-				isHidden={window.location.pathname.startsWith("/life") === false}
+				isHidden={isTechSection === false}
 			>
 				<i className="fa fa-laptop fa-fw" />
 			</NavigationIcon>
@@ -33,7 +35,7 @@ const NavigationIcons = (props) => {
 				className="github"
 				href="http://github.com/rolandleth"
 				title="Roland's GitHub"
-				isHidden={window.location.pathname !== "/tech"}
+				isHidden={isTechSection === false}
 			>
 				<i className="fa fa-github fa-fw" />
 			</NavigationIcon>
