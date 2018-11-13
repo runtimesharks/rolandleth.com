@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import Theme from "./theme/Theme"
-import Link from "./link/Link"
+import Theme from "../theme/Theme"
+import Link from "../link/Link"
 
 const About = () => (
 	<Container>
-		<Image src={require("../images/misc/mypic.jpg")} alt="My Picture" />
+		<Image src={require("../../images/misc/mypic.jpg")} alt="My Picture" />
 		<FirstParagraph>
 			For the past 8 years, my main occupation has been as an iOS developer.
 			I've worked on my own projects, on remote teams, as a freelancer,

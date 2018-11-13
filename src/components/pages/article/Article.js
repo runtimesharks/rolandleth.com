@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import ContinueReading from "./ContinueReading"
 import ArticleHeader from "./ArticleHeader"
-import Helmet from "../Helmet"
+import Helmet from "../../Helmet"
 
 class Article extends React.PureComponent {
 	componentDidMount() {

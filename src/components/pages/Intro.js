@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Link from "./link/Link"
-import Theme from "./theme/Theme"
+import Link from "../link/Link"
+import Theme from "../theme/Theme"
 
 const Intro = () => (
 	<Container>
@@ -19,7 +19,7 @@ const Intro = () => (
 			<ListItem className="tech">
 				<img
 					className="illustration"
-					src={require("../images/developer.svg")}
+					src={require("../../images/developer.svg")}
 					alt="A developer in front of 6 monitors"
 				/>
 				<p>
@@ -39,7 +39,7 @@ const Intro = () => (
 				</p>
 				<img
 					className="illustration"
-					src={require("../images/progress.svg")}
+					src={require("../../images/progress.svg")}
 					alt="Woman moving gears"
 				/>
 			</ListItem>
