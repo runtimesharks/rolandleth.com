@@ -2,11 +2,10 @@ import React, { Suspense } from "react"
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
 import NotFoundPage from "./pages/NotFound"
 import Layout from "./Layout"
-
-const About = React.lazy(() => import("./pages/About"))
-const Intro = React.lazy(() => import("./pages/Intro"))
-const Tech = React.lazy(() => import("./pages/tech/Tech"))
-const Life = React.lazy(() => import("./pages/life/Life"))
+import About from "./pages/About"
+import Intro from "./pages/Intro"
+import Tech from "./pages/tech/Tech"
+import Life from "./pages/life/Life"
 
 const Router = (props) => {
 	return (
