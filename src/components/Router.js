@@ -9,7 +9,7 @@ import Life from "./pages/life/Life"
 
 const Router = (props) => {
 	return (
-		<BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
+		<BrowserRouter>
 			<Suspense fallback={<div />}>
 				{props.children}
 				<Layout>

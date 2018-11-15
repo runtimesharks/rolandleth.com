@@ -79,6 +79,5 @@ static let header    = Font.baseFont(family: .proximaNova, size: 18, weight: .de
 }
 
 const Container = styled.div``
-const Greeting = styled.h1``
 
 export default Tech
