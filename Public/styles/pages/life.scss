@@ -1,7 +1,7 @@
 @import "../globals/variables";
 
 #mc_embed_signup {
-	margin-top: 20px;
+	padding-top: 8px;
 	font-family: $bodyFont;
 
 	#mce-success-response {
@@ -15,24 +15,23 @@
 	}
 
 	.mc-field-group {
-		margin-top: 16px;
+		margin-top: 20px;
 
 		> input {
-			min-width: 30%;
-			height: 30px;
+			min-width: 250px;
+			height: 20px;
 			font-size: 1.25em;
+			width: 50%;
 		}
 
 		&.mergeRow {
-			margin-top: 40px;
+			margin-top: 30px;
 		}
 	}
 
-	.gdprRequired {
-		margin-bottom: 20px;
-	}
-
 	.content__gdpr {
+		padding-bottom: 20px;
+
 		label {
 			padding-bottom: 6px;
 			font-size: 1.4em;
@@ -74,8 +73,18 @@
 	margin-right: 10px;
 }
 
-#mergeRow-gdpr fieldset label {
-	font-weight: normal;
+#mergeRow-gdpr {
+	font-size: 0.8em;
+	line-height: 1.4em;
+
+	fieldset label {
+		font-weight: normal;
+	}
+}
+
+.content__gdprLegal {
+	font-size: 0.8em;
+	line-height: 1.4em;
 }
 
 #mc-embedded-subscribe-form .mc_fieldset {
@@ -87,4 +96,16 @@
 #mc_embed_signup {
 	background: #fff;
 	clear: left;
+
+	.mc-field-group {
+		padding-bottom: inherit;
+	}
+
+	form {
+		padding: 0 20px;
+	}
+}
+
+#mc_embed_signup #mc-embedded-subscribe {
+	margin-top: 0;
 }
