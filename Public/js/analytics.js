@@ -1,6 +1,1 @@
-ready(() => {
-	ga("set", "anonymizeIp", true)
-	ga("set", "adSenseId", 0)
-	ga("set", "allowAdFeatures", false)
-	ga("send", "pageview")
-})
+ready(()=>{window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create',window.location.href.startsWith("http://localhost:8000")?"UA-40255117-5":"UA-40255117-4",{'storeGac':false,'cookieName':'Google Analytics Cookie'});ga("set","anonymizeIp",true);ga("set","adSenseId",0);ga("set","allowAdFeatures",false);ga("send","pageview")})
