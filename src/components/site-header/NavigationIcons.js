@@ -25,7 +25,10 @@ const NavigationIcons = (props) => {
 			</Switch>
 			<Switch>
 				<Route path="/tech">
-					<NavigationIcon href="/tech/projects" title="Roland's projects">
+					<NavigationIcon
+						href="https://runtimesharks.com/projects"
+						title="Roland's projects"
+					>
 						<i className="fa fa-laptop fa-fw" />
 					</NavigationIcon>
 				</Route>
