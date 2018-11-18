@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Theme from "../theme/Theme"
 
-class SearchForm extends React.PureComponent {
+class SearchForm extends React.Component {
 	constructor(props) {
 		super(props)
 
