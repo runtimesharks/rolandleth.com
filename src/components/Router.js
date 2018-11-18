@@ -1,30 +1,22 @@
-import React, { Suspense } from "react"
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
+import React from "react"
+import { Switch, Route, Redirect } from "react-router-dom"
 import NotFoundPage from "./pages/NotFound"
-import Layout from "./Layout"
 import About from "./pages/About"
 import Intro from "./pages/Intro"
 import Tech from "./pages/tech/Tech"
 import Life from "./pages/life/Life"
 
-const Router = (props) => {
+const Routes = () => {
 	return (
-		<BrowserRouter>
-			<Suspense fallback={<div />}>
-				{props.children}
-				<Layout>
-					<Switch>
-						<Route exact path="/" component={Intro} />
-						<Route exact path="/about" component={About} />
-						<Route exact path="/life" component={Life} />
-						<Route exact path="/tech" component={Tech} />
+		<Switch>
+			<Route exact path="/" component={Intro} />
+			<Route exact path="/about" component={About} />
+			<Route path="/life" component={Life} />
+			<Route path="/tech" component={Tech} />
 
-						<Route path="/:oldPost" component={OldPostHandler} />
-						<Route path="*" component={NotFoundPage} />
-					</Switch>
-				</Layout>
-			</Suspense>
-		</BrowserRouter>
+			<Route path="/:oldPost" component={OldPostHandler} />
+			<Route path="*" component={NotFoundPage} />
+		</Switch>
 	)
 }
 
@@ -32,7 +24,6 @@ const OldPostHandler = ({ match }) => {
 	const url = match.url.substr(1) || ""
 
 	if (existingPosts.includes(url)) {
-		console.info("EH")
 		return <Redirect to={`/tech/blog/${url}`} />
 	} else {
 		return <NotFoundPage />
@@ -239,4 +230,4 @@ const existingPosts = [
 	"a-fi-programator-dupa-40-de-ani"
 ]
 
-export default Router
+export default Routes

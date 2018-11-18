@@ -1,15 +1,17 @@
 import App from "./App"
-import Router from "./components/Router"
+import { BrowserRouter } from "react-router-dom"
 import React from "react"
-import { hydrate } from "react-dom"
+import ReactDOM from "react-dom"
 import ScrollToTop from "./components/ScrollToTop"
 
-hydrate(
-	<Router>
+const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
+
+renderMethod(
+	<BrowserRouter>
 		<ScrollToTop>
 			<App />
 		</ScrollToTop>
-	</Router>,
+	</BrowserRouter>,
 	document.getElementById("root")
 )
 
