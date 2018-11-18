@@ -20,6 +20,10 @@ class SearchForm extends React.Component {
 	}
 
 	formSize = () => {
+		if (typeof window === "undefined") {
+			return 19
+		}
+
 		// Smaller search fields for iPhones, since it doesn't fit at > 13
 		const winWidth = window.innerWidth
 

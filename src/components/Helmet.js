@@ -3,7 +3,7 @@ import { Helmet as ReactHelmet } from "react-helmet"
 
 class Helmet extends React.Component {
 	window = () => {
-		if (typeof window === "object") {
+		if (typeof window !== "undefined") {
 			return window
 		}
 

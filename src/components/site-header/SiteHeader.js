@@ -16,6 +16,10 @@ class SiteHeader extends React.Component {
 	}
 
 	query = () => {
+		if (typeof window === "undefined") {
+			return ""
+		}
+
 		let query = ""
 		let { location } = window
 		let q = "query="
