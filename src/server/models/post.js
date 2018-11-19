@@ -15,13 +15,10 @@ function timeToRead(body) {
 		switch (true) {
 			case t.minutes <= 0.2:
 				return ""
-				break
 			case t.minutes <= 0.5:
 				return "25 sec read"
-				break
 			case t.minutes <= 0.8:
 				return "45 sec read"
-				break
 			default:
 				return t.text
 		}
@@ -32,6 +29,7 @@ function timeToRead(body) {
  * Truncates the body of a post to 700 characters, but only if it's longer than 900; otherwise it does nothing.
  * @param title {String} The title of the body; used for tracking.
  * @param body {String} The post of the body.
+ * @param rawBody {String} The post of the body.
  * @param link {String} The link of the body.
  * @returns {String} The truncated body.
  */
@@ -61,6 +59,8 @@ function truncateBody(title, body, link) {
  * The Post model.
  * @param {String} title
  * @param {String} body
+ * @param {String} author
+ * @param {String} rawBody
  * @param {String} datetime
  * @param {String} modified
  * @param {String} link
@@ -72,6 +72,8 @@ class Post {
 	constructor(
 		title = "",
 		body = "",
+		author = "",
+		rawBody = "",
 		datetime = "",
 		modified = new Date().toDateString(),
 		link = Post.createLink(title),
@@ -80,6 +82,8 @@ class Post {
 	) {
 		this.title = title
 		this.body = body
+		this.author = author
+		this.rawBody = rawBody
 		this.truncatedBody = truncatedBody
 		this.readingTime = readingTime
 		this.datetime = datetime

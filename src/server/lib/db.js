@@ -1,6 +1,6 @@
 "use strict"
 
-const postsTable = "posts"
+const postsTable = "techPosts"
 const pool = (function() {
 	const Pool = require("pg").Pool
 	const url = require("url")
@@ -185,7 +185,7 @@ class Db {
 	 * @param {DbConfig} config - An object on which the creation of the db query is based on.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchPosts(config) {
+	static async fetchPosts(config) {
 		//	pool.query(
 		//		'CREATE TABLE posts(title VARCHAR(100), body VARCHAR(99999), truncatedbody VARCHAR(5000), datetime VARCHAR(50), modified VARCHAR(55), link VARCHAR(100), readingtime VARCHAR(15))'
 		//	);
@@ -220,84 +220,82 @@ class Db {
 			" " +
 			(config.orderDirection || "ASC")
 
-		return pool
-			.query(query)
-			.then((result) => {
-				const res = new DbResult()
-				res.totalPosts = result.rows.length
-				let posts = result.rows.reverse()
+		const result = await pool.query(query)
+		const res = new DbResult()
+		res.totalPosts = result.rows.length
+		let posts = result.rows.reverse()
 
-				if (!config.updating && config.limit !== 1) {
-					const date = new Date()
-					const utcDate = new Date(
-						Date.UTC(
-							date.getUTCFullYear(),
-							date.getUTCMonth(),
-							date.getUTCDate(),
-							date.getUTCHours(),
-							date.getUTCMinutes(),
-							date.getUTCSeconds(),
-							date.getUTCMilliseconds()
+		if (!config.updating && config.limit !== 1) {
+			const date = new Date()
+			const utcDate = new Date(
+				Date.UTC(
+					date.getUTCFullYear(),
+					date.getUTCMonth(),
+					date.getUTCDate(),
+					date.getUTCHours(),
+					date.getUTCMinutes(),
+					date.getUTCSeconds(),
+					date.getUTCMilliseconds()
+				)
+			)
+
+			posts = posts.filter(function(rawPost) {
+				const postDate = Post.dateFromDateTime(rawPost.datetime)
+				return postDate && postDate < utcDate
+			})
+		}
+
+		if (config.limit) {
+			posts = posts.slice(config.offset, config.offset + config.limit)
+		}
+
+		res.posts = posts.map(function(rawPost) {
+			let truncatedBody = rawPost.truncatedbody
+
+			if (config.searching) {
+				let pattern = ""
+				config.fieldValues.forEach(function(value) {
+					pattern += value.replace(/<|>/g, "") + "|"
+				})
+				pattern = pattern.slice(0, -1)
+				const regex = new RegExp(pattern, "gi")
+
+				// Marking won"t work inside code blocks, because styling is applied via script
+				truncatedBody = truncatedBody.replace(
+					regex,
+					'<mark class="search">$&</mark>'
+				)
+
+				// Open <, and match any number of characters except >, and only then match marks,
+				// otherwise it would just match up until a later >, and most likely include the marks too.
+				const matches = truncatedBody.match(
+					/<[^>]*?<mark class="search">.+?<\/mark>.*?>/gi
+				)
+
+				if (matches) {
+					matches.forEach(function(match) {
+						truncatedBody = truncatedBody.replace(
+							match,
+							match.replace(/<\/mark>|<mark class="search">/gi, "")
 						)
-					)
-
-					posts = posts.filter(function(rawPost) {
-						const postDate = Post.dateFromDateTime(rawPost.datetime)
-						return postDate && postDate < utcDate
 					})
 				}
+			}
 
-				if (config.limit) {
-					posts = posts.slice(config.offset, config.offset + config.limit)
-				}
+			return new Post(
+				rawPost.title,
+				rawPost.body,
+				rawPost.author,
+				rawPost.rawbody,
+				rawPost.datetime,
+				rawPost.modified,
+				rawPost.link,
+				rawPost.readingtime,
+				truncatedBody
+			)
+		})
 
-				res.posts = posts.map(function(rawPost) {
-					let truncatedBody = rawPost.truncatedbody
-
-					if (config.searching) {
-						let pattern = ""
-						config.fieldValues.forEach(function(value) {
-							pattern += value.replace(/<|>/g, "") + "|"
-						})
-						pattern = pattern.slice(0, -1)
-						const regex = new RegExp(pattern, "gi")
-
-						// Marking won"t work inside code blocks, because styling is applied via script
-						truncatedBody = truncatedBody.replace(
-							regex,
-							'<mark class="search">$&</mark>'
-						)
-
-						// Open <, and match any number of characters except >, and only then match marks,
-						// otherwise it would just match up until a later >, and most likely include the marks too.
-						const matches = truncatedBody.match(
-							/<[^>]*?<mark class="search">.+?<\/mark>.*?>/gi
-						)
-
-						if (matches) {
-							matches.forEach(function(match) {
-								truncatedBody = truncatedBody.replace(
-									match,
-									match.replace(/<\/mark>|<mark class="search">/gi, "")
-								)
-							})
-						}
-					}
-
-					return new Post(
-						rawPost.title,
-						rawPost.body,
-						rawPost.datetime,
-						rawPost.modified,
-						rawPost.link,
-						rawPost.readingtime,
-						truncatedBody
-					)
-				})
-
-				return res
-			})
-			.catch((e) => console.info(e))
+		return res
 	}
 }
 

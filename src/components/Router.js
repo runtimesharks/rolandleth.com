@@ -12,7 +12,7 @@ const Routes = () => {
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/about" component={About} />
 			<Route path="/life" component={Life} />
-			<Route path="/tech" component={Tech} />
+			<Route path="/tech/blog" component={Tech} />
 
 			<Route path="/:oldPost" component={OldPostHandler} />
 			<Route path="*" component={NotFoundPage} />

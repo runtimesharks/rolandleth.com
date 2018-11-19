@@ -23,6 +23,7 @@ class DbConfig {
 		this.orderDirection = "ASC"
 		this.limit = parseInt(process.env.PAGE_SIZE) || 10
 		this.offset = 0
+		this.accessibleOnlyByLink = false
 	}
 
 	/** * Limit one, link as field, and the post"s link as fieldValue.
@@ -100,14 +101,15 @@ class DbConfig {
 	/**
 	 * Zero limit, searching true, body and title as fields and the query as a field value.
 	 * @param {String} query - The strings we want to search for.
+	 * @param {Number} offset - The offset where to start from.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static search(query) {
+	static search(query, offset) {
 		const config = new DbConfig()
-		config.limit = 0
 		config.searching = true
 		config.fields = ["body", "title"]
 		config.fieldValues = [query]
+		config.offset = offset
 
 		return config
 	}

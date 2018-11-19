@@ -3,11 +3,14 @@ import styled from "styled-components"
 import ContinueReading from "./ContinueReading"
 import ArticleHeader from "./ArticleHeader"
 import Helmet from "../../Helmet"
+import ReactMarkdown from "react-markdown"
 
-class Article extends React.PureComponent {
+class Article extends React.Component {
 	componentDidMount() {
-		const postBody = document.getElementsByClassName("post-body")[0]
-		postBody.innerHTML = this.props.post.body
+		const postBody = document.getElementsByClassName(
+			`post-body-${this.props.index}`
+		)[0]
+		// postBody.innerHTML = this.props.post.truncatedBody
 	}
 
 	render() {
@@ -21,7 +24,9 @@ class Article extends React.PureComponent {
 					isoDate={post.isoDate}
 				/>
 				<ArticleHeader {...this.props} />
-				<Body className="post-body" />
+				<Body className={`post-body-${this.props.index}`}>
+					<ReactMarkdown source={post.rawBody} />
+				</Body>
 				<ContinueReading {...this.props} />
 			</Container>
 		)
