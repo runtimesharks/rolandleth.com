@@ -10,19 +10,18 @@ require("../lib/date")
  * @returns {String} A string in "1 min read" format.
  */
 function timeToRead(body) {
-	return (function() {
-		const t = readingTime(body)
-		switch (true) {
-			case t.minutes <= 0.2:
-				return ""
-			case t.minutes <= 0.5:
-				return "25 sec read"
-			case t.minutes <= 0.8:
-				return "45 sec read"
-			default:
-				return t.text
-		}
-	})()
+	const t = readingTime(body)
+
+	switch (true) {
+		case t.minutes <= 0.2:
+			return ""
+		case t.minutes <= 0.5:
+			return "25 sec read"
+		case t.minutes <= 0.8:
+			return "45 sec read"
+		default:
+			return t.text
+	}
 }
 
 /**
@@ -33,26 +32,20 @@ function timeToRead(body) {
  * @param link {String} The link of the body.
  * @returns {String} The truncated body.
  */
-function truncateBody(title, body, link) {
+function truncateBody(body) {
 	if (body.length < 900) {
 		return body
 	}
 
 	const truncatedBody = truncateHTML(body, {
 		length: 700,
-		ellipsis: " [&hellip;]",
+		ellipsis: " ...",
+		// ellipsis: " [&hellip;]",
 		stripTags: false,
 		keepWhitespaces: true
 	})
 
-	return (
-		truncatedBody +
-		'<br/><a class="post-continue-reading" href="/' +
-		link +
-		'" data-post-title="' +
-		title +
-		'">Continue reading &rarr;</a>'
-	)
+	return truncatedBody
 }
 
 /**
@@ -78,16 +71,21 @@ class Post {
 		modified = new Date().toDateString(),
 		link = Post.createLink(title),
 		readingTime = timeToRead(body),
-		truncatedBody = truncateBody(title, body, link)
+		truncatedBody = truncateBody(body)
 	) {
 		this.title = title
 		this.body = body
 		this.author = author
 		this.rawBody = rawBody
-		this.truncatedBody = truncatedBody
+		this.truncatedBody = truncateBody(rawBody)
+		// this.truncatedBody = truncatedBody
 		this.readingTime = readingTime
 		this.datetime = datetime
-		this.date = Post.dateFromDateTime(datetime) || ""
+
+		var options = { year: "numeric", month: "short", day: "numeric" }
+		const rawDate = Post.dateFromDateTime(datetime)
+
+		this.date = rawDate.toLocaleDateString("en-US", options)
 		this.modified = modified
 		this.link = link
 	}
@@ -101,6 +99,7 @@ class Post {
 		if (!datetime) {
 			return ""
 		}
+
 		const matches = datetime.match(/(\d{4})-(\d{2})-(\d{2})-(\d{4})/)
 		const year = matches[1]
 		const month = matches[2] - 1 // Months are 0 indexed :|

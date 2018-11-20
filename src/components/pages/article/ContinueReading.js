@@ -4,9 +4,7 @@ import Link from "../../link/Link"
 import Theme from "../../theme/Theme"
 
 const ContinueReading = ({ post }) => {
-	return post.body === post.truncatedBody ? (
-		""
-	) : (
+	return (
 		<Container>
 			<StyledLink
 				href={post.link}

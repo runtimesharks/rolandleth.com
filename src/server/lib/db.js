@@ -1,5 +1,9 @@
 "use strict"
 
+import DbResult from "../models/dbResult"
+import DbConfig from "../models/dbConfig"
+import Post from "./../models/post"
+
 const postsTable = "techPosts"
 const pool = (function() {
 	const Pool = require("pg").Pool
@@ -24,10 +28,6 @@ const pool = (function() {
 
 	return new Pool(config)
 })()
-
-import DbResult from "../models/dbResult"
-import DbConfig from "../models/dbConfig"
-import Post from "./../models/post"
 
 function fields() {
 	return "(title, body, truncatedbody, datetime, modified, link, readingtime)"

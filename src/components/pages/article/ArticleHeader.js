@@ -3,9 +3,7 @@ import styled from "styled-components"
 import HoverableLink from "../../link/HoverableLink"
 
 const ArticleHeader = ({ post }) => {
-	const readingTime = post.readingTime
-		? `: \u00a0~ ${post.readingTime} read`
-		: ""
+	const readingTime = post.readingTime ? `: \u00a0~ ${post.readingTime}` : ""
 
 	return (
 		<Container>
