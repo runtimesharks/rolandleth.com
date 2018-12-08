@@ -10,11 +10,13 @@ const router = express.Router()
 
 router.get("/*", (req, res) => {
 	const context = {}
+	const location = req.protocol + "://" + req.hostname + req.originalUrl
 	const markup = renderToString(
-		<StaticRouter context={context} location={req.url}>
-			<App />
+		<StaticRouter context={context} location={req.originalUrl}>
+			<App location={location} />
 		</StaticRouter>
 	)
+
 	const helmet = Helmet.renderStatic()
 	const allHelmetDataAsString = Object.keys(helmet)
 		.map((key) => helmet[key].toString())

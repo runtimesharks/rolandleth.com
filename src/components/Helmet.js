@@ -2,16 +2,12 @@ import React from "react"
 import { Helmet as ReactHelmet } from "react-helmet"
 
 class Helmet extends React.Component {
-	window = () => {
-		if (typeof window !== "undefined") {
-			return window
-		}
-
-		return { location: "/" }
-	}
-
 	titleSuffix = () => {
 		return this.props.title === "" ? "" : `: ${this.props.title}`
+	}
+
+	location = () => {
+		return window ? window.location : this.props.location
 	}
 
 	ogExtraFields = () => {
@@ -35,6 +31,7 @@ class Helmet extends React.Component {
 			<ReactHelmet>
 				<title>{"Roland Leth" + this.titleSuffix()}</title>
 				<link rel="shortcut icon" href="/favicon.ico" />
+				<link rel="canonical" href={this.props.location} />
 				<link
 					rel="icon"
 					href="/images/favicons/192x192.png"
@@ -79,7 +76,7 @@ class Helmet extends React.Component {
 					content="https://rolandleth.com/images/favicons/200x200.png"
 				/>
 				<meta property="og:description" content={this.props.description} />
-				<meta property="og:url" content={this.window().location} />
+				<meta property="og:url" content={this.props.location} />
 				<meta property="og:site_name" content="Roland Leth's blog" />
 				{this.ogExtraFields()}
 				{/* Twitter */}
@@ -92,7 +89,7 @@ class Helmet extends React.Component {
 					property="twitter:description"
 					content={this.props.description}
 				/>
-				<meta property="twitter:url" content={this.window().location} />
+				<meta property="twitter:url" content={this.props.location} />
 				{/* Stylesheets */}
 				<link rel="stylesheet" href="/styles/globals/base.css" />
 				<link rel="stylesheet" href="/styles/components/header.css" />

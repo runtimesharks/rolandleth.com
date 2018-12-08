@@ -16,18 +16,12 @@ class SiteHeader extends React.Component {
 	}
 
 	query = () => {
-		if (typeof window === "undefined") {
-			return ""
-		}
-
 		let query = ""
-		let { location } = window
+		let { location } = this.props
 		let q = "query="
 
-		if (location.search.includes(q)) {
-			query = decodeURIComponent(location.search)
-				.split(q)[1]
-				.replace(/[+]/g, " ")
+		if (location.includes(q) && location.includes("search?")) {
+			query = location.split(q)[1].replace(/[+]/g, " ")
 		}
 
 		return query

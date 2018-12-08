@@ -7,20 +7,18 @@ import Routes from "./components/Router"
 import Theme from "./components/theme/Theme"
 import SiteHeader from "./components/site-header/SiteHeader"
 
-class App extends React.Component {
-	render() {
-		return (
-			<React.Fragment>
-				<Helmet />
-				<GlobalStyle />
-				<GlobalSyntaxStyle />
-				<SiteHeader />
-				<Content>
-					<Routes />
-				</Content>
-			</React.Fragment>
-		)
-	}
+const App = (props) => {
+	return (
+		<React.Fragment>
+			<Helmet {...props} />
+			<GlobalStyle />
+			<GlobalSyntaxStyle />
+			<SiteHeader {...props} />
+			<Content>
+				<Routes />
+			</Content>
+		</React.Fragment>
+	)
 }
 
 const Content = styled.div`

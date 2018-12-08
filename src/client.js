@@ -9,7 +9,7 @@ const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
 renderMethod(
 	<BrowserRouter>
 		<ScrollToTop>
-			<App />
+			<App location={window.location.href} />
 		</ScrollToTop>
 	</BrowserRouter>,
 	document.getElementById("root")
