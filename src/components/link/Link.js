@@ -6,6 +6,10 @@ class Link extends React.Component {
 	content = () => {
 		const { props } = this
 
+		if (props.href === undefined) {
+			return ""
+		}
+
 		const newProps = {
 			className: props.className || "blank",
 			title:

@@ -16,10 +16,10 @@ router.get("/sitemap.xml", async (req, res) => {
 	createSitemap(res)
 })
 
-router.get("/life", lifeRouter)
+router.use("/life", lifeRouter)
 router.use("/tech", techRouter)
 router.use("/api", apiRouter)
-router.get("/downloads", downloadsRouter)
+router.use("/downloads", downloadsRouter)
 router.use("/*", rootRouter)
 
 export default router

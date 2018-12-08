@@ -3,8 +3,8 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import NotFoundPage from "./pages/NotFound"
 import About from "./pages/About"
 import Intro from "./pages/Intro"
-import Tech from "./pages/tech/Tech"
 import Life from "./pages/life/Life"
+import Blog from "./pages/blog/Blog"
 
 const Routes = () => {
 	return (
@@ -12,7 +12,11 @@ const Routes = () => {
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/about" component={About} />
 			<Route path="/life" component={Life} />
-			<Route path="/tech/blog" component={Tech} />
+			<Route
+				exact
+				path="/tech/blog/:postLink?"
+				render={(props) => <Blog {...props} section="tech" />}
+			/>
 
 			<Route path="/:oldPost" component={OldPostHandler} />
 			<Route path="*" component={NotFoundPage} />

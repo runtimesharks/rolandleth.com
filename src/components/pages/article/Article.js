@@ -2,35 +2,35 @@ import React from "react"
 import styled from "styled-components"
 import ContinueReading from "./ContinueReading"
 import ArticleHeader from "./ArticleHeader"
-import Helmet from "../../Helmet"
 import ReactMarkdown from "react-markdown"
+import Theme from "../../theme/Theme"
 
-class Article extends React.Component {
-	render() {
-		const { post } = this.props
-		const isTruncated = post.rawBody !== post.truncatedBody
+const Article = (props) => {
+	const { post } = props
 
-		return (
-			<Container>
-				<Helmet
-					title={post.title}
-					description={post.firstParagraph}
-					isoDate={post.isoDate}
-				/>
-				<ArticleHeader {...this.props} />
-				<Body>
-					<ReactMarkdown
-						source={isTruncated ? post.truncatedBody : post.rawBody}
-					/>
-				</Body>
-				{isTruncated ? <ContinueReading {...this.props} /> : ""}
-			</Container>
-		)
+	if (post.link === undefined) {
+		return ""
 	}
+
+	const isTruncated =
+		post.rawBody !== post.truncatedBody && props.isSingle === false
+
+	return (
+		<Container>
+			<ArticleHeader {...props} />
+			<Body>
+				<ReactMarkdown
+					source={isTruncated ? post.truncatedBody : post.rawBody}
+				/>
+			</Body>
+			{isTruncated ? <ContinueReading {...props} /> : ""}
+		</Container>
+	)
 }
 
 const Container = styled.div`
-	padding-bottom: 3em;
+	padding: 3em 0;
+	${Theme.lightBottomBorder()};
 `
 
 const Body = styled.div`

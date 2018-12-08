@@ -1,0 +1,52 @@
+import React from "react"
+import axios from "axios"
+import styled from "styled-components"
+import Article from "../article/Article"
+
+class BlogPost extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			post: props.post
+		}
+	}
+
+	componentDidMount() {
+		if (this.state.post) {
+			return
+		}
+
+		this.fetchPost()
+	}
+
+	fetchPost = () => {
+		const split = this.props.location.pathname.split("/")
+		const post = split[split.length - 1]
+		const url = `http://localhost:3000/api/tech/posts/${post}`
+
+		axios
+			.get(url)
+			.then((result) => result.data)
+			.then((post) => this.setState({ post }))
+			.catch((e) => console.log(e))
+	}
+
+	render() {
+		const { post } = this.state
+
+		if (post === undefined) {
+			return ""
+		}
+
+		return (
+			<Container>
+				<Article post={post} isSingle={true} />
+			</Container>
+		)
+	}
+}
+
+const Container = styled.div``
+
+export default BlogPost

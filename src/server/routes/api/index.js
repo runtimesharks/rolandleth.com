@@ -1,15 +1,8 @@
 import express from "express"
-import Db from "../../lib/db"
-import DbConfig from "../../models/dbConfig"
+import { techRouter } from "./tech"
 
 const router = express.Router()
 
-router.get("/tech/posts", async (req, res) => {
-	const config = DbConfig.page(req.query.page || 1)
-	const result = await Db.fetchPosts(config)
-	const posts = result.posts
-
-	res.send(posts)
-})
+router.use("/tech", techRouter)
 
 export { router as apiRouter }

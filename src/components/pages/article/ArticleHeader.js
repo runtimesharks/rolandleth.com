@@ -2,18 +2,20 @@ import React from "react"
 import styled from "styled-components"
 import HoverableLink from "../../link/HoverableLink"
 
-const ArticleHeader = ({ post }) => {
+const ArticleHeader = (props) => {
+	const { post } = props
 	const readingTime = post.readingTime ? `: \u00a0~ ${post.readingTime}` : ""
+	let link = props.path || post.link
+
+	if (props.path !== undefined) {
+		link = props.path + "/" + post.link
+	}
 
 	return (
 		<Container>
 			<Date>{post.date + readingTime}</Date>
 			<Title>
-				<HoverableLink
-					href={post.link}
-					title={post.title}
-					text={post.title}
-				/>
+				<HoverableLink href={link} title={post.title} text={post.title} />
 			</Title>
 		</Container>
 	)

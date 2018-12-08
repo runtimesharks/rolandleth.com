@@ -1,10 +1,14 @@
 import express from "express"
-import fetchPosts from "./postsFetcher"
+import { fetchPosts, fetchPost } from "./postsFetcher"
 
 const router = express.Router()
 
 router.get("/posts", async (req, res) => {
-	fetchPosts("tech", res)
+	fetchPosts("tech", req, res)
 })
 
-export { router as apiRouter }
+router.get("/posts/:link", async (req, res) => {
+	fetchPost(req.params.link, res)
+})
+
+export { router as techRouter }
