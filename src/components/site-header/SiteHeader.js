@@ -10,8 +10,7 @@ class SiteHeader extends React.Component {
 		super(props)
 
 		this.state = {
-			isSearchFieldVisible: this.query() !== "",
-			query: this.query()
+			isSearchFieldVisible: this.query() !== ""
 		}
 	}
 
@@ -43,8 +42,8 @@ class SiteHeader extends React.Component {
 		return (
 			<React.Fragment>
 				<SearchForm
-					props={this.props}
-					query={this.state.query}
+					{...this.props}
+					query={this.query()}
 					isSearchFieldVisible={this.state.isSearchFieldVisible}
 				/>
 				<Container>
