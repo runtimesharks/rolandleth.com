@@ -2,6 +2,7 @@ import React from "react"
 import axios from "axios"
 import styled from "styled-components"
 import Article from "../article/Article"
+import NotFoundPage from "../NotFound"
 
 class BlogPost extends React.Component {
 	constructor(props) {
@@ -35,8 +36,8 @@ class BlogPost extends React.Component {
 	render() {
 		const { post } = this.state
 
-		if (post === undefined) {
-			return ""
+		if (post === undefined || post.length === 0) {
+			return <NotFoundPage />
 		}
 
 		return (
