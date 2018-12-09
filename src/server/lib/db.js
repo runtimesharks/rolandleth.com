@@ -4,7 +4,6 @@ import DbResult from "../models/dbResult"
 import DbConfig from "../models/dbConfig"
 import Post from "./../models/post"
 
-const postsTable = "techPosts"
 const pool = (function() {
 	const Pool = require("pg").Pool
 	const url = require("url")
@@ -190,7 +189,8 @@ class Db {
 		//		'CREATE TABLE posts(title VARCHAR(100), body VARCHAR(99999), truncatedbody VARCHAR(5000), datetime VARCHAR(50), modified VARCHAR(55), link VARCHAR(100), readingtime VARCHAR(15))'
 		//	);
 
-		let query = "SELECT " + config.columns + " FROM " + postsTable
+		const table = config.section === "tech" ? "techPosts" : "lifePosts"
+		let query = "SELECT " + config.columns + " FROM " + table
 		const queried = config.fields && config.fieldValues
 		if (queried) {
 			if (config.searching) {

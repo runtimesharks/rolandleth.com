@@ -24,6 +24,7 @@ class DbConfig {
 		this.limit = parseInt(process.env.PAGE_SIZE) || 10
 		this.offset = 0
 		this.accessibleOnlyByLink = false
+		this.section = "tech"
 	}
 
 	/** * Limit one, link as field, and the post"s link as fieldValue.
