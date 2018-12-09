@@ -2,6 +2,7 @@ import React from "react"
 import axios from "axios"
 import BlogPosts from "./BlogPosts"
 import BlogPost from "./BlogPost"
+import LifeAbout from "../life/LifeAbout"
 
 class Blog extends React.Component {
 	constructor(props) {
@@ -28,9 +29,17 @@ class Blog extends React.Component {
 	}
 
 	render() {
-		const page = new URLSearchParams(this.props.location.search).get("page")
+		const isList = this.props.match.params.postLink === undefined
 
-		if (page || this.props.match.params.postLink === undefined) {
+		if (
+			this.props.section === "life" &&
+			isList &&
+			this.state.posts.length === 0
+		) {
+			return <LifeAbout />
+		}
+
+		if (isList) {
 			return (
 				<BlogPosts
 					{...this.props}

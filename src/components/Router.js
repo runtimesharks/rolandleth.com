@@ -3,10 +3,10 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import NotFoundPage from "./pages/NotFound"
 import About from "./pages/About"
 import Intro from "./pages/Intro"
-import Life from "./pages/life/Life"
+import LifeAbout from "./pages/life/LifeAbout"
 import Blog from "./pages/blog/Blog"
 
-const Routes = () => {
+const Routes = (props) => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Intro} />

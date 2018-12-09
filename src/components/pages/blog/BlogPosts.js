@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import Article from "../article/Article"
 
-class BlogPost extends React.Component {
+class BlogPosts extends React.Component {
 	componentDidMount() {
-		if (this.props.posts !== undefined && this.props.posts.length > 0) {
+		if (this.props.posts.length > 0) {
 			return
 		}
 
@@ -12,6 +12,10 @@ class BlogPost extends React.Component {
 	}
 
 	render() {
+		if (this.props.posts.length === 0) {
+			return ""
+		}
+
 		return (
 			<Container>
 				{this.props.posts.map((post, index) => (
@@ -30,4 +34,4 @@ class BlogPost extends React.Component {
 
 const Container = styled.div``
 
-export default BlogPost
+export default BlogPosts

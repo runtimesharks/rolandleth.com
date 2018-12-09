@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const Life = () => {
+const LifeAbout = () => {
 	return (
 		<Container>
 			<Greeting>What's this about?</Greeting>
@@ -37,4 +37,4 @@ const Life = () => {
 const Container = styled.div``
 const Greeting = styled.h1``
 
-export default Life
+export default LifeAbout
