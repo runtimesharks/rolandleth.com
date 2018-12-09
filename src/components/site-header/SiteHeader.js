@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router"
 import styled from "styled-components"
 import NavigationIcons from "./NavigationIcons"
 import NavigationLinks from "./NavigationLinks"
@@ -16,11 +17,13 @@ class SiteHeader extends React.Component {
 
 	query = () => {
 		let query = ""
-		let { location } = this.props
+		let location = this.props.location
 		let q = "query="
 
-		if (location.includes(q) && location.includes("search?")) {
-			query = location.split(q)[1].replace(/[+]/g, " ")
+		if (location.search.includes(q)) {
+			query = decodeURIComponent(location.search)
+				.split(q)[1]
+				.replace(/[+]/g, " ")
 		}
 
 		return query
@@ -77,4 +80,4 @@ const Border = styled.div`
 	border-bottom: 1px solid ${Theme.textColor};
 `
 
-export default SiteHeader
+export default withRouter(SiteHeader)

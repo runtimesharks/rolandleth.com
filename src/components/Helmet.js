@@ -6,10 +6,6 @@ class Helmet extends React.Component {
 		return this.props.title === "" ? "" : `: ${this.props.title}`
 	}
 
-	location = () => {
-		return window ? window.location : this.props.location
-	}
-
 	ogExtraFields = () => {
 		if (this.props.isoDate) {
 			return (
@@ -27,11 +23,20 @@ class Helmet extends React.Component {
 	}
 
 	render() {
+		// We pass this from the server when using SSR.
+		let location = this.props.location
+
+		// We use the `window`'s location when rendering on the client.
+		// Used when we need the full URL, like canonical or OG tags.
+		if (typeof window !== "undefined") {
+			location = window.location.href
+		}
+
 		return (
 			<ReactHelmet>
 				<title>{"Roland Leth" + this.titleSuffix()}</title>
 				<link rel="shortcut icon" href="/favicon.ico" />
-				<link rel="canonical" href={this.props.location} />
+				<link rel="canonical" href={location} />
 				<link
 					rel="icon"
 					href="/images/favicons/192x192.png"
@@ -76,7 +81,7 @@ class Helmet extends React.Component {
 					content="https://rolandleth.com/images/favicons/200x200.png"
 				/>
 				<meta property="og:description" content={this.props.description} />
-				<meta property="og:url" content={this.props.location} />
+				<meta property="og:url" content={location} />
 				<meta property="og:site_name" content="Roland Leth's blog" />
 				{this.ogExtraFields()}
 				{/* Twitter */}
@@ -89,7 +94,7 @@ class Helmet extends React.Component {
 					property="twitter:description"
 					content={this.props.description}
 				/>
-				<meta property="twitter:url" content={this.props.location} />
+				<meta property="twitter:url" content={location} />
 				{/* Stylesheets */}
 				<link rel="stylesheet" href="/styles/globals/base.css" />
 				<link rel="stylesheet" href="/styles/components/header.css" />

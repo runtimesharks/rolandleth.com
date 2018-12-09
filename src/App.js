@@ -8,20 +8,12 @@ import Theme from "./components/theme/Theme"
 import SiteHeader from "./components/site-header/SiteHeader"
 
 const App = (props) => {
-	// We pass this from the server when using SSR.
-	let location = props.location
-
-	// We use the `window`'s location when rendering on the client.
-	if (typeof window !== "undefined") {
-		location = window.location.href
-	}
-
 	return (
 		<React.Fragment>
-			<Helmet {...props} location={location} />
+			<Helmet {...props} />
 			<GlobalStyle />
 			<GlobalSyntaxStyle />
-			<SiteHeader {...props} location={location} />
+			<SiteHeader {...props} />
 			<Content>
 				<Routes />
 			</Content>
