@@ -5,7 +5,7 @@ import NavigationLink from "./NavigationLink"
 
 const NavigationLinks = () => (
 	<Container>
-		<NavigationLink href="/life" title="Life" />
+		<NavigationLink href="/life/blog" title="Life" />
 		<NavigationLink href="/tech/blog" title="Tech" />
 	</Container>
 )

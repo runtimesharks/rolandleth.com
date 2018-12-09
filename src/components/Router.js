@@ -11,11 +11,16 @@ const Routes = () => {
 		<Switch>
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/about" component={About} />
-			<Route path="/life" component={Life} />
+			<Route exact path="/life/about" component={LifeAbout} />
+			<Route
+				exact
+				path="/life/blog/:postLink?"
+				render={(p) => <Blog {...p} {...props} section="life" key="life" />}
+			/>
 			<Route
 				exact
 				path="/tech/blog/:postLink?"
-				render={(props) => <Blog {...props} section="tech" />}
+				render={(p) => <Blog {...p} {...props} section="tech" key="tech" />}
 			/>
 
 			<Route path="/:oldPost" component={OldPostHandler} />
