@@ -9,7 +9,8 @@ class BlogPost extends React.Component {
 		super(props)
 
 		this.state = {
-			post: props.post
+			post: props.post,
+			postFetched: props.post !== undefined
 		}
 	}
 
@@ -29,7 +30,7 @@ class BlogPost extends React.Component {
 		axios
 			.get(url)
 			.then((result) => result.data)
-			.then((post) => this.setState({ post }))
+			.then((post) => this.setState({ post: post, postFetched: true }))
 			.catch((e) => console.log(e))
 	}
 
@@ -37,7 +38,7 @@ class BlogPost extends React.Component {
 		const { post } = this.state
 
 		if (post === undefined || post.length === 0) {
-			return <NotFoundPage />
+			return this.state.postFetched ? <NotFoundPage /> : ""
 		}
 
 		return (
