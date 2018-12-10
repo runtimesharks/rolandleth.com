@@ -4,6 +4,11 @@ import styled from "styled-components"
 const LifeAbout = () => {
 	return (
 		<Container>
+			<img
+				className="illustration"
+				src={require("../../../images/progress.svg")}
+				alt="Woman moving gears"
+			/>
 			<Greeting>What's this about?</Greeting>
 			<p>
 				This section of the blog is about self-improvement. I'll be writing
@@ -34,7 +39,15 @@ const LifeAbout = () => {
 	)
 }
 
-const Container = styled.div``
+const Container = styled.div`
+	img.illustration {
+		display: block;
+		margin: auto;
+		padding-bottom: 1em;
+		box-shadow: none;
+		max-width: 300px;
+	}
+`
 const Greeting = styled.h1``
 
 export default LifeAbout
