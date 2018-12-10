@@ -21,15 +21,19 @@ export const GlobalSyntaxStyle = createGlobalStyle`
 		white-space: pre-wrap;
 		font-size: 0.85em;
 		font-family: ${Theme.codeFont};
+
+		&.hljs {
+			padding: 1em;
+		}
 	}
 
 	pre {
 		overflow: auto;
-		padding: 0.25em 0 0.25em 1em;
+		${"" /* padding: 0.25em 0 0.25em 1em; */}
 		margin: 1em 0;
 
 		border-radius: 2px;
-		border-left: 2px solid ${Theme.codeColor};
+		${"" /* border-left: 2px solid ${Theme.codeColor}; */}
 		background-color: #FFF;
 		font-size: 0.95em;
 		font-family: ${Theme.codeFont};
