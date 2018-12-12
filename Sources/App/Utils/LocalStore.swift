@@ -9,20 +9,20 @@
 import Foundation
 
 struct LocalStore {
-	
+
 	private static var folderPath: String {
 		let path: String
-		
+
 		if let postsPath = drop.config["server", "postsPath"]?.string {
 			path = postsPath
 		}
 		else {
 			path = "/Users/roland/Documents/"
 		}
-		
-		return path + "blog/posts/"
+
+		return path + "blog/posts/tech/"
 	}
-	
+
 	/// Reads all local files, or the one that matches the `path` passed, and saves them to the database.
 	///
 	/// - Note: It returns an array of dictionaries, because if a file throws an error, we don't want to stop the whole process, but we do want to know which one failed and why.
@@ -39,7 +39,7 @@ struct LocalStore {
 		let path = path.isEmpty ? "-" : path.droppingFirst()
 		var errors: [String: String] = [:]
 		var files: [File] = []
-		
+
 		try postsFolder().filter { $0.contains(path) }.forEach {
 			do {
 				let file = try self.file(from: $0)
@@ -49,30 +49,30 @@ struct LocalStore {
 				errors[$0] = "\(error)"
 			}
 		}
-		
+
 		// First delete the ones that don't exist, then create new ones,
 		// because if a rename happened, it will first create a duplicate --X variation.
 		if performDelete {
 			Post.deleteFromDatabase(checking: files)
 		}
-		
+
 		try files.forEach(Post.save)
-		
+
 		return errors
 	}
-	
+
 	static func createFile(from bytes: [UInt8]?) throws -> File {
 		let file = try File(from: bytes)
-		
+
 		guard
 			FileManager.default.createFile(
 				atPath: folderPath + "\(file.path)",
 				contents: file.contentsData)
 		else { throw "Couldn't create file at \(file.path)" }
-		
+
 		return file
 	}
-	
+
 	private static func postsFolder() throws -> [String] {
 		do {
 			let paths = try FileManager.default.contentsOfDirectory(atPath: folderPath)
@@ -82,14 +82,14 @@ struct LocalStore {
 			throw error.localizedDescription
 		}
 	}
-	
+
 	private static func file(from path: String) throws -> File {
 		guard
 			let data = FileManager.default.contents(atPath: "\(folderPath)\(path)"),
 			let contents = String(data: data, encoding: .utf8)
 		else { throw "Can't read contents." }
-		
+
 		return try File(path: path, contents: contents)
 	}
-	
+
 }
