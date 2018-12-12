@@ -6,7 +6,8 @@ import Theme from "../theme/Theme"
 const Intro = () => (
 	<Container>
 		<Greeting>
-			Hello, I'm Roland Leth. <br />
+			Hello, I'm Roland Leth.
+			<br />
 			Welcome to by blog!
 		</Greeting>
 		<p>
