@@ -10,17 +10,19 @@ import { Route, Switch } from "react-router-dom"
 const NavigationIcons = (props) => {
 	return (
 		<Container>
-			<IconButton
-				onClick={props.onSearchClick}
-				title="Search Roland's posts"
-			>
-				<i className="fa fa-search fa-fw" />
-			</IconButton>
 			<Switch>
 				<Route path="/:anything">
-					<NavigationIcon href="/" title="Roland's Leth's homepage">
-						<i className="fa fa-home fa-fw" />
-					</NavigationIcon>
+					<React.Fragment>
+						<IconButton
+							onClick={props.onSearchClick}
+							title="Search Roland's posts"
+						>
+							<i className="fa fa-search fa-fw" />
+						</IconButton>
+						<NavigationIcon href="/" title="Roland's Leth's homepage">
+							<i className="fa fa-home fa-fw" />
+						</NavigationIcon>
+					</React.Fragment>
 				</Route>
 			</Switch>
 			<Switch>
