@@ -5,13 +5,15 @@ import BlogPosts from "./BlogPosts"
 import BlogPost from "./BlogPost"
 import LifeAbout from "../life/LifeAbout"
 import Pagination from "./Pagination"
+import NotFoundPage from "../NotFound"
 
 class Blog extends React.Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			posts: []
+			posts: [],
+			postsFetched: false
 		}
 	}
 
@@ -35,7 +37,7 @@ class Blog extends React.Component {
 		axios
 			.get(url)
 			.then((result) => result.data)
-			.then((posts) => this.setState({ posts }))
+			.then((posts) => this.setState({ posts: posts, postsFetched: true }))
 			.catch((e) => console.log(e))
 	}
 
@@ -65,23 +67,38 @@ class Blog extends React.Component {
 		return <BlogPost {...this.props} post={post} />
 	}
 
+	pagination = (isList) => {
+		if (isList === false) {
+			return ""
+		}
+
+		return (
+			<Pagination
+				{...this.props}
+				page={this.page()}
+				pages={20}
+				onPageChange={this.fetchPosts}
+			/>
+		)
+	}
+
+	contentWithPagination = (isList) => {
+		if (this.state.postsFetched && this.state.posts.length === 0) {
+			return <NotFoundPage />
+		}
+
+		return (
+			<React.Fragment>
+				{this.content(isList)}
+				{this.pagination(isList)}
+			</React.Fragment>
+		)
+	}
+
 	render() {
 		const isList = this.props.match.params.postLink === undefined
 
-		return (
-			<Container>
-				{this.content(isList)}
-				{isList ? (
-					<Pagination
-						{...this.props}
-						page={this.page()}
-						onPageChange={this.fetchPosts}
-					/>
-				) : (
-					""
-				)}
-			</Container>
-		)
+		return <Container>{this.contentWithPagination(isList)}</Container>
 	}
 }
 

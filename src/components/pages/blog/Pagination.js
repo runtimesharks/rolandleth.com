@@ -90,7 +90,7 @@ class Pagination extends React.Component {
 
 	nextPage = (page) => {
 		const nextPage = page + 1
-		const { pages } = this.props || 20
+		const pages = this.props.pages || 0
 		const preLastPage = pages - 1
 
 		if (page >= preLastPage) {
@@ -109,7 +109,7 @@ class Pagination extends React.Component {
 
 	rightGap = (page) => {
 		const { gap } = this.state
-		const pages = this.props.pages || 20
+		const pages = this.props.pages || 0
 		const preLastPage = pages - 1
 
 		if (page >= pages - gap) {
@@ -130,7 +130,7 @@ class Pagination extends React.Component {
 	}
 
 	rightArrow = (page) => {
-		const pages = this.props.pages || 20
+		const pages = this.props.pages || 0
 
 		if (page >= pages) {
 			return <span className="disabled">Next &rarr;</span>
