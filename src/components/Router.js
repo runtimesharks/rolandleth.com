@@ -4,7 +4,7 @@ import NotFoundPage from "./pages/NotFound"
 import About from "./pages/About"
 import Intro from "./pages/Intro"
 import LifeAbout from "./pages/life/LifeAbout"
-import Blog from "./pages/blog/Blog"
+import BlogRoute from "./pages/blog/BlogRoute"
 
 const Routes = () => {
 	return (
@@ -12,18 +12,8 @@ const Routes = () => {
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/about" component={About} />
 			<Route exact path="/life/about" component={LifeAbout} />
-			<Route exact path="/life/blog/:postLink?">
-				<Blog section="life" key="life" />
-			</Route>
-			<Route
-				exact
-				path="/tech/blog/:postLink?"
-				onUpdate={() => {
-					console.log("A")
-				}}
-			>
-				<Blog section="tech" key="tech" />
-			</Route>
+			<BlogRoute exact path="/life/blog/:postLink?" section="life" />
+			<BlogRoute exact path="/tech/blog/:postLink?" section="tech" />
 
 			<Route path="/:oldPost" component={OldPostHandler} />
 			<Route path="*" component={NotFoundPage} />
