@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "../theme/Theme"
 import "../font-awesome/css/font-awesome.min.css"
@@ -8,17 +9,19 @@ import HoverableLink from "../link/HoverableLink"
 import { Route, Switch } from "react-router-dom"
 
 const NavigationIcons = (props) => {
+	const section = props.location.pathname.startsWith("/tech") ? "Tech" : "Life"
+
 	return (
 		<Container>
 			<Switch>
 				<Route path="/:anything">
 					<React.Fragment>
-						<IconButton
+						{/* <IconButton
 							onClick={props.onSearchClick}
 							title="Search Roland's posts"
 						>
 							<i className="fa fa-search fa-fw" />
-						</IconButton>
+						</IconButton> */}
 						<NavigationIcon href="/" title="Roland's Leth's homepage">
 							<i className="fa fa-home fa-fw" />
 						</NavigationIcon>
@@ -56,7 +59,7 @@ const NavigationIcons = (props) => {
 				<Route path="/:anything">
 					<NavigationIcon
 						href="/tech/feed"
-						title="Subscribe to Roland's feed"
+						title={`Subscribe to Roland's ${section} feed`}
 					>
 						<i className="fa fa-rss fa-fw" />
 					</NavigationIcon>
@@ -129,4 +132,4 @@ const IconButton = styled(Button)`
 	}
 `
 
-export default NavigationIcons
+export default withRouter(NavigationIcons)
