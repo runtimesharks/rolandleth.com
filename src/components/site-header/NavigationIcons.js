@@ -110,7 +110,7 @@ const SecondHalf = styled.span`
 `
 
 const IconButton = styled(Button)`
-	padding: 0 0 2px;
+	padding: 0;
 	height: 21px;
 	flex: 1;
 	height: 100%;
