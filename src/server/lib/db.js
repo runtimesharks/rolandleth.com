@@ -165,10 +165,11 @@ class Db {
 
 	/**
 	 * Fetch all posts, except future ones.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchFeedPosts() {
-		return Db.fetchPosts(DbConfig.feed())
+	static fetchFeedPosts(section) {
+		return Db.fetchPosts(DbConfig.feed(section))
 	}
 
 	/**

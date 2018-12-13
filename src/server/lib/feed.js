@@ -2,7 +2,7 @@ import Db from "../lib/db"
 import Post from "../models/post"
 
 async function createFeed(section, req, res) {
-	const data = await Db.fetchFeedPosts()
+	const data = await Db.fetchFeedPosts(section)
 	const year = new Date().getFullYear()
 	const updated = new Date().toISOString()
 	const baseUrl = req.protocol + "://" + req.headers.host
@@ -19,7 +19,7 @@ async function createFeed(section, req, res) {
 	}</subtitle>\n`
 	xml += `<updated>${updated}</updated>\n`
 	xml += "<author>\n\t<name>Roland Leth</name>\n</author>\n"
-	xml += `<link rel="self" type="application/atom+xml" href="${baseUrl}/feed"/>\n`
+	xml += `<link rel="self" type="application/atom+xml" href="${sectionUrl}/feed"/>\n`
 	xml += `<link rel="alternate" type="text/html" hreflang="en" href="${baseUrl}"/>\n`
 	xml += `<id>${sectionUrl}/feed</id>\n`
 	xml += `<icon>${baseUrl}/images/favicons/192x192.png</icon>\n`

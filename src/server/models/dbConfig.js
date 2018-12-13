@@ -66,11 +66,13 @@ class DbConfig {
 
 	/**
 	 * Zero limit.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static feed() {
+	static feed(section) {
 		const config = new DbConfig()
 		config.limit = 0
+		config.section = section
 
 		return config
 	}
