@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router"
 import axios from "axios"
 import Article from "../article/Article"
 import NotFoundPage from "../NotFound"
@@ -44,4 +45,4 @@ class BlogPost extends React.Component {
 	}
 }
 
-export default BlogPost
+export default withRouter(BlogPost)

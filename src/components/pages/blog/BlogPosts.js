@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router"
 import Article from "../article/Article"
 
 class BlogPosts extends React.Component {
@@ -31,4 +32,4 @@ class BlogPosts extends React.Component {
 	}
 }
 
-export default BlogPosts
+export default withRouter(BlogPosts)

@@ -18,17 +18,8 @@ class Blog extends React.Component {
 		}
 	}
 
-	page = () => {
-		return (
-			parseInt(
-				new URLSearchParams(this.props.location.search).get("page"),
-				10
-			) || 1
-		)
-	}
-
 	fetchPosts = (thePage) => {
-		const page = thePage || this.page()
+		const page = thePage || this.props.page
 		var url = `http://localhost:3000/api/${this.props.section}/posts`
 
 		if (page > 0) {
@@ -59,11 +50,7 @@ class Blog extends React.Component {
 
 		if (isList) {
 			return (
-				<BlogPosts
-					{...this.props}
-					fetchPosts={this.fetchPosts}
-					posts={this.state.posts}
-				/>
+				<BlogPosts fetchPosts={this.fetchPosts} posts={this.state.posts} />
 			)
 		}
 
@@ -71,7 +58,7 @@ class Blog extends React.Component {
 			(post) => post.link === this.props.match.params.postLink
 		)[0]
 
-		return <BlogPost {...this.props} post={post} />
+		return <BlogPost post={post} />
 	}
 
 	pagination = (isList) => {
@@ -82,7 +69,6 @@ class Blog extends React.Component {
 		return (
 			<Pagination
 				{...this.props}
-				page={this.page()}
 				pages={this.state.pages}
 				onPageChange={this.fetchPosts}
 			/>
