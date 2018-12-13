@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router"
 import axios from "axios"
 import styled from "styled-components"
 import BlogPosts from "./BlogPosts"
@@ -104,4 +105,4 @@ class Blog extends React.Component {
 
 const Container = styled.div``
 
-export default Blog
+export default withRouter(Blog)

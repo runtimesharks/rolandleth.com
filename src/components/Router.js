@@ -6,22 +6,24 @@ import Intro from "./pages/Intro"
 import LifeAbout from "./pages/life/LifeAbout"
 import Blog from "./pages/blog/Blog"
 
-const Routes = (props) => {
+const Routes = () => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/about" component={About} />
 			<Route exact path="/life/about" component={LifeAbout} />
-			<Route
-				exact
-				path="/life/blog/:postLink?"
-				render={(p) => <Blog {...p} {...props} section="life" key="life" />}
-			/>
+			<Route exact path="/life/blog/:postLink?">
+				<Blog section="life" key="life" />
+			</Route>
 			<Route
 				exact
 				path="/tech/blog/:postLink?"
-				render={(p) => <Blog {...p} {...props} section="tech" key="tech" />}
-			/>
+				onUpdate={() => {
+					console.log("A")
+				}}
+			>
+				<Blog section="tech" key="tech" />
+			</Route>
 
 			<Route path="/:oldPost" component={OldPostHandler} />
 			<Route path="*" component={NotFoundPage} />
