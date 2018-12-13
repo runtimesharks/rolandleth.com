@@ -62,7 +62,7 @@ class Blog extends React.Component {
 	}
 
 	pagination = (isList) => {
-		if (isList === false) {
+		if (isList === false || this.state.postsFetched === false) {
 			return ""
 		}
 
