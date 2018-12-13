@@ -1,5 +1,4 @@
 import React from "react"
-import styled from "styled-components"
 import Article from "../article/Article"
 
 class BlogPosts extends React.Component {
@@ -17,7 +16,7 @@ class BlogPosts extends React.Component {
 		}
 
 		return (
-			<Container>
+			<React.Fragment>
 				{this.props.posts.map((post, index) => (
 					<Article
 						path={this.props.match.url}
@@ -27,11 +26,9 @@ class BlogPosts extends React.Component {
 						isSingle={false}
 					/>
 				))}
-			</Container>
+			</React.Fragment>
 		)
 	}
 }
-
-const Container = styled.div``
 
 export default BlogPosts

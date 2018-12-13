@@ -1,6 +1,5 @@
 import React from "react"
 import axios from "axios"
-import styled from "styled-components"
 import Article from "../article/Article"
 import NotFoundPage from "../NotFound"
 
@@ -41,14 +40,8 @@ class BlogPost extends React.Component {
 			return this.state.postFetched ? <NotFoundPage /> : ""
 		}
 
-		return (
-			<Container>
-				<Article post={post} isSingle={true} />
-			</Container>
-		)
+		return <Article post={post} isSingle={true} />
 	}
 }
-
-const Container = styled.div``
 
 export default BlogPost
