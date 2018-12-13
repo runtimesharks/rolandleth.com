@@ -22,7 +22,7 @@ const App = (props) => {
 }
 
 const Content = styled.div`
-	margin: 6em 0 0.5em 2px;
+	margin: 6em 0 5em 0;
 
 	@media screen and (max-width: ${Theme.phoneMedia}) {
 		padding-bottom: 0;

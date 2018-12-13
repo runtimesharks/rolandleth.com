@@ -39,7 +39,8 @@ class Article extends React.Component {
 }
 
 const Container = styled.div`
-	padding: 3em 0 2em;
+	padding-bottom: 2em;
+	margin-bottom: 3em;
 	${Theme.lightBottomBorder()};
 `
 
