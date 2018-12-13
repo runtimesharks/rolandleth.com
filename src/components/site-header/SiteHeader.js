@@ -30,10 +30,10 @@ class SiteHeader extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <SearchForm
+				<SearchForm
 					{...this.props}
 					isSearchFieldVisible={this.state.isSearchFieldVisible}
-				/> */}
+				/>
 				<Container>
 					<NavigationIcons onSearchClick={this.handleSearchClick} />
 					<Border />
