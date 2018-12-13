@@ -222,7 +222,8 @@ class Db {
 
 		const result = await pool.query(query)
 		const res = new DbResult()
-		res.totalPosts = result.rows.length
+		res.totalPages = parseInt(result.rows.length / config.limit, 10) + 1
+
 		let posts = result.rows.reverse()
 
 		if (!config.updating && config.limit !== 1) {

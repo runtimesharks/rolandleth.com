@@ -38,7 +38,13 @@ class Blog extends React.Component {
 		axios
 			.get(url)
 			.then((result) => result.data)
-			.then((posts) => this.setState({ posts: posts, postsFetched: true }))
+			.then((result) =>
+				this.setState({
+					posts: result.posts,
+					postsFetched: true,
+					pages: result.totalPages
+				})
+			)
 			.catch((e) => console.log(e))
 	}
 
@@ -77,7 +83,7 @@ class Blog extends React.Component {
 			<Pagination
 				{...this.props}
 				page={this.page()}
-				pages={20}
+				pages={this.state.pages}
 				onPageChange={this.fetchPosts}
 			/>
 		)

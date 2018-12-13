@@ -1,13 +1,13 @@
 /**
  * A simple object to wrap the results.
  * @property {Post[]} posts - An array of {@link DbConfig.pageSize} posts.
- * @property {int} totalPosts - The total number of posts in the db.
+ * @property {int} totalPages - The total number of pages.
  * @constructor
  */
 class DbResult {
 	constructor() {
 		this.posts = []
-		this.totalPosts = 0
+		this.totalPages = 0
 	}
 }
 

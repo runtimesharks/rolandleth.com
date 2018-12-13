@@ -6,10 +6,9 @@ async function fetchPosts(section, req, res) {
 	config.section = section
 
 	const result = await Db.fetchPosts(config)
-	const posts = result.posts
 
 	setJSHeaderTo(res)
-	res.send(posts)
+	res.send(result)
 }
 
 async function fetchPost(link, res) {
