@@ -7,7 +7,8 @@ class SearchForm extends React.Component {
 		super(props)
 
 		this.state = {
-			formSize: this.formSize()
+			formSize: this.formSize(),
+			query: this.props.query
 		}
 	}
 
@@ -44,8 +45,10 @@ class SearchForm extends React.Component {
 	render() {
 		return (
 			<Form
-				action="/search"
-				method="get"
+				onSubmit={(event) => {
+					this.props.onSearch(this.state.query)
+					event.preventDefault()
+				}}
 				isVisible={this.props.isSearchFieldVisible}
 			>
 				<TextField
@@ -55,6 +58,7 @@ class SearchForm extends React.Component {
 					defaultValue={this.props.query}
 					maxLength="30"
 					placeholder="Search..."
+					onChange={(query) => this.setState({ query })}
 				/>
 
 				{this.props.totalPosts > 1 && (

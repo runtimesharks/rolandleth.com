@@ -11,22 +11,8 @@ class SiteHeader extends React.Component {
 		super(props)
 
 		this.state = {
-			isSearchFieldVisible: this.query() !== ""
+			isSearchFieldVisible: this.props.query !== ""
 		}
-	}
-
-	query = () => {
-		let query = ""
-		let location = this.props.location
-		let q = "query="
-
-		if (location.search.includes(q)) {
-			query = decodeURIComponent(location.search)
-				.split(q)[1]
-				.replace(/[+]/g, " ")
-		}
-
-		return query
 	}
 
 	handleSearchClick = () => {
@@ -44,11 +30,10 @@ class SiteHeader extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<SearchForm
+				{/* <SearchForm
 					{...this.props}
-					query={this.query()}
 					isSearchFieldVisible={this.state.isSearchFieldVisible}
-				/>
+				/> */}
 				<Container>
 					<NavigationIcons onSearchClick={this.handleSearchClick} />
 					<Border />

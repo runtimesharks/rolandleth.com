@@ -16,6 +16,7 @@ const BlogRoute = (props) => {
 				return (
 					<Blog
 						section={props.section}
+						searchTerm={props.searchTerm}
 						key={`${props.section}-${page}`}
 						page={page}
 					/>

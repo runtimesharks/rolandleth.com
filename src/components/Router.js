@@ -6,7 +6,7 @@ import Intro from "./pages/Intro"
 import LifeAbout from "./pages/life/LifeAbout"
 import BlogRoute from "./pages/blog/BlogRoute"
 
-const Routes = () => {
+const Routes = (props) => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Intro} />

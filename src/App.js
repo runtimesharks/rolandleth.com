@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import { GlobalStyle } from "./components/theme/globalStyle"
 import { GlobalSyntaxStyle } from "./components/theme/globalSyntax"
@@ -7,18 +8,50 @@ import Routes from "./components/Router"
 import Theme from "./components/theme/Theme"
 import SiteHeader from "./components/site-header/SiteHeader"
 
-const App = (props) => {
-	return (
-		<React.Fragment>
-			<Helmet {...props} />
-			<GlobalStyle />
-			<GlobalSyntaxStyle />
-			<SiteHeader {...props} />
-			<Content>
-				<Routes />
-			</Content>
-		</React.Fragment>
-	)
+class App extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			searchTerm: undefined
+		}
+	}
+
+	search = (query) => {
+		this.setState({ searchTerm: query })
+	}
+
+	query = () => {
+		let query = ""
+		let location = this.props.location
+		let q = "query="
+
+		if (location.search.includes(q)) {
+			query = decodeURIComponent(location.search)
+				.split(q)[1]
+				.replace(/[+]/g, " ")
+		}
+
+		return query
+	}
+
+	render() {
+		return (
+			<React.Fragment>
+				<Helmet {...this.props} />
+				<GlobalStyle />
+				<GlobalSyntaxStyle />
+				<SiteHeader
+					{...this.props}
+					query={this.query()}
+					onSearch={this.search}
+				/>
+				<Content>
+					<Routes {...this.state} />
+				</Content>
+			</React.Fragment>
+		)
+	}
 }
 
 const Content = styled.div`
@@ -29,4 +62,4 @@ const Content = styled.div`
 	}
 `
 
-export default App
+export default withRouter(App)
