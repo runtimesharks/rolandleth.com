@@ -1,8 +1,10 @@
 import React from "react"
 import axios from "axios"
+import styled from "styled-components"
 import BlogPosts from "./BlogPosts"
 import BlogPost from "./BlogPost"
 import LifeAbout from "../life/LifeAbout"
+import Pagination from "./Pagination"
 
 class Blog extends React.Component {
 	constructor(props) {
@@ -13,11 +15,20 @@ class Blog extends React.Component {
 		}
 	}
 
-	fetchPosts = () => {
-		const page = new URLSearchParams(this.props.location.search).get("page")
+	page = () => {
+		return (
+			parseInt(
+				new URLSearchParams(this.props.location.search).get("page"),
+				10
+			) || 1
+		)
+	}
+
+	fetchPosts = (thePage) => {
+		const page = thePage || this.page()
 		var url = `http://localhost:3000/api/${this.props.section}/posts`
 
-		if (parseInt(page, 10) > 0) {
+		if (page > 0) {
 			url += `?page=${page}`
 		}
 
@@ -28,9 +39,7 @@ class Blog extends React.Component {
 			.catch((e) => console.log(e))
 	}
 
-	render() {
-		const isList = this.props.match.params.postLink === undefined
-
+	content = (isList) => {
 		if (
 			this.props.section === "life" &&
 			isList &&
@@ -55,6 +64,27 @@ class Blog extends React.Component {
 
 		return <BlogPost {...this.props} post={post} />
 	}
+
+	render() {
+		const isList = this.props.match.params.postLink === undefined
+
+		return (
+			<Container>
+				{this.content(isList)}
+				{isList ? (
+					<Pagination
+						{...this.props}
+						page={this.page()}
+						onPageChange={this.fetchPosts}
+					/>
+				) : (
+					""
+				)}
+			</Container>
+		)
+	}
 }
+
+const Container = styled.div``
 
 export default Blog
