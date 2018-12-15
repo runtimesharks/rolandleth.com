@@ -21,3 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 .pnp
 /.pnp.js
+/src/server/lib/config.js
