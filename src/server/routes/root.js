@@ -12,6 +12,7 @@ const router = express.Router()
 router.get("/*", (req, res) => {
 	const context = {}
 	const location = req.protocol + "://" + req.hostname + req.originalUrl
+	const isProduction = process.env.NODE_ENV === "production"
 	const sheet = new ServerStyleSheet()
 	const markup = renderToString(
 		sheet.collectStyles(
@@ -21,7 +22,6 @@ router.get("/*", (req, res) => {
 		)
 	)
 	const styleTags = sheet.getStyleTags()
-
 	const helmet = Helmet.renderStatic()
 	const allHelmetDataAsString = Object.keys(helmet)
 		.map((key) => helmet[key].toString())
@@ -31,6 +31,7 @@ router.get("/*", (req, res) => {
 	if (context.url) {
 		res.redirect(context.url)
 	} else {
+		setCSPHeaders(res, isProduction)
 		res.status(200).send(`
 <!doctype html>
 <html lang="">
@@ -47,7 +48,7 @@ router.get("/*", (req, res) => {
 				: ""
 		}
 		${
-			process.env.NODE_ENV === "production"
+			isProduction
 				? `<script src="${assets.client.js}" defer></script>`
 				: `<script src="${assets.client.js}" defer crossorigin></script>`
 		}
@@ -58,5 +59,47 @@ router.get("/*", (req, res) => {
 </html>`)
 	}
 })
+
+// This is for testing, only.
+function setCSPHeaders(res, isProduction) {
+	if (isProduction) {
+		return
+	}
+
+	const localhost = "localhost:3001"
+	const localhostWithProtocol = `http://${localhost}`
+
+	const csp = {
+		"default-src": ["'none'"],
+		"connect-src": ["'self'", localhostWithProtocol, `ws://${localhost}`],
+		"frame-ancestors": ["'none'"],
+		"base-uri": ["'self'"],
+		"font-src": [
+			"'self'",
+			"https://fonts.gstatic.com",
+			"https://fonts.googleapis.com"
+		],
+		"style-src": ["'self'", "unsafe-inline", "https://fonts.googleapis.com"],
+		"img-src": [
+			"'self'",
+			localhostWithProtocol,
+			"https://www.google-analytics.com",
+			"https://cdn.codementor.io/badges/book_session_github.svg"
+		],
+		"script-src": [
+			"'self'",
+			localhostWithProtocol,
+			"https://www.google-analytics.com"
+		],
+		"form-action": ["'self'"]
+	}
+
+	res.setHeader(
+		"Content-Security-Policy",
+		Object.keys(csp).map((key) => {
+			return `${key} ${csp[key].join(" ")};`
+		})
+	)
+}
 
 export { router as rootRouter }
