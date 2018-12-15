@@ -25,7 +25,9 @@ class BlogPost extends React.Component {
 	fetchPost = () => {
 		const split = this.props.location.pathname.split("/")
 		const post = split[split.length - 1]
-		const url = `http://localhost:3000/api/tech/posts/${post}`
+		const url = `${window.location.protocol}//${
+			window.location.host
+		}/api/tech/posts/${post}`
 
 		axios
 			.get(url)

@@ -20,7 +20,9 @@ class Blog extends React.Component {
 
 	fetchPosts = (thePage) => {
 		const page = thePage || this.props.page
-		var url = `http://localhost:3000/api/${this.props.section}/posts`
+		let url = `${window.location.protocol}//${window.location.host}/api/${
+			this.props.section
+		}/posts`
 
 		if (page > 0) {
 			url += `?page=${page}`
