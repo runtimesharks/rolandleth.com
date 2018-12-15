@@ -95,9 +95,6 @@ class Helmet extends React.Component {
 					content={this.props.description}
 				/>
 				<meta property="twitter:url" content={location} />
-				{/* Stylesheets */}
-				<link rel="stylesheet" href="/styles/globals/base.css" />
-				<link rel="stylesheet" href="/styles/components/header.css" />
 				{/* Mobile settings */}
 				<meta
 					name="viewport"

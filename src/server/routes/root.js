@@ -4,6 +4,7 @@ import Helmet from "react-helmet"
 import { StaticRouter } from "react-router-dom"
 import express from "express"
 import { renderToString } from "react-dom/server"
+import { ServerStyleSheet } from "styled-components"
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 const router = express.Router()
@@ -11,11 +12,15 @@ const router = express.Router()
 router.get("/*", (req, res) => {
 	const context = {}
 	const location = req.protocol + "://" + req.hostname + req.originalUrl
+	const sheet = new ServerStyleSheet()
 	const markup = renderToString(
-		<StaticRouter context={context} location={req.originalUrl}>
-			<App location={location} />
-		</StaticRouter>
+		sheet.collectStyles(
+			<StaticRouter context={context} location={req.originalUrl}>
+				<App location={location} />
+			</StaticRouter>
+		)
 	)
+	const styleTags = sheet.getStyleTags()
 
 	const helmet = Helmet.renderStatic()
 	const allHelmetDataAsString = Object.keys(helmet)
@@ -35,6 +40,7 @@ router.get("/*", (req, res) => {
 		<title>Roland Leth</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		${allHelmetDataAsString}
+		${styleTags}
 		${
 			assets.client.css
 				? `<link rel="stylesheet" href="${assets.client.css}">`
