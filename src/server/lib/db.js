@@ -4,6 +4,10 @@ import DbResult from "../models/dbResult"
 import DbConfig from "../models/dbConfig"
 import Post from "./../models/post"
 
+function postsTableForSection(section) {
+	return section === "life" ? "lifePosts" : "techPosts"
+}
+
 const pool = (function() {
 	const Pool = require("pg").Pool
 	const url = require("url")
@@ -69,11 +73,16 @@ class Db {
 	/**
 	 * Create a new post.
 	 * @param {Post} post - The post to be created.
+	 * @param {String} section - The blog's section.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
-	static createPost(post) {
+	static createPost(post, section) {
 		const query =
-			"INSERT INTO " + postsTable + fields() + " VALUES " + values(post)
+			"INSERT INTO " +
+			postsTableForSection(section) +
+			fields() +
+			" VALUES " +
+			values(post)
 
 		return pool.query(query).then(function() {
 			return true
@@ -83,12 +92,13 @@ class Db {
 	/**
 	 * Delete a post, based on its link and datetime fields.
 	 * @param {Post} post - The post to delete.
+	 * @param {String} section - The blog's section.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
-	static deletePost(post) {
+	static deletePost(post, section) {
 		const query =
 			"DELETE FROM " +
-			postsTable +
+			postsTableForSection(section) +
 			" WHERE" +
 			" link = '" +
 			post.link +
@@ -105,12 +115,13 @@ class Db {
 	/**
 	 * Update a post, based on its link and datetime fields.
 	 * @param {Post} post - The post to update.
+	 * @param {String} section - The blog's section.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
-	static updatePost(post) {
+	static updatePost(post, section) {
 		const query =
 			"UPDATE " +
-			postsTable +
+			postsTableForSection(section) +
 			" SET" +
 			" " +
 			fields() +
@@ -190,8 +201,11 @@ class Db {
 		//		'CREATE TABLE posts(title VARCHAR(100), body VARCHAR(99999), truncatedbody VARCHAR(5000), datetime VARCHAR(50), modified VARCHAR(55), link VARCHAR(100), readingtime VARCHAR(15))'
 		//	);
 
-		const table = config.section === "tech" ? "techPosts" : "lifePosts"
-		let query = "SELECT " + config.columns + " FROM " + table
+		let query =
+			"SELECT " +
+			config.columns +
+			" FROM " +
+			postsTableForSection(config.section)
 		const queried = config.fields && config.fieldValues
 		if (queried) {
 			if (config.searching) {
