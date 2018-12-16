@@ -20,7 +20,7 @@ const Intro = () => (
 			<ListItem className="tech">
 				<img
 					className="illustration"
-					src={require("../../images/developer.svg")}
+					src="/images/developer.svg"
 					alt="A developer in front of 6 monitors"
 				/>
 				<p>
@@ -40,7 +40,7 @@ const Intro = () => (
 				</p>
 				<img
 					className="illustration"
-					src={require("../../images/progress.svg")}
+					src="/images/progress.svg"
 					alt="Woman moving gears"
 				/>
 			</ListItem>

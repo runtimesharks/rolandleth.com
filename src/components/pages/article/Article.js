@@ -3,7 +3,7 @@ import styled from "styled-components"
 import hljs from "highlight.js"
 import ContinueReading from "./ContinueReading"
 import ArticleHeader from "./ArticleHeader"
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown/with-html"
 import Theme from "../../theme/Theme"
 import "highlight.js/styles/ocean.css"
 
@@ -30,6 +30,7 @@ class Article extends React.Component {
 				<Body id="body">
 					<ReactMarkdown
 						source={isTruncated ? post.truncatedBody : post.rawBody}
+						escapeHtml={false}
 					/>
 				</Body>
 				{isTruncated ? <ContinueReading {...this.props} /> : ""}

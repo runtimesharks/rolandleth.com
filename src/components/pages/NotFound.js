@@ -5,10 +5,7 @@ const NotFoundPage = (props) => {
 	return (
 		<NotFound>
 			<The404 {...props}>
-				<The404Text
-					{...props}
-					src={require("../../images/misc/404-shadow.png")}
-				>
+				<The404Text {...props} src="/images/misc/404-shadow.png">
 					{props.isSearch ? "uh-oh" : "404"}
 				</The404Text>
 			</The404>

@@ -6,7 +6,7 @@ const LifeAbout = () => {
 		<Container>
 			<img
 				className="illustration"
-				src={require("../../../images/progress.svg")}
+				src="/images/progress.svg"
 				alt="Woman moving gears"
 			/>
 			<Greeting>What's this about?</Greeting>
