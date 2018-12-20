@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import Link from "./Link"
-import Theme from "../theme/Theme"
 
 const UnderlineOnHoverLink = (props) => {
 	return <StyledLink {...props} />

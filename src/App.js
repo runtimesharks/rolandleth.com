@@ -7,6 +7,7 @@ import Helmet from "./components/Helmet"
 import Routes from "./components/Router"
 import Theme from "./components/theme/Theme"
 import SiteHeader from "./components/site-header/SiteHeader"
+import Footer from "./components/Footer"
 
 class App extends React.Component {
 	constructor(props) {
@@ -59,6 +60,7 @@ class App extends React.Component {
 				<Content>
 					<Routes {...this.state} />
 				</Content>
+				<Footer />
 			</React.Fragment>
 		)
 	}
