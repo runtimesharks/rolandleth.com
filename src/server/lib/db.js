@@ -5,15 +5,17 @@ import DbConfig from "../models/dbConfig"
 import Post from "./../models/post"
 import { Pool } from "pg"
 import url from "url"
-import configFile from "./config"
+import configFile from "../../../config"
 
 function postsTableForSection(section) {
 	return section === "life" ? "lifePosts" : "techPosts"
 }
 
 const pool = (function() {
+	const key = process.env.NODE_ENV === "production" ? "prod" : "dev"
 	const params = url.parse(
-		configFile["DATABASE_URL"] || "postgres://localhost/" + process.env.USER
+		configFile["DATABASE_URL"][key] ||
+			"postgres://localhost/" + process.env.USER
 	)
 
 	// Running locally usually implies no auth.
