@@ -5,8 +5,8 @@ import Theme from "../theme/Theme"
 import "../font-awesome/css/font-awesome.min.css"
 import NavigationIcon from "./NavigationIcon"
 import Button from "./Button"
-import HoverableLink from "../link/HoverableLink"
 import { Route, Switch } from "react-router-dom"
+import ColorOnHoverLink from "../link/ColorOnHoverLink"
 
 const NavigationIcons = (props) => {
 	const section = props.location.pathname.startsWith("/tech") ? "Tech" : "Life"
@@ -94,7 +94,7 @@ const Container = styled.nav`
 	}
 `
 
-const StyledRuntimeLink = styled(HoverableLink)`
+const StyledRuntimeLink = styled(ColorOnHoverLink)`
 	font-family: ${Theme.headerFont};
 	font-weight: 700;
 	font-size: 1.2em;

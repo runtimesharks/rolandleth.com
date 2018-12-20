@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Link from "./Link"
 import Theme from "../theme/Theme"
 
-const HoverableLink = (props) => {
+const ColorOnHoverLink = (props) => {
 	return <StyledLink {...props} />
 }
 
@@ -13,7 +13,8 @@ const StyledLink = styled(Link)`
 
 	&:hover {
 		color: ${Theme.linkColor};
+		border-bottom-color: transparent;
 	}
 `
 
-export default HoverableLink
+export default ColorOnHoverLink

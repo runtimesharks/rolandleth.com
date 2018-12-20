@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import HoverableLink from "../../link/HoverableLink"
+import ColorOnHoverLink from "../../link/ColorOnHoverLink"
 
 const ArticleHeader = (props) => {
 	const { post } = props
@@ -15,7 +15,11 @@ const ArticleHeader = (props) => {
 		<Container>
 			<Date>{post.date + readingTime}</Date>
 			<Title>
-				<HoverableLink href={link} title={post.title} text={post.title} />
+				<ColorOnHoverLink
+					href={link}
+					title={post.title}
+					text={post.title}
+				/>
 			</Title>
 		</Container>
 	)

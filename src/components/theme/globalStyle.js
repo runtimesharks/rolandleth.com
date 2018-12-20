@@ -54,15 +54,13 @@ export const GlobalStyle = createGlobalStyle`
 		border-bottom: 1px dotted ${Theme.linkColor};
 
 		${Theme.transition("0.4s")};
+
+		&:hover {
+			border-bottom: 1px solid ${Theme.linkColor};
+		}
 	}
 
 	p {
-		& > a {
-			&:hover {
-				border-bottom: 1px solid ${Theme.linkColor};
-			}
-		}
-
 		&.no-margin {
 			margin: 0;
 		}

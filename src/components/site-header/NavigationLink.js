@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import HoverableLink from "../link/HoverableLink"
+import ColorOnHoverLink from "../link/ColorOnHoverLink"
 
 const NavigationLink = (props) => {
 	return (
@@ -10,7 +10,7 @@ const NavigationLink = (props) => {
 	)
 }
 
-const StyledLink = styled(HoverableLink)`
+const StyledLink = styled(ColorOnHoverLink)`
 	flex: 1;
 	text-align: center;
 `

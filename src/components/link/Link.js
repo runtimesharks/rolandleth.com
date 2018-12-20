@@ -33,6 +33,9 @@ class Link extends React.Component {
 	}
 }
 
+// We can not put the common styles for `a` here,
+// since `RouterLink` and the inner article `hrefs`
+// have to be styled accordingly, too.
 const Anchor = styled.a``
 
 export default Link

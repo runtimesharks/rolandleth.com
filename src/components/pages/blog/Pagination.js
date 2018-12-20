@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Theme from "../../theme/Theme"
-import Link from "../../link/Link"
+import UnderlineOnHoverLink from "../../link/UnderlineOnHoverLink"
 
 class Pagination extends React.Component {
 	constructor(props) {
@@ -28,7 +28,7 @@ class Pagination extends React.Component {
 		}
 
 		return (
-			<Link
+			<UnderlineOnHoverLink
 				className="previous"
 				href={this.pathWithPage(page === 2 ? 1 : page - 1)}
 				rel="previous"
@@ -47,9 +47,17 @@ class Pagination extends React.Component {
 
 		return (
 			<React.Fragment>
-				<Link href={this.pathWithPage()} text="1" title="Page 1" />
+				<UnderlineOnHoverLink
+					href={this.pathWithPage()}
+					text="1"
+					title="Page 1"
+				/>
 				{page === gap * 2 ? (
-					<Link href={this.pathWithPage(2)} text="2" title="Page 2" />
+					<UnderlineOnHoverLink
+						href={this.pathWithPage(2)}
+						text="2"
+						title="Page 2"
+					/>
 				) : (
 					""
 				)}
@@ -69,7 +77,7 @@ class Pagination extends React.Component {
 		/* Also prev pagination - number links to '/' instead of current page - 1 */
 		if (page === 2) {
 			return (
-				<Link
+				<UnderlineOnHoverLink
 					href={this.pathWithPage()}
 					rel="previous"
 					text={previousPage}
@@ -78,7 +86,7 @@ class Pagination extends React.Component {
 			)
 		} else {
 			return (
-				<Link
+				<UnderlineOnHoverLink
 					href={this.pathWithPage(previousPage)}
 					rel="previous"
 					text={previousPage}
@@ -98,7 +106,7 @@ class Pagination extends React.Component {
 		}
 
 		return (
-			<Link
+			<UnderlineOnHoverLink
 				href={this.pathWithPage(nextPage)}
 				rel="next"
 				text={nextPage}
@@ -120,7 +128,7 @@ class Pagination extends React.Component {
 			return <span className="gap">&hellip;</span>
 		} else {
 			return (
-				<Link
+				<UnderlineOnHoverLink
 					href={`${preLastPage}`}
 					text={preLastPage}
 					title={`Page ${preLastPage}`}
@@ -138,12 +146,12 @@ class Pagination extends React.Component {
 
 		return (
 			<React.Fragment>
-				<Link
+				<UnderlineOnHoverLink
 					href={this.pathWithPage(pages)}
 					text={pages}
 					title={`Page ${pages}`}
 				/>
-				<Link
+				<UnderlineOnHoverLink
 					className="next"
 					href={this.pathWithPage(page + 1)}
 					rel="next"
@@ -177,7 +185,6 @@ const Container = styled.div`
 	font-size: 1.1em;
 
 	a {
-		border-bottom: none;
 		padding: 2px 6px;
 		margin-right: 0.2em;
 	}
