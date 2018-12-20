@@ -3,6 +3,9 @@ import { BrowserRouter } from "react-router-dom"
 import React from "react"
 import ReactDOM from "react-dom"
 import ScrollToTop from "./components/ScrollToTop"
+import initGA from "./components/GoogleAnalytics"
+
+initGA()
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
 

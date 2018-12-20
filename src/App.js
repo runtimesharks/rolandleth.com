@@ -35,6 +35,16 @@ class App extends React.Component {
 		return query
 	}
 
+	componentDidUpdate(prevProps) {
+		const location = this.props.location
+
+		if (prevProps.location === location) {
+			return
+		}
+
+		window.ga("send", "pageview", location.pathname + location.search)
+	}
+
 	render() {
 		return (
 			<React.Fragment>
