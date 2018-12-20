@@ -228,7 +228,9 @@ const existingPosts = [
 	"easier-uifont-usage",
 	"handling-the-next-button-automatically",
 	"caanimations-and-groups",
-	"a-fi-programator-dupa-40-de-ani"
+	"a-fi-programator-dupa-40-de-ani",
+	"learning-through-mini-habits",
+	"delightful-animations"
 ]
 
 export default Routes
