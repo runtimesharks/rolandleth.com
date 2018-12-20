@@ -4,15 +4,14 @@ import ColorOnHoverLink from "../link/ColorOnHoverLink"
 
 const NavigationLink = (props) => {
 	return (
-		<StyledLink {...props}>
-			<span>{props.title}</span>
-		</StyledLink>
+		<Container>
+			<ColorOnHoverLink {...props} text={props.title} />
+		</Container>
 	)
 }
 
-const StyledLink = styled(ColorOnHoverLink)`
+const Container = styled.div`
 	flex: 1;
-	text-align: center;
 `
 
 export default NavigationLink

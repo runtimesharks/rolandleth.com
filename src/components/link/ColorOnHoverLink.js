@@ -9,11 +9,11 @@ const ColorOnHoverLink = (props) => {
 
 const StyledLink = styled(Link)`
 	color: ${Theme.textColor};
-	border-bottom-color: transparent;
+	border-bottom: none;
 
 	&:hover {
 		color: ${Theme.linkColor};
-		border-bottom-color: transparent;
+		border-bottom: none;
 	}
 `
 
