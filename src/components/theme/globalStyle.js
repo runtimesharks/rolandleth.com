@@ -73,12 +73,11 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	img {
-		&:not(.codementor):not(.patreon) {
-			border-radius: 2px;
-			-webkit-box-shadow: #777777 0 0 3px 1px;
-			-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
-			box-shadow: #777777 0 0 7px 0; /* inset is optional */
-		}
+		border-radius: 2px;
+		-webkit-box-shadow: #777777 0 0 3px 1px;
+		-moz-box-shadow: #444444 0 0 3px 1px; /* color, h-offset, v-offset, blur, spread */
+		box-shadow: #777777 0 0 7px 0; /* inset is optional */
+		max-width: 100%;
 
 		&:not([class]) {
 			display: table;
