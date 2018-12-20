@@ -79,7 +79,11 @@ function setCSPHeaders(res, isProduction) {
 			"https://fonts.gstatic.com",
 			"https://fonts.googleapis.com"
 		],
-		"style-src": ["'self'", "unsafe-inline", "https://fonts.googleapis.com"],
+		"style-src": [
+			"'self'",
+			"'unsafe-inline'",
+			"https://fonts.googleapis.com"
+		],
 		"img-src": [
 			"'self'",
 			localhostWithProtocol,
