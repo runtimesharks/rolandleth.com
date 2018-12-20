@@ -39,7 +39,7 @@ class App extends React.Component {
 	componentDidUpdate(prevProps) {
 		const location = this.props.location
 
-		if (prevProps.location === location) {
+		if (prevProps.location.pathname === location.pathname) {
 			return
 		}
 
