@@ -23,6 +23,12 @@ const About = () => (
 				href="https://github.com/rolandleth/rolandleth.com/tree/node"
 				title="Node.js branch"
 				text="Node.js"
+			/>
+			,{" "}
+			<Link
+				href="https://github.com/rolandleth/rolandleth.com/tree/swift-vapo"
+				title="Vapor branch"
+				text="Swift"
 			/>{" "}
 			or{" "}
 			<Link
@@ -75,10 +81,11 @@ const About = () => (
 				text="clients"
 			/>{" "}
 			build, repair, polish, finish and launch their apps. We also offer{" "}
-			<Link href="https://rolandleth.com/mentoring" text="mentoring" />,{" "}
-			<Link href="https://rolandleth.com/consulting" text="consulting" /> and{" "}
-			<Link href="https://rolandleth.com/workshops" text="workshops" />. If
-			you'd like to know more about us, please visit{" "}
+			<Link href="https://runtimesharks.com/mentoring" text="mentoring" />,{" "}
+			<Link href="https://runtimesharks.com/consulting" text="consulting" />{" "}
+			and{" "}
+			<Link href="https://runtimesharks.com/workshops" text="workshops" />.
+			If you'd like to know more about us, please visit{" "}
 			<Link
 				href="https://runtimesharks.com"
 				title="Runtime Sharks"
@@ -88,16 +95,16 @@ const About = () => (
 		</p>
 		<p>
 			Two of the projects we've built, ChallengeBeat and Goalee, are
-			self-improvement driven; both are tools in becoming a better person, on
-			improving yourself. Naturally, I've grown more and more interested in
-			how our brains work, why we do or don't do things, how to improve and
-			how to change ourselves for the better. So the final step was to open a
-			new section on my blog, called{" "}
-			<Link href="/life-blog" title="Life" text="Life" />, where I started
+			self-improvement driven; both are tools for becoming a better person
+			and for improving yourself. Naturally, I've grown more and more
+			interested in how our brains work, why we do or don't do things, how to
+			improve and how to change ourselves for the better. So the final step
+			was to open a new section on my blog, called{" "}
+			<Link href="/life/blog" title="Life" text="Life" />, where I started
 			writing about my own journey of improvement.
 		</p>
 		<p>
-			Most of the motivational videos or articles you can find online are by
+			A lot of the motivational videos or articles you can find online are by
 			or about successful people. If, at times, you've thought that "of
 			course, they're rich/successful, it's easy for them", then you're not
 			alone; I have as well. And this is one of the reasons I started this
@@ -105,13 +112,13 @@ const About = () => (
 			<strong>is</strong> possible.
 		</p>
 		<p>
-			I had an easy life and I won't deny nor hide that. I also don't have
-			the worry of tomorrow, but I'm by no means famous, nor wealthy. Yet,
-			following the same principles/advices, I <strong>did</strong> change
-			and I improved my life quite a bit and now it's getting easier and
-			easier. <em>Spoiler</em>: the main tactic that has proven successful
-			was "no step is too small to be unimportant" & "one babystep at a
-			time".
+			I don't have the worry of tomorrow, and I don't want to hide or deny
+			that, but I'm by no means famous, nor wealthy. Yet, following the same
+			principles/advices, I <strong>did</strong> change and I improved my
+			life quite a lot and now it's getting easier and easier and I'm now
+			constantly on the lookout for things I can improve. <em>Spoiler</em>:
+			the main tactic that has proven successful was "no step is too small to
+			be unimportant", "one babystep at a time" & "never miss twice".
 		</p>
 		<p>
 			If I can be of help or you just want to say hi, you can drop me an

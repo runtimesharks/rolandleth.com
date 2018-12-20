@@ -25,7 +25,7 @@ const LifeAbout = () => {
 				about and, for a start, I'll publish a post every Wednesday.
 			</p>
 			<p>
-				Most of the motivational videos or articles you can find online are
+				A lot of the motivational videos or articles you can find online are
 				by or about successful people. If, at times, you've thought that "of
 				course, they're rich/successful, it's easy for them", then you're
 				not alone; I have as well.
