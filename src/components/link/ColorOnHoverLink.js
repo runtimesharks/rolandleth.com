@@ -11,9 +11,15 @@ const StyledLink = styled(Link)`
 	color: ${Theme.textColor};
 	border-bottom: none;
 
-	&:hover {
-		color: ${Theme.linkColor};
-		border-bottom: none;
+	@media (prefers-color-scheme: dark) {
+		color: white;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			color: ${Theme.linkColor};
+			border-bottom: none;
+		}
 	}
 `
 

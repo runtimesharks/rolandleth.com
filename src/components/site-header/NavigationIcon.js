@@ -20,6 +20,10 @@ const StyledLink = styled(ColorOnHoverLink)`
 	flex: 1;
 	color: ${Theme.textColor};
 
+	@media (prefers-color-scheme: dark) {
+		color: white;
+	}
+
 	display: ${(props) => (props.isHidden ? "none" : "inline-grid")};
 
 	& > i {

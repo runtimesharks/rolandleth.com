@@ -22,6 +22,11 @@ export const GlobalSyntaxStyle = createGlobalStyle`
 		font-size: 0.85em;
 		font-family: ${Theme.codeFont};
 
+		@media (prefers-color-scheme: dark) {
+			background-color: transparent;
+			color: #BE9DE4;
+		}
+
 		&.hljs {
 			padding: 1em;
 		}
