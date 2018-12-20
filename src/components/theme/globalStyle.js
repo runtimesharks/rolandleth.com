@@ -53,10 +53,12 @@ export const GlobalStyle = createGlobalStyle`
 		color: ${Theme.linkColor};
 		border-bottom: 1px dotted ${Theme.linkColor};
 
-		${Theme.transition("0.4s")};
+		@media (hover:hover) {
+			${Theme.transition("0.4s")};
 
-		&:hover {
-			border-bottom: 1px solid ${Theme.linkColor};
+			&:hover {
+				border-bottom: 1px solid ${Theme.linkColor};
+			}
 		}
 	}
 
