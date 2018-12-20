@@ -43,6 +43,11 @@ const Container = styled.div`
 	padding-bottom: 2em;
 	margin-bottom: 3em;
 	${Theme.lightBottomBorder()};
+
+	h2 {
+		font-weight: 500;
+		font-size: 1.2em;
+	}
 `
 
 const Body = styled.div`
