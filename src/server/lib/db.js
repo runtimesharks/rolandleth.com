@@ -118,7 +118,7 @@ class Db {
 	/**
 	 * Update a post, based on its link and datetime fields.
 	 * @param {Post} post - The post to update.
-	 * @param {String} section - The blog's section.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
 	static updatePost(post, section) {
@@ -155,10 +155,12 @@ class Db {
 	/**
 	 * Fetch posts that contain the query in the title or body.
 	 * @param {String} query - The query to search for.
+	 * @param {int} page - The page we want posts for.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static searchPosts(query) {
-		return Db.fetchPosts(DbConfig.search(query))
+	static searchPosts(query, page, section) {
+		return Db.fetchPosts(DbConfig.search(query, page, section))
 	}
 
 	/**

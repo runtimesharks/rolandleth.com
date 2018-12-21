@@ -106,15 +106,17 @@ class DbConfig {
 	/**
 	 * Zero limit, searching true, body and title as fields and the query as a field value.
 	 * @param {String} query - The strings we want to search for.
-	 * @param {Number} offset - The offset where to start from.
+	 * @param {int} page - The page we want posts for.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static search(query, offset) {
+	static search(query, page, section) {
 		const config = new DbConfig()
 		config.searching = true
 		config.fields = ["body", "title"]
 		config.fieldValues = [query]
-		config.offset = offset
+		config.offset = config.limit * (page - 1)
+		config.section = section
 
 		return config
 	}
