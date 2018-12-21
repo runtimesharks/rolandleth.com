@@ -15,6 +15,13 @@ const NavigationIcons = (props) => {
 		<Container>
 			<Switch>
 				<Route path="/:anything">
+					<NavigationIcon href="/" title="Roland's Leth's homepage">
+						<i className="fa fa-home fa-fw" />
+					</NavigationIcon>
+				</Route>
+			</Switch>
+			<Switch>
+				<Route path="/tech">
 					<React.Fragment>
 						<IconButton
 							onClick={props.onSearchClick}
@@ -22,20 +29,13 @@ const NavigationIcons = (props) => {
 						>
 							<i className="fa fa-search fa-fw" />
 						</IconButton>
-						<NavigationIcon href="/" title="Roland's Leth's homepage">
-							<i className="fa fa-home fa-fw" />
+						<NavigationIcon
+							href="https://runtimesharks.com/projects"
+							title="Roland's projects"
+						>
+							<i className="fa fa-laptop fa-fw" />
 						</NavigationIcon>
 					</React.Fragment>
-				</Route>
-			</Switch>
-			<Switch>
-				<Route path="/tech">
-					<NavigationIcon
-						href="https://runtimesharks.com/projects"
-						title="Roland's projects"
-					>
-						<i className="fa fa-laptop fa-fw" />
-					</NavigationIcon>
 				</Route>
 			</Switch>
 			<Switch>
@@ -118,8 +118,7 @@ const IconButton = styled(Button)`
 	flex: 1;
 	height: 100%;
 	align-self: center;
-	/* display: inline-grid; */
-	display: none;
+	display: inline-grid;
 
 	& > i {
 		font-size: 0.85em;
