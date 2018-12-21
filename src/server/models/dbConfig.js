@@ -91,12 +91,14 @@ class DbConfig {
 
 	/**
 	 * Zero limit, and title, link and datetime columns.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static archive() {
+	static archive(section) {
 		const config = new DbConfig()
 		config.limit = 0
 		config.columns = "title, link, datetime"
+		config.section = section
 
 		return config
 	}

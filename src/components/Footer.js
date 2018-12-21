@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Theme from "./theme/Theme"
+import { Route, Switch } from "react-router-dom"
 import UnderlineOnHoverLink from "./link/UnderlineOnHoverLink"
 
 const quotes = [
@@ -34,9 +35,18 @@ class Footer extends React.Component {
 					&copy; 2013&ndash;{year} &nbsp;
 					<UnderlineOnHoverLink href="/" text="Roland Leth" title="Home" />
 					{/* &nbsp;&mdash;&nbsp;
-					<Link href="/microblog" text="Microblog" />
-					&nbsp;&mdash;&nbsp;
-					<Link href="/archive" text="Archive" /> */}
+					<Link href="/microblog" text="Microblog" /> */}
+					<Switch>
+						<Route path="/tech">
+							<React.Fragment>
+								&nbsp;&mdash;&nbsp;
+								<UnderlineOnHoverLink
+									href="/tech/archive"
+									text="Archive"
+								/>
+							</React.Fragment>
+						</Route>
+					</Switch>
 				</Copyright>
 			</Container>
 		)

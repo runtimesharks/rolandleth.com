@@ -5,6 +5,7 @@ import About from "./pages/About"
 import Intro from "./pages/Intro"
 import LifeAbout from "./pages/life/LifeAbout"
 import BlogRoute from "./pages/blog/BlogRoute"
+import Archive from "./pages/archive/Archive"
 
 const Routes = (props) => {
 	return (
@@ -12,7 +13,18 @@ const Routes = (props) => {
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/about" component={About} />
 			<Route exact path="/life/about" component={LifeAbout} />
+			<Route
+				exact
+				path="/life/archive"
+				render={() => <Archive section="life" />}
+			/>
 			<BlogRoute exact path="/life/blog/:postLink?" section="life" />
+
+			<Route
+				exact
+				path="/tech/archive"
+				render={() => <Archive section="tech" />}
+			/>
 			<BlogRoute exact path="/tech/blog/:postLink?" section="tech" />
 
 			<Route path="/:oldPost" component={OldPostHandler} />

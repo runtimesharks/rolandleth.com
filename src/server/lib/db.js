@@ -171,10 +171,11 @@ class Db {
 
 	/**
 	 * Fetch title, link and datetime fields of all posts, except future ones.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchArchivePosts() {
-		return Db.fetchPosts(DbConfig.archive())
+	static fetchArchivePosts(section) {
+		return Db.fetchPosts(DbConfig.archive(section))
 	}
 
 	/**
