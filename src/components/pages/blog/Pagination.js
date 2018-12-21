@@ -13,13 +13,26 @@ class Pagination extends React.Component {
 	}
 
 	pathWithPage = (page) => {
-		const location = this.props.location.pathname
+		let location = this.props.location.pathname
+		const query = new URLSearchParams(this.props.location.search).get("query")
+
+		if (query) {
+			location += `?query=${query}`
+		}
 
 		if ((page || 1) <= 1) {
 			return location
 		}
 
-		return `${location}?page=${page}`
+		if (query) {
+			location += "&"
+		} else {
+			location += "?"
+		}
+
+		location += `page=${page}`
+
+		return location
 	}
 
 	leftArrow = (page) => {
