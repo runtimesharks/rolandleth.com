@@ -1,15 +1,14 @@
 import React from "react"
+import { withRouter } from "react-router"
 import styled from "styled-components"
 import ColorOnHoverLink from "../../link/ColorOnHoverLink"
 
 const ArticleHeader = (props) => {
 	const { post } = props
+	const { location } = props
+	const section = location.pathname.split("/")[1]
 	const readingTime = post.readingTime ? `: \u00a0~ ${post.readingTime}` : ""
-	let link = props.path || post.link
-
-	if (props.path !== undefined) {
-		link = props.path + "/" + post.link
-	}
+	let link = `/${section}/blog/${post.link}`
 
 	return (
 		<Container>
@@ -36,4 +35,4 @@ const Title = styled.h1`
 	margin: 0;
 `
 
-export default ArticleHeader
+export default withRouter(ArticleHeader)
