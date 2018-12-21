@@ -58,7 +58,7 @@ const NavigationIcons = (props) => {
 			<Switch>
 				<Route path="/:anything">
 					<NavigationIcon
-						href={`http://localhost:3000/${section.toLowerCase()}/feed`}
+						href={`/${section.toLowerCase()}/feed`}
 						title={`Subscribe to Roland's ${section} feed`}
 					>
 						<i className="fa fa-rss fa-fw" />
