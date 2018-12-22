@@ -27,7 +27,7 @@ const Routes = (props) => {
 			<Route
 				exact
 				path="/life/blog/:postLink?"
-				render={() => <BlogRoute section="life" />}
+				render={(p) => <BlogRoute {...p} section="life" />}
 			/>
 
 			<Route
