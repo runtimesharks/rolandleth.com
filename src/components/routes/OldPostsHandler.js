@@ -1,56 +1,6 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
-import NotFoundPage from "./pages/NotFound"
-import About from "./pages/About"
-import Intro from "./pages/Intro"
-import LifeAbout from "./pages/life/LifeAbout"
-import BlogRoute from "./pages/blog/BlogRoute"
-import Archive from "./pages/archive/Archive"
-import SearchRoute from "./pages/search/SearchRoute"
-
-const Routes = (props) => {
-	return (
-		<Switch>
-			<Route exact path="/" component={Intro} />
-			<Route exact path="/about" component={About} />
-			<Route exact path="/life/about" component={LifeAbout} />
-			<Route
-				exact
-				path="/life/search"
-				render={(p) => <SearchRoute {...p} {...props} section="life" />}
-			/>
-			<Route
-				exact
-				path="/life/archive"
-				render={() => <Archive section="life" />}
-			/>
-			<Route
-				exact
-				path="/life/blog/:postLink?"
-				render={(p) => <BlogRoute {...p} section="life" />}
-			/>
-
-			<Route
-				exact
-				path="/tech/search"
-				render={(p) => <SearchRoute {...p} {...props} section="tech" />}
-			/>
-			<Route
-				exact
-				path="/tech/archive"
-				render={() => <Archive section="tech" />}
-			/>
-			<Route
-				exact
-				path="/tech/blog/:postLink?"
-				render={(p) => <BlogRoute {...p} section="tech" />}
-			/>
-
-			<Route path="/:oldPost" component={OldPostHandler} />
-			<Route path="*" component={NotFoundPage} />
-		</Switch>
-	)
-}
+import { Redirect } from "react-router-dom"
+import NotFoundPage from "../pages/NotFound"
 
 const OldPostHandler = ({ match }) => {
 	const url = match.url.substr(1) || ""
@@ -264,4 +214,4 @@ const existingPosts = [
 	"delightful-animations"
 ]
 
-export default Routes
+export default OldPostHandler
