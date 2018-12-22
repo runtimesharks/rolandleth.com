@@ -1,25 +1,6 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
-import NotFoundPage from "./pages/NotFound"
-import About from "./pages/About"
-import Intro from "./pages/Intro"
-import LifeAbout from "./pages/life/LifeAbout"
-import BlogRoute from "./pages/blog/BlogRoute"
-
-const Routes = (props) => {
-	return (
-		<Switch>
-			<Route exact path="/" component={Intro} />
-			<Route exact path="/about" component={About} />
-			<Route exact path="/life/about" component={LifeAbout} />
-			<BlogRoute exact path="/life/blog/:postLink?" section="life" />
-			<BlogRoute exact path="/tech/blog/:postLink?" section="tech" />
-
-			<Route path="/:oldPost" component={OldPostHandler} />
-			<Route path="*" component={NotFoundPage} />
-		</Switch>
-	)
-}
+import { Redirect } from "react-router-dom"
+import NotFoundPage from "../pages/NotFound"
 
 const OldPostHandler = ({ match }) => {
 	const url = match.url.substr(1) || ""
@@ -233,4 +214,4 @@ const existingPosts = [
 	"delightful-animations"
 ]
 
-export default Routes
+export default OldPostHandler

@@ -63,6 +63,10 @@ const Container = styled.header`
 const Border = styled.div`
 	grid-column: 1/6;
 	border-bottom: 1px solid ${Theme.textColor};
+
+	@media (prefers-color-scheme: dark) {
+		border-bottom: 1px solid white;
+	}
 `
 
 export default withRouter(SiteHeader)

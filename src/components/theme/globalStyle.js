@@ -14,6 +14,11 @@ export const GlobalStyle = createGlobalStyle`
 
 		max-width: ${Theme.maxWidth};
 		margin: 0 auto;
+
+		@media (prefers-color-scheme: dark) {
+			background: ${Theme.textColor};
+			color: white;
+		}
 	}
 
 	li {
@@ -36,6 +41,10 @@ export const GlobalStyle = createGlobalStyle`
 		font-family: ${Theme.headerFont};
 		line-height: 1.2em;
 		color: ${Theme.textColor};
+
+		@media (prefers-color-scheme: dark) {
+			color: white;
+		}
 	}
 
 	h4 {
@@ -54,15 +63,15 @@ export const GlobalStyle = createGlobalStyle`
 		border-bottom: 1px dotted ${Theme.linkColor};
 
 		${Theme.transition("0.4s")};
-	}
 
-	p {
-		& > a {
+		@media (hover: hover) {
 			&:hover {
 				border-bottom: 1px solid ${Theme.linkColor};
 			}
 		}
+	}
 
+	p {
 		&.no-margin {
 			margin: 0;
 		}

@@ -37,15 +37,13 @@ function truncateBody(body) {
 		return body
 	}
 
-	const truncatedBody = truncateHTML(body, {
+	return truncateHTML(body, {
 		length: 700,
 		ellipsis: " ...",
 		// ellipsis: " [&hellip;]",
 		stripTags: false,
 		keepWhitespaces: true
 	})
-
-	return truncatedBody
 }
 
 /**
@@ -59,35 +57,52 @@ function truncateBody(body) {
  * @param {String} link
  * @param {String} readingTime
  * @param {String} truncatedBody
+ * @param {Bool} creating
  * @constructor
  */
 class Post {
 	constructor(
 		title = "",
 		body = "",
-		author = "",
 		rawBody = "",
+		truncatedBody = "",
+		firstParagraph = "paragraph",
+		authorid = 1,
 		datetime = "",
-		modified = new Date().toDateString(),
+		date = undefined,
+		isoDate = undefined,
+		modified = undefined,
 		link = Post.createLink(title),
 		readingTime = timeToRead(body),
-		truncatedBody = truncateBody(body)
+		creating = false
+		// truncatedBody = truncateBody(body)
 	) {
 		this.title = title
 		this.body = body
-		this.author = author
 		this.rawBody = rawBody
-		this.truncatedBody = truncateBody(rawBody)
+
+		// Since we use a markdown renderer for the FE now, truncate the `rawBody` every time.
 		// this.truncatedBody = truncatedBody
-		this.readingTime = readingTime
+		if (creating) {
+			this.truncatedBody = truncateBody(body)
+		} else {
+			// Except when creating ... This is fucked up for now...
+			this.truncatedBody = truncateBody(rawBody)
+		}
+
+		this.firstParagraph = firstParagraph
+		this.authorid = authorid
+
 		this.datetime = datetime
 
 		var options = { year: "numeric", month: "short", day: "numeric" }
 		const rawDate = Post.dateFromDateTime(datetime)
 
-		this.date = rawDate.toLocaleDateString("en-US", options)
-		this.modified = modified
+		this.date = date || rawDate.toLocaleDateString("en-US", options)
+		this.isoDate = isoDate || rawDate.toISOString()
+		this.modified = modified || Post.datetimeFromDate(new Date())
 		this.link = link
+		this.readingTime = readingTime
 	}
 
 	/**

@@ -27,7 +27,6 @@ async function createFeed(section, req, res) {
 
 	data.posts.forEach((post) => {
 		const url = sectionUrl + "/blog/" + post.link
-		const isoDate = Post.dateFromDateTime(post.datetime).toISOString()
 
 		xml += "<entry>\n"
 		xml += `\t<id>${url}</id>\n`
@@ -39,7 +38,7 @@ async function createFeed(section, req, res) {
 		xml += `\t<link rel=\"related\" type=\"text/html\" href=\"${url}\"/>\n`
 		xml += `\t<link rel=\"alternate\" type=\"text/html\" href=\"${url}\"/>\n`
 
-		xml += `\t<published>${isoDate}</published>\n`
+		xml += `\t<published>${post.isoDate}</published>\n`
 
 		xml += "\t<author>\n"
 		xml += `\t\t<name>${post.author || "Roland Leth"}</name>\n`

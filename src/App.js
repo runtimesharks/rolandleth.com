@@ -4,41 +4,20 @@ import styled from "styled-components"
 import { GlobalStyle } from "./components/theme/globalStyle"
 import { GlobalSyntaxStyle } from "./components/theme/globalSyntax"
 import Helmet from "./components/Helmet"
-import Routes from "./components/Router"
+import Routes from "./components/routes/Router"
 import Theme from "./components/theme/Theme"
 import SiteHeader from "./components/site-header/SiteHeader"
+import Footer from "./components/Footer"
 
 class App extends React.Component {
-	constructor(props) {
-		super(props)
-
-		this.state = {
-			searchTerm: undefined
-		}
-	}
-
-	search = (query) => {
-		this.setState({ searchTerm: query })
-	}
-
 	query = () => {
-		let query = ""
-		let location = this.props.location
-		let q = "query="
-
-		if (location.search.includes(q)) {
-			query = decodeURIComponent(location.search)
-				.split(q)[1]
-				.replace(/[+]/g, " ")
-		}
-
-		return query
+		return new URLSearchParams(this.props.location.search).get("query") || ""
 	}
 
 	componentDidUpdate(prevProps) {
 		const location = this.props.location
 
-		if (prevProps.location === location) {
+		if (prevProps.location.pathname === location.pathname) {
 			return
 		}
 
@@ -51,14 +30,11 @@ class App extends React.Component {
 				<Helmet {...this.props} />
 				<GlobalStyle />
 				<GlobalSyntaxStyle />
-				<SiteHeader
-					{...this.props}
-					query={this.query()}
-					onSearch={this.search}
-				/>
+				<SiteHeader query={this.query()} />
 				<Content>
-					<Routes {...this.state} />
+					<Routes query={this.query()} />
 				</Content>
+				<Footer />
 			</React.Fragment>
 		)
 	}

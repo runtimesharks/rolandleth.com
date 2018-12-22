@@ -5,8 +5,8 @@ import Theme from "../theme/Theme"
 import "../font-awesome/css/font-awesome.min.css"
 import NavigationIcon from "./NavigationIcon"
 import Button from "./Button"
-import HoverableLink from "../link/HoverableLink"
 import { Route, Switch } from "react-router-dom"
+import ColorOnHoverLink from "../link/ColorOnHoverLink"
 
 const NavigationIcons = (props) => {
 	const section = props.location.pathname.startsWith("/tech") ? "Tech" : "Life"
@@ -15,6 +15,13 @@ const NavigationIcons = (props) => {
 		<Container>
 			<Switch>
 				<Route path="/:anything">
+					<NavigationIcon href="/" title="Roland's Leth's homepage">
+						<i className="fa fa-home fa-fw" />
+					</NavigationIcon>
+				</Route>
+			</Switch>
+			<Switch>
+				<Route path="/tech">
 					<React.Fragment>
 						<IconButton
 							onClick={props.onSearchClick}
@@ -22,20 +29,13 @@ const NavigationIcons = (props) => {
 						>
 							<i className="fa fa-search fa-fw" />
 						</IconButton>
-						<NavigationIcon href="/" title="Roland's Leth's homepage">
-							<i className="fa fa-home fa-fw" />
+						<NavigationIcon
+							href="https://runtimesharks.com/projects"
+							title="Roland's projects"
+						>
+							<i className="fa fa-laptop fa-fw" />
 						</NavigationIcon>
 					</React.Fragment>
-				</Route>
-			</Switch>
-			<Switch>
-				<Route path="/tech">
-					<NavigationIcon
-						href="https://runtimesharks.com/projects"
-						title="Roland's projects"
-					>
-						<i className="fa fa-laptop fa-fw" />
-					</NavigationIcon>
 				</Route>
 			</Switch>
 			<Switch>
@@ -58,7 +58,7 @@ const NavigationIcons = (props) => {
 			<Switch>
 				<Route path="/:anything">
 					<NavigationIcon
-						href={`http://localhost:3000/${section.toLowerCase()}/feed`}
+						href={`/${section.toLowerCase()}/feed`}
 						title={`Subscribe to Roland's ${section} feed`}
 					>
 						<i className="fa fa-rss fa-fw" />
@@ -94,7 +94,7 @@ const Container = styled.nav`
 	}
 `
 
-const StyledRuntimeLink = styled(HoverableLink)`
+const StyledRuntimeLink = styled(ColorOnHoverLink)`
 	font-family: ${Theme.headerFont};
 	font-weight: 700;
 	font-size: 1.2em;
@@ -118,8 +118,7 @@ const IconButton = styled(Button)`
 	flex: 1;
 	height: 100%;
 	align-self: center;
-	/* display: inline-grid; */
-	display: none;
+	display: inline-grid;
 
 	& > i {
 		font-size: 0.85em;

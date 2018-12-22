@@ -5,11 +5,7 @@ import Theme from "../theme/Theme"
 
 const Intro = () => (
 	<Container>
-		<Greeting>
-			Hello, I'm Roland Leth.
-			<br />
-			Welcome to by blog!
-		</Greeting>
+		<Greeting>Hello, I'm Roland Leth.</Greeting>
 		<p>
 			I’m an iOS & web developer, amateur designer and entrepreneur. Lately,
 			I've been fascinated more and more about the human brain, our behaviour

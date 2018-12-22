@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router"
 import styled from "styled-components"
 import Theme from "../theme/Theme"
 
@@ -43,12 +44,13 @@ class SearchForm extends React.Component {
 	}
 
 	render() {
+		const { location } = this.props
+		const section = location.pathname.split("/")[1]
+
 		return (
 			<Form
-				onSubmit={(event) => {
-					this.props.onSearch(this.state.query)
-					event.preventDefault()
-				}}
+				action={`/${section}/search`}
+				method="get"
 				isVisible={this.props.isSearchFieldVisible}
 			>
 				<TextField
@@ -58,7 +60,7 @@ class SearchForm extends React.Component {
 					defaultValue={this.props.query}
 					maxLength="30"
 					placeholder="Search..."
-					onChange={(query) => this.setState({ query })}
+					onChange={(e) => this.setState({ query: e.target.value })}
 				/>
 
 				{this.props.totalPosts > 1 && (
@@ -135,4 +137,4 @@ const SearchResults = styled.div`
 	margin-left: 2px;
 `
 
-export default SearchForm
+export default withRouter(SearchForm)

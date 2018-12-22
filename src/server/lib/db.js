@@ -12,9 +12,9 @@ function postsTableForSection(section) {
 }
 
 const pool = (function() {
-	const key = process.env.NODE_ENV === "production" ? "prod" : "dev"
+	const envKey = process.env.NODE_ENV === "production" ? "prod" : "dev"
 	const params = url.parse(
-		configFile["DATABASE_URL"][key] ||
+		configFile.DATABASE_URL[envKey] ||
 			"postgres://localhost/" + process.env.USER
 	)
 
@@ -36,7 +36,7 @@ const pool = (function() {
 })()
 
 function fields() {
-	return "(title, body, truncatedbody, datetime, modified, link, readingtime)"
+	return "(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
 }
 
 function values(post) {
@@ -51,10 +51,25 @@ function values(post) {
 		body +
 		"', " +
 		"'" +
+		post.rawBody +
+		"', " +
+		"'" +
 		truncatedBody +
 		"', " +
 		"'" +
+		post.firstParagraph +
+		"', " +
+		"'" +
+		post.authorid +
+		"', " +
+		"'" +
 		post.datetime +
+		"', " +
+		"'" +
+		post.date +
+		"', " +
+		"'" +
+		post.isoDate +
 		"', " +
 		"'" +
 		post.modified +
@@ -118,7 +133,7 @@ class Db {
 	/**
 	 * Update a post, based on its link and datetime fields.
 	 * @param {Post} post - The post to update.
-	 * @param {String} section - The blog's section.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
 	static updatePost(post, section) {
@@ -155,10 +170,12 @@ class Db {
 	/**
 	 * Fetch posts that contain the query in the title or body.
 	 * @param {String} query - The query to search for.
+	 * @param {int} page - The page we want posts for.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static searchPosts(query) {
-		return Db.fetchPosts(DbConfig.search(query))
+	static searchPosts(query, page, section) {
+		return Db.fetchPosts(DbConfig.search(query, page, section))
 	}
 
 	/**
@@ -171,10 +188,11 @@ class Db {
 
 	/**
 	 * Fetch title, link and datetime fields of all posts, except future ones.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchArchivePosts() {
-		return Db.fetchPosts(DbConfig.archive())
+	static fetchArchivePosts(section) {
+		return Db.fetchPosts(DbConfig.archive(section))
 	}
 
 	/**
@@ -304,13 +322,16 @@ class Db {
 			return new Post(
 				rawPost.title,
 				rawPost.body,
-				rawPost.author,
 				rawPost.rawbody,
+				truncatedBody,
+				rawPost.firstparagraph,
+				rawPost.authorid,
 				rawPost.datetime,
+				rawPost.date,
+				rawPost.isodate,
 				rawPost.modified,
 				rawPost.link,
-				rawPost.readingtime,
-				truncatedBody
+				rawPost.readingtime
 			)
 		})
 

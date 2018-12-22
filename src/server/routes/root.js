@@ -62,7 +62,7 @@ router.get("/*", (req, res) => {
 
 // This is for testing, only.
 function setCSPHeaders(res, isProduction) {
-	if (isProduction) {
+	if (isProduction || true) {
 		return
 	}
 
