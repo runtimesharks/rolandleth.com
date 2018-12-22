@@ -12,9 +12,9 @@ function postsTableForSection(section) {
 }
 
 const pool = (function() {
-	const key = process.env.NODE_ENV === "production" ? "prod" : "dev"
+	const envKey = process.env.NODE_ENV === "production" ? "prod" : "dev"
 	const params = url.parse(
-		configFile["DATABASE_URL"][key] ||
+		configFile.DATABASE_URL[envKey] ||
 			"postgres://localhost/" + process.env.USER
 	)
 
@@ -36,7 +36,7 @@ const pool = (function() {
 })()
 
 function fields() {
-	return "(title, body, truncatedbody, datetime, modified, link, readingtime)"
+	return "(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
 }
 
 function values(post) {
@@ -51,10 +51,25 @@ function values(post) {
 		body +
 		"', " +
 		"'" +
+		post.rawBody +
+		"', " +
+		"'" +
 		truncatedBody +
 		"', " +
 		"'" +
+		post.firstParagraph +
+		"', " +
+		"'" +
+		post.authorid +
+		"', " +
+		"'" +
 		post.datetime +
+		"', " +
+		"'" +
+		post.date +
+		"', " +
+		"'" +
+		post.isoDate +
 		"', " +
 		"'" +
 		post.modified +
@@ -307,13 +322,16 @@ class Db {
 			return new Post(
 				rawPost.title,
 				rawPost.body,
-				rawPost.author,
 				rawPost.rawbody,
+				truncatedBody,
+				rawPost.firstparagraph,
+				rawPost.authorid,
 				rawPost.datetime,
+				rawPost.date,
+				rawPost.isodate,
 				rawPost.modified,
 				rawPost.link,
-				rawPost.readingtime,
-				truncatedBody
+				rawPost.readingtime
 			)
 		})
 
