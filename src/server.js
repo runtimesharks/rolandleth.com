@@ -5,6 +5,7 @@ const server = express()
 
 server
 	.disable("x-powered-by")
+	.use(express.json())
 	.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 	.use("/", router)
 
