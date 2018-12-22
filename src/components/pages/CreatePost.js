@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components"
 import Theme from "../theme/Theme"
-import Helmet from "../Helmet"
+import Helmet from "react-helmet"
 import NotFoundPage from "./NotFound"
 import configFile from "../../../config"
 
