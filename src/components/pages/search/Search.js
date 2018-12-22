@@ -25,13 +25,12 @@ class Search extends React.Component {
 
 	fetchPosts = () => {
 		const { location } = window
-		const section = location.pathname.split("/")[1]
 		const rawPage = new URLSearchParams(location.search).get("page")
 		const page = parseInt(rawPage, 10) || 1
 
-		let url = `${location.protocol}//${
-			location.host
-		}/api/${section}/search?query=${this.props.query}`
+		let url = `${location.protocol}//${location.host}/api/${
+			this.props.section
+		}/search?query=${this.props.query}`
 
 		if (page > 1) {
 			url += `&page=${page}`

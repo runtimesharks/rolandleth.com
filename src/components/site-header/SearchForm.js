@@ -60,7 +60,7 @@ class SearchForm extends React.Component {
 					defaultValue={this.props.query}
 					maxLength="30"
 					placeholder="Search..."
-					onChange={(query) => this.setState({ query })}
+					onChange={(e) => this.setState({ query: e.target.value })}
 				/>
 
 				{this.props.totalPosts > 1 && (
