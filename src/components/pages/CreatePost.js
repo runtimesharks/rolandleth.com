@@ -6,7 +6,6 @@ import styled from "styled-components"
 import Theme from "../theme/Theme"
 import Helmet from "react-helmet"
 import NotFoundPage from "./NotFound"
-import configFile from "../../../config"
 
 class CreatePost extends React.Component {
 	constructor(props) {
@@ -42,8 +41,7 @@ class CreatePost extends React.Component {
 	}
 
 	render() {
-		const envKey = process.env.NODE_ENV === "production" ? "prod" : "dev"
-		const createPostKey = configFile.CREATE_POST_KEY[envKey]
+		const createPostKey = process.env.RAZZLE_CREATE_POST_KEY || "roland1"
 
 		if (this.state.key !== createPostKey) {
 			return <NotFoundPage />
@@ -57,7 +55,7 @@ class CreatePost extends React.Component {
 		return (
 			<Container>
 				<Helmet>
-					<meta name="robots" content="none" />
+					<meta name="robots" content="noindex,nofollow" />
 				</Helmet>
 
 				<InputWrapper>
