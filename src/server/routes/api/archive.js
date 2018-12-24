@@ -20,7 +20,6 @@ async function fetchArchivedPosts(section, res) {
 		})
 	})
 
-	res.setHeader("Content-Type", "application/javascript")
 	res.send(groupedPosts)
 }
 

@@ -7,7 +7,6 @@ async function fetchPosts(section, req, res) {
 
 	const result = await Db.fetchPosts(config)
 
-	setJSHeader(res)
 	res.send(result)
 }
 
@@ -15,12 +14,7 @@ async function fetchPost(link, res) {
 	const result = await Db.fetchPost(link)
 	const [post] = result.posts
 
-	setJSHeader(res)
 	res.send(post)
-}
-
-function setJSHeader(res) {
-	res.setHeader("Content-Type", "application/javascript")
 }
 
 export { fetchPosts, fetchPost }

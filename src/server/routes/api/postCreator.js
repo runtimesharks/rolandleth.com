@@ -21,7 +21,6 @@ async function createPost(section, req, res) {
 
 	await Db.createPost(post, section)
 
-	res.setHeader("Content-Type", "application/javascript")
 	res.send({ post })
 }
 

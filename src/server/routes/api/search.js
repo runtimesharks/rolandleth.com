@@ -5,7 +5,6 @@ async function search(section, req, res) {
 	const page = req.query.page || 1
 	const result = await Db.searchPosts(query, page, section)
 
-	res.setHeader("Content-Type", "application/javascript")
 	res.send(result)
 }
 
