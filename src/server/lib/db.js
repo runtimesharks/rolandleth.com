@@ -157,11 +157,12 @@ class Db {
 
 	/**
 	 * Fetch one post, based by its link. Can return future posts.
-	 * @param {String} link - The post"s link.
+	 * @param {String} link - The post's link.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchPost(link) {
-		return Db.fetchPosts(DbConfig.post(link))
+	static fetchPost(link, section) {
+		return Db.fetchPosts(DbConfig.post(link, section))
 	}
 
 	/**

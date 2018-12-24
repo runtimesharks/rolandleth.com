@@ -15,7 +15,7 @@ router.post("/posts", async (req, res) => {
 })
 
 router.get("/posts/:link", async (req, res) => {
-	fetchPost(req.params.link, res)
+	fetchPost(req.params.link, "tech", res)
 })
 
 router.get("/search", async (req, res) => {

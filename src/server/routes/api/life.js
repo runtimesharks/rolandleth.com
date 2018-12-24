@@ -10,12 +10,12 @@ router.get("/posts", async (req, res) => {
 	fetchPosts("life", req, res)
 })
 
-router.post("/post", async (req, res) => {
+router.post("/posts", async (req, res) => {
 	createPost("life", req, res)
 })
 
 router.get("/posts/:link", async (req, res) => {
-	fetchPost(req.params.link, res)
+	fetchPost(req.params.link, "life", res)
 })
 
 router.get("/search", async (req, res) => {

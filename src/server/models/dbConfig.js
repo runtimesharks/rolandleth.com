@@ -27,15 +27,17 @@ class DbConfig {
 		this.section = "tech"
 	}
 
-	/** * Limit one, link as field, and the post"s link as fieldValue.
-	 * @param {String} link - The post"s link to fetch it by.
+	/** * Limit one, link as field, and the post's link as fieldValue.
+	 * @param {String} link - The post's link to fetch it by.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static post(link) {
+	static post(link, section) {
 		const config = new DbConfig()
 		config.fields = ["link"]
 		config.fieldValues = [link]
 		config.limit = 1
+		config.section = section
 
 		return config
 	}
@@ -43,11 +45,13 @@ class DbConfig {
 	/**
 	 * Offset set to limit * page - 1.
 	 * @param {int} page - The page we want posts for.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static page(page) {
+	static page(page, section) {
 		const config = new DbConfig()
 		config.offset = config.limit * (page - 1)
+		config.section = section
 
 		return config
 	}
