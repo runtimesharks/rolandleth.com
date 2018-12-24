@@ -3,13 +3,6 @@ import fs from "fs"
 
 const router = express.Router()
 
-router.get("/privacy-policy.md", function(req, res) {
-	res.download(
-		"./assets/files/Privacy Policy.md",
-		"Roland Leth - Privacy Policy.md"
-	)
-})
-
 router.get("/resume.pdf", function(req, res) {
 	const file = "./assets/files/Resume.pdf"
 	const fileName = "Roland Leth - Résumé.pdf"
