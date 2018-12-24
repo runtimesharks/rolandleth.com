@@ -12,7 +12,7 @@ class CreatePost extends React.Component {
 		super(props)
 
 		this.state = {
-			post: { date: "", title: "", body: "" },
+			post: { datetime: "", title: "", body: "" },
 			isTokenValid: undefined,
 			redirectLink: undefined
 		}
@@ -104,7 +104,7 @@ class CreatePost extends React.Component {
 						type="text"
 						onChange={(e) => {
 							const state = this.state
-							state.post.date = e.target.value
+							state.post.datetime = e.target.value
 							this.setState(state)
 						}}
 					/>

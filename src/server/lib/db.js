@@ -318,13 +318,14 @@ class Db {
 			}
 
 			return new Post(
+				false,
 				rawPost.title,
-				rawPost.body,
 				rawPost.rawbody,
+				rawPost.datetime,
+				rawPost.authorid,
+				rawPost.body,
 				truncatedBody,
 				rawPost.firstparagraph,
-				rawPost.authorid,
-				rawPost.datetime,
 				rawPost.date,
 				rawPost.isodate,
 				rawPost.modified,

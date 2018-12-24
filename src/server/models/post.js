@@ -2,11 +2,12 @@
 
 import readingTime from "reading-time"
 import truncateHTML from "truncate-html" // This one is really fast (400ms vs 80)
+import marked from "marked"
 require("../lib/date")
 
 /**
  * Creates a friedly reading time text.
- * @param body The post's body.
+ * @param {String} body The post's body.
  * @returns {String} A string in "1 min read" format.
  */
 function timeToRead(body) {
@@ -26,10 +27,10 @@ function timeToRead(body) {
 
 /**
  * Truncates the body of a post to 700 characters, but only if it's longer than 900; otherwise it does nothing.
- * @param title {String} The title of the body; used for tracking.
- * @param body {String} The post of the body.
- * @param rawBody {String} The post of the body.
- * @param link {String} The link of the body.
+ * @param {String} title The title of the body; used for tracking.
+ * @param {String} body The post of the body.
+ * @param {String} rawBody The post of the body.
+ * @param {String} link The link of the body.
  * @returns {String} The truncated body.
  */
 function truncateBody(body) {
@@ -43,6 +44,27 @@ function truncateBody(body) {
 		// ellipsis: " [&hellip;]",
 		stripTags: false,
 		keepWhitespaces: true
+	})
+}
+
+/**
+ * Extracts the first paragraph of a post's body, truncating it to 300 characters.
+ * @param {String} rawBody The post's raw body.
+ * @returns {String} The first paragraph of the body.
+ */
+function extractFirstParagraph(rawBody) {
+	const split = rawBody.split("\n")
+	var firstParagraph = ""
+
+	if (split.length === 0) {
+		firstParagraph = rawBody
+	} else {
+		firstParagraph = split[0]
+	}
+
+	return truncateHTML(firstParagraph, {
+		length: 300,
+		ellipsis: " ..."
 	})
 }
 
@@ -62,24 +84,25 @@ function truncateBody(body) {
  */
 class Post {
 	constructor(
-		title = "",
-		body = "",
-		rawBody = "",
-		truncatedBody = "",
-		firstParagraph = "paragraph",
+		creating,
+		title,
+		rawBody,
+		datetime,
 		authorid = 1,
-		datetime = "",
-		date = undefined,
-		isoDate = undefined,
-		modified = undefined,
+		body = marked(rawBody),
+		truncatedBody,
+		firstParagraph = extractFirstParagraph(rawBody),
+		date,
+		isoDate,
+		modified = Post.datetimeFromDate(new Date()),
 		link = Post.createLink(title),
-		readingTime = timeToRead(body),
-		creating = false
-		// truncatedBody = truncateBody(body)
+		readingTime = timeToRead(body)
 	) {
 		this.title = title
-		this.body = body
 		this.rawBody = rawBody
+		this.datetime = datetime
+
+		this.body = body
 
 		// Since we use a markdown renderer for the FE now, truncate the `rawBody` every time.
 		// this.truncatedBody = truncatedBody
@@ -93,14 +116,12 @@ class Post {
 		this.firstParagraph = firstParagraph
 		this.authorid = authorid
 
-		this.datetime = datetime
-
 		var options = { year: "numeric", month: "short", day: "numeric" }
 		const rawDate = Post.dateFromDateTime(datetime)
 
 		this.date = date || rawDate.toLocaleDateString("en-US", options)
 		this.isoDate = isoDate || rawDate.toISOString()
-		this.modified = modified || Post.datetimeFromDate(new Date())
+		this.modified = modified
 		this.link = link
 		this.readingTime = readingTime
 	}

@@ -1,5 +1,4 @@
 import Db from "../../lib/db"
-import marked from "marked"
 import Post from "../../models/post"
 
 async function createPost(section, req, res) {
@@ -13,19 +12,10 @@ async function createPost(section, req, res) {
 
 	try {
 		const post = new Post(
+			true,
 			req.body.post.title,
-			marked(req.body.post.body),
 			req.body.post.body,
-			undefined,
-			undefined,
-			1,
-			req.body.post.date,
-			undefined,
-			undefined,
-			undefined,
-			undefined,
-			undefined,
-			true
+			req.body.post.datetime
 		)
 
 		await Db.createPost(post, section)
