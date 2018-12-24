@@ -39,7 +39,7 @@ const About = () => (
 			and my blog has been a playground for a lot of that. If you'd like to
 			know more about my development history, please check out{" "}
 			<Link
-				href="/downloads/resume.pdf"
+				href="https://rolandleth.com/assets/resume.pdf"
 				title="Roland Leth's resume"
 				text="my résumé"
 			/>
