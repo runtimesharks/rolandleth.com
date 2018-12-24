@@ -104,28 +104,20 @@ const About = () => (
 			writing about my own journey of improvement.
 		</p>
 		<p>
-			A lot of the motivational videos or articles you can find online are by
-			or about successful people. If, at times, you've thought that "of
-			course, they're rich/successful, it's easy for them", then you're not
-			alone; I have as well. And this is one of the reasons I started this
-			section: to give confidence to other people that this kind of change{" "}
-			<strong>is</strong> possible.
-		</p>
-		<p>
-			I don't have the worry of tomorrow, and I don't want to hide or deny
-			that, but I'm by no means famous, nor wealthy. Yet, following the same
-			principles/advices, I <strong>did</strong> change and I improved my
-			life quite a lot, it's getting easier and easier and I'm now constantly
-			on the lookout for things I can improve.
-		</p>
-		<p>
 			A somewhat short (~17min read) post about this can be found on{" "}
 			<Link
 				href="https://www.reddit.com/r/selfimprovement/comments/9zcxl0/motivation_habits_discipline_identity_shift_my/"
 				title="My short story"
 				text="Reddit"
-			/>
-			. <em>Spoiler</em>: the main tactic that has proven successful was "no
+			/>{" "}
+			and in the{" "}
+			<Link
+				href="/life/blog/about-me-slightly-detailed"
+				title="About me, in more detail"
+				text="first post"
+			/>{" "}
+			of the <Link href="/life/blog" title="Life" text="new section" />.{" "}
+			<em>Spoiler</em>: the main tactic that has proven successful was "no
 			step is too small to be unimportant", "one babystep at a time" & "never
 			miss twice".
 		</p>

@@ -31,9 +31,16 @@ const LifeAbout = () => {
 				not alone; I have as well.
 			</p>
 			<p>
-				I'm not wealthy, nor famous and this is one of the reasons I started
-				this section: to give confidence to other people that this kind of
-				change <strong>is</strong> possible by everyone.
+				I don't have the worry of tomorrow, and I don't want to hide or deny
+				that, but I'm by no means famous, nor wealthy. Yet, following the
+				same principles/advices, I <strong>did</strong> change and I
+				improved my life quite a lot, it's getting easier and easier and I'm
+				now constantly on the lookout for things I can improve.
+			</p>
+			<p>
+				This is one of the reasons I started this section: to give
+				confidence to other people that this kind of change{" "}
+				<strong>is</strong> possible by everyone.
 			</p>
 		</Container>
 	)
