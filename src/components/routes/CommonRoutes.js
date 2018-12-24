@@ -9,7 +9,6 @@ const CommonRoutes = (props) => {
 	// We match here with a path of either `/tech`, or `/life`.
 	const section = props.path.substring(1, props.path.length)
 	const feedRoutes = [`${props.path}/search`, `${props.path}/blog/:postLink?`]
-	const createPostKey = process.env.RAZZLE_CREATE_POST_KEY || "roland1"
 
 	return (
 		<Switch>
@@ -26,14 +25,8 @@ const CommonRoutes = (props) => {
 			/>
 			<Route
 				exact
-				path={`${props.path}/create-post/${createPostKey}`}
-				render={(p) => {
-					if (process.env.NODE_ENV === "production") {
-						return <NotFoundPage />
-					}
-
-					return <CreatePost {...props} />
-				}}
+				path={`${props.path}/create-post/:token?`}
+				render={() => <CreatePost {...props} />}
 			/>
 			<Route path="*" component={NotFoundPage} />
 		</Switch>

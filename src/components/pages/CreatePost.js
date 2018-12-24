@@ -11,16 +11,19 @@ class CreatePost extends React.Component {
 	constructor(props) {
 		super(props)
 
-		const split = this.props.location.pathname.split("/")
-		const key = split[split.length - 1]
-
 		this.state = {
-			date: "",
-			title: "",
-			body: "",
-			key: key,
+			post: { date: "", title: "", body: "" },
+			isTokenValid: undefined,
 			redirectLink: undefined
 		}
+	}
+
+	componentDidMount() {
+		if (this.state.isTokenValid !== undefined) {
+			return
+		}
+
+		this.checkToken()
 	}
 
 	submit = () => {
@@ -30,7 +33,10 @@ class CreatePost extends React.Component {
 		}/api/${section}/posts`
 
 		axios
-			.post(url, this.state)
+			.post(url, {
+				post: this.state.post,
+				token: this.props.match.params.token
+			})
 			.then((result) => result.data.post)
 			.then((post) => {
 				if (post) {
@@ -40,10 +46,30 @@ class CreatePost extends React.Component {
 			.catch((e) => console.log(e))
 	}
 
-	render() {
-		const createPostKey = process.env.RAZZLE_CREATE_POST_KEY || "roland1"
+	checkToken = () => {
+		const token = this.props.match.params.token
+		const url = `${window.location.protocol}//${
+			window.location.host
+		}/api/create-post-token`
 
-		if (this.state.key !== createPostKey) {
+		axios
+			.post(url, { token: token })
+			.then((result) => {
+				if (result.status !== 200) {
+					throw new Error("Invalid token")
+				}
+
+				this.setState({ isTokenValid: true })
+			})
+			.catch(() => this.setState({ isTokenValid: false }))
+	}
+
+	render() {
+		if (this.state.isTokenValid === undefined) {
+			return ""
+		}
+
+		if (this.state.isTokenValid === false) {
 			return <NotFoundPage />
 		}
 
@@ -63,7 +89,11 @@ class CreatePost extends React.Component {
 					<TextField
 						title="Title"
 						type="text"
-						onChange={(e) => this.setState({ title: e.target.value })}
+						onChange={(e) => {
+							const state = this.state
+							state.post.title = e.target.value
+							this.setState(state)
+						}}
 					/>
 				</InputWrapper>
 
@@ -72,7 +102,11 @@ class CreatePost extends React.Component {
 					<TextField
 						title="Date"
 						type="text"
-						onChange={(e) => this.setState({ date: e.target.value })}
+						onChange={(e) => {
+							const state = this.state
+							state.post.date = e.target.value
+							this.setState(state)
+						}}
 					/>
 				</InputWrapper>
 
@@ -81,7 +115,11 @@ class CreatePost extends React.Component {
 					<TextArea
 						title="Body"
 						rows="20"
-						onChange={(e) => this.setState({ body: e.target.value })}
+						onChange={(e) => {
+							const state = this.state
+							state.post.body = e.target.value
+							this.setState(state)
+						}}
 					/>
 				</InputWrapper>
 
