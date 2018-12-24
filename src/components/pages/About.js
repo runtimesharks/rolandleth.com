@@ -137,6 +137,11 @@ const About = () => (
 			/>
 			.
 		</p>
+		<p />
+		<p>
+			You can find my privacy policy{" "}
+			<Link href="/privacy-policy" text="here" title="Privacy Policy" />.
+		</p>
 	</Container>
 )
 
