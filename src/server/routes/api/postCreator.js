@@ -11,25 +11,29 @@ async function createPost(section, req, res) {
 		res.sendStatus(404)
 	}
 
-	const post = new Post(
-		req.body.title,
-		marked(req.body.body),
-		req.body.body,
-		undefined,
-		undefined,
-		1,
-		req.body.date,
-		undefined,
-		undefined,
-		undefined,
-		undefined,
-		undefined,
-		true
-	)
+	try {
+		const post = new Post(
+			req.body.post.title,
+			marked(req.body.post.body),
+			req.body.post.body,
+			undefined,
+			undefined,
+			1,
+			req.body.post.date,
+			undefined,
+			undefined,
+			undefined,
+			undefined,
+			undefined,
+			true
+		)
 
-	await Db.createPost(post, section)
+		await Db.createPost(post, section)
 
-	res.send({ post })
+		res.send({ post })
+	} catch (e) {
+		res.status(400).send(e.message)
+	}
 }
 
 export default createPost

@@ -28,23 +28,27 @@ async function createSitemap(res) {
 		xml += "</url>"
 	})
 
-	const data = await Db.fetchSiteMapPosts()
+	try {
+		const data = await Db.fetchSiteMapPosts()
 
-	data.posts.forEach(function(post) {
-		const datetime = post.modified.slice(0, -5)
+		data.posts.forEach(function(post) {
+			const datetime = post.modified.slice(0, -5)
 
-		xml += "<url>"
-		xml += "<loc>" + rootPath + post.link + "</loc>"
-		xml += "<changefreq>" + "monthly" + "</changefreq>"
-		xml += "<priority>" + 0.5 + "</priority>"
-		xml += "<lastmod>" + datetime + "</lastmod>"
-		xml += "</url>"
-	})
+			xml += "<url>"
+			xml += "<loc>" + rootPath + post.link + "</loc>"
+			xml += "<changefreq>" + "monthly" + "</changefreq>"
+			xml += "<priority>" + 0.5 + "</priority>"
+			xml += "<lastmod>" + datetime + "</lastmod>"
+			xml += "</url>"
+		})
 
-	xml += "</urlset>"
+		xml += "</urlset>"
 
-	res.header("Content-Type", "text/xml")
-	res.send(xml)
+		res.header("Content-Type", "text/xml")
+		res.send(xml)
+	} catch (e) {
+		res.status(400).send(e.message)
+	}
 }
 
 export default createSitemap
