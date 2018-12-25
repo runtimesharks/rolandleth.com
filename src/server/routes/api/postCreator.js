@@ -18,10 +18,17 @@ async function createPost(section, req, res) {
 			req.body.post.datetime
 		)
 
-		await Db.createPost(post, section)
+		const existingPosts = await Db.fetchPost(post.link, section)
+
+		if (existingPosts.posts.length > 0) {
+			await Db.updatePost(post, section)
+		} else {
+			await Db.createPost(post, section)
+		}
 
 		res.send({ post })
 	} catch (e) {
+		console.info(e.message)
 		res.status(400).send(e.message)
 	}
 }
