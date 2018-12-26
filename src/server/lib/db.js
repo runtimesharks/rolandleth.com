@@ -85,6 +85,11 @@ function values(post) {
  * A namespace for all related database operations.
  */
 class Db {
+
+	static escapeSingleQuote(string) {
+		return string.replace("'", "''")
+	}
+
 	/**
 	 * Create a new post.
 	 * @param {Post} post - The post to be created.
@@ -173,7 +178,9 @@ class Db {
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
 	static searchPosts(query, page, section) {
-		return Db.fetchPosts(DbConfig.search(query, page, section))
+		return Db.fetchPosts(
+			DbConfig.search(this.escapeSingleQuote(query), page, section)
+		)
 	}
 
 	/**
