@@ -12,7 +12,7 @@ function postsTableForSection(section) {
 
 const pool = (function() {
 	const dbURL =
-		process.env.DATABASE_URL || "postgres://localhost/" + process.env.USER
+		process.env.DATABASE_URL || `postgres://localhost/${process.env.USER}`
 	const params = url.parse(dbURL)
 
 	// Running locally usually implies no auth.
@@ -32,59 +32,26 @@ const pool = (function() {
 	return new Pool(config)
 })()
 
-function fields() {
-	return "(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
-}
-
-function values(post) {
-	const title = post.title.replace(new RegExp("'", "g"), "''")
-	const body = post.body.replace(new RegExp("'", "g"), "''")
-	const truncatedBody = post.truncatedBody.replace(new RegExp("'", "g"), "''")
-	return (
-		"('" +
-		title +
-		"', " +
-		"'" +
-		body +
-		"', " +
-		"'" +
-		post.rawBody +
-		"', " +
-		"'" +
-		truncatedBody +
-		"', " +
-		"'" +
-		post.firstParagraph +
-		"', " +
-		"'" +
-		post.authorid +
-		"', " +
-		"'" +
-		post.datetime +
-		"', " +
-		"'" +
-		post.date +
-		"', " +
-		"'" +
-		post.isoDate +
-		"', " +
-		"'" +
-		post.modified +
-		"', " +
-		"'" +
-		post.link +
-		"', " +
-		"'" +
-		post.readingTime +
-		"')"
-	)
-}
-
 /**
  * @class
  * A namespace for all related database operations.
  */
 class Db {
+	static fields() {
+		return "(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
+	}
+
+	static values(post) {
+		return `('${this.escapeSingleQuote(post.title)}', '${
+			post.body
+		}', '${this.escapeSingleQuote(post.rawBody)}', '${
+			post.truncatedBody
+		}', '${this.escapeSingleQuote(post.firstParagraph)}', '${
+			post.authorid
+		}', '${post.datetime}', '${post.date}', '${post.isoDate}', '${
+			post.modified
+		}', '${post.link}', '${post.readingTime}')`
+	}
 
 	static escapeSingleQuote(string) {
 		return string.replace("'", "''")
@@ -96,17 +63,15 @@ class Db {
 	 * @param {String} section - The blog's section.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
-	static createPost(post, section) {
-		const query =
-			"INSERT INTO " +
-			postsTableForSection(section) +
-			fields() +
-			" VALUES " +
-			values(post)
+	static async createPost(post, section) {
+		const table = postsTableForSection(section)
+		const fields = this.fields()
+		const values = this.values(post)
+		const query = `INSERT INTO ${table} ${fields} VALUES ${values}`
 
-		return pool.query(query).then(function() {
-			return true
-		})
+		await pool.query(query)
+
+		return true
 	}
 
 	/**
@@ -115,21 +80,15 @@ class Db {
 	 * @param {String} section - The blog's section.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
-	static deletePost(post, section) {
-		const query =
-			"DELETE FROM " +
-			postsTableForSection(section) +
-			" WHERE" +
-			" link = '" +
-			post.link +
-			"' AND" +
-			" datetime = '" +
-			post.datetime +
-			"'"
+	static async deletePost(post, section) {
+		const table = postsTableForSection(section)
+		const query = `DELETE FROM ${table} WHERE link = '${
+			post.link
+		}' AND datetime = '${post.datetime}'`
 
-		return pool.query(query).then(function() {
-			return true
-		})
+		await pool.query(query)
+
+		return true
 	}
 
 	/**
@@ -138,26 +97,17 @@ class Db {
 	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<Boolean>} A promise that contains true or false, based on the success.
 	 */
-	static updatePost(post, section) {
-		const query =
-			"UPDATE " +
-			postsTableForSection(section) +
-			" SET" +
-			" " +
-			fields() +
-			" = " +
-			values(post) +
-			" WHERE " +
-			" link = '" +
-			post.link +
-			"' AND " +
-			" datetime = '" +
-			post.datetime +
-			"'"
+	static async updatePost(post, section) {
+		const table = postsTableForSection(section)
+		const fields = this.fields()
+		const values = this.values(post)
+		const query = `UPDATE ${table} SET ${fields} = ${values} WHERE link = '${
+			post.link
+		}' AND datetime = '${post.datetime}'`
 
-		return pool.query(query).then(function() {
-			return true
-		})
+		await pool.query(query)
+
+		return true
 	}
 
 	/**
@@ -219,46 +169,53 @@ class Db {
 		//		'CREATE TABLE posts(title VARCHAR(100), body VARCHAR(99999), truncatedbody VARCHAR(5000), datetime VARCHAR(50), modified VARCHAR(55), link VARCHAR(100), readingtime VARCHAR(15))'
 		//	);
 
-		let query =
-			"SELECT " +
-			config.columns +
-			" FROM " +
-			postsTableForSection(config.section)
-		const queried = config.fields && config.fieldValues
-		if (queried) {
+		const table = postsTableForSection(config.section)
+		let query = `SELECT ${config.columns} FROM ${table}`
+		const isQueried = config.fields && config.fieldValues
+
+		if (isQueried) {
 			if (config.searching) {
 				query += " WHERE "
 
 				config.fields.forEach(function(field) {
 					config.fieldValues.forEach(function(value) {
-						query += field + " ILIKE "
-						query += "'%" + value + "%'"
-						query += " OR "
+						query += `${field} ILIKE '%${value}%' OR `
 					})
 				})
 
 				query = query.slice(0, -4)
 			} else {
-				query +=
-					" WHERE " +
-					config.fields[0] +
-					" = '" +
-					config.fieldValues[0] +
-					"'"
+				query += ` WHERE ${config.fields[0]} = '${config.fieldValues[0]}'`
 			}
 		}
-		query +=
-			" ORDER BY " +
-			(config.orderBy || "datetime") +
-			" " +
-			(config.orderDirection || "ASC")
+
+		const countQuery = query.replace(
+			/SELECT .+? FROM/,
+			"SELECT count(distinct link) FROM"
+		)
+
+		query += ` ORDER BY ${config.orderBy} ${config.orderDirection}`
+
+		if (config.limit > 0) {
+			query += ` LIMIT ${config.limit}`
+		}
+
+		query += ` OFFSET ${config.offset}`
 
 		const result = await pool.query(query)
 		const res = new DbResult()
-		res.totalPages = parseInt(result.rows.length / config.limit, 10) + 1
+		let posts = result.rows
 
+		if (config.limit === 1) {
+			res.totalPages = 1
+		} else {
+			const countResult = await pool.query(countQuery)
+			const count = countResult.rows[0].count
 
-		if (!config.updating && config.limit !== 1) {
+			res.totalPages = parseInt(count / config.limit, 10) + 1
+		}
+
+		if (config.limit !== 1) {
 			const date = new Date()
 			const utcDate = new Date(
 				Date.UTC(
@@ -276,10 +233,6 @@ class Db {
 				const postDate = Post.dateFromDateTime(rawPost.datetime)
 				return postDate && postDate < utcDate
 			})
-		}
-
-		if (config.limit) {
-			posts = posts.slice(config.offset, config.offset + config.limit)
 		}
 
 		res.posts = posts.map(function(rawPost) {
@@ -317,8 +270,8 @@ class Db {
 
 			return new Post(
 				false,
-				rawPost.title,
-				rawPost.rawbody,
+				rawPost.title, // For archive we don't fetch this field, but we process it in the constructor
+				rawPost.rawbody || "",
 				rawPost.datetime,
 				rawPost.authorid,
 				rawPost.body,
