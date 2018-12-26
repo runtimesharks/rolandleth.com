@@ -1,6 +1,5 @@
 /**
  * An object to wrap all configs required for DB handling.
- * @property {Boolean} updating - If we are doing an update, all posts must be fetched, including future ones.
  * @property {Boolean} searching - If we are doing a search, the query will be done by all fields, not just link and datetime, false by default.
  * @property {String} columns - The columns to fetch, * by default. On archive, we only want the titles, for example.
  * @property {String[]} fields - The fields to do the query by, usually for search, null by default.
@@ -14,7 +13,6 @@
  */
 class DbConfig {
 	constructor() {
-		this.updating = false
 		this.searching = false
 		this.columns = "*"
 		this.fields = null
@@ -52,18 +50,6 @@ class DbConfig {
 		const config = new DbConfig()
 		config.offset = config.limit * (page - 1)
 		config.section = section
-
-		return config
-	}
-
-	/**
-	 * Zero limit and updating set to true.
-	 * @returns {DbConfig} The {@link DbConfig} object.
-	 */
-	static update() {
-		const config = new DbConfig()
-		config.limit = 0
-		config.updating = true
 
 		return config
 	}

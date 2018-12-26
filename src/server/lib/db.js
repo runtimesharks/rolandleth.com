@@ -177,14 +177,6 @@ class Db {
 	}
 
 	/**
-	 * Fetch all posts, even future ones.
-	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
-	 */
-	static fetchPostsForUpdating() {
-		return Db.fetchPosts(DbConfig.update())
-	}
-
-	/**
 	 * Fetch title, link and datetime fields of all posts, except future ones.
 	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
