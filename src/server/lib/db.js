@@ -257,7 +257,6 @@ class Db {
 		const res = new DbResult()
 		res.totalPages = parseInt(result.rows.length / config.limit, 10) + 1
 
-		let posts = result.rows.reverse()
 
 		if (!config.updating && config.limit !== 1) {
 			const date = new Date()

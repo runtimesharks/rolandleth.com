@@ -1,14 +1,14 @@
 /**
  * An object to wrap all configs required for DB handling.
- * @property {Boolean} searching - If we are doing a search, the query will be done by all fields, not just link and datetime, false by default.
- * @property {String} columns - The columns to fetch, * by default. On archive, we only want the titles, for example.
- * @property {String[]} fields - The fields to do the query by, usually for search, null by default.
- * @property {String[]} fieldValues - The fields' values to do the query by, usually for search, null by default.
- * @property {String} orderBy - The ordering field to do the query by, datetime by default.
- * @property {String} orderDirection - The direction of ordering, ASC by default.
- * @property {int} pageSize - The number of posts to return, env.PAGE_SIZE by default.
- * @property {int} offset - The offset where to return posts from, for page x > 1, 0 by default.
- * @property {int} limit - The number of posts to return, env.PAGE_SIZE || 10 by default.
+ * @property {Boolean} searching - If we are doing a search, the query will be done by all fields, not just `link` and `datetime`, `false` by default.
+ * @property {String} columns - The columns to fetch, * by default. On archive, we only want the `titles` and `links`, for example.
+ * @property {String[]} fields - The fields to do the query by, usually for search, `null` by default.
+ * @property {String[]} fieldValues - The fields' values to do the query by, usually for search, `null` by default.
+ * @property {String} orderBy - The ordering field to do the query by, `datetime` by default.
+ * @property {String} orderDirection - The direction of ordering, `DESC` by default.
+ * @property {int} pageSize - The number of posts to return, env.`PAGE_SIZE` by default.
+ * @property {int} offset - The offset where to return posts from, for page `x > 1`, `0` by default.
+ * @property {int} limit - The number of posts to return, `env.PAGE_SIZE || 10` by default.
  * @constructor
  */
 class DbConfig {
@@ -18,8 +18,8 @@ class DbConfig {
 		this.fields = null
 		this.fieldValues = null
 		this.orderBy = "datetime"
-		this.orderDirection = "ASC"
-		this.limit = parseInt(process.env.PAGE_SIZE) || 10
+		this.orderDirection = "DESC"
+		this.limit = parseInt(process.env.PAGE_SIZE, 10) || 10
 		this.offset = 0
 		this.accessibleOnlyByLink = false
 		this.section = "tech"
@@ -94,7 +94,7 @@ class DbConfig {
 	}
 
 	/**
-	 * Zero limit, searching true, body and title as fields and the query as a field value.
+	 * Searching true, body and title as fields and the query as a field value.
 	 * @param {String} query - The strings we want to search for.
 	 * @param {int} page - The page we want posts for.
 	 * @param {"life"|"tech"} section A String representing the section of the site.
