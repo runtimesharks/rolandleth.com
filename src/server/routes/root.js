@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.get("/*", (req, res) => {
 	const context = {}
-	const location = req.protocol + "://" + req.hostname + req.originalUrl
+	const location = `https://${req.hostname}${req.originalUrl}`
 	const isProduction = process.env.NODE_ENV === "production"
 	const sheet = new ServerStyleSheet()
 	const markup = renderToString(

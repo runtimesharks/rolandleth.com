@@ -10,10 +10,11 @@ async function createSitemap(res) {
 	]
 	const highPriority = ["about"]
 	const urls = noPriority.concat(lowPriority).concat(highPriority)
-
 	const rootPath = "https://rolandleth.com/tech/blog/"
-	let xml =
-		'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+	let xml = ""
+
+	xml += `<?xml version="1.0" encoding="UTF-8"?>`
+	xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`
 
 	urls.forEach(function(url) {
 		const priority = highPriority.includes(url)
@@ -22,9 +23,9 @@ async function createSitemap(res) {
 			? 0.3
 			: 0.1
 		xml += "<url>"
-		xml += "<loc>" + rootPath + url + "</loc>"
-		xml += "<changefreq>" + "yearly" + "</changefreq>"
-		xml += "<priority>" + priority + "</priority>"
+		xml += `<loc>${rootPath}${url}</loc>`
+		xml += "<changefreq>yearly</changefreq>"
+		xml += `<priority>${priority}</priority>`
 		xml += "</url>"
 	})
 
@@ -35,10 +36,10 @@ async function createSitemap(res) {
 			const datetime = post.modified.slice(0, -5)
 
 			xml += "<url>"
-			xml += "<loc>" + rootPath + post.link + "</loc>"
-			xml += "<changefreq>" + "monthly" + "</changefreq>"
-			xml += "<priority>" + 0.5 + "</priority>"
-			xml += "<lastmod>" + datetime + "</lastmod>"
+			xml += `<loc>${rootPath}${post.link}</loc>`
+			xml += "<changefreq>monthly</changefreq>"
+			xml += "<priority>0.5</priority>"
+			xml += `<lastmod>${datetime}</lastmod>`
 			xml += "</url>"
 		})
 

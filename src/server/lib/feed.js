@@ -3,13 +3,13 @@ import Db from "../lib/db"
 async function createFeed(section, req, res) {
 	const year = new Date().getFullYear()
 	const updated = new Date().toISOString()
-	const baseUrl = req.protocol + "://" + req.headers.host
-	const sectionUrl = baseUrl + `/${section}`
+	const baseUrl = `https://${req.hostname}`
+	const sectionUrl = `${baseUrl}/${section}`
 	let xml = ""
 
-	xml += '<?xml version="1.0" encoding="utf-8"?>\n'
-	xml += '<feed xmlns="http://www.w3.org/2005/Atom">\n'
-	xml += '<title type="text">Roland Leth</title>\n'
+	xml += `<?xml version="1.0" encoding="utf-8"?>\n`
+	xml += `<feed xmlns="http://www.w3.org/2005/Atom">\n`
+	xml += `<title type="text">Roland Leth</title>\n`
 	xml += `<subtitle type="text">${
 		section === "tech"
 			? "Development thoughts by Roland Leth"
@@ -27,7 +27,7 @@ async function createFeed(section, req, res) {
 		const data = await Db.fetchFeedPosts(section)
 
 		data.posts.forEach((post) => {
-			const url = sectionUrl + "/blog/" + post.link
+			const url = `${sectionUrl}/blog/${post.link}`
 
 			xml += "<entry>\n"
 			xml += `\t<id>${url}</id>\n`
@@ -36,13 +36,12 @@ async function createFeed(section, req, res) {
 				xml += `\t<title>${post.title}</title>\n`
 			}
 
-			xml += `\t<link rel=\"related\" type=\"text/html\" href=\"${url}\"/>\n`
-			xml += `\t<link rel=\"alternate\" type=\"text/html\" href=\"${url}\"/>\n`
+			xml += `\t<link rel="alternate" type="text/html" href="${url}"/>\n`
 
 			xml += `\t<published>${post.isoDate}</published>\n`
 
 			xml += "\t<author>\n"
-			xml += `\t\t<name>${post.author || "Roland Leth"}</name>\n`
+			xml += "\t\t<name>Roland Leth</name>\n"
 
 			if (section === "micro") {
 				xml += "\t\t<uri>https://micro.blog/rolandleth</uri>\n"
@@ -51,7 +50,7 @@ async function createFeed(section, req, res) {
 			}
 
 			xml += "\t</author>\n"
-			xml += '\t<content type="html" xml:lang="en"><![CDATA[\n'
+			xml += `\t<content type="html" xml:lang="en"><![CDATA[\n`
 			xml += post.body
 			xml += "]]></content>\n"
 			xml += "</entry>\n"
