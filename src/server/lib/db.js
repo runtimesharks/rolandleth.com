@@ -35,24 +35,30 @@ const pool = (function() {
  * A namespace for all related database operations.
  */
 class Db {
-	static fields() {
-		return "(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
-	}
+	static fields(post) {
+		const fields =
+			"(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
+		const values = [
+			post.title,
+			post.body,
+			post.rawBody,
+			post.truncatedBody,
+			post.firstParagraph,
+			post.authorid,
+			post.datetime,
+			post.date,
+			post.isoDate,
+			post.modified,
+			post.link,
+			post.readingTime
+		]
+		// A string that looks like "$1, $2, $3". prettier-ignore
+		const placeholders =
+			"(" +
+			values.reduce((a, _, i) => [...a, `$${i + 1}`], []).join(", ") +
+			")"
 
-	static values(post) {
-		return `('${this.escapeSingleQuote(post.title)}', '${
-			post.body
-		}', '${this.escapeSingleQuote(post.rawBody)}', '${
-			post.truncatedBody
-		}', '${this.escapeSingleQuote(post.firstParagraph)}', '${
-			post.authorid
-		}', '${post.datetime}', '${post.date}', '${post.isoDate}', '${
-			post.modified
-		}', '${post.link}', '${post.readingTime}')`
-	}
-
-	static escapeSingleQuote(string) {
-		return string.replace("'", "''")
+		return { fields, placeholders, values }
 	}
 
 	/**
@@ -63,11 +69,12 @@ class Db {
 	 */
 	static async createPost(post, section) {
 		const table = postsTableForSection(section)
-		const fields = this.fields()
-		const values = this.values(post)
-		const query = `INSERT INTO ${table} ${fields} VALUES ${values}`
+		const fields = this.fields(post)
+		const query = `INSERT INTO ${table} ${fields.fields} VALUES ${
+			fields.placeholders
+		}`
 
-		await pool.query(query)
+		await pool.query(query, fields.values)
 
 		return true
 	}
@@ -80,11 +87,10 @@ class Db {
 	 */
 	static async deletePost(post, section) {
 		const table = postsTableForSection(section)
-		const query = `DELETE FROM ${table} WHERE link = '${
-			post.link
-		}' AND datetime = '${post.datetime}'`
+		const query = `DELETE FROM ${table} WHERE link = $2 AND datetime = $3`
+		const values = [post.link, post.datetime]
 
-		await pool.query(query)
+		await pool.query(query, values)
 
 		return true
 	}
@@ -97,13 +103,15 @@ class Db {
 	 */
 	static async updatePost(post, section) {
 		const table = postsTableForSection(section)
-		const fields = this.fields()
-		const values = this.values(post)
-		const query = `UPDATE ${table} SET ${fields} = ${values} WHERE link = '${
-			post.link
-		}' AND datetime = '${post.datetime}'`
+		const fields = this.fields(post)
 
-		await pool.query(query)
+		const query = `UPDATE ${table} SET ${fields.fields} = ${
+			fields.placeholders
+		} WHERE link = $${fields.values.length + 1} AND datetime = $${fields
+			.values.length + 2}`
+		const values = fields.values.concat([post.link, post.datetime])
+
+		await pool.query(query, values)
 
 		return true
 	}
@@ -126,9 +134,7 @@ class Db {
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
 	static searchPosts(query, page, section) {
-		return Db.fetchPosts(
-			DbConfig.search(this.escapeSingleQuote(query), page, section)
-		)
+		return Db.fetchPosts(DbConfig.search(query, page, section))
 	}
 
 	/**
@@ -170,21 +176,20 @@ class Db {
 		const table = postsTableForSection(config.section)
 		let query = `SELECT ${config.columns} FROM ${table}`
 		const isQueried = config.fields && config.fieldValues
+		let values = []
 
 		if (isQueried) {
-			if (config.searching) {
-				query += " WHERE "
+			query += " WHERE "
+			let clauses = []
 
-				config.fields.forEach(function(field) {
-					config.fieldValues.forEach(function(value) {
-						query += `${field} ILIKE '%${value}%' OR `
-					})
+			config.fields.forEach(function(field) {
+				config.fieldValues.forEach(function(value) {
+					values.push(`%${value}%`)
+					clauses.push(`${field} ILIKE $${values.length}`)
 				})
+			})
 
-				query = query.slice(0, -4)
-			} else {
-				query += ` WHERE ${config.fields[0]} = '${config.fieldValues[0]}'`
-			}
+			query += clauses.join(" OR ")
 		}
 
 		const countQuery = query.replace(
@@ -200,14 +205,14 @@ class Db {
 
 		query += ` OFFSET ${config.offset}`
 
-		const result = await pool.query(query)
+		const result = await pool.query(query, values)
 		const res = new DbResult()
 		let posts = result.rows
 
 		if (config.limit === 1) {
 			res.totalPages = 1
 		} else {
-			const countResult = await pool.query(countQuery)
+			const countResult = await pool.query(countQuery, values)
 			const count = countResult.rows[0].count
 
 			res.totalPages = parseInt(count / config.limit, 10) + 1
@@ -238,10 +243,13 @@ class Db {
 
 			if (config.searching) {
 				let pattern = ""
+
 				config.fieldValues.forEach(function(value) {
 					pattern += value.replace(/<|>/g, "") + "|"
 				})
+
 				pattern = pattern.slice(0, -1)
+
 				const regex = new RegExp(pattern, "gi")
 
 				// Marking won"t work inside code blocks, because styling is applied via script

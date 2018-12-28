@@ -28,7 +28,6 @@ async function createPost(section, req, res) {
 
 		res.send({ post })
 	} catch (e) {
-		console.info(e.message)
 		res.status(400).send(e.message)
 	}
 }
