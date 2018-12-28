@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown/with-html"
 import Theme from "../../theme/Theme"
 import "highlight.js/styles/ocean.css"
 import Subscription from "../Subscription"
+import ArticleHelmet from "./ArticleHelmet"
 
 class Article extends React.Component {
 	componentDidMount() {
@@ -27,6 +28,7 @@ class Article extends React.Component {
 
 		return (
 			<Container>
+				<ArticleHelmet post={post} />
 				<ArticleHeader {...this.props} />
 				<Body id="body">
 					<ReactMarkdown
