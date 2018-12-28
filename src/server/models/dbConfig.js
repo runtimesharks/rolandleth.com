@@ -1,6 +1,5 @@
 /**
  * An object to wrap all configs required for DB handling.
- * @property {Boolean} searching - If we are doing a search, the query will be done by all fields, not just `link` and `datetime`, `false` by default.
  * @property {String} columns - The columns to fetch, * by default. On archive, we only want the `titles` and `links`, for example.
  * @property {String[]} fields - The fields to do the query by, usually for search, `null` by default.
  * @property {String[]} fieldValues - The fields' values to do the query by, usually for search, `null` by default.
@@ -13,7 +12,6 @@
  */
 class DbConfig {
 	constructor() {
-		this.searching = false
 		this.columns = "*"
 		this.fields = null
 		this.fieldValues = null
@@ -102,7 +100,6 @@ class DbConfig {
 	 */
 	static search(query, page, section) {
 		const config = new DbConfig()
-		config.searching = true
 		config.fields = ["body", "title"]
 		config.fieldValues = [query]
 		config.offset = config.limit * (page - 1)
