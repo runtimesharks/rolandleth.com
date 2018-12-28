@@ -28,7 +28,7 @@ class CreatePost extends React.Component {
 
 	submit = () => {
 		const section = this.props.location.pathname.split("/")[1]
-		let url = `${window.location.protocol}//${
+		const url = `${window.location.protocol}//${
 			window.location.host
 		}/api/${section}/posts`
 
@@ -39,9 +39,11 @@ class CreatePost extends React.Component {
 			})
 			.then((result) => result.data.post)
 			.then((post) => {
-				if (post) {
-					this.setState({ redirectLink: post.link })
+				if (post === undefined) {
+					return
 				}
+
+				this.setState({ redirectLink: post.link })
 			})
 			.catch((e) => console.log(e))
 	}

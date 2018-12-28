@@ -1,5 +1,3 @@
-"use strict"
-
 import DbResult from "../models/dbResult"
 import DbConfig from "../models/dbConfig"
 import Post from "./../models/post"

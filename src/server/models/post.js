@@ -1,5 +1,3 @@
-"use strict"
-
 import readingTime from "reading-time"
 import truncateHTML from "truncate-html" // This one is really fast (400ms vs 80)
 import marked from "marked"
@@ -54,7 +52,7 @@ function truncateBody(body) {
  */
 function extractFirstParagraph(rawBody) {
 	const split = rawBody.split("\n")
-	var firstParagraph = ""
+	let firstParagraph = ""
 
 	if (split.length === 0) {
 		firstParagraph = rawBody
@@ -116,7 +114,7 @@ class Post {
 		this.firstParagraph = firstParagraph
 		this.authorid = authorid
 
-		var options = { year: "numeric", month: "short", day: "numeric" }
+		const options = { year: "numeric", month: "short", day: "numeric" }
 		const rawDate = Post.dateFromDateTime(datetime)
 
 		this.date = date || rawDate.toLocaleDateString("en-US", options)

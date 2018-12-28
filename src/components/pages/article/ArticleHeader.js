@@ -8,7 +8,7 @@ const ArticleHeader = (props) => {
 	const { location } = props
 	const section = location.pathname.split("/")[1]
 	const readingTime = post.readingTime ? `: \u00a0~ ${post.readingTime}` : ""
-	let link = `/${section}/blog/${post.link}`
+	const link = `/${section}/blog/${post.link}`
 
 	return (
 		<Container>
