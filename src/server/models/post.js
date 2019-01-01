@@ -203,7 +203,7 @@ class Post {
 	 */
 	static createLink(title) {
 		return title
-			.replace(/([#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, "")
+			.replace(/([’”#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, "")
 			.replace(/&/g, "and")
 			.replace(/\s|\./g, "-")
 			.toLowerCase()

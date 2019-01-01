@@ -2,7 +2,6 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import { GlobalStyle } from "./components/theme/globalStyle"
-import { GlobalSyntaxStyle } from "./components/theme/globalSyntax"
 import Helmet from "./components/Helmet"
 import Routes from "./components/routes/Router"
 import Theme from "./components/theme/Theme"
@@ -29,7 +28,6 @@ class App extends React.Component {
 			<React.Fragment>
 				<Helmet {...this.props} />
 				<GlobalStyle />
-				<GlobalSyntaxStyle />
 				<SiteHeader query={this.query()} />
 				<Content>
 					<Routes query={this.query()} />

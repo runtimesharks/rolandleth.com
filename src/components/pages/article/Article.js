@@ -57,8 +57,11 @@ const Container = styled.div`
 	${Theme.lightBottomBorder()};
 
 	h2 {
-		font-weight: 500;
+		font-weight: 600;
 		font-size: 1.2em;
+		letter-spacing: 0.75px;
+		padding-top: 0.5em;
+		color: #494949;
 	}
 `
 
