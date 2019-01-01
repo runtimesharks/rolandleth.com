@@ -16,6 +16,14 @@ class Article extends React.Component {
 			.forEach((e) => hljs.highlightBlock(e))
 	}
 
+	helmet = (post) => {
+		if (this.props.isSingle === false) {
+			return ""
+		}
+
+		return <ArticleHelmet post={post} />
+	}
+
 	render() {
 		const { post } = this.props
 
@@ -28,7 +36,7 @@ class Article extends React.Component {
 
 		return (
 			<Container>
-				<ArticleHelmet post={post} />
+				{this.helmet(post)}
 				<ArticleHeader {...this.props} />
 				<Body id="body">
 					<ReactMarkdown
