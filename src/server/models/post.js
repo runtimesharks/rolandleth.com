@@ -61,7 +61,7 @@ function extractFirstParagraph(rawBody) {
 	}
 
 	return truncateHTML(firstParagraph, {
-		length: 300,
+		length: 295,
 		ellipsis: " ..."
 	})
 }
