@@ -88,7 +88,7 @@ class Helmet extends React.Component {
 }
 
 Helmet.defaultProps = {
-	title: "",
+	title: "Roland Leth",
 	description: "iOS, JS and self-improvement thoughts by Roland Leth"
 }
 

@@ -30,7 +30,7 @@ class App extends React.Component {
 				<GlobalStyle />
 				<SiteHeader query={this.query()} />
 				<Content>
-					<Routes query={this.query()} />
+					<Routes query={this.query()} {...this.props} />
 				</Content>
 				<Footer />
 			</React.Fragment>

@@ -12,8 +12,14 @@ class Blog extends React.Component {
 	constructor(props) {
 		super(props)
 
+		let posts = []
+
+		if (props.post !== undefined) {
+			posts.push(props.post)
+		}
+
 		this.state = {
-			posts: [],
+			posts: posts,
 			postsFetched: false
 		}
 	}
