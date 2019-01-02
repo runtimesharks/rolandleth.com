@@ -6,46 +6,123 @@ import styled from "styled-components"
 import Theme from "../theme/Theme"
 import Helmet from "react-helmet"
 import NotFoundPage from "./NotFound"
-import configFile from "../../../config"
 
 class CreatePost extends React.Component {
 	constructor(props) {
 		super(props)
 
-		const split = this.props.location.pathname.split("/")
-		const key = split[split.length - 1]
-
 		this.state = {
-			date: "",
-			title: "",
-			body: "",
-			key: key,
-			redirectLink: undefined
+			post: { datetime: "", title: "", body: "" },
+			isTokenValid: undefined,
+			redirectLink: undefined,
+			posts: []
 		}
+	}
+
+	componentDidMount() {
+		if (this.state.isTokenValid !== undefined) {
+			return
+		}
+
+		this.checkToken()
 	}
 
 	submit = () => {
 		const section = this.props.location.pathname.split("/")[1]
-		let url = `${window.location.protocol}//${
+		const url = `${window.location.protocol}//${
 			window.location.host
 		}/api/${section}/posts`
 
 		axios
-			.post(url, this.state)
+			.post(url, {
+				post: this.state.post,
+				token: this.props.match.params.token
+			})
 			.then((result) => result.data.post)
 			.then((post) => {
-				if (post) {
-					this.setState({ redirectLink: post.link })
+				if (post === undefined) {
+					return
 				}
+
+				this.setState({ redirectLink: post.link })
 			})
 			.catch((e) => console.log(e))
 	}
 
-	render() {
-		const envKey = process.env.NODE_ENV === "production" ? "prod" : "dev"
-		const createPostKey = configFile.CREATE_POST_KEY[envKey]
+	checkToken = () => {
+		const token = this.props.match.params.token
+		const url = `${window.location.protocol}//${
+			window.location.host
+		}/api/create-post-token`
 
-		if (this.state.key !== createPostKey) {
+		axios
+			.post(url, { token: token })
+			.then((result) => {
+				if (result.status !== 200) {
+					throw new Error("Invalid token")
+				}
+
+				this.fetchPosts()
+			})
+			.catch(() => this.setState({ isTokenValid: false }))
+	}
+
+	fetchPosts = () => {
+		const section = this.props.location.pathname.split("/")[1]
+		const url = `${window.location.protocol}//${
+			window.location.host
+		}/api/${section}/all-posts`
+
+		axios
+			.get(url)
+			.then((result) => result.data.posts)
+			.then((posts) => this.setState({ isTokenValid: true, posts: posts }))
+			.catch(() => this.setState({ isTokenValid: false }))
+	}
+
+	handlePostSelection = (event) => {
+		if (event.target.value === "") {
+			this.setState({ post: { title: "", datetime: "", body: "" } })
+
+			return
+		}
+
+		const post = this.state.posts.filter(
+			(post) => post.link === event.target.value
+		)[0]
+
+		this.setState({
+			post: {
+				title: post.title,
+				datetime: post.datetime,
+				body: post.rawBody
+			}
+		})
+	}
+
+	existingPostsSelector = () => {
+		if (this.state.posts.length === 0) {
+			return ""
+		}
+
+		return (
+			<select onChange={this.handlePostSelection}>
+				<option value="" />
+				{this.state.posts.map((post) => (
+					<option value={post.link} key={post.link}>
+						{post.title}
+					</option>
+				))}
+			</select>
+		)
+	}
+
+	render() {
+		if (this.state.isTokenValid === undefined) {
+			return ""
+		}
+
+		if (this.state.isTokenValid === false) {
 			return <NotFoundPage />
 		}
 
@@ -57,36 +134,48 @@ class CreatePost extends React.Component {
 		return (
 			<Container>
 				<Helmet>
-					<meta name="robots" content="none" />
+					<meta name="robots" content="noindex,nofollow" />
 				</Helmet>
-
+				<InputWrapper>{this.existingPostsSelector()}</InputWrapper>
 				<InputWrapper>
 					<Label>Title: </Label>
 					<TextField
 						title="Title"
 						type="text"
-						onChange={(e) => this.setState({ title: e.target.value })}
+						value={this.state.post.title}
+						onChange={(e) => {
+							const state = this.state
+							state.post.title = e.target.value
+							this.setState(state)
+						}}
 					/>
 				</InputWrapper>
-
 				<InputWrapper>
 					<Label>Date: </Label>
 					<TextField
 						title="Date"
 						type="text"
-						onChange={(e) => this.setState({ date: e.target.value })}
+						value={this.state.post.datetime}
+						onChange={(e) => {
+							const state = this.state
+							state.post.datetime = e.target.value
+							this.setState(state)
+						}}
 					/>
 				</InputWrapper>
-
 				<InputWrapper>
 					<Label>Body: </Label>
 					<TextArea
 						title="Body"
 						rows="20"
-						onChange={(e) => this.setState({ body: e.target.value })}
+						value={this.state.post.body}
+						onChange={(e) => {
+							const state = this.state
+							state.post.body = e.target.value
+							this.setState(state)
+						}}
 					/>
 				</InputWrapper>
-
 				<InputWrapper>
 					<Button type="submit" onClick={this.submit}>
 						Submit

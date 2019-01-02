@@ -15,7 +15,7 @@ class Archive extends React.Component {
 	}
 
 	fetchPosts = () => {
-		let url = `${window.location.protocol}//${window.location.host}/api/${
+		const url = `${window.location.protocol}//${window.location.host}/api/${
 			this.props.section
 		}/archive`
 

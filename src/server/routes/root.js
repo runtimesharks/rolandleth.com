@@ -5,19 +5,21 @@ import { StaticRouter } from "react-router-dom"
 import express from "express"
 import { renderToString } from "react-dom/server"
 import { ServerStyleSheet } from "styled-components"
+import Db from "../lib/db"
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 const router = express.Router()
 
-router.get("/*", (req, res) => {
+router.get("/*", async (req, res) => {
+	const post = await fetchPostIfRequired(req.originalUrl)
 	const context = {}
-	const location = req.protocol + "://" + req.hostname + req.originalUrl
+	const location = `https://${req.hostname}${req.originalUrl}`
 	const isProduction = process.env.NODE_ENV === "production"
 	const sheet = new ServerStyleSheet()
 	const markup = renderToString(
 		sheet.collectStyles(
 			<StaticRouter context={context} location={req.originalUrl}>
-				<App location={location} />
+				<App location={location} post={post} /> {/* For meta tags*/}
 			</StaticRouter>
 		)
 	)
@@ -38,7 +40,6 @@ router.get("/*", (req, res) => {
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta charset="utf-8" />
-		<title>Roland Leth</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		${allHelmetDataAsString}
 		${styleTags}
@@ -59,6 +60,20 @@ router.get("/*", (req, res) => {
 </html>`)
 	}
 })
+
+async function fetchPostIfRequired(url) {
+	const split = url.split("/")
+
+	if (split.length < 3 || split[2] !== "blog") {
+		return undefined
+	}
+
+	const section = split[1]
+	const link = split[3]
+	const result = await Db.fetchPost(link, section)
+
+	return result.posts[0]
+}
 
 // This is for testing, only.
 function setCSPHeaders(res, isProduction) {

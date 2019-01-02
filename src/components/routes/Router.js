@@ -5,11 +5,13 @@ import Intro from "../pages/Intro"
 import LifeAbout from "../pages/life/LifeAbout"
 import CommonRoutes from "./CommonRoutes"
 import OldPostHandler from "./OldPostsHandler"
+import PrivacyPolicy from "../pages/PrivacyPolicy"
 
 const Routes = (props) => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Intro} />
+			<Route exact path="/privacy-policy" component={PrivacyPolicy} />
 			<Route exact path="/about" component={About} />
 			<Route exact path="/life/about" component={LifeAbout} />
 			<CommonRoutes path="/life" {...props} />

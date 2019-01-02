@@ -2,7 +2,6 @@ import app from "./server"
 import http from "http"
 
 const server = http.createServer(app)
-
 let currentApp = app
 
 server.listen(process.env.PORT || 3000, (error) => {

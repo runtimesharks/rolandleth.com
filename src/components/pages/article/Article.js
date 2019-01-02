@@ -6,12 +6,22 @@ import ArticleHeader from "./ArticleHeader"
 import ReactMarkdown from "react-markdown/with-html"
 import Theme from "../../theme/Theme"
 import "highlight.js/styles/ocean.css"
+import Subscription from "../Subscription"
+import ArticleHelmet from "./ArticleHelmet"
 
 class Article extends React.Component {
 	componentDidMount() {
 		Array.from(document.getElementsByTagName("code"))
 			.filter((e) => e.parentElement.tagName.toLowerCase() === "pre")
 			.forEach((e) => hljs.highlightBlock(e))
+	}
+
+	helmet = (post) => {
+		if (this.props.isSingle === false) {
+			return ""
+		}
+
+		return <ArticleHelmet post={post} />
 	}
 
 	render() {
@@ -26,6 +36,7 @@ class Article extends React.Component {
 
 		return (
 			<Container>
+				{this.helmet(post)}
 				<ArticleHeader {...this.props} />
 				<Body id="body">
 					<ReactMarkdown
@@ -34,6 +45,7 @@ class Article extends React.Component {
 					/>
 				</Body>
 				{isTruncated ? <ContinueReading {...this.props} /> : ""}
+				{this.props.isSingle ? <Subscription /> : ""}
 			</Container>
 		)
 	}
@@ -45,8 +57,11 @@ const Container = styled.div`
 	${Theme.lightBottomBorder()};
 
 	h2 {
-		font-weight: 500;
+		font-weight: 600;
 		font-size: 1.2em;
+		letter-spacing: 0.75px;
+		padding-top: 0.5em;
+		color: #494949;
 	}
 `
 

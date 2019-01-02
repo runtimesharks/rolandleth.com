@@ -2,26 +2,6 @@ import React from "react"
 import { Helmet as ReactHelmet } from "react-helmet"
 
 class Helmet extends React.Component {
-	titleSuffix = () => {
-		return this.props.title === "" ? "" : `: ${this.props.title}`
-	}
-
-	ogExtraFields = () => {
-		if (this.props.isoDate) {
-			return (
-				<React.Fragment>
-					<meta property="og:type" content="article" />
-					<meta
-						property="article:published_time"
-						content={this.props.isoDate}
-					/>
-				</React.Fragment>
-			)
-		} else {
-			return <meta property="og:type" content="blog" />
-		}
-	}
-
 	render() {
 		// We pass this from the server when using SSR.
 		let location = this.props.location
@@ -34,7 +14,7 @@ class Helmet extends React.Component {
 
 		return (
 			<ReactHelmet>
-				<title>{"Roland Leth" + this.titleSuffix()}</title>
+				<title>Roland Leth</title>
 				<link rel="shortcut icon" href="/favicon.ico" />
 				<link rel="canonical" href={location} />
 				<link
@@ -76,20 +56,14 @@ class Helmet extends React.Component {
 				<meta name="author" content="Roland Leth" />
 				{/* OG */}
 				<meta property="og:title" content={this.props.title} />
-				<meta
-					property="og:image"
-					content="https://rolandleth.com/images/favicons/200x200.png"
-				/>
+				<meta property="og:image" content={this.props.image} />
 				<meta property="og:description" content={this.props.description} />
 				<meta property="og:url" content={location} />
 				<meta property="og:site_name" content="Roland Leth's blog" />
-				{this.ogExtraFields()}
+				<meta property="og:type" content="blog" />
 				{/* Twitter */}
 				<meta property="twitter:title" content={this.props.title} />
-				<meta
-					property="twitter:image"
-					content="https://rolandleth.com/images/favicons/200x200.png"
-				/>
+				<meta property="twitter:image" content={this.props.image} />
 				<meta
 					property="twitter:description"
 					content={this.props.description}
@@ -108,8 +82,9 @@ class Helmet extends React.Component {
 }
 
 Helmet.defaultProps = {
-	title: "",
-	description: "iOS, JS and self-improvement thoughts by Roland Leth"
+	title: "Roland Leth",
+	description: "iOS, JS and self-improvement thoughts by Roland Leth",
+	image: "https://rolandleth.com/images/favicons/192x192.png"
 }
 
 export default Helmet

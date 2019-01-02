@@ -12,8 +12,14 @@ class Blog extends React.Component {
 	constructor(props) {
 		super(props)
 
+		let posts = []
+
+		if (props.post !== undefined) {
+			posts.push(props.post)
+		}
+
 		this.state = {
-			posts: [],
+			posts: posts,
 			postsFetched: false
 		}
 	}
@@ -42,14 +48,6 @@ class Blog extends React.Component {
 	}
 
 	content = (isList) => {
-		if (
-			this.props.section === "life" &&
-			isList &&
-			this.state.posts.length === 0
-		) {
-			return <LifeAbout />
-		}
-
 		if (isList) {
 			return (
 				<BlogPosts fetchPosts={this.fetchPosts} posts={this.state.posts} />
@@ -92,6 +90,15 @@ class Blog extends React.Component {
 
 	render() {
 		const isList = this.props.match.params.postLink === undefined
+
+		if (
+			this.props.section === "life" &&
+			isList &&
+			this.state.posts.length === 0 &&
+			this.state.postsFetched
+		) {
+			return <LifeAbout />
+		}
 
 		return <Container>{this.contentWithPagination(isList)}</Container>
 	}

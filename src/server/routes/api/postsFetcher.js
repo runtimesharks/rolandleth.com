@@ -2,25 +2,39 @@ import Db from "../../lib/db"
 import DbConfig from "../../models/dbConfig"
 
 async function fetchPosts(section, req, res) {
-	const config = DbConfig.page(req.query.page || 1)
-	config.section = section
+	try {
+		const config = DbConfig.page(req.query.page || 1, section)
+		const result = await Db.fetchPosts(config)
 
-	const result = await Db.fetchPosts(config)
-
-	setJSHeader(res)
-	res.send(result)
+		res.send(result)
+	} catch (e) {
+		res.status(400).send(e.message)
+	}
 }
 
-async function fetchPost(link, res) {
-	const result = await Db.fetchPost(link)
-	const [post] = result.posts
+async function fetchAllPosts(section, res) {
+	try {
+		const config = DbConfig.page(1, section)
+		config.limit = 0
+		config.fields = ["title", "datetime", "rawbody"]
 
-	setJSHeader(res)
-	res.send(post)
+		const result = await Db.fetchPosts(config)
+
+		res.send(result)
+	} catch (e) {
+		res.status(400).send(e.message)
+	}
 }
 
-function setJSHeader(res) {
-	res.setHeader("Content-Type", "application/javascript")
+async function fetchPost(link, section, res) {
+	try {
+		const result = await Db.fetchPost(link, section)
+		const [post] = result.posts
+
+		res.send(post)
+	} catch (e) {
+		res.status(400).send(e.message)
+	}
 }
 
-export { fetchPosts, fetchPost }
+export { fetchPosts, fetchAllPosts, fetchPost }
