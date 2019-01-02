@@ -14,8 +14,7 @@ async function fetchPosts(section, req, res) {
 
 async function fetchAllPosts(section, res) {
 	try {
-		const config = DbConfig.page(1, section)
-		config.limit = 0
+		const config = DbConfig.all(section)
 		config.fields = ["title", "datetime", "rawbody"]
 
 		const result = await Db.fetchPosts(config)

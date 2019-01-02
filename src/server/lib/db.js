@@ -218,7 +218,7 @@ class Db {
 			res.totalPages = parseInt(count / config.limit, 10) + 1
 		}
 
-		if (config.limit !== 1) {
+		if (config.limit !== 1 && config.includeFuturePosts === false) {
 			const date = new Date()
 			const utcDate = new Date(
 				Date.UTC(

@@ -7,6 +7,8 @@
  * @property {String} orderDirection - The direction of ordering, `DESC` by default.
  * @property {int} pageSize - The number of posts to return, env.`PAGE_SIZE` by default.
  * @property {int} offset - The offset where to return posts from, for page `x > 1`, `0` by default.
+ * @property {bool} accessibleOnlyByLink - A `bool` which decides if to fetch posts that are only accessible by link.
+ * @property {bool} includeFuturePosts - A `bool` which decides if to fetch posts that are in the future.
  * @property {int} limit - The number of posts to return, `env.PAGE_SIZE || 10` by default.
  * @constructor
  */
@@ -20,6 +22,7 @@ class DbConfig {
 		this.limit = parseInt(process.env.PAGE_SIZE, 10) || 10
 		this.offset = 0
 		this.accessibleOnlyByLink = false
+		this.includeFuturePosts = false
 		this.section = "tech"
 	}
 
@@ -48,6 +51,20 @@ class DbConfig {
 		const config = new DbConfig()
 		config.offset = config.limit * (page - 1)
 		config.section = section
+
+		return config
+	}
+
+	/**
+	 * All posts, including future ones.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
+	 * @returns {DbConfig} The {@link DbConfig} object.
+	 */
+	static all(section) {
+		const config = new DbConfig()
+		config.section = section
+		config.limit = 0
+		config.includeFuturePosts = true
 
 		return config
 	}
