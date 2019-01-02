@@ -56,20 +56,14 @@ class Helmet extends React.Component {
 				<meta name="author" content="Roland Leth" />
 				{/* OG */}
 				<meta property="og:title" content={this.props.title} />
-				<meta
-					property="og:image"
-					content="https://rolandleth.com/images/favicons/200x200.png"
-				/>
+				<meta property="og:image" content={this.props.image} />
 				<meta property="og:description" content={this.props.description} />
 				<meta property="og:url" content={location} />
 				<meta property="og:site_name" content="Roland Leth's blog" />
 				<meta property="og:type" content="blog" />
 				{/* Twitter */}
 				<meta property="twitter:title" content={this.props.title} />
-				<meta
-					property="twitter:image"
-					content="https://rolandleth.com/images/favicons/200x200.png"
-				/>
+				<meta property="twitter:image" content={this.props.image} />
 				<meta
 					property="twitter:description"
 					content={this.props.description}
@@ -89,7 +83,8 @@ class Helmet extends React.Component {
 
 Helmet.defaultProps = {
 	title: "Roland Leth",
-	description: "iOS, JS and self-improvement thoughts by Roland Leth"
+	description: "iOS, JS and self-improvement thoughts by Roland Leth",
+	image: "https://rolandleth.com/images/favicons/192x192.png"
 }
 
 export default Helmet
