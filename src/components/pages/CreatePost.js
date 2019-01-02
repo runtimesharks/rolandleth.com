@@ -14,7 +14,8 @@ class CreatePost extends React.Component {
 		this.state = {
 			post: { datetime: "", title: "", body: "" },
 			isTokenValid: undefined,
-			redirectLink: undefined
+			redirectLink: undefined,
+			posts: []
 		}
 	}
 
@@ -61,9 +62,59 @@ class CreatePost extends React.Component {
 					throw new Error("Invalid token")
 				}
 
-				this.setState({ isTokenValid: true })
+				this.fetchPosts()
 			})
 			.catch(() => this.setState({ isTokenValid: false }))
+	}
+
+	fetchPosts = () => {
+		const section = this.props.location.pathname.split("/")[1]
+		const url = `${window.location.protocol}//${
+			window.location.host
+		}/api/${section}/all-posts`
+
+		axios
+			.get(url)
+			.then((result) => result.data.posts)
+			.then((posts) => this.setState({ isTokenValid: true, posts: posts }))
+			.catch(() => this.setState({ isTokenValid: false }))
+	}
+
+	handlePostSelection = (event) => {
+		if (event.target.value === "") {
+			this.setState({ post: { title: "", datetime: "", body: "" } })
+
+			return
+		}
+
+		const post = this.state.posts.filter(
+			(post) => post.link === event.target.value
+		)[0]
+
+		this.setState({
+			post: {
+				title: post.title,
+				datetime: post.datetime,
+				body: post.rawBody
+			}
+		})
+	}
+
+	existingPostsSelector = () => {
+		if (this.state.posts.length === 0) {
+			return ""
+		}
+
+		return (
+			<select onChange={this.handlePostSelection}>
+				<option value="" />
+				{this.state.posts.map((post) => (
+					<option value={post.link} key={post.link}>
+						{post.title}
+					</option>
+				))}
+			</select>
+		)
 	}
 
 	render() {
@@ -85,12 +136,13 @@ class CreatePost extends React.Component {
 				<Helmet>
 					<meta name="robots" content="noindex,nofollow" />
 				</Helmet>
-
+				<InputWrapper>{this.existingPostsSelector()}</InputWrapper>
 				<InputWrapper>
 					<Label>Title: </Label>
 					<TextField
 						title="Title"
 						type="text"
+						value={this.state.post.title}
 						onChange={(e) => {
 							const state = this.state
 							state.post.title = e.target.value
@@ -98,12 +150,12 @@ class CreatePost extends React.Component {
 						}}
 					/>
 				</InputWrapper>
-
 				<InputWrapper>
 					<Label>Date: </Label>
 					<TextField
 						title="Date"
 						type="text"
+						value={this.state.post.datetime}
 						onChange={(e) => {
 							const state = this.state
 							state.post.datetime = e.target.value
@@ -111,12 +163,12 @@ class CreatePost extends React.Component {
 						}}
 					/>
 				</InputWrapper>
-
 				<InputWrapper>
 					<Label>Body: </Label>
 					<TextArea
 						title="Body"
 						rows="20"
+						value={this.state.post.body}
 						onChange={(e) => {
 							const state = this.state
 							state.post.body = e.target.value
@@ -124,7 +176,6 @@ class CreatePost extends React.Component {
 						}}
 					/>
 				</InputWrapper>
-
 				<InputWrapper>
 					<Button type="submit" onClick={this.submit}>
 						Submit

@@ -19,7 +19,7 @@ router.get("/*", async (req, res) => {
 	const markup = renderToString(
 		sheet.collectStyles(
 			<StaticRouter context={context} location={req.originalUrl}>
-				<App location={location} post={post} /> // For meta tags
+				<App location={location} post={post} /> {/* For meta tags*/}
 			</StaticRouter>
 		)
 	)
@@ -65,16 +65,12 @@ async function fetchPostIfRequired(url) {
 	const split = url.split("/")
 
 	if (split.length < 3 || split[2] !== "blog") {
-		return {}
+		return undefined
 	}
 
 	const section = split[1]
 	const link = split[3]
 	const result = await Db.fetchPost(link, section)
-
-	if (result.posts.length === 0) {
-		return {}
-	}
 
 	return result.posts[0]
 }

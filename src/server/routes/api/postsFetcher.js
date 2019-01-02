@@ -12,6 +12,20 @@ async function fetchPosts(section, req, res) {
 	}
 }
 
+async function fetchAllPosts(section, res) {
+	try {
+		const config = DbConfig.page(1, section)
+		config.limit = 0
+		config.fields = ["title", "datetime", "rawbody"]
+
+		const result = await Db.fetchPosts(config)
+
+		res.send(result)
+	} catch (e) {
+		res.status(400).send(e.message)
+	}
+}
+
 async function fetchPost(link, section, res) {
 	try {
 		const result = await Db.fetchPost(link, section)
@@ -23,4 +37,4 @@ async function fetchPost(link, section, res) {
 	}
 }
 
-export { fetchPosts, fetchPost }
+export { fetchPosts, fetchAllPosts, fetchPost }

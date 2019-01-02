@@ -100,7 +100,7 @@ class DbConfig {
 	 */
 	static search(query, page, section) {
 		const config = new DbConfig()
-		config.fields = ["body", "title"]
+		config.fields = ["rawbody", "title"]
 		config.fieldValues = [query]
 		config.offset = config.limit * (page - 1)
 		config.section = section
