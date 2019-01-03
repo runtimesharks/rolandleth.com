@@ -12,10 +12,12 @@ const ArticleHelmet = (props) => {
 			<meta property="og:type" content="article" />
 			<meta property="og:title" content={post.title} />
 			<meta property="og:description" content={post.firstParagraph} />
+			<meta property="og:image" content={post.imageURL} />
 			<meta property="article:published_time" content={post.isoDate} />
 
 			<meta property="twitter:title" content={post.title} />
 			<meta property="twitter:description" content={post.firstParagraph} />
+			<meta property="twitter:image" content={post.imageURL} />
 		</Helmet>
 	)
 }
