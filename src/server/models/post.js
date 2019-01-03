@@ -86,6 +86,7 @@ class Post {
 		title,
 		rawBody,
 		datetime,
+		imageURL = "",
 		authorid = 1,
 		body = marked(rawBody),
 		truncatedBody,
@@ -99,6 +100,7 @@ class Post {
 		this.title = title
 		this.rawBody = rawBody
 		this.datetime = datetime
+		this.imageURL = imageURL
 
 		this.body = body
 

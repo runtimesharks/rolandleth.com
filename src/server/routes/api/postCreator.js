@@ -15,7 +15,8 @@ async function createPost(section, req, res) {
 			true,
 			req.body.post.title,
 			req.body.post.body,
-			req.body.post.datetime
+			req.body.post.datetime,
+			req.body.imageURL
 		)
 
 		const existingPosts = await Db.fetchPost(post.link, section)

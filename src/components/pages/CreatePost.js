@@ -12,7 +12,7 @@ class CreatePost extends React.Component {
 		super(props)
 
 		this.state = {
-			post: { datetime: "", title: "", body: "" },
+			post: { datetime: "", title: "", body: "", imageURL: "" },
 			isTokenValid: undefined,
 			redirectLink: undefined,
 			posts: []
@@ -82,7 +82,9 @@ class CreatePost extends React.Component {
 
 	handlePostSelection = (event) => {
 		if (event.target.value === "") {
-			this.setState({ post: { title: "", datetime: "", body: "" } })
+			this.setState({
+				post: { title: "", datetime: "", body: "", imageURL: "" }
+			})
 
 			return
 		}
@@ -95,7 +97,8 @@ class CreatePost extends React.Component {
 			post: {
 				title: post.title,
 				datetime: post.datetime,
-				body: post.rawBody
+				body: post.rawBody,
+				imageURL: post.imageURL
 			}
 		})
 	}
@@ -146,6 +149,19 @@ class CreatePost extends React.Component {
 						onChange={(e) => {
 							const state = this.state
 							state.post.title = e.target.value
+							this.setState(state)
+						}}
+					/>
+				</InputWrapper>
+				<InputWrapper>
+					<Label>Image: </Label>
+					<TextField
+						title="Image"
+						type="text"
+						value={this.state.post.imageURL}
+						onChange={(e) => {
+							const state = this.state
+							state.post.imageURL = e.target.value
 							this.setState(state)
 						}}
 					/>

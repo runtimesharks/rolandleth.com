@@ -279,6 +279,7 @@ class Db {
 				rawPost.title, // For archive we don't fetch this field, but we process it in the constructor
 				rawPost.rawbody || "",
 				rawPost.datetime,
+				rawPost.imageurl,
 				rawPost.authorid,
 				rawPost.body,
 				truncatedBody,
