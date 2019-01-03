@@ -24,11 +24,13 @@ router.get("/*", async (req, res) => {
 		)
 	)
 	const styleTags = sheet.getStyleTags()
+	const helmetMetaRegexp = / data-react-helmet="true"/g
 	const helmet = Helmet.renderStatic()
 	const allHelmetDataAsString = Object.keys(helmet)
 		.map((key) => helmet[key].toString())
 		.filter((o) => o !== "" && o !== undefined)
 		.join("\n")
+		.replace(helmetMetaRegexp, "")
 
 	if (context.url) {
 		res.redirect(context.url)
