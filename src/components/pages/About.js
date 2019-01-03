@@ -112,7 +112,7 @@ const About = () => (
 			/>{" "}
 			and in the{" "}
 			<Link
-				href="/life/blog/about-me-slightly-detailed"
+				href="/life/blog/intro--slightly-more-details-about-me"
 				title="About me, in more detail"
 				text="first post"
 			/>{" "}
