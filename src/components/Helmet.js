@@ -3,8 +3,7 @@ import { Helmet as ReactHelmet } from "react-helmet"
 
 class Helmet extends React.Component {
 	render() {
-		// We pass this from the server when using SSR.
-		let location = this.props.location
+		let location = this.props.ssrLocation
 
 		// We use the `window`'s location when rendering on the client.
 		// Used when we need the full URL, like canonical or OG tags.
