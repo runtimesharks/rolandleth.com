@@ -157,10 +157,11 @@ class Db {
 
 	/**
 	 * Fetch link, modified and datetime fields of all posts, except future ones.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchSiteMapPosts() {
-		return Db.fetchPosts(DbConfig.siteMap())
+	static fetchSiteMapPosts(section) {
+		return Db.fetchPosts(DbConfig.siteMap(section))
 	}
 
 	/**

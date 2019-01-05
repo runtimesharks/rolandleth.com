@@ -84,11 +84,13 @@ class DbConfig {
 
 	/**
 	 * Zero limit, and link, modified and datetime columns.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {DbConfig} The {@link DbConfig} object.
 	 */
-	static siteMap() {
+	static siteMap(section) {
 		const config = new DbConfig()
 		config.limit = 0
+		config.section = section
 		config.columns = "link, modified, datetime"
 
 		return config
