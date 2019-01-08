@@ -6,6 +6,7 @@ import styled from "styled-components"
 import Theme from "../theme/Theme"
 import Helmet from "react-helmet"
 import NotFoundPage from "./NotFound"
+import ReactMarkdown from "react-markdown/with-html"
 
 class CreatePost extends React.Component {
 	constructor(props) {
@@ -15,7 +16,8 @@ class CreatePost extends React.Component {
 			post: { datetime: "", title: "", body: "", imageURL: "" },
 			isTokenValid: undefined,
 			redirectLink: undefined,
-			posts: []
+			posts: [],
+			showPreview: false
 		}
 	}
 
@@ -120,26 +122,24 @@ class CreatePost extends React.Component {
 		)
 	}
 
-	render() {
-		if (this.state.isTokenValid === undefined) {
-			return ""
-		}
+	togglePreview = () => {
+		this.setState({ showPreview: !this.state.showPreview })
+	}
 
-		if (this.state.isTokenValid === false) {
-			return <NotFoundPage />
-		}
-
-		if (this.state.redirectLink) {
-			const section = this.props.location.pathname.split("/")[1]
-			return <Redirect to={`/${section}/blog/${this.state.redirectLink}`} />
+	contentOrPreview = () => {
+		if (this.state.showPreview) {
+			return (
+				<Body>
+					<ReactMarkdown
+						source={this.state.post.body}
+						escapeHtml={false}
+					/>
+				</Body>
+			)
 		}
 
 		return (
-			<Container>
-				<Helmet>
-					<meta name="robots" content="noindex,nofollow" />
-				</Helmet>
-				<InputWrapper>{this.existingPostsSelector()}</InputWrapper>
+			<React.Fragment>
 				<InputWrapper>
 					<Label>Title: </Label>
 					<TextField
@@ -197,12 +197,43 @@ class CreatePost extends React.Component {
 						Submit
 					</Button>
 				</InputWrapper>
+			</React.Fragment>
+		)
+	}
+
+	render() {
+		if (this.state.isTokenValid === undefined) {
+			return ""
+		}
+
+		if (this.state.isTokenValid === false) {
+			return <NotFoundPage />
+		}
+
+		if (this.state.redirectLink) {
+			const section = this.props.location.pathname.split("/")[1]
+			return <Redirect to={`/${section}/blog/${this.state.redirectLink}`} />
+		}
+
+		return (
+			<Container>
+				<Helmet>
+					<meta name="robots" content="noindex,nofollow" />
+				</Helmet>
+				<InputWrapper>{this.existingPostsSelector()}</InputWrapper>
+				<InputWrapper>
+					<Button small={true} onClick={this.togglePreview}>
+						Toggle Preview
+					</Button>
+				</InputWrapper>
+				{this.contentOrPreview()}
 			</Container>
 		)
 	}
 }
 
 const Container = styled.div``
+const Body = styled.div``
 
 const Label = styled.h1`
 	display: block;
@@ -240,10 +271,10 @@ const TextArea = styled.textarea`
 const Button = styled.button`
 	color: ${Theme.linkColor};
 	font-family: ${Theme.headerFont};
-	font-size: 2em;
+	font-size: ${(props) => (props.small ? "1em" : "2em")};
 	border: 0;
 	margin: 10px auto;
-	display: block;
+	display: ${(props) => (props.small ? "inline-block" : "block")};
 	background-color: transparent;
 	text-align: center;
 `

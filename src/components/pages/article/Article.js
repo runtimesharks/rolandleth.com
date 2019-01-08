@@ -38,7 +38,7 @@ class Article extends React.Component {
 			<Container>
 				{this.helmet(post)}
 				<ArticleHeader {...this.props} />
-				<Body id="body">
+				<Body>
 					<ReactMarkdown
 						source={isTruncated ? post.truncatedBody : post.rawBody}
 						escapeHtml={false}
@@ -55,14 +55,6 @@ const Container = styled.div`
 	padding-bottom: 2em;
 	margin-bottom: 3em;
 	${Theme.lightBottomBorder()};
-
-	h2 {
-		font-weight: 600;
-		font-size: 1.2em;
-		letter-spacing: 0.75px;
-		padding-top: 0.5em;
-		color: #494949;
-	}
 `
 
 const Body = styled.div`

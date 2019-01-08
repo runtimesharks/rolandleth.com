@@ -154,6 +154,14 @@ export const GlobalStyle = createGlobalStyle`
 		}
 	}
 
+	h2 {
+		font-weight: 600;
+		font-size: 1.2em;
+		letter-spacing: 0.75px;
+		padding-top: 0.5em;
+		color: #494949;
+	}
+
 	h4 {
 		font-family: ${Theme.headerFont};
 		padding-left: 2px;
