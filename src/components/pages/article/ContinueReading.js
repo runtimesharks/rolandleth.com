@@ -1,15 +1,13 @@
 import React from "react"
+import { withRouter } from "react-router"
 import styled from "styled-components"
 import Link from "../../link/Link"
 import Theme from "../../theme/Theme"
 
 const ContinueReading = (props) => {
 	const { post } = props
-	let link = post.link
-
-	if (props.path) {
-		link = props.path + "/" + post.link
-	}
+	const section = props.location.pathname.split("/")[1]
+	const link = `/${section}/blog/${post.link}`
 
 	return (
 		<Container>
@@ -32,4 +30,4 @@ const Container = styled.div`
 	margin-top: 20px;
 `
 
-export default ContinueReading
+export default withRouter(ContinueReading)
