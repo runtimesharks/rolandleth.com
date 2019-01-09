@@ -7,6 +7,8 @@ import Theme from "../theme/Theme"
 import Helmet from "react-helmet"
 import NotFoundPage from "./NotFound"
 import ReactMarkdown from "react-markdown/with-html"
+import hljs from "highlight.js"
+import "highlight.js/styles/ocean.css"
 
 class CreatePost extends React.Component {
 	constructor(props) {
@@ -128,6 +130,12 @@ class CreatePost extends React.Component {
 
 	contentOrPreview = () => {
 		if (this.state.showPreview) {
+			setTimeout(() => {
+				Array.from(document.getElementsByTagName("code"))
+					.filter((e) => e.parentElement.tagName.toLowerCase() === "pre")
+					.forEach((e) => hljs.highlightBlock(e))
+			})
+
 			return (
 				<Body>
 					<ReactMarkdown
