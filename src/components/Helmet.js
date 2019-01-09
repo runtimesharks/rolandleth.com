@@ -32,8 +32,14 @@ class Helmet extends React.Component {
 				<link rel="author" type="text/plain" href="/humans.txt" />
 				<link
 					rel="alternate"
-					href="https://rolandleth.com"
-					title="Roland Leth"
+					href="https://rolandleth.com/life/feed"
+					title="Roland Leth's personal development thoughts"
+					type="application/atom+xml"
+				/>
+				<link
+					rel="alternate"
+					href="https://rolandleth.com/tech/feed"
+					title="Roland Leth's software development thoughts"
 					type="application/atom+xml"
 				/>
 				<link rel="micropub" href="https://rolandleth.com/micropub" />
