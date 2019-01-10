@@ -37,13 +37,13 @@ const pool = (function() {
 class Db {
 	static fields(post) {
 		const fields =
-			"(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
+			"(title, body, rawbody, truncatedbody, summary, authorid, datetime, date, isodate, modified, link, readingtime)"
 		const values = [
 			post.title,
 			post.body,
 			post.rawBody,
 			post.truncatedBody,
-			post.firstParagraph,
+			post.summary,
 			post.authorid,
 			post.datetime,
 			post.date,
@@ -280,11 +280,11 @@ class Db {
 				rawPost.title, // For archive we don't fetch this field, but we process it in the constructor
 				rawPost.rawbody || "",
 				rawPost.datetime,
+				rawPost.summary,
 				rawPost.imageurl,
 				rawPost.authorid,
 				rawPost.body,
 				truncatedBody,
-				rawPost.firstparagraph,
 				rawPost.date,
 				rawPost.isodate,
 				rawPost.modified,

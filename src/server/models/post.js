@@ -1,7 +1,6 @@
 import readingTime from "reading-time"
 import truncateHTML from "truncate-html" // This one is really fast (400ms vs 80)
 import marked from "marked"
-require("../lib/date")
 
 /**
  * Creates a friedly reading time text.
@@ -66,6 +65,21 @@ function extractFirstParagraph(rawBody) {
 	})
 }
 
+// http://stackoverflow.com/a/11888430/793916
+/**
+ * Check if daylight savings is in effect.
+ * @returns {boolean}
+ */
+function isDst(date) {
+	const jan = new Date(date.getFullYear(), 0, 1)
+	const jul = new Date(date.getFullYear(), 6, 1)
+
+	return (
+		date.getTimezoneOffset() <
+		Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset())
+	)
+}
+
 /**
  * The Post model.
  * @param {String} title
@@ -86,11 +100,11 @@ class Post {
 		title,
 		rawBody,
 		datetime,
+		summary,
 		imageURL = "",
 		authorid = 1,
 		body = marked(rawBody),
 		truncatedBody,
-		firstParagraph = extractFirstParagraph(rawBody),
 		date,
 		isoDate,
 		modified = Post.datetimeFromDate(new Date()),
@@ -100,8 +114,14 @@ class Post {
 		this.title = title
 		this.rawBody = rawBody
 		this.datetime = datetime
-		this.imageURL = imageURL
 
+		if (summary === undefined || summary.trim().length === 0) {
+			this.summary = extractFirstParagraph(rawBody)
+		} else {
+			this.summary = summary
+		}
+
+		this.imageURL = imageURL
 		this.body = body
 
 		// Since we use a markdown renderer for the FE now, truncate the `rawBody` every time.
@@ -113,7 +133,6 @@ class Post {
 			this.truncatedBody = truncateBody(rawBody)
 		}
 
-		this.firstParagraph = firstParagraph
 		this.authorid = authorid
 
 		const options = { year: "numeric", month: "short", day: "numeric" }
@@ -146,7 +165,7 @@ class Post {
 
 		// Convert to UTC, but offset hours to match Bucharest timezone -- Not working, obviously :|
 		return new Date(
-			Date.UTC(year, month, day, hour - (postDate.dst() ? 3 : 2), minute)
+			Date.UTC(year, month, day, hour - (isDst(postDate) ? 3 : 2), minute)
 		)
 	}
 
@@ -205,7 +224,7 @@ class Post {
 	 */
 	static createLink(title) {
 		return title
-			.replace(/([’”#,;!:"\'\?\[\]\{\}\(\$\/)]+)/g, "")
+			.replace(/([’”#,;!:"'?[\]{}($/)]+)/g, "")
 			.replace(/&/g, "and")
 			.replace(/\s|\./g, "-")
 			.toLowerCase()

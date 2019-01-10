@@ -10,12 +10,28 @@ import ReactMarkdown from "react-markdown/with-html"
 import hljs from "highlight.js"
 import "highlight.js/styles/ocean.css"
 
+class Post {
+	constructor(
+		title = "",
+		body = "",
+		datetime = "",
+		summary = "",
+		imageURL = ""
+	) {
+		this.datetime = datetime
+		this.summary = summary
+		this.title = title
+		this.body = body
+		this.imageURL = imageURL
+	}
+}
+
 class CreatePost extends React.Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			post: { datetime: "", title: "", body: "", imageURL: "" },
+			post: new Post(),
 			isTokenValid: undefined,
 			redirectLink: undefined,
 			posts: [],
@@ -87,7 +103,7 @@ class CreatePost extends React.Component {
 	handlePostSelection = (event) => {
 		if (event.target.value === "") {
 			this.setState({
-				post: { title: "", datetime: "", body: "", imageURL: "" }
+				post: new Post()
 			})
 
 			return
@@ -98,12 +114,13 @@ class CreatePost extends React.Component {
 		)[0]
 
 		this.setState({
-			post: {
-				title: post.title,
-				datetime: post.datetime,
-				body: post.rawBody,
-				imageURL: post.imageURL
-			}
+			post: new Post(
+				post.title,
+				post.rawBody,
+				post.datetime,
+				post.summary,
+				post.imageURL
+			)
 		})
 	}
 
@@ -162,6 +179,19 @@ class CreatePost extends React.Component {
 					/>
 				</InputWrapper>
 				<InputWrapper>
+					<Label>Date: </Label>
+					<TextField
+						title="Date"
+						type="text"
+						value={this.state.post.datetime}
+						onChange={(e) => {
+							const state = this.state
+							state.post.datetime = e.target.value
+							this.setState(state)
+						}}
+					/>
+				</InputWrapper>
+				<InputWrapper>
 					<Label>Image: </Label>
 					<TextField
 						title="Image"
@@ -175,14 +205,14 @@ class CreatePost extends React.Component {
 					/>
 				</InputWrapper>
 				<InputWrapper>
-					<Label>Date: </Label>
-					<TextField
-						title="Date"
-						type="text"
-						value={this.state.post.datetime}
+					<Label>Summary: </Label>
+					<TextArea
+						title="Summary"
+						rows="4"
+						value={this.state.post.summary}
 						onChange={(e) => {
 							const state = this.state
-							state.post.datetime = e.target.value
+							state.post.summary = e.target.value
 							this.setState(state)
 						}}
 					/>

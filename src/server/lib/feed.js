@@ -51,7 +51,7 @@ async function createFeed(section, req, res) {
 
 			xml += "\t</author>\n"
 			xml += "\t<summary>\n"
-			xml += post.firstParagraph
+			xml += post.summary
 			xml += "\t</summary>\n"
 			xml += `\t<content type="html" xml:lang="en"><![CDATA[\n`
 			xml += post.body
