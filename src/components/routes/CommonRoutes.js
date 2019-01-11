@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
 import Archive from "../pages/archive/Archive"
 import NotFoundPage from "../pages/NotFound"
 import FeedRoute from "./FeedRoute"
@@ -12,10 +12,13 @@ const CommonRoutes = (props) => {
 
 	return (
 		<Switch>
+			{/* For now, just redirect the base path to the blog. */}
+			<Route exact path={`/${section}`}>
+				<Redirect to={`/${section}/blog`} />
+			</Route>
 			<Route
 				exact
-				path={feedRoutes}
-				// This requires props because `Search` requires the `query` param.
+				path={feedRoutes} // This requires props because `Search` requires the `query` param.
 				render={(p) => <FeedRoute {...p} {...props} section={section} />}
 			/>
 			<Route
