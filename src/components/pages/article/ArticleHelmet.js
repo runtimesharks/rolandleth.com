@@ -14,10 +14,6 @@ const ArticleHelmet = (props) => {
 			<meta property="og:description" content={post.summary} />
 			<meta property="og:image" content={post.imageURL} />
 			<meta property="article:published_time" content={post.isoDate} />
-
-			<meta property="twitter:title" content={post.title} />
-			<meta property="twitter:description" content={post.summary} />
-			<meta property="twitter:image" content={post.imageURL} />
 		</Helmet>
 	)
 }

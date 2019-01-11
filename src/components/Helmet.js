@@ -11,6 +11,15 @@ class Helmet extends React.Component {
 			location = window.location.href
 		}
 
+		let description = this.props.description
+		const section = location.split("/")[3]
+
+		if (section === "life") {
+			description = "Personal development thoughts by Roland Leth"
+		} else if (section === "tech") {
+			description = "Software development thoughts by Roland Leth"
+		}
+
 		return (
 			<ReactHelmet>
 				<title>Roland Leth</title>
@@ -57,23 +66,18 @@ class Helmet extends React.Component {
 					href="https://tokens.indieauth.com/token"
 				/>
 				{/* Metadata */}
-				<meta name="description" content={this.props.description} />
+				<meta name="description" content={description} />
 				<meta name="author" content="Roland Leth" />
 				{/* OG */}
 				<meta property="og:title" content={this.props.title} />
 				<meta property="og:image" content={this.props.image} />
-				<meta property="og:description" content={this.props.description} />
+				<meta property="og:description" content={description} />
 				<meta property="og:url" content={location} />
 				<meta property="og:site_name" content="Roland Leth's blog" />
 				<meta property="og:type" content="blog" />
 				{/* Twitter */}
-				<meta property="twitter:title" content={this.props.title} />
-				<meta property="twitter:image" content={this.props.image} />
-				<meta
-					property="twitter:description"
-					content={this.props.description}
-				/>
-				<meta property="twitter:url" content={location} />
+				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:creator" content="@rolandleth" />
 				{/* Mobile settings */}
 				<meta
 					name="viewport"
@@ -88,7 +92,7 @@ class Helmet extends React.Component {
 
 Helmet.defaultProps = {
 	title: "Roland Leth",
-	description: "iOS, JS and self-improvement thoughts by Roland Leth",
+	description: "Personal and sofware development thoughts by Roland Leth",
 	image: "https://rolandleth.com/images/favicons/192x192.png"
 }
 
