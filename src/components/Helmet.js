@@ -3,13 +3,21 @@ import { Helmet as ReactHelmet } from "react-helmet"
 
 class Helmet extends React.Component {
 	render() {
-		// We pass this from the server when using SSR.
-		let location = this.props.location
+		let location = this.props.ssrLocation
 
 		// We use the `window`'s location when rendering on the client.
 		// Used when we need the full URL, like canonical or OG tags.
 		if (typeof window !== "undefined") {
 			location = window.location.href
+		}
+
+		let description = this.props.description
+		const section = location.split("/")[3]
+
+		if (section === "life") {
+			description = "Personal development thoughts by Roland Leth"
+		} else if (section === "tech") {
+			description = "Software development thoughts by Roland Leth"
 		}
 
 		return (
@@ -33,8 +41,14 @@ class Helmet extends React.Component {
 				<link rel="author" type="text/plain" href="/humans.txt" />
 				<link
 					rel="alternate"
-					href="https://rolandleth.com"
-					title="Roland Leth"
+					href="https://rolandleth.com/life/feed"
+					title="Roland Leth's personal development thoughts"
+					type="application/atom+xml"
+				/>
+				<link
+					rel="alternate"
+					href="https://rolandleth.com/tech/feed"
+					title="Roland Leth's software development thoughts"
 					type="application/atom+xml"
 				/>
 				<link rel="micropub" href="https://rolandleth.com/micropub" />
@@ -52,23 +66,18 @@ class Helmet extends React.Component {
 					href="https://tokens.indieauth.com/token"
 				/>
 				{/* Metadata */}
-				<meta name="description" content={this.props.description} />
+				<meta name="description" content={description} />
 				<meta name="author" content="Roland Leth" />
 				{/* OG */}
 				<meta property="og:title" content={this.props.title} />
 				<meta property="og:image" content={this.props.image} />
-				<meta property="og:description" content={this.props.description} />
+				<meta property="og:description" content={description} />
 				<meta property="og:url" content={location} />
 				<meta property="og:site_name" content="Roland Leth's blog" />
 				<meta property="og:type" content="blog" />
 				{/* Twitter */}
-				<meta property="twitter:title" content={this.props.title} />
-				<meta property="twitter:image" content={this.props.image} />
-				<meta
-					property="twitter:description"
-					content={this.props.description}
-				/>
-				<meta property="twitter:url" content={location} />
+				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:creator" content="@rolandleth" />
 				{/* Mobile settings */}
 				<meta
 					name="viewport"
@@ -83,7 +92,7 @@ class Helmet extends React.Component {
 
 Helmet.defaultProps = {
 	title: "Roland Leth",
-	description: "iOS, JS and self-improvement thoughts by Roland Leth",
+	description: "Personal and sofware development thoughts by Roland Leth",
 	image: "https://rolandleth.com/images/favicons/192x192.png"
 }
 

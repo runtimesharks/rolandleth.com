@@ -13,7 +13,7 @@ const Routes = (props) => {
 			<Route exact path="/" component={Intro} />
 			<Route exact path="/privacy-policy" component={PrivacyPolicy} />
 			<Route exact path="/about" component={About} />
-			<Route exact path="/life/about" component={LifeAbout} />
+			<Route exact path="/life" component={LifeAbout} />
 			<CommonRoutes path="/life" {...props} />
 			<CommonRoutes path="/tech" {...props} />
 

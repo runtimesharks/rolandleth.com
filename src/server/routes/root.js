@@ -19,7 +19,7 @@ router.get("/*", async (req, res) => {
 	const markup = renderToString(
 		sheet.collectStyles(
 			<StaticRouter context={context} location={req.originalUrl}>
-				<App location={location} post={post} /> {/* For meta tags*/}
+				<App ssrLocation={location} post={post} /> {/* For meta tags*/}
 			</StaticRouter>
 		)
 	)

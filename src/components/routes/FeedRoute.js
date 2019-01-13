@@ -6,7 +6,7 @@ const FeedRoute = (props) => {
 	const rawPage = new URLSearchParams(props.location.search).get("page")
 	const page = parseInt(rawPage, 10) || 1
 
-	if (props.match.path.split("/")[2] === "search") {
+	if (props.location.pathname.split("/")[2] === "search") {
 		return (
 			<Search
 				{...props}

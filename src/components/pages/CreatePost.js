@@ -6,16 +6,36 @@ import styled from "styled-components"
 import Theme from "../theme/Theme"
 import Helmet from "react-helmet"
 import NotFoundPage from "./NotFound"
+import ReactMarkdown from "react-markdown/with-html"
+import hljs from "highlight.js"
+import "highlight.js/styles/ocean.css"
+
+class Post {
+	constructor(
+		title = "",
+		body = "",
+		datetime = "",
+		summary = "",
+		imageURL = ""
+	) {
+		this.datetime = datetime
+		this.summary = summary
+		this.title = title
+		this.body = body
+		this.imageURL = imageURL
+	}
+}
 
 class CreatePost extends React.Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			post: { datetime: "", title: "", body: "" },
+			post: new Post(),
 			isTokenValid: undefined,
 			redirectLink: undefined,
-			posts: []
+			posts: [],
+			showPreview: false
 		}
 	}
 
@@ -82,7 +102,9 @@ class CreatePost extends React.Component {
 
 	handlePostSelection = (event) => {
 		if (event.target.value === "") {
-			this.setState({ post: { title: "", datetime: "", body: "" } })
+			this.setState({
+				post: new Post()
+			})
 
 			return
 		}
@@ -92,11 +114,13 @@ class CreatePost extends React.Component {
 		)[0]
 
 		this.setState({
-			post: {
-				title: post.title,
-				datetime: post.datetime,
-				body: post.rawBody
-			}
+			post: new Post(
+				post.title,
+				post.rawBody,
+				post.datetime,
+				post.summary,
+				post.imageURL
+			)
 		})
 	}
 
@@ -117,26 +141,30 @@ class CreatePost extends React.Component {
 		)
 	}
 
-	render() {
-		if (this.state.isTokenValid === undefined) {
-			return ""
-		}
+	togglePreview = () => {
+		this.setState({ showPreview: !this.state.showPreview })
+	}
 
-		if (this.state.isTokenValid === false) {
-			return <NotFoundPage />
-		}
+	contentOrPreview = () => {
+		if (this.state.showPreview) {
+			setTimeout(() => {
+				Array.from(document.getElementsByTagName("code"))
+					.filter((e) => e.parentElement.tagName.toLowerCase() === "pre")
+					.forEach((e) => hljs.highlightBlock(e))
+			})
 
-		if (this.state.redirectLink) {
-			const section = this.props.location.pathname.split("/")[1]
-			return <Redirect to={`/${section}/blog/${this.state.redirectLink}`} />
+			return (
+				<Body>
+					<ReactMarkdown
+						source={this.state.post.body}
+						escapeHtml={false}
+					/>
+				</Body>
+			)
 		}
 
 		return (
-			<Container>
-				<Helmet>
-					<meta name="robots" content="noindex,nofollow" />
-				</Helmet>
-				<InputWrapper>{this.existingPostsSelector()}</InputWrapper>
+			<React.Fragment>
 				<InputWrapper>
 					<Label>Title: </Label>
 					<TextField
@@ -164,6 +192,32 @@ class CreatePost extends React.Component {
 					/>
 				</InputWrapper>
 				<InputWrapper>
+					<Label>Image: </Label>
+					<TextField
+						title="Image"
+						type="text"
+						value={this.state.post.imageURL}
+						onChange={(e) => {
+							const state = this.state
+							state.post.imageURL = e.target.value
+							this.setState(state)
+						}}
+					/>
+				</InputWrapper>
+				<InputWrapper>
+					<Label>Summary: </Label>
+					<TextArea
+						title="Summary"
+						rows="4"
+						value={this.state.post.summary}
+						onChange={(e) => {
+							const state = this.state
+							state.post.summary = e.target.value
+							this.setState(state)
+						}}
+					/>
+				</InputWrapper>
+				<InputWrapper>
 					<Label>Body: </Label>
 					<TextArea
 						title="Body"
@@ -181,12 +235,43 @@ class CreatePost extends React.Component {
 						Submit
 					</Button>
 				</InputWrapper>
+			</React.Fragment>
+		)
+	}
+
+	render() {
+		if (this.state.isTokenValid === undefined) {
+			return ""
+		}
+
+		if (this.state.isTokenValid === false) {
+			return <NotFoundPage />
+		}
+
+		if (this.state.redirectLink) {
+			const section = this.props.location.pathname.split("/")[1]
+			return <Redirect to={`/${section}/blog/${this.state.redirectLink}`} />
+		}
+
+		return (
+			<Container>
+				<Helmet>
+					<meta name="robots" content="noindex,nofollow" />
+				</Helmet>
+				<InputWrapper>{this.existingPostsSelector()}</InputWrapper>
+				<InputWrapper>
+					<Button small={true} onClick={this.togglePreview}>
+						Toggle Preview
+					</Button>
+				</InputWrapper>
+				{this.contentOrPreview()}
 			</Container>
 		)
 	}
 }
 
 const Container = styled.div``
+const Body = styled.div``
 
 const Label = styled.h1`
 	display: block;
@@ -224,10 +309,10 @@ const TextArea = styled.textarea`
 const Button = styled.button`
 	color: ${Theme.linkColor};
 	font-family: ${Theme.headerFont};
-	font-size: 2em;
+	font-size: ${(props) => (props.small ? "1em" : "2em")};
 	border: 0;
 	margin: 10px auto;
-	display: block;
+	display: ${(props) => (props.small ? "inline-block" : "block")};
 	background-color: transparent;
 	text-align: center;
 `

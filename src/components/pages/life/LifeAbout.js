@@ -11,8 +11,8 @@ const LifeAbout = () => {
 			/>
 			<Greeting>What's this about?</Greeting>
 			<p>
-				This section of the blog is about self-improvement. I'll be writing
-				about habits, identity change, motivation, productivity and
+				This section of the blog is about personal development. I'll be
+				writing about habits, identity change, motivation, productivity and
 				all-around improving ourselves.
 			</p>
 			<p>

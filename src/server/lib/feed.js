@@ -12,8 +12,8 @@ async function createFeed(section, req, res) {
 	xml += `<title type="text">Roland Leth</title>\n`
 	xml += `<subtitle type="text">${
 		section === "tech"
-			? "Development thoughts by Roland Leth"
-			: "Life and self improvement thoughts by Roland Leth"
+			? "Software development thoughts by Roland Leth"
+			: "Personal development thoughts by Roland Leth"
 	}</subtitle>\n`
 	xml += `<updated>${updated}</updated>\n`
 	xml += "<author>\n\t<name>Roland Leth</name>\n</author>\n"
@@ -50,6 +50,9 @@ async function createFeed(section, req, res) {
 			}
 
 			xml += "\t</author>\n"
+			xml += "\t<summary>\n"
+			xml += post.summary
+			xml += "\t</summary>\n"
 			xml += `\t<content type="html" xml:lang="en"><![CDATA[\n`
 			xml += post.body
 			xml += "]]></content>\n"

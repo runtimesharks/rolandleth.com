@@ -37,7 +37,7 @@ const About = () => (
 				text="React"
 			/>{" "}
 			and my blog has been a playground for a lot of that. If you'd like to
-			know more about my development history, please check out{" "}
+			know more about my software development history, please check out{" "}
 			<Link
 				href="https://rolandleth.com/assets/resume.pdf"
 				title="Roland Leth's resume"
@@ -101,7 +101,7 @@ const About = () => (
 			improve and how to change ourselves for the better. So the final step
 			was to open a new section on my blog, called{" "}
 			<Link href="/life/blog" title="Life" text="Life" />, where I started
-			writing about my own journey of improvement.
+			writing about my own journey of development.
 		</p>
 		<p>
 			A somewhat short (~17min read) post about this can be found on{" "}
@@ -112,7 +112,7 @@ const About = () => (
 			/>{" "}
 			and in the{" "}
 			<Link
-				href="/life/blog/about-me-slightly-detailed"
+				href="/life/blog/intro--slightly-more-details-about-me"
 				title="About me, in more detail"
 				text="first post"
 			/>{" "}

@@ -37,13 +37,13 @@ const pool = (function() {
 class Db {
 	static fields(post) {
 		const fields =
-			"(title, body, rawbody, truncatedbody, firstparagraph, authorid, datetime, date, isodate, modified, link, readingtime)"
+			"(title, body, rawbody, truncatedbody, summary, authorid, datetime, date, isodate, modified, link, readingtime)"
 		const values = [
 			post.title,
 			post.body,
 			post.rawBody,
 			post.truncatedBody,
-			post.firstParagraph,
+			post.summary,
 			post.authorid,
 			post.datetime,
 			post.date,
@@ -157,10 +157,11 @@ class Db {
 
 	/**
 	 * Fetch link, modified and datetime fields of all posts, except future ones.
+	 * @param {"life"|"tech"} section A String representing the section of the site.
 	 * @returns {Promise.<DbResult>} A promise that contains a {@link DbResult}.
 	 */
-	static fetchSiteMapPosts() {
-		return Db.fetchPosts(DbConfig.siteMap())
+	static fetchSiteMapPosts(section) {
+		return Db.fetchPosts(DbConfig.siteMap(section))
 	}
 
 	/**
@@ -218,7 +219,7 @@ class Db {
 			res.totalPages = parseInt(count / config.limit, 10) + 1
 		}
 
-		if (config.limit !== 1) {
+		if (config.limit !== 1 && config.includeFuturePosts === false) {
 			const date = new Date()
 			const utcDate = new Date(
 				Date.UTC(
@@ -279,10 +280,11 @@ class Db {
 				rawPost.title, // For archive we don't fetch this field, but we process it in the constructor
 				rawPost.rawbody || "",
 				rawPost.datetime,
+				rawPost.summary,
+				rawPost.imageurl,
 				rawPost.authorid,
 				rawPost.body,
 				truncatedBody,
-				rawPost.firstparagraph,
 				rawPost.date,
 				rawPost.isodate,
 				rawPost.modified,

@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Link from "../link/Link"
 import Theme from "../theme/Theme"
+import ColorOnHoverLink from "../link/ColorOnHoverLink"
 
 const Intro = () => (
 	<Container>
@@ -14,11 +15,13 @@ const Intro = () => (
 		</p>
 		<List>
 			<ListItem className="tech">
-				<img
-					className="illustration"
-					src="/images/developer.svg"
-					alt="A developer in front of 6 monitors"
-				/>
+				<ColorOnHoverLink href="/tech/blog" title="Tech blog">
+					<img
+						className="illustration"
+						src="/images/developer.svg"
+						alt="A developer in front of 6 monitors"
+					/>
+				</ColorOnHoverLink>
 				<p>
 					iOS development: snippets, walkthroughs, tips and tricks, stuff
 					that I struggled with and links to interesting stuff I find
@@ -34,11 +37,13 @@ const Intro = () => (
 					identity change, motivation, productivity and self-improvement.
 					I'm pretty excited to share everything with you!
 				</p>
-				<img
-					className="illustration"
-					src="/images/progress.svg"
-					alt="Woman moving gears"
-				/>
+				<ColorOnHoverLink href="/life/blog" title="Life blog">
+					<img
+						className="illustration"
+						src="/images/progress.svg"
+						alt="Woman moving gears"
+					/>
+				</ColorOnHoverLink>
 			</ListItem>
 		</List>
 		<p>
