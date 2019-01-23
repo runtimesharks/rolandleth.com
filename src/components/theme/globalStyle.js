@@ -154,12 +154,19 @@ export const GlobalStyle = createGlobalStyle`
 		}
 	}
 
-	h2 {
+	h2, h3 {
 		font-weight: 600;
 		font-size: 1.2em;
 		letter-spacing: 0.75px;
 		padding-top: 0.5em;
 		color: #494949;
+	}
+
+	h3 {
+		font-weight: 500;
+		font-size: 1.1em;
+		border-bottom: 1px solid #494949;
+		display: inline;
 	}
 
 	h4 {
