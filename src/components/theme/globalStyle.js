@@ -128,12 +128,20 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	li {
-		list-style: disc inside;
+		list-style-position: inside;
 
 		> ul > li {
 			padding-left: 1.5em;
 			list-style-type: circle;
 		}
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	ol {
+		list-style-type: decimal;
 	}
 
 	header {
