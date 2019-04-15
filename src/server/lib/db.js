@@ -24,7 +24,7 @@ const pool = (function() {
 		password: auth[1],
 		host: params.hostname,
 		port: params.port || 5432,
-		database: params.pathname.split("/")[1]
+		database: params.pathname.split("/")[1],
 	}
 
 	return new Pool(config)
@@ -50,7 +50,7 @@ class Db {
 			post.isoDate,
 			post.modified,
 			post.link,
-			post.readingTime
+			post.readingTime,
 		]
 		// A string that looks like "$1, $2, $3". prettier-ignore
 		const placeholders =
