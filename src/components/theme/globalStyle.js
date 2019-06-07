@@ -122,7 +122,7 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0 auto;
 
 		@media (prefers-color-scheme: dark) {
-			background: ${Theme.textColor};
+			background: #111111;
 			color: white;
 		}
 	}
@@ -168,6 +168,10 @@ export const GlobalStyle = createGlobalStyle`
 		letter-spacing: 0.75px;
 		padding-top: 0.5em;
 		color: #494949;
+
+		@media (prefers-color-scheme: dark) {
+			color: #bbb;
+		}
 	}
 
 	h3 {
