@@ -122,18 +122,26 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0 auto;
 
 		@media (prefers-color-scheme: dark) {
-			background: ${Theme.textColor};
+			background: #111111;
 			color: white;
 		}
 	}
 
 	li {
-		list-style: disc inside;
+		list-style-position: inside;
 
 		> ul > li {
 			padding-left: 1.5em;
 			list-style-type: circle;
 		}
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	ol {
+		list-style-type: decimal;
 	}
 
 	header {
@@ -154,12 +162,23 @@ export const GlobalStyle = createGlobalStyle`
 		}
 	}
 
-	h2 {
+	h2, h3 {
 		font-weight: 600;
 		font-size: 1.2em;
 		letter-spacing: 0.75px;
 		padding-top: 0.5em;
 		color: #494949;
+
+		@media (prefers-color-scheme: dark) {
+			color: #bbb;
+		}
+	}
+
+	h3 {
+		font-weight: 500;
+		font-size: 1.1em;
+		border-bottom: 1px solid #494949;
+		display: inline;
 	}
 
 	h4 {

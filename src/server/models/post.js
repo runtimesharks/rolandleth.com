@@ -24,11 +24,7 @@ function timeToRead(body) {
 
 /**
  * Truncates the body of a post to 700 characters, but only if it's longer than 900; otherwise it does nothing.
- * @param {String} title The title of the body; used for tracking.
  * @param {String} body The post of the body.
- * @param {String} rawBody The post of the body.
- * @param {String} link The link of the body.
- * @returns {String} The truncated body.
  */
 function truncateBody(body) {
 	if (body.length < 900) {
@@ -40,7 +36,7 @@ function truncateBody(body) {
 		ellipsis: " ...",
 		// ellipsis: " [&hellip;]",
 		stripTags: false,
-		keepWhitespaces: true
+		keepWhitespaces: true,
 	})
 }
 
@@ -61,7 +57,7 @@ function extractFirstParagraph(rawBody) {
 
 	return truncateHTML(firstParagraph, {
 		length: 295,
-		ellipsis: " ..."
+		ellipsis: " ...",
 	})
 }
 
@@ -91,7 +87,7 @@ function isDst(date) {
  * @param {String} link
  * @param {String} readingTime
  * @param {String} truncatedBody
- * @param {Bool} creating
+ * @param {Boolean} creating
  * @constructor
  */
 class Post {

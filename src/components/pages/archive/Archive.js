@@ -1,8 +1,8 @@
-import React from "react"
-import axios from "axios"
-import styled from "styled-components"
-import Helmet from "react-helmet"
-import ArticleEntry from "./ArchiveEntry"
+import axios from "axios";
+import React from "react";
+import Helmet from "react-helmet";
+import styled from "styled-components";
+import ArticleEntry from "./ArchiveEntry";
 
 class Archive extends React.Component {
 	constructor(props) {
