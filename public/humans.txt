@@ -1,12 +1,12 @@
 /* TEAM */
 Designer:		Roland Leth
-Developer:		Roland Leth
-Contact:			roland@runtimesharks.com
-Twitter:			@rolandleth
+Developer:	Roland Leth
+Contact:		roland@leth.ro
+Twitter:		@rolandleth
 
 /* SITE */
-Last update:	2018-12-15
+Last update:	2019-04-01
 Language:		English
-Doctype:			HTML5
-Tools:			HTML5, SCSS, React, Node.js, Express.js
-Editors:			Visual Studio Code, Ulysses
+Doctype:		HTML5
+Tools:			HTML5, SCSS, TS, React, Node.js, Express
+Editors:		Visual Studio Code, Ulysses
