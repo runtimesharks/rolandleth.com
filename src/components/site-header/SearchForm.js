@@ -9,7 +9,7 @@ class SearchForm extends React.Component {
 
 		this.state = {
 			formSize: this.formSize(),
-			query: this.props.query
+			query: this.props.query,
 		}
 	}
 
@@ -72,7 +72,7 @@ class SearchForm extends React.Component {
 }
 
 const Form = styled.form`
-	background-color: rgba(0, 0, 0, 0);
+	background-color: transparent;
 	font-size: 0.9em;
 	align-self: center;
 	grid-column: 1/2;
