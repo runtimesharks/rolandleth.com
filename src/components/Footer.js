@@ -1,8 +1,8 @@
 import React from "react"
-import styled from "styled-components"
-import Theme from "./theme/Theme"
 import { Route, Switch } from "react-router-dom"
+import styled from "styled-components"
 import UnderlineOnHoverLink from "./link/UnderlineOnHoverLink"
+import Theme from "./theme/Theme"
 
 const quotes = [
 	"Tables turn, bridges burn, you live and learn",
@@ -12,7 +12,9 @@ const quotes = [
 	"Whether you think you can or can not, you are right",
 	"Avoid the trap of thinking you have something to lose",
 	'A lot can happen between now and "never"',
-	"Don’t wish it was easier, wish you were better"
+	"Don’t wish it was easier, wish you were better",
+	"You could be good today, but instead you choose tomorrow",
+	"I am the master of my fate; I am the captain of my soul",
 ]
 const emojis = ["💤", "🌟", "💭", "🗿", "👣", "🐶", "🦄", "🏇🏻"]
 
@@ -40,10 +42,7 @@ class Footer extends React.Component {
 						<Route path="/tech">
 							<React.Fragment>
 								&nbsp;&mdash;&nbsp;
-								<UnderlineOnHoverLink
-									href="/tech/archive"
-									text="Archive"
-								/>
+								<UnderlineOnHoverLink href="/tech/archive" text="Archive" />
 							</React.Fragment>
 						</Route>
 					</Switch>
