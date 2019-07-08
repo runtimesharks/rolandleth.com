@@ -1,10 +1,10 @@
-import App from "../../App"
+import express from "express"
 import React from "react"
+import { renderToString } from "react-dom/server"
 import Helmet from "react-helmet"
 import { StaticRouter } from "react-router-dom"
-import express from "express"
-import { renderToString } from "react-dom/server"
 import { ServerStyleSheet } from "styled-components"
+import App from "../../App"
 import Db from "../lib/db"
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
@@ -92,25 +92,21 @@ function setCSPHeaders(res, isProduction) {
 		"font-src": [
 			"'self'",
 			"https://fonts.gstatic.com",
-			"https://fonts.googleapis.com"
+			"https://fonts.googleapis.com",
 		],
-		"style-src": [
-			"'self'",
-			"'unsafe-inline'",
-			"https://fonts.googleapis.com"
-		],
+		"style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
 		"img-src": [
 			"'self'",
 			localhostWithProtocol,
 			"https://www.google-analytics.com",
-			"https://cdn.codementor.io/badges/book_session_github.svg"
+			"https://cdn.codementor.io/badges/book_session_github.svg",
 		],
 		"script-src": [
 			"'self'",
 			localhostWithProtocol,
-			"https://www.google-analytics.com"
+			"https://www.google-analytics.com",
 		],
-		"form-action": ["'self'"]
+		"form-action": ["'self'"],
 	}
 
 	res.setHeader(

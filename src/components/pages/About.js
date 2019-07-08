@@ -1,7 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import Theme from "../theme/Theme"
 import Link from "../link/Link"
+import Theme from "../theme/Theme"
+
+const projectsURL = "https://runtimesharks.com/projects"
 
 const About = () => (
 	<Container>
@@ -36,8 +38,8 @@ const About = () => (
 				title="Current version"
 				text="React"
 			/>{" "}
-			and my blog has been a playground for a lot of that. If you'd like to
-			know more about my software development history, please check out{" "}
+			and my blog has been a playground for a lot of that. If you'd like to know
+			more about my software development history, please check out{" "}
 			<Link
 				href="https://rolandleth.com/assets/resume.pdf"
 				title="Roland Leth's resume"
@@ -46,46 +48,26 @@ const About = () => (
 			.
 		</p>
 		<p>
-			Starting with October 2017, I've started my own company with the help
-			of{" "}
+			Starting with October 2017, I've started my own company with the help of{" "}
 			<Link
 				href="https://twitter.com/dianadaia09"
 				title="Diana's Twitter"
 				text="my girlfriend"
 			/>
-			. We've{" "}
+			. We've launched multiple <Link href={`${projectsURL}`} text="iOS apps" />
+			, <Link href={`${projectsURL}#mac`} text="Mac apps" /> &{" "}
+			<Link href={`${projectsURL}#web`} text="websites" /> and helped{" "}
+			<Link href={`${projectsURL}/beraria-h`} title="Beraria H" text="a few" />{" "}
 			<Link
-				href="https://itunes.apple.com/us/app/goalee/id1438115216?ls=1&mt"
-				title="Goalee"
-				text="launched"
-			/>{" "}
-			<Link
-				href="https://itunes.apple.com/us/app/challengebeat/id1323950655?ls=1&mt"
-				title="ChallengeBeat"
-				text="several"
-			/>{" "}
-			<Link
-				href="https://itunes.apple.com/us/app/my-travel-stories/id1395335605?ls=1&mt"
-				title="My Travel Stories"
-				text="products"
-			/>{" "}
-			and helped{" "}
-			<Link
-				href="https://itunes.apple.com/us/app/beraria-h/id1257720997?mt=8"
-				title="Beraria H"
-				text="a few"
-			/>{" "}
-			<Link
-				href="https://heybewell.com/"
+				href={`${projectsURL}/hey-be-well`}
 				title="Hey, Be Well"
 				text="clients"
 			/>{" "}
 			build, repair, polish, finish and launch their apps. We also offer{" "}
 			<Link href="https://runtimesharks.com/mentoring" text="mentoring" />,{" "}
-			<Link href="https://runtimesharks.com/consulting" text="consulting" />{" "}
-			and{" "}
-			<Link href="https://runtimesharks.com/workshops" text="workshops" />.
-			If you'd like to know more about us, please visit{" "}
+			<Link href="https://runtimesharks.com/consulting" text="consulting" /> and{" "}
+			<Link href="https://runtimesharks.com/workshops" text="workshops" />. If
+			you'd like to know more about us, please visit{" "}
 			<Link
 				href="https://runtimesharks.com"
 				title="Runtime Sharks"
@@ -94,12 +76,18 @@ const About = () => (
 			.
 		</p>
 		<p>
-			Two of the projects we've built, ChallengeBeat and Goalee, are
-			self-improvement driven; both are tools for becoming a better person
-			and for improving yourself. Naturally, I've grown more and more
-			interested in how our brains work, why we do or don't do things, how to
-			improve and how to change ourselves for the better. So the final step
-			was to open a new section on my blog, called{" "}
+			Two of the projects we've built,{" "}
+			<Link
+				href={`${projectsURL}/challengebeat`}
+				title="ChallengeBeat"
+				text="ChallengeBeat"
+			/>{" "}
+			and <Link href={`${projectsURL}/goalee`} title="Goalee" text="Goalee" />,
+			are self-improvement driven; both are tools for becoming a better person
+			and for improving yourself. Naturally, I've grown more and more interested
+			in how our brains work, why we do or don't do things, how to improve and
+			how to change ourselves for the better. So the final step was to open a
+			new section on my blog, called{" "}
 			<Link href="/life/blog" title="Life" text="Life" />, where I started
 			writing about my own journey of development.
 		</p>
@@ -117,13 +105,13 @@ const About = () => (
 				text="first post"
 			/>{" "}
 			of the <Link href="/life/blog" title="Life" text="new section" />.{" "}
-			<em>Spoiler</em>: the main tactic that has proven successful was "no
-			step is too small to be unimportant", "one babystep at a time" & "never
-			miss twice".
+			<em>Spoiler</em>: the main tactic that has proven successful was "no step
+			is too small to be unimportant", "one babystep at a time" & "never miss
+			twice".
 		</p>
 		<p>
-			If I can be of help or you just want to say hi, you can drop me an
-			email at{" "}
+			If I can be of help or you just want to say hi, you can drop me an email
+			at{" "}
 			<Link
 				href="mailto:hi@rolandleth.com"
 				title="Shoot me an email"
