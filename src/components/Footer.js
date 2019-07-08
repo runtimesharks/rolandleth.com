@@ -1,5 +1,4 @@
 import React from "react"
-import { Route, Switch } from "react-router-dom"
 import styled from "styled-components"
 import UnderlineOnHoverLink from "./link/UnderlineOnHoverLink"
 import Theme from "./theme/Theme"
@@ -36,16 +35,10 @@ class Footer extends React.Component {
 				<Copyright>
 					&copy; 2013&ndash;{year} &nbsp;
 					<UnderlineOnHoverLink href="/" text="Roland Leth" title="Home" />
-					{/* &nbsp;&mdash;&nbsp;
-					<Link href="/microblog" text="Microblog" /> */}
-					<Switch>
-						<Route path="/tech">
-							<React.Fragment>
-								&nbsp;&mdash;&nbsp;
-								<UnderlineOnHoverLink href="/tech/archive" text="Archive" />
-							</React.Fragment>
-						</Route>
-					</Switch>
+					&nbsp;&mdash;&nbsp;
+					<UnderlineOnHoverLink href="/about" text="About" />
+					&nbsp;&mdash;&nbsp;
+					<UnderlineOnHoverLink href="/tech/archive" text="Archive" />
 				</Copyright>
 			</Container>
 		)
