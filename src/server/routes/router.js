@@ -1,18 +1,27 @@
 import express from "express"
-import { rootRouter } from "./root"
-import { apiRouter } from "./api/index"
-import { lifeRouter } from "./life"
-import { techRouter } from "./tech"
 import createFeed from "../lib/feed"
 import createSitemap from "../lib/sitemap"
+import { apiRouter } from "./api/index"
+import { lifeRouter } from "./life"
+import { rootRouter } from "./root"
+import { techRouter } from "./tech"
 
 const router = express.Router()
 
-router.get("/feed", async (req, res) => {
-	createFeed("tech", req, res)
+router.get("/testing-remote", async (_, res) => {
+  res.status(200).send({
+    name: "Company name",
+    version: "1.0",
+    map_types: ["WEB", "iOS"],
+    old_version: "0.0",
+    g: "0b3d53c8-4fa4-4718-8f68-e6b0fee1aac6",
+  })
 })
-router.get("/sitemap.xml", async (req, res) => {
-	createSitemap(res)
+router.get("/feed", async (req, res) => {
+  createFeed("tech", req, res)
+})
+router.get("/sitemap.xml", async (_, res) => {
+  createSitemap(res)
 })
 
 router.use("/life", lifeRouter)
