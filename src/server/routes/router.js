@@ -11,9 +11,9 @@ const router = express.Router()
 router.get("/testing-remote", async (_, res) => {
   res.status(200).send({
     name: "Company name",
-    version: "1.0",
-    map_types: ["WEB", "iOS"],
-    old_version: "0.0",
+    version: "2.0",
+    map_types: ["Common", "Gmail_API", "WEB", "iOS"],
+    old_version: "1.0",
     g: "0b3d53c8-4fa4-4718-8f68-e6b0fee1aac6",
   })
 })
