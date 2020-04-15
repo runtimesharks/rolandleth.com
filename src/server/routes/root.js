@@ -1,7 +1,7 @@
 import express from "express"
 import React from "react"
 import { renderToString } from "react-dom/server"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { StaticRouter } from "react-router-dom"
 import { ServerStyleSheet } from "styled-components"
 import App from "../../App"
