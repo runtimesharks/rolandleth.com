@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet"
 import styled from "styled-components";
 import ArticleEntry from "./ArchiveEntry";
 
