@@ -80,41 +80,6 @@ function setCSPHeaders(res, isProduction) {
 	if (isProduction || true) {
 		return
 	}
-
-	const localhost = "localhost:3001"
-	const localhostWithProtocol = `http://${localhost}`
-
-	const csp = {
-		"default-src": ["'none'"],
-		"connect-src": ["'self'", localhostWithProtocol, `ws://${localhost}`],
-		"frame-ancestors": ["'none'"],
-		"base-uri": ["'self'"],
-		"font-src": [
-			"'self'",
-			"https://fonts.gstatic.com",
-			"https://fonts.googleapis.com",
-		],
-		"style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-		"img-src": [
-			"'self'",
-			localhostWithProtocol,
-			"https://www.google-analytics.com",
-			"https://cdn.codementor.io/badges/book_session_github.svg",
-		],
-		"script-src": [
-			"'self'",
-			localhostWithProtocol,
-			"https://www.google-analytics.com",
-		],
-		"form-action": ["'self'"],
-	}
-
-	res.setHeader(
-		"Content-Security-Policy",
-		Object.keys(csp).map((key) => {
-			return `${key} ${csp[key].join(" ")};`
-		})
-	)
 }
 
 export { router as rootRouter }

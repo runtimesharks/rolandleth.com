@@ -57,14 +57,8 @@ class Helmet extends React.Component {
 				<link rel="me" href="https://twitter.com/rolandleth" />
 				<link rel="me" href="https://github.com/rolandleth" />
 				{/* IndieAuth */}
-				<link
-					rel="authorization_endpoint"
-					href="https://indieauth.com/auth"
-				/>
-				<link
-					rel="token_endpoint"
-					href="https://tokens.indieauth.com/token"
-				/>
+				<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+				<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
 				{/* Metadata */}
 				<meta name="description" content={description} />
 				<meta name="author" content="Roland Leth" />
@@ -93,7 +87,7 @@ class Helmet extends React.Component {
 Helmet.defaultProps = {
 	title: "Roland Leth",
 	description: "Personal and sofware development thoughts by Roland Leth",
-	image: "https://rolandleth.com/images/favicons/192x192.png"
+	image: "https://rolandleth.com/images/favicons/192x192.png",
 }
 
 export default Helmet

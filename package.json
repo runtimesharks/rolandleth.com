@@ -9,19 +9,19 @@
 		"start:prod": "NODE_ENV=production node build/server.js"
 	},
 	"dependencies": {
-		"axios": "^0.19.0",
+		"axios": "^0.20.0",
 		"express": "^4.17.1",
-		"highlight.js": "^9.15.8",
-		"marked": "^0.7.0",
-		"pg": "^7.11.0",
-		"razzle": "^3.0.0",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-helmet": "^5.2.1",
+		"highlight.js": "^10.1.2",
+		"marked": "^1.1.1",
+		"pg": "^8.3.2",
+		"razzle": "^3.1.6",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-helmet": "^6.1.0",
 		"react-markdown": "^4.1.0",
-		"react-router-dom": "^5.0.1",
+		"react-router-dom": "^5.2.0",
 		"reading-time": "^1.2.0",
-		"styled-components": "^4.3.2",
+		"styled-components": "^5.1.1",
 		"truncate-html": "^1.0.2"
 	}
 }
