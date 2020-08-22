@@ -2,8 +2,6 @@ import { createGlobalStyle } from "styled-components"
 import Theme from "./Theme"
 
 export const GlobalStyle = createGlobalStyle`
-	@import url('https://fonts.googleapis.com/css?family=Titillium+Web:700"');
-
 	/* Reset */
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
