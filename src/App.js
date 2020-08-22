@@ -1,12 +1,8 @@
 import React from "react"
 import { withRouter } from "react-router-dom"
-import styled from "styled-components"
-import { GlobalStyle } from "./components/theme/globalStyle"
 import Helmet from "./components/Helmet"
 import Routes from "./components/routes/Router"
-import Theme from "./components/theme/Theme"
-import SiteHeader from "./components/site-header/SiteHeader"
-import Footer from "./components/Footer"
+import { GlobalStyle } from "./components/theme/globalStyle"
 
 class App extends React.Component {
 	query = () => {
@@ -28,22 +24,10 @@ class App extends React.Component {
 			<React.Fragment>
 				<Helmet {...this.props} />
 				<GlobalStyle />
-				<SiteHeader query={this.query()} />
-				<Content>
-					<Routes query={this.query()} {...this.props} />
-				</Content>
-				<Footer />
+				<Routes query={this.query()} {...this.props} />
 			</React.Fragment>
 		)
 	}
 }
-
-const Content = styled.div`
-	margin: 6em 0 5em 0;
-
-	@media screen and (max-width: ${Theme.phoneMedia}) {
-		padding-bottom: 0;
-	}
-`
 
 export default withRouter(App)
