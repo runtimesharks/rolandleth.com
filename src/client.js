@@ -1,11 +1,8 @@
-import App from "./App"
-import { BrowserRouter } from "react-router-dom"
 import React from "react"
 import ReactDOM from "react-dom"
+import { BrowserRouter } from "react-router-dom"
+import App from "./App"
 import ScrollToTop from "./components/ScrollToTop"
-import initGA from "./components/GoogleAnalytics"
-
-initGA()
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
 

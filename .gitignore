@@ -22,3 +22,5 @@ yarn-error.log*
 .pnp
 /.pnp.js
 /config.js
+
+.vercel
