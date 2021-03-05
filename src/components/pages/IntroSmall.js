@@ -15,18 +15,17 @@ const Intro = () => (
 				anymore.
 			</p>
 			<p>
-				If I can be of help or you just want to say hi, you can drop me an email
-				at{" "}
+				If I can be of help or you just want to say hi, you can drop me at{" "}
 				<Link
 					href="mailto:roland+hi@hey.com"
 					title="Shoot me an email"
-					text="roland+hi@hey.com"
+					text="an email"
 				/>
-				, or find me on Twitter{" "}
+				, or find me on{" "}
 				<Link
 					href="https://twitter.com/rolandleth"
 					title="Roland Leth's Twitter"
-					text="@rolandleth"
+					text="Twitter"
 				/>
 				. You can find out more about me on{" "}
 				<Link href="/about" title="About Roland Leth" text="my about page" /> or

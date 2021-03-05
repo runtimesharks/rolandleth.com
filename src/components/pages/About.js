@@ -101,18 +101,17 @@ const About = () => (
 			writing about my own journey of development.
 		</p>
 		<p>
-			If I can be of help or you just want to say hi, you can drop me an email
-			at{" "}
+			If I can be of help or you just want to say hi, you can drop me{" "}
 			<Link
 				href="mailto:roland+hi@hey.com"
 				title="Shoot me an email"
-				text="roland+hi@hey.com"
+				text="an email"
 			/>
-			, or find me on Twitter{" "}
+			, or find me on{" "}
 			<Link
 				href="https://twitter.com/rolandleth"
 				title="My Twitter"
-				text="@rolandleth"
+				text="Twitter"
 			/>
 			.
 		</p>
