@@ -101,30 +101,12 @@ const About = () => (
 			writing about my own journey of development.
 		</p>
 		<p>
-			A somewhat short (~17min read) post about this can be found on{" "}
-			<Link
-				href="https://www.reddit.com/r/selfimprovement/comments/9zcxl0/motivation_habits_discipline_identity_shift_my/"
-				title="My short story"
-				text="Reddit"
-			/>{" "}
-			and in the{" "}
-			<Link
-				href="/life/blog/intro--slightly-more-details-about-me"
-				title="About me, in more detail"
-				text="first post"
-			/>{" "}
-			of the <Link href="/life/blog" title="Life" text="new section" />.{" "}
-			<em>Spoiler</em>: the main tactic that has proven successful was "no step
-			is too small to be unimportant", "one babystep at a time" & "never miss
-			twice".
-		</p>
-		<p>
 			If I can be of help or you just want to say hi, you can drop me an email
 			at{" "}
 			<Link
-				href="mailto:hi@rolandleth.com"
+				href="mailto:roland+hi@hey.com"
 				title="Shoot me an email"
-				text="hi@rolandleth.com"
+				text="roland+hi@hey.com"
 			/>
 			, or find me on Twitter{" "}
 			<Link

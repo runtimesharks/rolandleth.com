@@ -18,9 +18,9 @@ const Intro = () => (
 				If I can be of help or you just want to say hi, you can drop me an email
 				at{" "}
 				<Link
-					href="mailto:hi@rolandleth.com"
+					href="mailto:roland+hi@hey.com"
 					title="Shoot me an email"
-					text="hi@rolandleth.com"
+					text="roland+hi@hey.com"
 				/>
 				, or find me on Twitter{" "}
 				<Link
