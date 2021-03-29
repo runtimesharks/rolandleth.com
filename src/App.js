@@ -9,16 +9,6 @@ class App extends React.Component {
 		return new URLSearchParams(this.props.location.search).get("query") || ""
 	}
 
-	componentDidUpdate(prevProps) {
-		const location = this.props.location
-
-		if (prevProps.location.pathname === location.pathname) {
-			return
-		}
-
-		window.ga("send", "pageview", location.pathname + location.search)
-	}
-
 	render() {
 		return (
 			<React.Fragment>
