@@ -8,11 +8,11 @@ const Intro = () => (
 		<Container>
 			<Greeting>Hi, I'm Roland Leth</Greeting>
 			<p>
-				I’m a full-stack developer, specialized in iOS and highly focused on
-				user experience. I'm also an entrepreneur, amateur designer and
-				occasional blogger. There used to be a blog here and everything is still
-				there and directly accesisble, it's just that I don't really write
-				anymore.
+				I’m an iOS developer since 2011, with extensive full-stack knowledge and
+				highly focused on user experience. I'm also an entrepreneur, amateur
+				designer and occasional blogger. There used to be a blog here and
+				everything is still there and directly accesisble, it's just that I
+				don't really write anymore.
 			</p>
 			<p>
 				If I can be of help or you just want to say hi, you can drop me at{" "}
